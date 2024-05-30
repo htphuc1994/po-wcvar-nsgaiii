@@ -90,7 +90,7 @@ class PortfolioOptimizationProblem(Problem):
 
                 # Calculate CVaR at the beginning of each month
                 if month > 0:
-                    returns = simulate_asset_returns(n_stocks, 500)
+                    returns = simulate_asset_returns(n_stocks, 100)
                     wavelet_variances = np.array([compute_wavelet_variance(wavelet_decomposition(returns[:, k])) for k in range(n_stocks)])
                     weights = 1 / wavelet_variances
                     weights /= np.sum(weights)  # Normalize weights
@@ -132,7 +132,7 @@ stock_data = [
 ]
 bank_interest_rate = 0.45
 initial_cash = 100000000  # 100 million VND
-duration = 12  # 12 months
+duration = 6  # 6 months
 max_stocks = 5  # Example cardinality constraint
 
 problem = PortfolioOptimizationProblem(stock_data, bank_interest_rate, initial_cash, duration, max_stocks)
@@ -154,6 +154,6 @@ best_cvar = res.F[:, 1:]
 
 print("Best solution found:")
 print("X =", best_solution)
-print("F (Returns) = %.2f" % best_return)
+print("F (Returns) =", ["%.2f" % r for r in best_return])
 print("F (CVaR) =", best_cvar)
 
