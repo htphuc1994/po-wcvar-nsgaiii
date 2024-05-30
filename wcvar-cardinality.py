@@ -59,7 +59,8 @@ class PortfolioOptimizationProblem(Problem):
 
             for month in range(duration):
                 # Update cash with bank interest
-                cash *= (1 + self.bank_interest_rate / 100)
+                if month != 0:
+                    cash *= (1 + self.bank_interest_rate / 100)
 
                 buy_decisions = X[i, month * n_stocks:(month + 1) * n_stocks]
                 sell_decisions = X[i, (duration + month) * n_stocks:(duration + month + 1) * n_stocks]
