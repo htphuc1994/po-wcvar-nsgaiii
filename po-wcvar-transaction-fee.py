@@ -2,7 +2,6 @@ import numpy as np
 import pywt
 from pymoo.core.problem import Problem
 from pymoo.algorithms.moo.nsga3 import NSGA3
-from pymoo.algorithms.moo.rnsga3 import RNSGA3
 from pymoo.util.ref_dirs import get_reference_directions
 from pymoo.optimize import minimize
 
@@ -75,7 +74,7 @@ class PortfolioOptimizationProblem(Problem):
 
                     # Process buy decisions
                     if buy_decisions[j] > 0:
-                        buy_amount = min(buy_decisions[j], self.stock_data[j]['trading_capacity'])
+                        buy_amount = int(round(min(buy_decisions[j], self.stock_data[j]['trading_capacity'])))
                         transaction_fee = 0.0015 / 100 * stock_price * buy_amount
                         cash -= (stock_price * buy_amount + transaction_fee)
                         stock_holdings[j] += buy_amount
@@ -83,7 +82,7 @@ class PortfolioOptimizationProblem(Problem):
 
                     # Process sell decisions
                     if sell_decisions[j] > 0:
-                        sell_amount = min(sell_decisions[j], stock_holdings[j])
+                        sell_amount = int(round(min(sell_decisions[j], stock_holdings[j])))
                         transaction_fee = 0.00015 / 100 * stock_price * sell_amount
                         cash += (stock_price * sell_amount - transaction_fee)
                         stock_holdings[j] -= sell_amount
@@ -121,10 +120,10 @@ class PortfolioOptimizationProblem(Problem):
                 print(f"Month {entry['Month']}:")
                 if entry["Buy"]:
                     for stock, amount in entry["Buy"]:
-                        print(f"  Buy: Stock {stock}, Amount: {amount:.2f}")
+                        print(f"  Buy: Stock {stock}, Amount: {amount}")
                 if entry["Sell"]:
                     for stock, amount in entry["Sell"]:
-                        print(f"  Sell: Stock {stock}, Amount: {amount:.2f}")
+                        print(f"  Sell: Stock {stock}, Amount: {amount}")
                 print(f"  Dividends: {entry['Dividends']:.2f}")
                 print(f"  Bank Deposit: {entry['BankDeposit']:.2f}")
             print("\n")
@@ -154,7 +153,6 @@ problem = PortfolioOptimizationProblem(stock_data, bank_interest_rate, initial_c
 ref_dirs = get_reference_directions("energy", problem.n_obj, 150, seed=1)
 # algorithm = RNSGA3(ref_points=ref_dirs, pop_per_ref_point=21, mu=0.1)
 algorithm = NSGA3(pop_size=100, ref_dirs=ref_dirs)
-
 
 res = minimize(problem,
                algorithm,
