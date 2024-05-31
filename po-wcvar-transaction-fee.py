@@ -71,6 +71,10 @@ class PortfolioOptimizationProblem(Problem):
                 buy_decisions = X[i, month * n_stocks:(month + 1) * n_stocks]
                 sell_decisions = X[i, (duration + month) * n_stocks:(duration + month + 1) * n_stocks]
 
+                # Prevent buys in the last month
+                if month == duration - 1:
+                    buy_decisions[:] = 0
+
                 monthly_log = {"Month": month + 1, "Buy": [], "Sell": [], "Dividends": 0, "BankDeposit": 0}
 
                 for j in range(n_stocks):
@@ -122,6 +126,16 @@ class PortfolioOptimizationProblem(Problem):
 
                 monthly_log["BankDeposit"] = cash
                 log.append(monthly_log)
+
+            # Ensure all holdings are sold at the end of the last month
+            for j in range(n_stocks):
+                if stock_holdings[j] > 0:
+                    sell_amount = stock_holdings[j]
+                    transaction_fee = 0.00015 / 100 * self.stock_data[j]['price'] * sell_amount
+                    total_sell_proceeds = self.stock_data[j]['price'] * sell_amount - transaction_fee
+                    cash += total_sell_proceeds
+                    stock_holdings[j] = 0
+                    log[-1]["Sell"].append((self.stock_data[j]['symbol'], sell_amount))
 
             total_cash[i] = cash
             # Check for cardinality constraint violation
