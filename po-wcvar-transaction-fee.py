@@ -51,6 +51,8 @@ class PortfolioOptimizationProblem(Problem):
         total_cash = np.zeros(X.shape[0])
         cvar_values = np.zeros((X.shape[0], duration))
         cardinality_violations = np.zeros(X.shape[0])
+        deferred_dividends = np.zeros((X.shape[0], duration + 1))
+        deferred_sale_proceeds = np.zeros((X.shape[0], duration + 1))
 
         for i in range(X.shape[0]):
             cash = self.initial_cash
@@ -61,6 +63,10 @@ class PortfolioOptimizationProblem(Problem):
                 # Update cash with bank interest
                 if month != 0:
                     cash *= (1 + self.bank_interest_rate / 100)
+
+                # Add deferred dividends and sale proceeds from the previous month
+                cash += deferred_dividends[i, month]
+                cash += deferred_sale_proceeds[i, month]
 
                 buy_decisions = X[i, month * n_stocks:(month + 1) * n_stocks]
                 sell_decisions = X[i, (duration + month) * n_stocks:(duration + month + 1) * n_stocks]
@@ -89,7 +95,8 @@ class PortfolioOptimizationProblem(Problem):
                         transaction_fee = 0.00015 / 100 * stock_price * sell_amount
                         total_sell_proceeds = stock_price * sell_amount - transaction_fee
 
-                        cash += total_sell_proceeds
+                        # Defer sale proceeds to the next month
+                        deferred_sale_proceeds[i, month + 1] += total_sell_proceeds
                         stock_holdings[j] -= sell_amount
                         monthly_log["Sell"].append((stock_symbol, sell_amount))
 
@@ -97,7 +104,8 @@ class PortfolioOptimizationProblem(Problem):
                     if (month + 1) in self.stock_data[j]['dividend_months']:
                         if stock_holdings[j] > 0:
                             dividends = self.stock_data[j]['dividend_yield'] * stock_holdings[j] * stock_price
-                            cash += dividends
+                            # Defer dividends to the next month
+                            deferred_dividends[i, month + 1] += dividends
                             monthly_log["Dividends"] += dividends
 
                 # Calculate CVaR at the beginning of each month
@@ -172,6 +180,5 @@ best_cvar = res.F[:, 1:]
 
 print("Best solution found:")
 print("X =", best_solution)
-# print("F (Returns) =", ["%.2f" % r for r in best_return])
-print("F (Returns) =", best_return)
+print("F (Returns) =", ["%.2f" % r for r in best_return])
 print("F (CVaR) =", best_cvar)
