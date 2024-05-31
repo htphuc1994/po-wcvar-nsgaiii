@@ -43,7 +43,7 @@ class PortfolioOptimizationProblem(Problem):
         xl = np.zeros(2 * self.n_stocks * self.duration)  # Lower bounds (all zeros, no negative quantities)
         xu = np.array([stock['trading_capacity'] for stock in stock_data] * 2 * self.duration)  # Upper bounds (max trading capacity)
 
-        super().__init__(n_var=2 * self.n_stocks * self.duration, n_obj=self.duration, n_constr=1 + self.n_stocks * self.duration, xl=xl, xu=xu)
+        super().__init__(n_var=2 * self.n_stocks * self.duration, n_obj=self.duration, n_constr=1, xl=xl, xu=xu)
 
     def _evaluate(self, X, out, *args, **kwargs):
         n_stocks = self.n_stocks
@@ -51,7 +51,7 @@ class PortfolioOptimizationProblem(Problem):
         total_cash = np.zeros(X.shape[0])
         cvar_values = np.zeros((X.shape[0], duration))
         cardinality_violations = np.zeros(X.shape[0])
-        buy_sell_violations = np.zeros((X.shape[0], n_stocks * duration))
+        # buy_sell_violations = np.zeros((X.shape[0], n_stocks * duration))
 
         for i in range(X.shape[0]):
             cash = self.initial_cash
@@ -66,32 +66,32 @@ class PortfolioOptimizationProblem(Problem):
                 buy_decisions = X[i, month * n_stocks:(month + 1) * n_stocks]
                 sell_decisions = X[i, (duration + month) * n_stocks:(duration + month + 1) * n_stocks]
 
-                # Check for simultaneous buy and sell decisions for each stock
-                for j in range(n_stocks):
-                    buy_sell_violations[i, month * n_stocks + j] = int((buy_decisions[j] > 0) and (sell_decisions[j] > 0))
-
                 monthly_log = {"Month": month + 1, "Buy": [], "Sell": [], "Dividends": 0, "BankDeposit": 0}
 
                 for j in range(n_stocks):
                     stock_symbol = self.stock_data[j]['symbol']
+                    stock_price = self.stock_data[j]['price']
+
                     # Process buy decisions
-                    if buy_decisions[j] > 0 and sell_decisions[j] == 0:  # Ensure no simultaneous buy and sell
+                    if buy_decisions[j] > 0:
                         buy_amount = min(buy_decisions[j], self.stock_data[j]['trading_capacity'])
-                        cash -= self.stock_data[j]['price'] * buy_amount
+                        transaction_fee = 0.0015 / 100 * stock_price * buy_amount
+                        cash -= (stock_price * buy_amount + transaction_fee)
                         stock_holdings[j] += buy_amount
                         monthly_log["Buy"].append((stock_symbol, buy_amount))
 
                     # Process sell decisions
-                    if sell_decisions[j] > 0 and buy_decisions[j] == 0:  # Ensure no simultaneous buy and sell
+                    if sell_decisions[j] > 0:
                         sell_amount = min(sell_decisions[j], stock_holdings[j])
-                        cash += self.stock_data[j]['price'] * sell_amount
+                        transaction_fee = 0.00015 / 100 * stock_price * sell_amount
+                        cash += (stock_price * sell_amount - transaction_fee)
                         stock_holdings[j] -= sell_amount
                         monthly_log["Sell"].append((stock_symbol, sell_amount))
 
                     # Calculate dividends if current month is a dividend month
                     if (month + 1) in self.stock_data[j]['dividend_months']:
                         if stock_holdings[j] > 0:
-                            dividends = self.stock_data[j]['dividend_yield'] * stock_holdings[j] * self.stock_data[j]['price']
+                            dividends = self.stock_data[j]['dividend_yield'] * stock_holdings[j] * stock_price
                             cash += dividends
                             monthly_log["Dividends"] += dividends
 
@@ -117,7 +117,7 @@ class PortfolioOptimizationProblem(Problem):
                 cardinality_violations[i] = held_stocks - self.max_stocks
 
         out["F"] = np.column_stack((-total_cash, cvar_values[:, 1:]))
-        out["G"] = np.column_stack((cardinality_violations, buy_sell_violations))
+        out["G"] = np.column_stack((cardinality_violations))
 
 stock_data = [
     {"symbol": "A", "price": 32000, "dividend_yield": 0.15, "dividend_months": [5, 9], "trading_capacity": 800},
@@ -143,7 +143,7 @@ algorithm = NSGA3(pop_size=100, ref_dirs=ref_dirs)
 
 res = minimize(problem,
                algorithm,
-               termination=('n_gen', 2239),
+               termination=('n_gen', 239),
                seed=1,
                save_history=True,
                verbose=True)
@@ -155,5 +155,6 @@ best_cvar = res.F[:, 1:]
 
 print("Best solution found:")
 print("X =", best_solution)
-print("F (Returns) =", ["%.2f" % r for r in best_return])
+# print("F (Returns) =", ["%.2f" % r for r in best_return])
+print("F (Returns) =", best_return)
 print("F (CVaR) =", best_cvar)
