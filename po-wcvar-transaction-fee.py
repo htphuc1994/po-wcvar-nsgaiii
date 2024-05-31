@@ -117,6 +117,18 @@ class PortfolioOptimizationProblem(Problem):
             if held_stocks > self.max_stocks:
                 cardinality_violations[i] = held_stocks - self.max_stocks
 
+            for entry in log:
+                print(f"Month {entry['Month']}:")
+                if entry["Buy"]:
+                    for stock, amount in entry["Buy"]:
+                        print(f"  Buy: Stock {stock}, Amount: {amount:.2f}")
+                if entry["Sell"]:
+                    for stock, amount in entry["Sell"]:
+                        print(f"  Sell: Stock {stock}, Amount: {amount:.2f}")
+                print(f"  Dividends: {entry['Dividends']:.2f}")
+                print(f"  Bank Deposit: {entry['BankDeposit']:.2f}")
+            print("\n")
+
         out["F"] = np.column_stack((-total_cash, cvar_values[:, 1:]))
         out["G"] = np.column_stack((cardinality_violations))
 
