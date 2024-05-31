@@ -2,6 +2,7 @@ import numpy as np
 import pywt
 from pymoo.core.problem import Problem
 from pymoo.algorithms.moo.nsga3 import NSGA3
+from pymoo.algorithms.moo.rnsga3 import RNSGA3
 from pymoo.util.ref_dirs import get_reference_directions
 from pymoo.optimize import minimize
 
@@ -139,12 +140,14 @@ max_stocks = 8  # Example cardinality constraint
 problem = PortfolioOptimizationProblem(stock_data, bank_interest_rate, initial_cash, duration, max_stocks)
 
 ref_dirs = get_reference_directions("energy", problem.n_obj, 150, seed=1)
+# algorithm = RNSGA3(ref_points=ref_dirs, pop_per_ref_point=21, mu=0.1)
 algorithm = NSGA3(pop_size=100, ref_dirs=ref_dirs)
+
 
 res = minimize(problem,
                algorithm,
                termination=('n_gen', 239),
-               seed=1,
+               seed=10,
                save_history=True,
                verbose=True)
 
