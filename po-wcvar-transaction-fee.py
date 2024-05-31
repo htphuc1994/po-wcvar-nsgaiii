@@ -81,6 +81,10 @@ class PortfolioOptimizationProblem(Problem):
                     stock_symbol = self.stock_data[j]['symbol']
                     stock_price = self.stock_data[j]['price']
 
+                    # Prevent sells during dividend months
+                    if (month + 1) in self.stock_data[j]['dividend_months']:
+                        sell_decisions[j] = 0
+
                     # Process buy decisions
                     if buy_decisions[j] > 0:
                         buy_amount = int(round(min(buy_decisions[j], self.stock_data[j]['trading_capacity'])))
