@@ -51,7 +51,6 @@ class PortfolioOptimizationProblem(Problem):
         total_cash = np.zeros(X.shape[0])
         cvar_values = np.zeros((X.shape[0], duration))
         cardinality_violations = np.zeros(X.shape[0])
-        # buy_sell_violations = np.zeros((X.shape[0], n_stocks * duration))
 
         for i in range(X.shape[0]):
             cash = self.initial_cash
@@ -76,15 +75,21 @@ class PortfolioOptimizationProblem(Problem):
                     if buy_decisions[j] > 0:
                         buy_amount = int(round(min(buy_decisions[j], self.stock_data[j]['trading_capacity'])))
                         transaction_fee = 0.0015 / 100 * stock_price * buy_amount
-                        cash -= (stock_price * buy_amount + transaction_fee)
-                        stock_holdings[j] += buy_amount
-                        monthly_log["Buy"].append((stock_symbol, buy_amount))
+                        total_buy_cost = stock_price * buy_amount + transaction_fee
+
+                        # Ensure we do not buy more than the available cash
+                        if total_buy_cost <= cash:
+                            cash -= total_buy_cost
+                            stock_holdings[j] += buy_amount
+                            monthly_log["Buy"].append((stock_symbol, buy_amount))
 
                     # Process sell decisions
                     if sell_decisions[j] > 0:
                         sell_amount = int(round(min(sell_decisions[j], stock_holdings[j])))
                         transaction_fee = 0.00015 / 100 * stock_price * sell_amount
-                        cash += (stock_price * sell_amount - transaction_fee)
+                        total_sell_proceeds = stock_price * sell_amount - transaction_fee
+
+                        cash += total_sell_proceeds
                         stock_holdings[j] -= sell_amount
                         monthly_log["Sell"].append((stock_symbol, sell_amount))
 
@@ -151,7 +156,6 @@ max_stocks = 8  # Example cardinality constraint
 problem = PortfolioOptimizationProblem(stock_data, bank_interest_rate, initial_cash, duration, max_stocks)
 
 ref_dirs = get_reference_directions("energy", problem.n_obj, 150, seed=1)
-# algorithm = RNSGA3(ref_points=ref_dirs, pop_per_ref_point=21, mu=0.1)
 algorithm = NSGA3(pop_size=100, ref_dirs=ref_dirs)
 
 res = minimize(problem,
