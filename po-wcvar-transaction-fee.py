@@ -80,6 +80,7 @@ class PortfolioOptimizationProblem(Problem):
                     buy_decisions[:] = 0
 
                 monthly_log = {"Month": month + 1, "Buy": [], "Sell": [], "Dividends": 0, "BankDeposit": 0}
+                aggregated_sell_decisions = np.zeros(n_stocks)
 
                 for j in range(n_stocks):
                     stock = self.stock_data[j]
@@ -105,25 +106,31 @@ class PortfolioOptimizationProblem(Problem):
                             stock_holdings[j] += buy_amount
                             monthly_log["Buy"].append((stock_symbol, buy_amount))
 
-                    # Process sell decisions
+                    # Aggregate sell decisions
                     if sell_decisions[j] > 0:
                         sell_amount = int(round(min(sell_decisions[j], stock_holdings[j])))
+                        aggregated_sell_decisions[j] += sell_amount
+
+                    # Calculate dividends if current month is a dividend month
+                    for dividend in stock['dividendSpitingHistories']:
+                        if (month + 1) == dividend['month'] and previous_stock_holdings[j] > 0:
+                            if month != duration - 1 and aggregated_sell_decisions[j] <= 0:  # Ensure no dividends are received if stock is sold in the same month
+                                dividends = dividend['value'] * previous_stock_holdings[j]
+                                # Defer dividends to the next month
+                                deferred_dividends[i, month + 1] += dividends
+                                monthly_log["Dividends"] += dividends
+
+                # Process aggregated sell decisions
+                for j in range(n_stocks):
+                    if aggregated_sell_decisions[j] > 0:
+                        sell_amount = aggregated_sell_decisions[j]
                         transaction_fee = 0.00015 / 100 * stock_price * sell_amount
                         total_sell_proceeds = stock_price * sell_amount - transaction_fee
 
                         # Defer sale proceeds to the next month
                         deferred_sale_proceeds[i, month + 1] += total_sell_proceeds
                         stock_holdings[j] -= sell_amount
-                        monthly_log["Sell"].append((stock_symbol, sell_amount))
-
-                    # Calculate dividends if current month is a dividend month
-                    for dividend in stock['dividendSpitingHistories']:
-                        if (month + 1) == dividend['month'] and previous_stock_holdings[j] > 0:
-                            if month != duration - 1 and sell_decisions[j] <= 0:  # Ensure no dividends are received if stock is sold in the same month
-                                dividends = dividend['value'] * previous_stock_holdings[j]
-                                # Defer dividends to the next month
-                                deferred_dividends[i, month + 1] += dividends
-                                monthly_log["Dividends"] += dividends
+                        monthly_log["Sell"].append((self.stock_data[j]['symbol'], sell_amount))
 
                 # Save the current holdings to use for dividend eligibility in the next month
                 previous_stock_holdings = stock_holdings.copy()
@@ -150,13 +157,22 @@ class PortfolioOptimizationProblem(Problem):
 
             # Ensure all holdings are sold at the end of the last month
             for j in range(n_stocks):
-                if stock_holdings[j] > 0:
-                    sell_amount = stock_holdings[j]
-                    transaction_fee = 0.00015 / 100 * self.stock_data[j]["prices"][duration - 1]['value'] * sell_amount
-                    total_sell_proceeds = self.stock_data[j]["prices"][duration - 1]['value'] * sell_amount - transaction_fee
-                    cash += total_sell_proceeds
+                remaining_sell_amount = stock_holdings[j]
+                if remaining_sell_amount > 0:
+                    for m in range(duration-1, -1, -1):
+                        stock_price = self.stock_data[j]["prices"][m]['value']
+                        stock_capacity = self.stock_data[j]["prices"][m]['matchedTradingVolume']
+                        sell_amount = min(remaining_sell_amount, stock_capacity)
+                        transaction_fee = 0.00015 / 100 * stock_price * sell_amount
+                        total_sell_proceeds = stock_price * sell_amount - transaction_fee
+                        cash += total_sell_proceeds
+                        remaining_sell_amount -= sell_amount
+                        if sell_amount > 0:
+                            log[m]["Sell"].append((self.stock_data[j]['symbol'], sell_amount))
+                        if remaining_sell_amount <= 0:
+                            break
+
                     stock_holdings[j] = 0
-                    log[-1]["Sell"].append((self.stock_data[j]['symbol'], sell_amount))
 
             total_cash[i] = cash
 
@@ -231,7 +247,7 @@ stock_data = STOCK_DATA_2023_INPUT
 bank_interest_rate = 0.45
 initial_cash = 100000000  # 100 million VND
 duration = 6  # 6 months
-max_stocks = 2  # Example cardinality constraint
+max_stocks = 10  # Example cardinality constraint
 termination_gen_num = 50
 
 problem = PortfolioOptimizationProblem(stock_data, bank_interest_rate, initial_cash, duration, max_stocks)
