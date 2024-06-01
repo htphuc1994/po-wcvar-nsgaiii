@@ -90,6 +90,8 @@ class PortfolioOptimizationProblem(Problem):
                     # Prevent sells during dividend months
                     if (month + 1) in [dividend['month'] for dividend in stock['dividendSpitingHistories']]:
                         sell_decisions[j] = 0
+                    if buy_decisions[j] > 0:
+                        sell_decisions[j] = 0
 
                     # Process buy decisions
                     if buy_decisions[j] > 0:
