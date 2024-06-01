@@ -44,7 +44,7 @@ class PortfolioOptimizationProblem(Problem):
 
         # Define bounds for the decision variables
         xl = np.zeros(2 * self.n_stocks * self.duration)  # Lower bounds (all zeros, no negative quantities)
-        xu = np.array([month_data["matchedTradingVolume"] for stock in stock_data for month_data in stock["prices"]] * 2)  # Upper bounds (max trading capacity)
+        xu = np.concatenate([np.array([month_data["matchedTradingVolume"] for month_data in stock["prices"][:duration]]) for stock in stock_data] * 2)
 
         super().__init__(n_var=2 * self.n_stocks * self.duration, n_obj=self.duration, n_constr=1, xl=xl, xu=xu)
 
@@ -141,11 +141,11 @@ class PortfolioOptimizationProblem(Problem):
             for j in range(n_stocks):
                 if stock_holdings[j] > 0:
                     sell_amount = stock_holdings[j]
-                    transaction_fee = 0.00015 / 100 * stock["prices"][duration - 1]['value'] * sell_amount
-                    total_sell_proceeds = stock["prices"][duration - 1]['value'] * sell_amount - transaction_fee
+                    transaction_fee = 0.00015 / 100 * self.stock_data[j]["prices"][duration - 1]['value'] * sell_amount
+                    total_sell_proceeds = self.stock_data[j]["prices"][duration - 1]['value'] * sell_amount - transaction_fee
                     cash += total_sell_proceeds
                     stock_holdings[j] = 0
-                    log[-1]["Sell"].append((stock['symbol'], sell_amount))
+                    log[-1]["Sell"].append((self.stock_data[j]['symbol'], sell_amount))
 
             total_cash[i] = cash
             # Check for cardinality constraint violation
@@ -168,13 +168,58 @@ class PortfolioOptimizationProblem(Problem):
         out["F"] = np.column_stack((-total_cash, cvar_values[:, 1:]))
         out["G"] = np.column_stack((cardinality_violations))
 
-# Sample stock data based on provided structure
+# Example stock data with monthly prices and trading capacities
+stock_data = [
+    {
+        "symbol": "BCC",
+        "companyName": "CTCP Xi măng Bỉm Sơn",
+        "type": "HNX30",
+        "year": 2023,
+        "prices": [
+            {"month": 1, "value": 11.6, "matchedTradingVolume": 16898285},
+            {"month": 2, "value": 12.7, "matchedTradingVolume": 26045742},
+            {"month": 3, "value": 12.4, "matchedTradingVolume": 20300759},
+            {"month": 4, "value": 12.4, "matchedTradingVolume": 13811487},
+            {"month": 5, "value": 13.3, "matchedTradingVolume": 20730116},
+            {"month": 6, "value": 14.5, "matchedTradingVolume": 24793471},
+            {"month": 7, "value": 14.6, "matchedTradingVolume": 22653644},
+            {"month": 8, "value": 14.6, "matchedTradingVolume": 21295205},
+            {"month": 9, "value": 13, "matchedTradingVolume": 9862493},
+            {"month": 10, "value": 12.2, "matchedTradingVolume": 6465571},
+            {"month": 11, "value": 9.8, "matchedTradingVolume": 5608050},
+            {"month": 12, "value": 9.6, "matchedTradingVolume": 3821733}
+        ],
+        "dividendSpitingHistories": [{"month": 8, "value": 500}]
+    },
+    {
+        "symbol": "BVS",
+        "companyName": "CTCP Chứng khoán Bảo Việt",
+        "type": "HNX30",
+        "year": 2023,
+        "prices": [
+            {"month": 1, "value": 21, "matchedTradingVolume": 1438111},
+            {"month": 2, "value": 19, "matchedTradingVolume": 1854612},
+            {"month": 3, "value": 19.1, "matchedTradingVolume": 3134602},
+            {"month": 4, "value": 20.2, "matchedTradingVolume": 3958340},
+            {"month": 5, "value": 23.8, "matchedTradingVolume": 9386680},
+            {"month": 6, "value": 25.3, "matchedTradingVolume": 14453718},
+            {"month": 7, "value": 27, "matchedTradingVolume": 13688213},
+            {"month": 8, "value": 28.8, "matchedTradingVolume": 13880792},
+            {"month": 9, "value": 30.7, "matchedTradingVolume": 9906439},
+            {"month": 10, "value": 26.9, "matchedTradingVolume": 6689071},
+            {"month": 11, "value": 26, "matchedTradingVolume": 3668846},
+            {"month": 12, "value": 26.1, "matchedTradingVolume": 3959357}
+        ],
+        "dividendSpitingHistories": [{"month": 10, "value": 1000}]
+    },
+    # Additional stocks can be added here
+]
 stock_data = STOCK_DATA_2023_INPUT
 
 bank_interest_rate = 0.45
 initial_cash = 100000000  # 100 million VND
 duration = 6  # 6 months
-max_stocks = 20  # Example cardinality constraint
+max_stocks = 8  # Example cardinality constraint
 
 problem = PortfolioOptimizationProblem(stock_data, bank_interest_rate, initial_cash, duration, max_stocks)
 
