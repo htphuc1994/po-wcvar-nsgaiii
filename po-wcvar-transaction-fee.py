@@ -5,6 +5,9 @@ from pymoo.algorithms.moo.nsga3 import NSGA3
 from pymoo.util.ref_dirs import get_reference_directions
 from pymoo.optimize import minimize
 
+from constants import STOCK_DATA_2023_INPUT
+
+
 def simulate_asset_returns(num_assets, num_points):
     """ Simulate daily returns for assets. """
     np.random.seed(42)
@@ -41,7 +44,7 @@ class PortfolioOptimizationProblem(Problem):
 
         # Define bounds for the decision variables
         xl = np.zeros(2 * self.n_stocks * self.duration)  # Lower bounds (all zeros, no negative quantities)
-        xu = np.array([stock['trading_capacity'] for stock in stock_data] * 2 * self.duration)  # Upper bounds (max trading capacity)
+        xu = np.concatenate([np.array([month_data["matchedTradingVolume"] for month_data in stock["prices"][:duration]]) for stock in stock_data] * 2)
 
         super().__init__(n_var=2 * self.n_stocks * self.duration, n_obj=self.duration, n_constr=1, xl=xl, xu=xu)
 
@@ -78,16 +81,18 @@ class PortfolioOptimizationProblem(Problem):
                 monthly_log = {"Month": month + 1, "Buy": [], "Sell": [], "Dividends": 0, "BankDeposit": 0}
 
                 for j in range(n_stocks):
-                    stock_symbol = self.stock_data[j]['symbol']
-                    stock_price = self.stock_data[j]['price']
+                    stock = self.stock_data[j]
+                    stock_symbol = stock['symbol']
+                    stock_price = stock["prices"][month]['value']
+                    stock_capacity = stock["prices"][month]['matchedTradingVolume']
 
                     # Prevent sells during dividend months
-                    if (month + 1) in self.stock_data[j]['dividend_months']:
+                    if (month + 1) in [dividend['month'] for dividend in stock['dividendSpitingHistories']]:
                         sell_decisions[j] = 0
 
                     # Process buy decisions
                     if buy_decisions[j] > 0:
-                        buy_amount = int(round(min(buy_decisions[j], self.stock_data[j]['trading_capacity'])))
+                        buy_amount = int(round(min(buy_decisions[j], stock_capacity)))
                         transaction_fee = 0.0015 / 100 * stock_price * buy_amount
                         total_buy_cost = stock_price * buy_amount + transaction_fee
 
@@ -109,12 +114,13 @@ class PortfolioOptimizationProblem(Problem):
                         monthly_log["Sell"].append((stock_symbol, sell_amount))
 
                     # Calculate dividends if current month is a dividend month
-                    if (month + 1) in self.stock_data[j]['dividend_months']:
-                        if stock_holdings[j] > 0:
-                            dividends = self.stock_data[j]['dividend_yield'] * stock_holdings[j] * stock_price
-                            # Defer dividends to the next month
-                            deferred_dividends[i, month + 1] += dividends
-                            monthly_log["Dividends"] += dividends
+                    for dividend in stock['dividendSpitingHistories']:
+                        if (month + 1) == dividend['month']:
+                            if stock_holdings[j] > 0:
+                                dividends = dividend['value'] * stock_holdings[j]
+                                # Defer dividends to the next month
+                                deferred_dividends[i, month + 1] += dividends
+                                monthly_log["Dividends"] += dividends
 
                 # Calculate CVaR at the beginning of each month
                 if month > 0:
@@ -135,8 +141,8 @@ class PortfolioOptimizationProblem(Problem):
             for j in range(n_stocks):
                 if stock_holdings[j] > 0:
                     sell_amount = stock_holdings[j]
-                    transaction_fee = 0.00015 / 100 * self.stock_data[j]['price'] * sell_amount
-                    total_sell_proceeds = self.stock_data[j]['price'] * sell_amount - transaction_fee
+                    transaction_fee = 0.00015 / 100 * self.stock_data[j]["prices"][duration - 1]['value'] * sell_amount
+                    total_sell_proceeds = self.stock_data[j]["prices"][duration - 1]['value'] * sell_amount - transaction_fee
                     cash += total_sell_proceeds
                     stock_holdings[j] = 0
                     log[-1]["Sell"].append((self.stock_data[j]['symbol'], sell_amount))
@@ -162,18 +168,54 @@ class PortfolioOptimizationProblem(Problem):
         out["F"] = np.column_stack((-total_cash, cvar_values[:, 1:]))
         out["G"] = np.column_stack((cardinality_violations))
 
+# Example stock data with monthly prices and trading capacities
 stock_data = [
-    {"symbol": "A", "price": 32000, "dividend_yield": 0.15, "dividend_months": [5, 9], "trading_capacity": 800},
-    {"symbol": "B", "price": 13500, "dividend_yield": 0.06, "dividend_months": [5, 11], "trading_capacity": 5000},
-    {"symbol": "C", "price": 20000, "dividend_yield": 0.06, "dividend_months": [8, 9], "trading_capacity": 5000},
-    {"symbol": "D", "price": 53500, "dividend_yield": 0.26, "dividend_months": [5, 11], "trading_capacity": 5000},
-    {"symbol": "E", "price": 23500, "dividend_yield": 0.06, "dividend_months": [1, 5, 8], "trading_capacity": 5000},
-    {"symbol": "F", "price": 13500, "dividend_yield": 0.08, "dividend_months": [2, 11], "trading_capacity": 5000},
-    {"symbol": "G", "price": 73500, "dividend_yield": 0.16, "dividend_months": [3, 12], "trading_capacity": 5000},
-    {"symbol": "H", "price": 3500, "dividend_yield": 0.46, "dividend_months": [4, 6], "trading_capacity": 5000},
-    {"symbol": "I", "price": 63500, "dividend_yield": 0.56, "dividend_months": [7, 11], "trading_capacity": 5000},
-    # Add more stocks as needed
+    {
+        "symbol": "BCC",
+        "companyName": "CTCP Xi măng Bỉm Sơn",
+        "type": "HNX30",
+        "year": 2023,
+        "prices": [
+            {"month": 1, "value": 11.6, "matchedTradingVolume": 16898285},
+            {"month": 2, "value": 12.7, "matchedTradingVolume": 26045742},
+            {"month": 3, "value": 12.4, "matchedTradingVolume": 20300759},
+            {"month": 4, "value": 12.4, "matchedTradingVolume": 13811487},
+            {"month": 5, "value": 13.3, "matchedTradingVolume": 20730116},
+            {"month": 6, "value": 14.5, "matchedTradingVolume": 24793471},
+            {"month": 7, "value": 14.6, "matchedTradingVolume": 22653644},
+            {"month": 8, "value": 14.6, "matchedTradingVolume": 21295205},
+            {"month": 9, "value": 13, "matchedTradingVolume": 9862493},
+            {"month": 10, "value": 12.2, "matchedTradingVolume": 6465571},
+            {"month": 11, "value": 9.8, "matchedTradingVolume": 5608050},
+            {"month": 12, "value": 9.6, "matchedTradingVolume": 3821733}
+        ],
+        "dividendSpitingHistories": [{"month": 8, "value": 500}]
+    },
+    {
+        "symbol": "BVS",
+        "companyName": "CTCP Chứng khoán Bảo Việt",
+        "type": "HNX30",
+        "year": 2023,
+        "prices": [
+            {"month": 1, "value": 21, "matchedTradingVolume": 1438111},
+            {"month": 2, "value": 19, "matchedTradingVolume": 1854612},
+            {"month": 3, "value": 19.1, "matchedTradingVolume": 3134602},
+            {"month": 4, "value": 20.2, "matchedTradingVolume": 3958340},
+            {"month": 5, "value": 23.8, "matchedTradingVolume": 9386680},
+            {"month": 6, "value": 25.3, "matchedTradingVolume": 14453718},
+            {"month": 7, "value": 27, "matchedTradingVolume": 13688213},
+            {"month": 8, "value": 28.8, "matchedTradingVolume": 13880792},
+            {"month": 9, "value": 30.7, "matchedTradingVolume": 9906439},
+            {"month": 10, "value": 26.9, "matchedTradingVolume": 6689071},
+            {"month": 11, "value": 26, "matchedTradingVolume": 3668846},
+            {"month": 12, "value": 26.1, "matchedTradingVolume": 3959357}
+        ],
+        "dividendSpitingHistories": [{"month": 10, "value": 1000}]
+    },
+    # Additional stocks can be added here
 ]
+stock_data = STOCK_DATA_2023_INPUT
+
 bank_interest_rate = 0.45
 initial_cash = 100000000  # 100 million VND
 duration = 6  # 6 months
