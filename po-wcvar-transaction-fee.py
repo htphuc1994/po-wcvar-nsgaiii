@@ -117,10 +117,11 @@ class PortfolioOptimizationProblem(Problem):
                     # Calculate dividends if current month is a dividend month
                     for dividend in stock['dividendSpitingHistories']:
                         if (month + 1) == dividend['month'] and previous_stock_holdings[j] > 0:
-                            dividends = dividend['value'] * previous_stock_holdings[j]
-                            # Defer dividends to the next month
-                            deferred_dividends[i, month + 1] += dividends
-                            monthly_log["Dividends"] += dividends
+                            if month != duration - 1 and sell_decisions[j] <= 0:  # Ensure no dividends are received if stock is sold in the same month
+                                dividends = dividend['value'] * previous_stock_holdings[j]
+                                # Defer dividends to the next month
+                                deferred_dividends[i, month + 1] += dividends
+                                monthly_log["Dividends"] += dividends
 
                 # Save the current holdings to use for dividend eligibility in the next month
                 previous_stock_holdings = stock_holdings.copy()
@@ -171,7 +172,7 @@ class PortfolioOptimizationProblem(Problem):
             # Log final cash and holdings to ensure we do not hold any stocks
             print(f"Final Cash: {cash:.2f}")
             for j, stock in enumerate(self.stock_data):
-                print(f"Final holdings of {stock['symbol']}: {stock_holdings[j]}")
+                print(f"Final Holdings: Stock {stock['symbol']}, Amount: {stock_holdings[j]}")
 
         out["F"] = np.column_stack((-total_cash, cvar_values[:, 1:]))
         out["G"] = np.column_stack((cardinality_violations))
