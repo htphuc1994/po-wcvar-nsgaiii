@@ -46,14 +46,14 @@ class PortfolioOptimizationProblem(Problem):
         xl = np.zeros(2 * self.n_stocks * self.duration)  # Lower bounds (all zeros, no negative quantities)
         xu = np.concatenate([np.array([month_data["matchedTradingVolume"] for month_data in stock["prices"][:duration]]) for stock in stock_data] * 2)
 
-        super().__init__(n_var=2 * self.n_stocks * self.duration, n_obj=self.duration, n_constr=1, xl=xl, xu=xu)
+        super().__init__(n_var=2 * self.n_stocks * self.duration, n_obj=self.duration, n_constr=self.duration, xl=xl, xu=xu)
 
     def _evaluate(self, X, out, *args, **kwargs):
         n_stocks = self.n_stocks
         duration = self.duration
         total_cash = np.zeros(X.shape[0])
         cvar_values = np.zeros((X.shape[0], duration))
-        cardinality_violations = np.zeros(X.shape[0])
+        cardinality_violations = np.zeros((X.shape[0], duration))
         deferred_dividends = np.zeros((X.shape[0], duration + 1))
         deferred_sale_proceeds = np.zeros((X.shape[0], duration + 1))
 
@@ -126,6 +126,11 @@ class PortfolioOptimizationProblem(Problem):
                 # Save the current holdings to use for dividend eligibility in the next month
                 previous_stock_holdings = stock_holdings.copy()
 
+                # Check for cardinality constraint violation
+                unique_stocks_held = np.sum(stock_holdings > 0)
+                if unique_stocks_held > self.max_stocks:
+                    cardinality_violations[i, month] = unique_stocks_held - self.max_stocks
+
                 # Calculate CVaR at the beginning of each month
                 if month > 0:
                     returns = simulate_asset_returns(n_stocks, 100)
@@ -152,10 +157,6 @@ class PortfolioOptimizationProblem(Problem):
                     log[-1]["Sell"].append((self.stock_data[j]['symbol'], sell_amount))
 
             total_cash[i] = cash
-            # Check for cardinality constraint violation
-            held_stocks = np.sum(stock_holdings > 0)
-            if held_stocks > self.max_stocks:
-                cardinality_violations[i] = held_stocks - self.max_stocks
 
             for entry in log:
                 print(f"Month {entry['Month']}:")
@@ -175,7 +176,7 @@ class PortfolioOptimizationProblem(Problem):
                 print(f"Final Holdings: Stock {stock['symbol']}, Amount: {stock_holdings[j]}")
 
         out["F"] = np.column_stack((-total_cash, cvar_values[:, 1:]))
-        out["G"] = np.column_stack((cardinality_violations))
+        out["G"] = cardinality_violations
 
 # Example stock data with monthly prices and trading capacities
 stock_data = [
@@ -228,7 +229,7 @@ stock_data = STOCK_DATA_2023_INPUT
 bank_interest_rate = 0.45
 initial_cash = 100000000  # 100 million VND
 duration = 6  # 6 months
-max_stocks = 8  # Example cardinality constraint
+max_stocks = 2  # Example cardinality constraint
 termination_gen_num = 50
 
 problem = PortfolioOptimizationProblem(stock_data, bank_interest_rate, initial_cash, duration, max_stocks)
