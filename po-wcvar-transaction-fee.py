@@ -5,6 +5,9 @@ from pymoo.algorithms.moo.nsga3 import NSGA3
 from pymoo.util.ref_dirs import get_reference_directions
 from pymoo.optimize import minimize
 
+from constants import STOCK_DATA_2023_INPUT
+
+
 def simulate_asset_returns(num_assets, num_points):
     """ Simulate daily returns for assets. """
     np.random.seed(42)
@@ -41,7 +44,7 @@ class PortfolioOptimizationProblem(Problem):
 
         # Define bounds for the decision variables
         xl = np.zeros(2 * self.n_stocks * self.duration)  # Lower bounds (all zeros, no negative quantities)
-        xu = np.array([stock['trading_capacity'] for stock in stock_data] * 2 * self.duration)  # Upper bounds (max trading capacity)
+        xu = np.array([month_data["matchedTradingVolume"] for stock in stock_data for month_data in stock["prices"]] * 2)  # Upper bounds (max trading capacity)
 
         super().__init__(n_var=2 * self.n_stocks * self.duration, n_obj=self.duration, n_constr=1, xl=xl, xu=xu)
 
@@ -78,16 +81,18 @@ class PortfolioOptimizationProblem(Problem):
                 monthly_log = {"Month": month + 1, "Buy": [], "Sell": [], "Dividends": 0, "BankDeposit": 0}
 
                 for j in range(n_stocks):
-                    stock_symbol = self.stock_data[j]['symbol']
-                    stock_price = self.stock_data[j]['price']
+                    stock = self.stock_data[j]
+                    stock_symbol = stock['symbol']
+                    stock_price = stock["prices"][month]['value']
+                    stock_capacity = stock["prices"][month]['matchedTradingVolume']
 
                     # Prevent sells during dividend months
-                    if (month + 1) in self.stock_data[j]['dividend_months']:
+                    if (month + 1) in [dividend['month'] for dividend in stock['dividendSpitingHistories']]:
                         sell_decisions[j] = 0
 
                     # Process buy decisions
                     if buy_decisions[j] > 0:
-                        buy_amount = int(round(min(buy_decisions[j], self.stock_data[j]['trading_capacity'])))
+                        buy_amount = int(round(min(buy_decisions[j], stock_capacity)))
                         transaction_fee = 0.0015 / 100 * stock_price * buy_amount
                         total_buy_cost = stock_price * buy_amount + transaction_fee
 
@@ -109,12 +114,13 @@ class PortfolioOptimizationProblem(Problem):
                         monthly_log["Sell"].append((stock_symbol, sell_amount))
 
                     # Calculate dividends if current month is a dividend month
-                    if (month + 1) in self.stock_data[j]['dividend_months']:
-                        if stock_holdings[j] > 0:
-                            dividends = self.stock_data[j]['dividend_yield'] * stock_holdings[j] * stock_price
-                            # Defer dividends to the next month
-                            deferred_dividends[i, month + 1] += dividends
-                            monthly_log["Dividends"] += dividends
+                    for dividend in stock['dividendSpitingHistories']:
+                        if (month + 1) == dividend['month']:
+                            if stock_holdings[j] > 0:
+                                dividends = dividend['value'] * stock_holdings[j]
+                                # Defer dividends to the next month
+                                deferred_dividends[i, month + 1] += dividends
+                                monthly_log["Dividends"] += dividends
 
                 # Calculate CVaR at the beginning of each month
                 if month > 0:
@@ -135,11 +141,11 @@ class PortfolioOptimizationProblem(Problem):
             for j in range(n_stocks):
                 if stock_holdings[j] > 0:
                     sell_amount = stock_holdings[j]
-                    transaction_fee = 0.00015 / 100 * self.stock_data[j]['price'] * sell_amount
-                    total_sell_proceeds = self.stock_data[j]['price'] * sell_amount - transaction_fee
+                    transaction_fee = 0.00015 / 100 * stock["prices"][duration - 1]['value'] * sell_amount
+                    total_sell_proceeds = stock["prices"][duration - 1]['value'] * sell_amount - transaction_fee
                     cash += total_sell_proceeds
                     stock_holdings[j] = 0
-                    log[-1]["Sell"].append((self.stock_data[j]['symbol'], sell_amount))
+                    log[-1]["Sell"].append((stock['symbol'], sell_amount))
 
             total_cash[i] = cash
             # Check for cardinality constraint violation
@@ -162,22 +168,13 @@ class PortfolioOptimizationProblem(Problem):
         out["F"] = np.column_stack((-total_cash, cvar_values[:, 1:]))
         out["G"] = np.column_stack((cardinality_violations))
 
-stock_data = [
-    {"symbol": "A", "price": 32000, "dividend_yield": 0.15, "dividend_months": [5, 9], "trading_capacity": 800},
-    {"symbol": "B", "price": 13500, "dividend_yield": 0.06, "dividend_months": [5, 11], "trading_capacity": 5000},
-    {"symbol": "C", "price": 20000, "dividend_yield": 0.06, "dividend_months": [8, 9], "trading_capacity": 5000},
-    {"symbol": "D", "price": 53500, "dividend_yield": 0.26, "dividend_months": [5, 11], "trading_capacity": 5000},
-    {"symbol": "E", "price": 23500, "dividend_yield": 0.06, "dividend_months": [1, 5, 8], "trading_capacity": 5000},
-    {"symbol": "F", "price": 13500, "dividend_yield": 0.08, "dividend_months": [2, 11], "trading_capacity": 5000},
-    {"symbol": "G", "price": 73500, "dividend_yield": 0.16, "dividend_months": [3, 12], "trading_capacity": 5000},
-    {"symbol": "H", "price": 3500, "dividend_yield": 0.46, "dividend_months": [4, 6], "trading_capacity": 5000},
-    {"symbol": "I", "price": 63500, "dividend_yield": 0.56, "dividend_months": [7, 11], "trading_capacity": 5000},
-    # Add more stocks as needed
-]
+# Sample stock data based on provided structure
+stock_data = STOCK_DATA_2023_INPUT
+
 bank_interest_rate = 0.45
 initial_cash = 100000000  # 100 million VND
 duration = 6  # 6 months
-max_stocks = 8  # Example cardinality constraint
+max_stocks = 20  # Example cardinality constraint
 
 problem = PortfolioOptimizationProblem(stock_data, bank_interest_rate, initial_cash, duration, max_stocks)
 
