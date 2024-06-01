@@ -168,6 +168,11 @@ class PortfolioOptimizationProblem(Problem):
                 print(f"  Bank Deposit: {entry['BankDeposit']:.2f}")
             print("\n")
 
+            # Log final cash and holdings to ensure we do not hold any stocks
+            print(f"Final Cash: {cash:.2f}")
+            for j, stock in enumerate(self.stock_data):
+                print(f"Final holdings of {stock['symbol']}: {stock_holdings[j]}")
+
         out["F"] = np.column_stack((-total_cash, cvar_values[:, 1:]))
         out["G"] = np.column_stack((cardinality_violations))
 
