@@ -60,6 +60,7 @@ class PortfolioOptimizationProblem(Problem):
         for i in range(X.shape[0]):
             cash = self.initial_cash
             stock_holdings = np.zeros(n_stocks)
+            previous_stock_holdings = np.zeros(n_stocks)  # To track holdings from the previous month
             log = []
 
             for month in range(duration):
@@ -115,12 +116,14 @@ class PortfolioOptimizationProblem(Problem):
 
                     # Calculate dividends if current month is a dividend month
                     for dividend in stock['dividendSpitingHistories']:
-                        if (month + 1) == dividend['month']:
-                            if stock_holdings[j] > 0:
-                                dividends = dividend['value'] * stock_holdings[j]
-                                # Defer dividends to the next month
-                                deferred_dividends[i, month + 1] += dividends
-                                monthly_log["Dividends"] += dividends
+                        if (month + 1) == dividend['month'] and previous_stock_holdings[j] > 0:
+                            dividends = dividend['value'] * previous_stock_holdings[j]
+                            # Defer dividends to the next month
+                            deferred_dividends[i, month + 1] += dividends
+                            monthly_log["Dividends"] += dividends
+
+                # Save the current holdings to use for dividend eligibility in the next month
+                previous_stock_holdings = stock_holdings.copy()
 
                 # Calculate CVaR at the beginning of each month
                 if month > 0:
@@ -220,6 +223,7 @@ bank_interest_rate = 0.45
 initial_cash = 100000000  # 100 million VND
 duration = 6  # 6 months
 max_stocks = 8  # Example cardinality constraint
+termination_gen_num = 50
 
 problem = PortfolioOptimizationProblem(stock_data, bank_interest_rate, initial_cash, duration, max_stocks)
 
@@ -228,7 +232,7 @@ algorithm = NSGA3(pop_size=100, ref_dirs=ref_dirs)
 
 res = minimize(problem,
                algorithm,
-               termination=('n_gen', 239),
+               termination=('n_gen', termination_gen_num),
                seed=10,
                save_history=True,
                verbose=True)
