@@ -13,25 +13,30 @@ def simulate_asset_returns(num_assets, num_points):
     np.random.seed(42)
     return np.random.normal(0.001, 0.01, size=(num_points, num_assets))
 
+
 def wavelet_decomposition(returns, wavelet='db4', levels=1):
     """ Decompose asset returns using Discrete Wavelet Transform. """
     coeffs = pywt.wavedec(returns, wavelet, level=levels)
     return coeffs[1:]  # Returning detail coefficients, ignoring approximation
+
 
 def compute_wavelet_variance(coeffs):
     """ Compute the wavelet variance from detail wavelet coefficients. """
     variances = [np.var(c) for c in coeffs]  # Compute variance of each level
     return np.mean(variances)  # Return the mean of variances across levels
 
+
 def calculate_var_from_wavelet_variances(wavelet_variances, weights, scaling_factor=1.0):
     """ Estimate portfolio VaR directly from wavelet variances. """
     weighted_variances = np.dot(wavelet_variances, weights)
     return scaling_factor * np.sqrt(weighted_variances)  # Simple model to convert variance to VaR
 
+
 def calculate_cvar(portfolio_returns, var):
     """ Calculate Conditional Value-at-Risk (CVaR) based on VaR. """
     losses_exceeding_var = [loss for loss in portfolio_returns if loss <= var]
     return np.mean(losses_exceeding_var) if losses_exceeding_var else 0
+
 
 class PortfolioOptimizationProblem(Problem):
     def __init__(self, stock_data, bank_interest_rate, initial_cash, duration, max_stocks):
@@ -44,9 +49,12 @@ class PortfolioOptimizationProblem(Problem):
 
         # Define bounds for the decision variables
         xl = np.zeros(2 * self.n_stocks * self.duration)  # Lower bounds (all zeros, no negative quantities)
-        xu = np.concatenate([np.array([month_data["matchedTradingVolume"] for month_data in stock["prices"][:duration]]) for stock in stock_data] * 2)
+        xu = np.concatenate(
+            [np.array([month_data["matchedTradingVolume"] for month_data in stock["prices"][:duration]]) for stock in
+             stock_data] * 2)
 
-        super().__init__(n_var=2 * self.n_stocks * self.duration, n_obj=self.duration, n_constr=self.duration, xl=xl, xu=xu)
+        super().__init__(n_var=2 * self.n_stocks * self.duration, n_obj=self.duration, n_constr=self.duration, xl=xl,
+                         xu=xu)
 
     def _evaluate(self, X, out, *args, **kwargs):
         n_stocks = self.n_stocks
@@ -91,7 +99,7 @@ class PortfolioOptimizationProblem(Problem):
                     # Prevent sells during dividend months
                     if (month + 1) in [dividend['month'] for dividend in stock['dividendSpitingHistories']]:
                         sell_decisions[j] = 0
-                    if buy_decisions[j] > 0:
+                    if buy_decisions[j] > 0 and ((round(buy_decisions[j]) == round(sell_decisions[j])) or (round(buy_decisions[j]) >= stock_capacity and round(sell_decisions[j]) >= stock_capacity)):
                         sell_decisions[j] = 0
 
                     # Process buy decisions
@@ -114,7 +122,8 @@ class PortfolioOptimizationProblem(Problem):
                     # Calculate dividends if current month is a dividend month
                     for dividend in stock['dividendSpitingHistories']:
                         if (month + 1) == dividend['month'] and previous_stock_holdings[j] > 0:
-                            if month != duration - 1 and aggregated_sell_decisions[j] <= 0:  # Ensure no dividends are received if stock is sold in the same month
+                            if month != duration - 1 and aggregated_sell_decisions[
+                                j] <= 0:  # Ensure no dividends are received if stock is sold in the same month
                                 dividends = dividend['value'] * previous_stock_holdings[j]
                                 # Defer dividends to the next month
                                 deferred_dividends[i, month + 1] += dividends
@@ -143,7 +152,8 @@ class PortfolioOptimizationProblem(Problem):
                 # Calculate CVaR at the beginning of each month
                 if month > 0:
                     returns = simulate_asset_returns(n_stocks, 100)
-                    wavelet_variances = np.array([compute_wavelet_variance(wavelet_decomposition(returns[:, k])) for k in range(n_stocks)])
+                    wavelet_variances = np.array(
+                        [compute_wavelet_variance(wavelet_decomposition(returns[:, k])) for k in range(n_stocks)])
                     weights = 1 / wavelet_variances
                     weights /= np.sum(weights)  # Normalize weights
 
@@ -159,7 +169,7 @@ class PortfolioOptimizationProblem(Problem):
             for j in range(n_stocks):
                 remaining_sell_amount = stock_holdings[j]
                 if remaining_sell_amount > 0:
-                    for m in range(duration-1, -1, -1):
+                    for m in range(duration - 1, -1, -1):
                         stock_price = self.stock_data[j]["prices"][m]['value']
                         stock_capacity = self.stock_data[j]["prices"][m]['matchedTradingVolume']
                         sell_amount = min(remaining_sell_amount, stock_capacity)
@@ -195,6 +205,7 @@ class PortfolioOptimizationProblem(Problem):
 
         out["F"] = np.column_stack((-total_cash, cvar_values[:, 1:]))
         out["G"] = cardinality_violations
+
 
 # Example stock data with monthly prices and trading capacities
 stock_data = [
