@@ -5,7 +5,7 @@ from pymoo.algorithms.moo.nsga3 import NSGA3
 from pymoo.util.ref_dirs import get_reference_directions
 from pymoo.optimize import minimize
 
-from constants import STOCK_DATA_2023_INPUT
+from constants import STOCK_DATA_2023_INPUT, TRANS_FEE
 
 
 def simulate_asset_returns(num_assets, num_points):
@@ -137,7 +137,7 @@ class PortfolioOptimizationProblem(Problem):
                 for j in range(n_stocks):
                     if aggregated_sell_decisions[j] > 0:
                         sell_amount = aggregated_sell_decisions[j]
-                        transaction_fee = 0.00015 / 100 * stock_price * sell_amount
+                        transaction_fee = TRANS_FEE / 100 * stock_price * sell_amount
                         total_sell_proceeds = stock_price * sell_amount - transaction_fee
 
                         # Defer sale proceeds to the next month
@@ -177,7 +177,7 @@ class PortfolioOptimizationProblem(Problem):
                         stock_price = self.stock_data[j]["prices"][m]['value']
                         stock_capacity = self.stock_data[j]["prices"][m]['matchedTradingVolume']
                         sell_amount = min(remaining_sell_amount, stock_capacity)
-                        transaction_fee = 0.00015 / 100 * stock_price * sell_amount
+                        transaction_fee = TRANS_FEE / 100 * stock_price * sell_amount
                         total_sell_proceeds = stock_price * sell_amount - transaction_fee
                         cash += total_sell_proceeds
                         remaining_sell_amount -= sell_amount

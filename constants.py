@@ -1,3 +1,4 @@
+TRANS_FEE = 0.00015
 STOCK_DATA_2023_INPUT = [
     {
         "symbol": "BCC",
