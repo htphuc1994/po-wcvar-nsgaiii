@@ -37,6 +37,23 @@ def calculate_cvar(portfolio_returns, var):
     losses_exceeding_var = [loss for loss in portfolio_returns if loss <= var]
     return np.mean(losses_exceeding_var) if losses_exceeding_var else 0
 
+def print_detail(log, cash, stock_holdings, stock_data):
+    for entry in log:
+        print(f"Month {entry['Month']}:")
+        if entry["Buy"]:
+            for stock, amount in entry["Buy"]:
+                print(f"  Buy: Stock {stock}, Amount: {amount}")
+        if entry["Sell"]:
+            for stock, amount in entry["Sell"]:
+                print(f"  Sell: Stock {stock}, Amount: {amount}")
+        print(f"  Dividends: {entry['Dividends']:.2f}")
+        print(f"  Bank Deposit: {entry['BankDeposit']:.2f}")
+    print("\n")
+
+    # Log final cash and holdings to ensure we do not hold any stocks
+    print(f"Final Cash: {cash:.2f}")
+    for j, stock in enumerate(stock_data):
+        print(f"Final Holdings: Stock {stock['symbol']}, Amount: {stock_holdings[j]}")
 
 class PortfolioOptimizationProblem(Problem):
     def __init__(self, stock_data, bank_interest_rate, initial_cash, duration, max_stocks):
@@ -190,22 +207,23 @@ class PortfolioOptimizationProblem(Problem):
 
             total_cash[i] = cash
 
-            for entry in log:
-                print(f"Month {entry['Month']}:")
-                if entry["Buy"]:
-                    for stock, amount in entry["Buy"]:
-                        print(f"  Buy: Stock {stock}, Amount: {amount}")
-                if entry["Sell"]:
-                    for stock, amount in entry["Sell"]:
-                        print(f"  Sell: Stock {stock}, Amount: {amount}")
-                print(f"  Dividends: {entry['Dividends']:.2f}")
-                print(f"  Bank Deposit: {entry['BankDeposit']:.2f}")
-            print("\n")
-
-            # Log final cash and holdings to ensure we do not hold any stocks
-            print(f"Final Cash: {cash:.2f}")
-            for j, stock in enumerate(self.stock_data):
-                print(f"Final Holdings: Stock {stock['symbol']}, Amount: {stock_holdings[j]}")
+            print_detail(log, cash, stock_holdings, stock_data)
+            # for entry in log:
+            #     print(f"Month {entry['Month']}:")
+            #     if entry["Buy"]:
+            #         for stock, amount in entry["Buy"]:
+            #             print(f"  Buy: Stock {stock}, Amount: {amount}")
+            #     if entry["Sell"]:
+            #         for stock, amount in entry["Sell"]:
+            #             print(f"  Sell: Stock {stock}, Amount: {amount}")
+            #     print(f"  Dividends: {entry['Dividends']:.2f}")
+            #     print(f"  Bank Deposit: {entry['BankDeposit']:.2f}")
+            # print("\n")
+            #
+            # # Log final cash and holdings to ensure we do not hold any stocks
+            # print(f"Final Cash: {cash:.2f}")
+            # for j, stock in enumerate(self.stock_data):
+            #     print(f"Final Holdings: Stock {stock['symbol']}, Amount: {stock_holdings[j]}")
 
         out["F"] = np.column_stack((-total_cash, cvar_values[:, 1:]))
         out["G"] = cardinality_violations
