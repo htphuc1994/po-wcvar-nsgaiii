@@ -99,7 +99,11 @@ class PortfolioOptimizationProblem(Problem):
                     # Prevent sells during dividend months
                     if (month + 1) in [dividend['month'] for dividend in stock['dividendSpitingHistories']]:
                         sell_decisions[j] = 0
-                    if buy_decisions[j] > 0 and ((round(buy_decisions[j]) == round(sell_decisions[j])) or (round(buy_decisions[j]) >= stock_capacity and round(sell_decisions[j]) >= stock_capacity)):
+                    # print(f"{buy_decisions[j]};{sell_decisions[j]}")
+                    if (buy_decisions[j] > 0 and
+                            ((round(buy_decisions[j]) == round(sell_decisions[j])) or
+                             (round(buy_decisions[j]) >= stock_capacity and round(sell_decisions[j]) >= stock_capacity) or
+                             ((round(buy_decisions[j]) + stock_holdings[j] - int(round(min(sell_decisions[j], stock_capacity))) <= 0)))):
                         sell_decisions[j] = 0
 
                     # Process buy decisions
