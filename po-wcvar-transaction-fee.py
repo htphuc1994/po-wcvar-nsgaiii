@@ -171,12 +171,13 @@ class PortfolioOptimizationProblem(Problem):
                     cardinality_violations[i, month] = unique_stocks_held - self.max_stocks
 
                 # Calculate CVaR at the beginning of each month
-                if month > 0:
-                    returns = simulate_asset_returns(n_stocks, 100)
+                if 0 < month < duration:
+                    returns = simulate_asset_returns(n_stocks, 100)  # todo
                     wavelet_variances = np.array(
                         [compute_wavelet_variance(wavelet_decomposition(returns[:, k])) for k in range(n_stocks)])
-                    weights = 1 / wavelet_variances
-                    weights /= np.sum(weights)  # Normalize weights
+                    weights = stock_holdings.copy()
+                    sum_weights = np.sum(weights)
+                    weights /= sum_weights  # Normalize weights
 
                     portfolio_var = calculate_var_from_wavelet_variances(wavelet_variances, weights, scaling_factor=3.0)
                     portfolio_returns = np.dot(returns, weights)
@@ -207,7 +208,7 @@ class PortfolioOptimizationProblem(Problem):
 
             total_cash[i] = cash
 
-            print_detail(log, cash, stock_holdings, stock_data)
+            # print_detail(log, cash, stock_holdings, stock_data)
 
         out["F"] = np.column_stack((-total_cash, cvar_values[:, 1:]))
         out["G"] = cardinality_violations
@@ -264,13 +265,13 @@ stock_data = STOCK_DATA_2023_INPUT
 bank_interest_rate = 0.45
 initial_cash = 100000000  # 100 million VND
 duration = 6  # 6 months
-max_stocks = 10  # Example cardinality constraint
-termination_gen_num = 50
+max_stocks = 29  # Example cardinality constraint
+termination_gen_num = 200
 
 problem = PortfolioOptimizationProblem(stock_data, bank_interest_rate, initial_cash, duration, max_stocks)
 
-ref_dirs = get_reference_directions("energy", problem.n_obj, 150, seed=1)
-algorithm = NSGA3(pop_size=100, ref_dirs=ref_dirs)
+ref_dirs = get_reference_directions("energy", problem.n_obj, 200, seed=1)
+algorithm = NSGA3(pop_size=200, ref_dirs=ref_dirs)
 
 res = minimize(problem,
                algorithm,
