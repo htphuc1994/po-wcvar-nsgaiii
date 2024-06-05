@@ -4,6 +4,7 @@ from pymoo.core.problem import Problem
 from pymoo.algorithms.moo.nsga3 import NSGA3
 from pymoo.util.ref_dirs import get_reference_directions
 from pymoo.optimize import minimize
+from scipy.stats import norm
 
 from constants import STOCK_DATA_2023_INPUT, TRANS_FEE
 
@@ -26,16 +27,23 @@ def compute_wavelet_variance(coeffs):
     return np.mean(variances)  # Return the mean of variances across levels
 
 
-def calculate_var_from_wavelet_variances(wavelet_variances, weights, scaling_factor=1.0):
+# def calculate_var_from_wavelet_variances(wavelet_variances, weights, scaling_factor=1.0):
+#     """ Estimate portfolio VaR directly from wavelet variances. """
+#     weighted_variances = np.dot(wavelet_variances, weights)
+#     return scaling_factor * np.sqrt(weighted_variances)  # Simple model to convert variance to VaR
+def calculate_var_from_wavelet_variance(wavelet_variance, tail_probability, scaling_factor=1.0):
     """ Estimate portfolio VaR directly from wavelet variances. """
-    weighted_variances = np.dot(wavelet_variances, weights)
-    return scaling_factor * np.sqrt(weighted_variances)  # Simple model to convert variance to VaR
+    # weighted_variances = np.dot(wavelet_variances, weights)
+    # Calculate the inverse of the cumulative distribution function for the given confidence level
+    z_score = norm.ppf(1 - tail_probability)
+    return scaling_factor * z_score * np.sqrt(wavelet_variance)  # Simple model to convert variance to VaR
 
 
 def calculate_cvar(portfolio_returns, var):
     """ Calculate Conditional Value-at-Risk (CVaR) based on VaR. """
     losses_exceeding_var = [loss for loss in portfolio_returns if loss <= var]
     return np.mean(losses_exceeding_var) if losses_exceeding_var else 0
+
 
 def print_detail(log, cash, stock_holdings, stock_data):
     for entry in log:
@@ -54,6 +62,7 @@ def print_detail(log, cash, stock_holdings, stock_data):
     print(f"Final Cash: {cash:.2f}")
     for j, stock in enumerate(stock_data):
         print(f"Final Holdings: Stock {stock['symbol']}, Amount: {stock_holdings[j]}")
+
 
 class PortfolioOptimizationProblem(Problem):
     def __init__(self, stock_data, bank_interest_rate, initial_cash, duration, max_stocks):
@@ -119,8 +128,10 @@ class PortfolioOptimizationProblem(Problem):
                     # print(f"{buy_decisions[j]};{sell_decisions[j]}")
                     if (buy_decisions[j] > 0 and
                             ((round(buy_decisions[j]) == round(sell_decisions[j])) or
-                             (round(buy_decisions[j]) >= stock_capacity and round(sell_decisions[j]) >= stock_capacity) or
-                             ((round(buy_decisions[j]) + stock_holdings[j] - int(round(min(sell_decisions[j], stock_capacity))) <= 0)))):
+                             (round(buy_decisions[j]) >= stock_capacity and round(
+                                 sell_decisions[j]) >= stock_capacity) or
+                             ((round(buy_decisions[j]) + stock_holdings[j] - int(
+                                 round(min(sell_decisions[j], stock_capacity))) <= 0)))):
                         sell_decisions[j] = 0
 
                     # Process buy decisions
@@ -172,15 +183,19 @@ class PortfolioOptimizationProblem(Problem):
 
                 # Calculate CVaR at the beginning of each month
                 if 0 < month < duration:
-                    returns = simulate_asset_returns(n_stocks, 100)  # todo
-                    wavelet_variances = np.array(
-                        [compute_wavelet_variance(wavelet_decomposition(returns[:, k])) for k in range(n_stocks)])
-                    weights = stock_holdings.copy()
-                    sum_weights = np.sum(weights)
-                    weights /= sum_weights  # Normalize weights
+                    returns = simulate_asset_returns(n_stocks, 100)  # todo: past prices + price of the processing month
+                    # weights = stock_holdings.copy()
+                    # sum_weights = np.sum(weights)
+                    # weights /= sum_weights  # Normalize weights
+                    portfolio_returns = np.dot(returns, stock_holdings)
 
-                    portfolio_var = calculate_var_from_wavelet_variances(wavelet_variances, weights, scaling_factor=3.0)
-                    portfolio_returns = np.dot(returns, weights)
+                    # wavelet_variances = np.array(
+                    #     [compute_wavelet_variance(wavelet_decomposition(returns[:, k])) for k in range(n_stocks)])
+                    wavelet_variance = compute_wavelet_variance(wavelet_decomposition(portfolio_returns))
+
+                    portfolio_var = calculate_var_from_wavelet_variance(wavelet_variance, tail_probability_epsilon,
+                                                                        scaling_factor=initial_cash)
+
                     portfolio_cvar = calculate_cvar(portfolio_returns, portfolio_var)
                     cvar_values[i, month] = portfolio_cvar
 
@@ -267,6 +282,7 @@ initial_cash = 100000000  # 100 million VND
 duration = 6  # 6 months
 max_stocks = 29  # Example cardinality constraint
 termination_gen_num = 200
+tail_probability_epsilon = 0.05
 
 problem = PortfolioOptimizationProblem(stock_data, bank_interest_rate, initial_cash, duration, max_stocks)
 
