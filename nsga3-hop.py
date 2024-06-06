@@ -17,7 +17,7 @@ from pymoo.util.nds.non_dominated_sorting import NonDominatedSorting
 
 
 # =========================================================================================================
-# Implementation
+# NOTE: please replace the default NSGA-III of library by this class
 # =========================================================================================================
 
 def comp_by_cv_then_random(pop, P, **kwargs):
