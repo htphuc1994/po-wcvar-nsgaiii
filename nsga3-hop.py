@@ -209,7 +209,7 @@ def get_indices_with_min_value(array):
 def hop(pop, indices):
     print(f"HOP = {indices}")
     # Extract the F values for the given indices
-    F_values = np.array([pop[i]['F'] for i in indices]) # 1st element is return, the remaining elements are risks
+    F_values = np.array([pop[i].F for i in indices]) # 1st element is return, the remaining elements are risks
 
     # Negate F values from F[1] to F[len(F)-1] for sorting in descending order
     negated_F_values = -F_values[:, 1:]
@@ -256,12 +256,12 @@ def niching(pop, n_remaining, niche_count, niche_of_individuals, dist_to_niche):
             next_ind = np.where(np.logical_and(niche_of_individuals == next_niche, mask))[0]
 
             # shuffle to break random tie (equal perp. dist) or select randomly
-            np.random.shuffle(next_ind)
+            # np.random.shuffle(next_ind)
 
             if niche_count[next_niche] == 0:
                 # next_ind = next_ind[np.argmin(dist_to_niche[next_ind])] # todo apply HOP in case we have some dist_to_niche elements with the same min value
                 indices_of_min = get_indices_with_min_value(dist_to_niche[next_ind])
-                next_ind = hop(pop, indices_of_min)[0]
+                next_ind = next_ind[hop(pop, indices_of_min)[0]]
             else:
                 # already randomized through shuffling
                 # next_ind = next_ind[0] # todo apply HOP (because random via line 229)
@@ -275,7 +275,6 @@ def niching(pop, n_remaining, niche_count, niche_of_individuals, dist_to_niche):
             niche_count[next_niche] += 1
 
     return survivors
-
 
 def associate_to_niches(F, niches, ideal_point, nadir_point, utopian_epsilon=0.0):
     utopian_point = ideal_point - utopian_epsilon
