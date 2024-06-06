@@ -197,6 +197,31 @@ class ReferenceDirectionSurvival(Survival):
         return pop
 
 
+def get_indices_with_min_value(array):
+    # Find the minimum value in the array
+    min_value = np.min(array)
+
+    # Get the indices of the elements with the minimum value
+    min_indices = np.where(array == min_value)[0]
+
+    return min_indices
+
+def hop(pop, indices):
+    print(f"HOP = {indices}")
+    # Extract the F values for the given indices
+    F_values = np.array([pop[i]['F'] for i in indices]) # 1st element is return, the remaining elements are risks
+
+    # Negate F values from F[1] to F[len(F)-1] for sorting in descending order
+    negated_F_values = -F_values[:, 1:]
+
+    # Use lexsort to get the sorted indices based on the negated F values
+    sorted_order = np.lexsort(negated_F_values.T[::-1])
+
+    # Apply the sorted order to the provided indices
+    sorted_indices = np.array(indices)[sorted_order]
+
+    return sorted_indices
+
 def niching(pop, n_remaining, niche_count, niche_of_individuals, dist_to_niche):
     survivors = []
 
@@ -218,7 +243,12 @@ def niching(pop, n_remaining, niche_count, niche_of_individuals, dist_to_niche):
 
         # all niches with the minimum niche count (truncate if randomly if more niches than remaining individuals)
         next_niches = next_niches_list[np.where(next_niche_count == min_niche_count)[0]]
-        next_niches = next_niches[np.random.permutation(len(next_niches))[:n_select]] # todo apply HOP (because random via line 229)
+        if len(next_niches) <= n_select:
+            next_niches = next_niches[np.random.permutation(len(next_niches))[:n_select]]
+        else:
+            print(f"Performing HOP.. {len(next_niches)} and {n_select}")
+            # todo apply HOP
+            next_niches = next_niches[np.random.permutation(len(next_niches))[:n_select]]
 
         for next_niche in next_niches:
 
@@ -229,10 +259,13 @@ def niching(pop, n_remaining, niche_count, niche_of_individuals, dist_to_niche):
             np.random.shuffle(next_ind)
 
             if niche_count[next_niche] == 0:
-                next_ind = next_ind[np.argmin(dist_to_niche[next_ind])]
+                # next_ind = next_ind[np.argmin(dist_to_niche[next_ind])] # todo apply HOP in case we have some dist_to_niche elements with the same min value
+                indices_of_min = get_indices_with_min_value(dist_to_niche[next_ind])
+                next_ind = hop(pop, indices_of_min)[0]
             else:
                 # already randomized through shuffling
-                next_ind = next_ind[0] # todo apply HOP (because random via line 229)
+                # next_ind = next_ind[0] # todo apply HOP (because random via line 229)
+                next_ind = hop(pop, next_ind)[0]
 
             # add the selected individual to the survivors
             mask[next_ind] = False
