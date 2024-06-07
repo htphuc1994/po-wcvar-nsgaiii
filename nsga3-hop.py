@@ -136,9 +136,10 @@ class ReferenceDirectionSurvival(Survival):
 
         # calculate the fronts of the population
         fronts, rank = NonDominatedSorting().do(F, return_rank=True, n_stop_if_ranked=n_survive)
+        print(f'ACK FOUND > 1; len(fronts)={len(fronts)}')
         # for elem in fronts:  # todo remove me
         #     if len(elem) > 1:
-        #         print('ACK FOUND > 1')
+        #         print(f'ACK FOUND > 1; len(elem)={len(elem)}')
         non_dominated, last_front = fronts[0], fronts[-1]
 
         # update the hyperplane based boundary estimation
@@ -197,6 +198,52 @@ class ReferenceDirectionSurvival(Survival):
         return pop
 
 
+# def niching(pop, n_remaining, niche_count, niche_of_individuals, dist_to_niche):
+#     survivors = []
+#
+#     # boolean array of elements that are considered for each iteration
+#     mask = np.full(len(pop), True)
+#     print(f"niching len = {len(mask)}")
+#
+#     while len(survivors) < n_remaining:
+#
+#         # number of individuals to select in this iteration
+#         n_select = n_remaining - len(survivors)
+#
+#         # all niches where new individuals can be assigned to and the corresponding niche count
+#         next_niches_list = np.unique(niche_of_individuals[mask])
+#         next_niche_count = niche_count[next_niches_list]
+#
+#         # the minimum niche count
+#         min_niche_count = next_niche_count.min()
+#
+#         # all niches with the minimum niche count (truncate if randomly if more niches than remaining individuals)
+#         next_niches = next_niches_list[np.where(next_niche_count == min_niche_count)[0]]
+#         next_niches = next_niches[np.random.permutation(len(next_niches))[:n_select]] # todo apply HOP (because random via line 229)
+#
+#         for next_niche in next_niches:
+#
+#             # indices of individuals that are considered and assign to next_niche
+#             next_ind = np.where(np.logical_and(niche_of_individuals == next_niche, mask))[0]
+#
+#             # shuffle to break random tie (equal perp. dist) or select randomly
+#             np.random.shuffle(next_ind)
+#
+#             if niche_count[next_niche] == 0:
+#                 next_ind = next_ind[np.argmin(dist_to_niche[next_ind])]
+#             else:
+#                 # already randomized through shuffling
+#                 next_ind = next_ind[0] # todo apply HOP (because random via line 229)
+#
+#             # add the selected individual to the survivors
+#             mask[next_ind] = False
+#             survivors.append(int(next_ind))
+#
+#             # increase the corresponding niche count
+#             niche_count[next_niche] += 1
+#
+#     return survivors
+
 def get_indices_with_min_value(array):
     # Find the minimum value in the array
     min_value = np.min(array)
@@ -207,7 +254,7 @@ def get_indices_with_min_value(array):
     return min_indices
 
 def hop(pop, indices):
-    print(f"HOP = {indices}")
+    # print(f"HOP = {indices}")
     # Extract the F values for the given indices
     F_values = np.array([pop[i].F for i in indices]) # 1st element is return, the remaining elements are risks
 
@@ -243,12 +290,13 @@ def niching(pop, n_remaining, niche_count, niche_of_individuals, dist_to_niche):
 
         # all niches with the minimum niche count (truncate if randomly if more niches than remaining individuals)
         next_niches = next_niches_list[np.where(next_niche_count == min_niche_count)[0]]
-        if len(next_niches) <= n_select:
-            next_niches = next_niches[np.random.permutation(len(next_niches))[:n_select]]
-        else:
-            print(f"Performing HOP.. {len(next_niches)} and {n_select}")
-            # todo apply HOP
-            next_niches = next_niches[np.random.permutation(len(next_niches))[:n_select]]
+        # if len(next_niches) <= n_select:
+        #     next_niches = next_niches[np.random.permutation(len(next_niches))[:n_select]]
+        # else:
+        #     print(f"Performing HOP.. {len(next_niches)} and {n_select}")
+        #     # todo apply HOP
+        #     next_niches = next_niches[np.random.permutation(len(next_niches))[:n_select]]
+        next_niches = next_niches[np.random.permutation(len(next_niches))[:n_select]]
 
         for next_niche in next_niches:
 

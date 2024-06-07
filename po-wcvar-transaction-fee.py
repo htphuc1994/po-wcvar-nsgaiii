@@ -1,10 +1,12 @@
 import numpy as np
+import pymoo.core.individual
 import pywt
 from pymoo.core.problem import Problem
-from pymoo.algorithms.moo.nsga3 import NSGA3
+from pymoo.algorithms.moo.nsga3 import NSGA3, hop
 from pymoo.util.ref_dirs import get_reference_directions
 from pymoo.optimize import minimize
 from scipy.stats import norm
+from pymoo.util.nds.non_dominated_sorting import NonDominatedSorting
 
 from constants import STOCK_DATA_2023_INPUT, TRANS_FEE
 
@@ -281,13 +283,14 @@ bank_interest_rate = 0.45
 initial_cash = 100000000  # 100 million VND
 duration = 6  # 6 months
 max_stocks = 29  # Example cardinality constraint
-termination_gen_num = 200
+termination_gen_num = 50
 tail_probability_epsilon = 0.05
+population_size = 2000
 
 problem = PortfolioOptimizationProblem(stock_data, bank_interest_rate, initial_cash, duration, max_stocks)
 
-ref_dirs = get_reference_directions("energy", problem.n_obj, 200, seed=1)
-algorithm = NSGA3(pop_size=200, ref_dirs=ref_dirs)
+ref_dirs = get_reference_directions("energy", problem.n_obj, 1000, seed=1)
+algorithm = NSGA3(pop_size=population_size, ref_dirs=ref_dirs)
 
 res = minimize(problem,
                algorithm,
@@ -305,3 +308,27 @@ print("Best solution found:")
 print("X =", best_solution)
 print("F (Returns) =", ["%.2f" % r for r in best_return])
 print("F (CVaR) =", best_cvar)
+
+
+
+#-------
+# final_population = res.pop
+# F = final_population.get("F")
+# CV = final_population.get("CV")
+# feasible = np.where(CV <= 0)[0]
+# front_no = final_population.get("rank")
+#
+# # Get the individuals in the first front
+# first_front_indices = np.where(front_no == 0)[0]
+# first_front_individuals = final_population[first_front_indices]
+
+F = res.pop.get("F")
+
+# calculate the fronts of the population
+fronts, rank = NonDominatedSorting().do(F, return_rank=True, n_stop_if_ranked=population_size)
+
+hop_solution = res.pop[hop(res.pop, fronts[0])[0]]
+print(f"objectives = {hop_solution.F}")
+print(f"solution details = {hop_solution.X}")
+
+print("DONE - Thank you")
