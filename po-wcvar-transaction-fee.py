@@ -1,5 +1,7 @@
 import numpy as np
+import sys
 import pywt
+import uuid
 from pymoo.core.problem import Problem
 from pymoo.algorithms.moo.nsga3 import NSGA3, hop
 from pymoo.util.ref_dirs import get_reference_directions
@@ -10,6 +12,8 @@ from pymoo.util.nds.non_dominated_sorting import NonDominatedSorting
 from assets_returns import *
 from constants import TRANS_FEE
 from stock_data_inputs import STOCK_DATA_2023_INPUT_251_STOCKS
+
+
 
 
 def simulate_asset_returns(num_assets, num_points):
@@ -63,8 +67,8 @@ def print_detail(log, cash, stock_holdings, stock_data):
 
     # Log final cash and holdings to ensure we do not hold any stocks
     print(f"Final Cash: {cash:.2f}")
-    for j, stock in enumerate(stock_data):
-        print(f"Final Holdings: Stock {stock['symbol']}, Amount: {stock_holdings[j]}")
+    # for j, stock in enumerate(stock_data):
+    #     print(f"Final Holdings: Stock {stock['symbol']}, Amount: {stock_holdings[j]}")
 
 
 class PortfolioOptimizationProblem(Problem):
@@ -234,51 +238,51 @@ class PortfolioOptimizationProblem(Problem):
 
 
 # Example stock data with monthly prices and trading capacities
-stock_data = [
-    {
-        "symbol": "BCC",
-        "companyName": "CTCP Xi măng Bỉm Sơn",
-        "type": "HNX30",
-        "year": 2023,
-        "prices": [
-            {"month": 1, "value": 11.6, "matchedTradingVolume": 16898285},
-            {"month": 2, "value": 12.7, "matchedTradingVolume": 26045742},
-            {"month": 3, "value": 12.4, "matchedTradingVolume": 20300759},
-            {"month": 4, "value": 12.4, "matchedTradingVolume": 13811487},
-            {"month": 5, "value": 13.3, "matchedTradingVolume": 20730116},
-            {"month": 6, "value": 14.5, "matchedTradingVolume": 24793471},
-            {"month": 7, "value": 14.6, "matchedTradingVolume": 22653644},
-            {"month": 8, "value": 14.6, "matchedTradingVolume": 21295205},
-            {"month": 9, "value": 13, "matchedTradingVolume": 9862493},
-            {"month": 10, "value": 12.2, "matchedTradingVolume": 6465571},
-            {"month": 11, "value": 9.8, "matchedTradingVolume": 5608050},
-            {"month": 12, "value": 9.6, "matchedTradingVolume": 3821733}
-        ],
-        "dividendSpitingHistories": [{"month": 8, "value": 500}]
-    },
-    {
-        "symbol": "BVS",
-        "companyName": "CTCP Chứng khoán Bảo Việt",
-        "type": "HNX30",
-        "year": 2023,
-        "prices": [
-            {"month": 1, "value": 21, "matchedTradingVolume": 1438111},
-            {"month": 2, "value": 19, "matchedTradingVolume": 1854612},
-            {"month": 3, "value": 19.1, "matchedTradingVolume": 3134602},
-            {"month": 4, "value": 20.2, "matchedTradingVolume": 3958340},
-            {"month": 5, "value": 23.8, "matchedTradingVolume": 9386680},
-            {"month": 6, "value": 25.3, "matchedTradingVolume": 14453718},
-            {"month": 7, "value": 27, "matchedTradingVolume": 13688213},
-            {"month": 8, "value": 28.8, "matchedTradingVolume": 13880792},
-            {"month": 9, "value": 30.7, "matchedTradingVolume": 9906439},
-            {"month": 10, "value": 26.9, "matchedTradingVolume": 6689071},
-            {"month": 11, "value": 26, "matchedTradingVolume": 3668846},
-            {"month": 12, "value": 26.1, "matchedTradingVolume": 3959357}
-        ],
-        "dividendSpitingHistories": [{"month": 10, "value": 1000}]
-    },
-    # Additional stocks can be added here
-]
+# stock_data = [
+#     {
+#         "symbol": "BCC",
+#         "companyName": "CTCP Xi măng Bỉm Sơn",
+#         "type": "HNX30",
+#         "year": 2023,
+#         "prices": [
+#             {"month": 1, "value": 11.6, "matchedTradingVolume": 16898285},
+#             {"month": 2, "value": 12.7, "matchedTradingVolume": 26045742},
+#             {"month": 3, "value": 12.4, "matchedTradingVolume": 20300759},
+#             {"month": 4, "value": 12.4, "matchedTradingVolume": 13811487},
+#             {"month": 5, "value": 13.3, "matchedTradingVolume": 20730116},
+#             {"month": 6, "value": 14.5, "matchedTradingVolume": 24793471},
+#             {"month": 7, "value": 14.6, "matchedTradingVolume": 22653644},
+#             {"month": 8, "value": 14.6, "matchedTradingVolume": 21295205},
+#             {"month": 9, "value": 13, "matchedTradingVolume": 9862493},
+#             {"month": 10, "value": 12.2, "matchedTradingVolume": 6465571},
+#             {"month": 11, "value": 9.8, "matchedTradingVolume": 5608050},
+#             {"month": 12, "value": 9.6, "matchedTradingVolume": 3821733}
+#         ],
+#         "dividendSpitingHistories": [{"month": 8, "value": 500}]
+#     },
+#     {
+#         "symbol": "BVS",
+#         "companyName": "CTCP Chứng khoán Bảo Việt",
+#         "type": "HNX30",
+#         "year": 2023,
+#         "prices": [
+#             {"month": 1, "value": 21, "matchedTradingVolume": 1438111},
+#             {"month": 2, "value": 19, "matchedTradingVolume": 1854612},
+#             {"month": 3, "value": 19.1, "matchedTradingVolume": 3134602},
+#             {"month": 4, "value": 20.2, "matchedTradingVolume": 3958340},
+#             {"month": 5, "value": 23.8, "matchedTradingVolume": 9386680},
+#             {"month": 6, "value": 25.3, "matchedTradingVolume": 14453718},
+#             {"month": 7, "value": 27, "matchedTradingVolume": 13688213},
+#             {"month": 8, "value": 28.8, "matchedTradingVolume": 13880792},
+#             {"month": 9, "value": 30.7, "matchedTradingVolume": 9906439},
+#             {"month": 10, "value": 26.9, "matchedTradingVolume": 6689071},
+#             {"month": 11, "value": 26, "matchedTradingVolume": 3668846},
+#             {"month": 12, "value": 26.1, "matchedTradingVolume": 3959357}
+#         ],
+#         "dividendSpitingHistories": [{"month": 10, "value": 1000}]
+#     },
+#     # Additional stocks can be added here
+# ]
 stock_data = STOCK_DATA_2023_INPUT_251_STOCKS
 
 bank_interest_rate = 0.45
@@ -287,51 +291,91 @@ duration = 6  # 6 months
 max_stocks = 251  # Example cardinality constraint
 termination_gen_num = 50
 tail_probability_epsilon = 0.05
-population_size = 100
+population_size = 1339
 
-problem = PortfolioOptimizationProblem(stock_data, bank_interest_rate, initial_cash, duration, max_stocks)
-
-ref_dirs = get_reference_directions("energy", problem.n_obj, 1000, seed=1)
-algorithm = NSGA3(pop_size=population_size, ref_dirs=ref_dirs)
-
-res = minimize(problem,
-               algorithm,
-               termination=('n_gen', termination_gen_num),
-               seed=10,
-               save_history=True,
-               verbose=True)
-
-# Log the best solution found
-best_solution = res.X
-best_return = -res.F[:, 0]  # Negate to get the original positive value
-best_cvar = res.F[:, 1:]
-
-print("Best solution found:")
-print("X =", best_solution)
-print("F (Returns) =", ["%.2f" % r for r in best_return])
-print("F (CVaR) =", best_cvar)
-
-
-
-#-------
-# final_population = res.pop
-# F = final_population.get("F")
-# CV = final_population.get("CV")
-# feasible = np.where(CV <= 0)[0]
-# front_no = final_population.get("rank")
+# problem = PortfolioOptimizationProblem(stock_data, bank_interest_rate, initial_cash, duration, max_stocks)
 #
-# # Get the individuals in the first front
-# first_front_indices = np.where(front_no == 0)[0]
-# first_front_individuals = final_population[first_front_indices]
+# ref_dirs = get_reference_directions("energy", problem.n_obj, 1000, seed=1)
+# algorithm = NSGA3(pop_size=population_size, ref_dirs=ref_dirs)
+#
+# res = minimize(problem,
+#                algorithm,
+#                termination=('n_gen', termination_gen_num),
+#                seed=10,
+#                save_history=True,
+#                verbose=True)
+#
+# # Log the best solution found
+# best_solution = res.X
+# best_return = -res.F[:, 0]  # Negate to get the original positive value
+# best_cvar = res.F[:, 1:]
+#
+# print("Best solution found:")
+# print("X =", best_solution)
+# print("F (Returns) =", ["%.2f" % r for r in best_return])
+# print("F (CVaR) =", best_cvar)
+#
+#
+# F = res.pop.get("F")
+#
+# # calculate the fronts of the population
+# fronts, rank = NonDominatedSorting().do(F, return_rank=True, n_stop_if_ranked=population_size)
+#
+# hop_solution = res.pop[hop(res.pop, fronts[0])[0]]
+# # print(f"objectives = {hop_solution.F}")
+# print("Objectives =", ["%.2f" % v for v in hop_solution.F])
+# print(f"solution details = {hop_solution.X}")
+#
+# print("DONE - Thank you")
 
-F = res.pop.get("F")
+def my_solve():
+    problem = PortfolioOptimizationProblem(stock_data, bank_interest_rate, initial_cash, duration, max_stocks)
 
-# calculate the fronts of the population
-fronts, rank = NonDominatedSorting().do(F, return_rank=True, n_stop_if_ranked=population_size)
+    ref_dirs = get_reference_directions("energy", problem.n_obj, 1339, seed=1)
+    algorithm = NSGA3(pop_size=population_size, ref_dirs=ref_dirs)
 
-hop_solution = res.pop[hop(res.pop, fronts[0])[0]]
-# print(f"objectives = {hop_solution.F}")
-print("Objectives =", ["%.2f" % v for v in hop_solution.F])
-print(f"solution details = {hop_solution.X}")
+    res = minimize(problem,
+                   algorithm,
+                   termination=('n_gen', termination_gen_num),
+                   seed=10,
+                   save_history=True,
+                   verbose=True)
+
+    # Log the best solution found
+    best_solution = res.X
+    best_return = -res.F[:, 0]  # Negate to get the original positive value
+    best_cvar = res.F[:, 1:]
+
+    print("Best solution found:")
+    print("X =", best_solution)
+    print("F (Returns) =", ["%.2f" % r for r in best_return])
+    print("F (CVaR) =", best_cvar)
+
+
+    F = res.pop.get("F")
+
+    # calculate the fronts of the population
+    fronts, rank = NonDominatedSorting().do(F, return_rank=True, n_stop_if_ranked=population_size)
+
+    hop_solution = res.pop[hop(res.pop, fronts[0])[0]]
+    # print(f"objectives = {hop_solution.F}")
+    print("Objectives =", ["%.2f" % v for v in hop_solution.F])
+    # print(f"solution details = {hop_solution.X}")
+    print("Solution details =", ["%.2f" % v for v in hop_solution.X])
+
+
+# Open a file in write mode
+unique_filename = f"output-{uuid.uuid4().hex}.txt"
+with open(unique_filename, 'w') as f:
+    print("Starting..")
+    # Save the original standard output
+    original_stdout = sys.stdout
+
+    # Redirect standard output to the file
+    sys.stdout = f
+    print("Starting to write..")
+    my_solve()
+
+    sys.stdout = original_stdout
 
 print("DONE - Thank you")
