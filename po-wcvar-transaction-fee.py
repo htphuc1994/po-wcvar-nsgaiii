@@ -1,5 +1,4 @@
 import numpy as np
-import pymoo.core.individual
 import pywt
 from pymoo.core.problem import Problem
 from pymoo.algorithms.moo.nsga3 import NSGA3, hop
@@ -8,7 +7,9 @@ from pymoo.optimize import minimize
 from scipy.stats import norm
 from pymoo.util.nds.non_dominated_sorting import NonDominatedSorting
 
-from constants import STOCK_DATA_2023_INPUT, TRANS_FEE
+from assets_returns import *
+from constants import TRANS_FEE
+from stock_data_inputs import STOCK_DATA_2023_INPUT_251_STOCKS
 
 
 def simulate_asset_returns(num_assets, num_points):
@@ -185,7 +186,8 @@ class PortfolioOptimizationProblem(Problem):
 
                 # Calculate CVaR at the beginning of each month
                 if 0 < month < duration:
-                    returns = simulate_asset_returns(n_stocks, 100)  # todo: past prices + price of the processing month
+                    # returns = simulate_asset_returns(n_stocks, 100)  # todo: past prices + price of the processing month
+                    returns = np.column_stack((ABT,ACB,ACL,AGF,ALT,ANV,ASP,B82,BBC,BBS,BCC,BLF,BMC,BMI,BMP,BPC,BST,BTS,BVS,CAN,CAP,CCM,CDC,CID,CII,CJC,CLC,CMC,COM,CTB,CTC,CTN,DAC,DAE,DBC,DC4,DCS,DHA,DHG,DHT,DIC,DMC,DPC,DPM,DPR,DQC,DRC,DST,DTC,DTT,DXP,DXV,EBS,FMC,FPT,GIL,GMC,GMD,GTA,HAG,HAP,HAS,HAX,HBC,HCC,HCT,HDC,HEV,HHC,HJS,HMC,HPG,HRC,HSG,HSI,HT1,HTP,HTV,HUT,ICF,IMP,ITA,KBC,KDC,KHP,KKC,KMR,KSH,L10,L18,L43,L61,L62,LAF,LBE,LBM,LCG,LGC,LSS,LTC,LUT,MCO,MCP,MEC,MHC,MKV,MTG,NAV,NBC,NGC,NHC,NSC,NST,NTL,NTP,ONE,OPC,PAC,PAN,PET,PGC,PGS,PIT,PJC,PJT,PLC,PMS,PNC,POT,PPC,PSC,PTC,PTS,PVC,PVD,PVE,PVG,PVI,PVS,PVT,QTC,RAL,RCL,REE,S12,S55,S99,SAM,SAP,SAV,SBT,SC5,SCD,SCJ,SD5,SD6,SD7,SD9,SDA,SDC,SDD,SDN,SDT,SDY,SFC,SFI,SFN,SGC,SGD,SIC,SJ1,SJD,SJE,SJM,SJS,SMC,SRA,SRB,SSC,SSI,SSM,ST8,STB,STC,STP,SVC,SVI,SZL,TBC,TBX,TC6,TCM,TCR,TCT,TDH,TDN,THB,THT,TJC,TKU,TMC,TMS,TNA,TNC,TNG,TPC,TPH,TPP,TRA,TRC,TSC,TTC,TTF,TV4,TXM,TYA,UIC,UNI,VBH,VC2,VC5,VC6,VC7,VCG,VCS,VDL,VE1,VFR,VGP,VGS,VHC,VHG,VIC,VID,VIP,VMC,VNA,VNC,VNE,VNM,VNR,VNS,VSC,VSG,VSH,VTB,VTC,VTO,VTS,VTV,YBC))
                     # weights = stock_holdings.copy()
                     # sum_weights = np.sum(weights)
                     # weights /= sum_weights  # Normalize weights
@@ -277,15 +279,15 @@ stock_data = [
     },
     # Additional stocks can be added here
 ]
-stock_data = STOCK_DATA_2023_INPUT
+stock_data = STOCK_DATA_2023_INPUT_251_STOCKS
 
 bank_interest_rate = 0.45
 initial_cash = 100000000  # 100 million VND
 duration = 6  # 6 months
-max_stocks = 29  # Example cardinality constraint
+max_stocks = 251  # Example cardinality constraint
 termination_gen_num = 50
 tail_probability_epsilon = 0.05
-population_size = 2000
+population_size = 100
 
 problem = PortfolioOptimizationProblem(stock_data, bank_interest_rate, initial_cash, duration, max_stocks)
 
@@ -328,7 +330,8 @@ F = res.pop.get("F")
 fronts, rank = NonDominatedSorting().do(F, return_rank=True, n_stop_if_ranked=population_size)
 
 hop_solution = res.pop[hop(res.pop, fronts[0])[0]]
-print(f"objectives = {hop_solution.F}")
+# print(f"objectives = {hop_solution.F}")
+print("Objectives =", ["%.2f" % v for v in hop_solution.F])
 print(f"solution details = {hop_solution.X}")
 
 print("DONE - Thank you")

@@ -1,5 +1,5 @@
 TRANS_FEE = 0.00015
-STOCK_DATA_2023_INPUT = [
+STOCK_DATA_2023_INPUT_29_STOCKS = [
     {
         "symbol": "BCC",
         "companyName": "CTCP Xi măng Bỉm Sơn",
