@@ -1,5 +1,6 @@
 import numpy as np
 import sys
+import datetime
 import pywt
 import uuid
 from pymoo.core.problem import Problem
@@ -365,17 +366,18 @@ def my_solve():
 
 
 # Open a file in write mode
-unique_filename = f"output-{uuid.uuid4().hex}.txt"
+timestamp = datetime.datetime.now().strftime("%d%m%Y%H%M%S")
+unique_filename = f"output-{timestamp}.txt"
 with open(unique_filename, 'w') as f:
     print("Starting..")
     # Save the original standard output
-    original_stdout = sys.stdout
+    # original_stdout = sys.stdout
 
     # Redirect standard output to the file
-    sys.stdout = f
+    # sys.stdout = f
     print("Starting to write..")
     my_solve()
 
-    sys.stdout = original_stdout
+    # sys.stdout = original_stdout
 
 print("DONE - Thank you")
