@@ -11,7 +11,8 @@ from scipy.stats import norm
 from pymoo.util.nds.non_dominated_sorting import NonDominatedSorting
 
 from assets_returns import *
-from constants import TRANS_FEE
+from constants import TRANS_FEE, BANK_INTEREST_RATE, INITIAL_CASH, DURATION, MAX_STOCKS, TERMINATION_GEN_NUM, \
+    TAIL_PROBABILITY_EPSILON, POPULATION_SIZE
 from stock_data_inputs import STOCK_DATA_2023_INPUT_251_STOCKS
 
 
@@ -82,10 +83,22 @@ class PortfolioOptimizationProblem(Problem):
         self.max_stocks = max_stocks
 
         # Define bounds for the decision variables
+        # xl: half left (hl) is buy decisions | half right (hr) is sell decisions
+        # In hl portion: n months buy stock1 | n months buy stock2...
+        # In hr portion: n months sell stock1 | n months sell stock2...
         xl = np.zeros(2 * self.n_stocks * self.duration)  # Lower bounds (all zeros, no negative quantities)
-        xu = np.concatenate(
-            [np.array([month_data["matchedTradingVolume"] for month_data in stock["prices"][:duration]]) for stock in
-             stock_data] * 2)
+
+        sell_xu = []
+        for stock in stock_data:
+            month_prices = sorted(stock["prices"], key=lambda x: x['month'])
+            for month_price in month_prices:
+                if month_price["month"] > self.duration:
+                    break
+                sell_xu.append(month_price["matchedTradingVolume"])
+        xu = sell_xu + sell_xu
+        # xu = np.concatenate(
+        #     [np.array([month_data["matchedTradingVolume"] for month_data in stock["prices"][:duration]]) for stock in
+        #      stock_data] * 2)
 
         super().__init__(n_var=2 * self.n_stocks * self.duration, n_obj=self.duration, n_constr=self.duration, xl=xl,
                          xu=xu)
@@ -286,13 +299,13 @@ class PortfolioOptimizationProblem(Problem):
 # ]
 stock_data = STOCK_DATA_2023_INPUT_251_STOCKS
 
-bank_interest_rate = 0.45
-initial_cash = 100000000  # 100 million VND
-duration = 6  # 6 months
-max_stocks = 251  # Example cardinality constraint
-termination_gen_num = 50
-tail_probability_epsilon = 0.05
-population_size = 1339
+bank_interest_rate = BANK_INTEREST_RATE
+initial_cash = INITIAL_CASH  # 1 bln VND
+duration = DURATION  # 12 months
+max_stocks = MAX_STOCKS  # Example cardinality constraint
+termination_gen_num = TERMINATION_GEN_NUM
+tail_probability_epsilon = TAIL_PROBABILITY_EPSILON
+population_size = POPULATION_SIZE
 
 # problem = PortfolioOptimizationProblem(stock_data, bank_interest_rate, initial_cash, duration, max_stocks)
 #
