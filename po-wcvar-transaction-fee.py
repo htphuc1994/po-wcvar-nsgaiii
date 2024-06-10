@@ -343,14 +343,14 @@ def my_solve():
                    verbose=True)
 
     # Log the best solution found
-    best_solution = res.X
-    best_return = -res.F[:, 0]  # Negate to get the original positive value
-    best_cvar = res.F[:, 1:]
+    # best_solution = res.X
+    # best_return = -res.F[:, 0]  # Negate to get the original positive value
+    # best_cvar = res.F[:, 1:]
 
-    print("Best solution found:")
-    print("X =", best_solution)
-    print("F (Returns) =", ["%.2f" % r for r in best_return])
-    print("F (CVaR) =", best_cvar)
+    # print("Best solution found:")
+    # print("X =", best_solution)
+    # print("F (Returns) =", ["%.2f" % r for r in best_return])
+    # print("F (CVaR) =", best_cvar)
 
 
     F = res.pop.get("F")
