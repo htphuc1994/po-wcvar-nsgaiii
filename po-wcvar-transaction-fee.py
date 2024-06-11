@@ -14,10 +14,10 @@ from constants import TRANS_FEE, BANK_INTEREST_RATE, INITIAL_CASH, DURATION, MAX
 from stock_data_inputs import STOCK_DATA_2023_INPUT_251_STOCKS
 
 
-def simulate_asset_returns(num_assets, num_points):
-    """ Simulate daily returns for assets. """
-    np.random.seed(42)
-    return np.random.normal(0.001, 0.01, size=(num_points, num_assets))
+# def simulate_asset_returns(num_assets, num_points):
+#     """ Simulate daily returns for assets. """
+#     np.random.seed(42)
+#     return np.random.normal(0.001, 0.01, size=(num_points, num_assets))
 
 
 def wavelet_decomposition(returns, wavelet='db4', levels=1):
@@ -65,6 +65,38 @@ def print_detail(log, cash, stock_holdings, stock_data):
     #     print(f"Final Holdings: Stock {stock['symbol']}, Amount: {stock_holdings[j]}")
 
 
+def cal_wCVaR(month, stock_holdings, cvar_values, i):
+    # Calculate CVaR at the beginning of each month
+    if 0 < month < duration:
+        returns = np.column_stack((
+            ABT, ACB, ACL, AGF, ALT, ANV, ASP, B82, BBC, BBS, BCC, BLF, BMC, BMI, BMP,
+            BPC, BST, BTS, BVS, CAN, CAP, CCM, CDC, CID, CII, CJC, CLC, CMC, COM, CTB,
+            CTC, CTN, DAC, DAE, DBC, DC4, DCS, DHA, DHG, DHT, DIC, DMC, DPC, DPM, DPR,
+            DQC, DRC, DST, DTC, DTT, DXP, DXV, EBS, FMC, FPT, GIL, GMC, GMD, GTA, HAG,
+            HAP, HAS, HAX, HBC, HCC, HCT, HDC, HEV, HHC, HJS, HMC, HPG, HRC, HSG, HSI,
+            HT1, HTP, HTV, HUT, ICF, IMP, ITA, KBC, KDC, KHP, KKC, KMR, KSH, L10, L18,
+            L43, L61, L62, LAF, LBE, LBM, LCG, LGC, LSS, LTC, MCO, MCP, MEC, MHC, MKV,
+            MTG, NAV, NBC, NGC, NHC, NSC, NST, NTL, NTP, ONE, OPC, PAC, PAN, PET, PGC,
+            PGS, PIT, PJC, PJT, PLC, PMS, PNC, POT, PPC, PSC, PTC, PTS, PVC, PVD, PVE,
+            PVG, PVI, PVS, PVT, QTC, RAL, RCL, REE, S12, S55, S99, SAM, SAP, SAV, SBT,
+            SC5, SCD, SCJ, SD5, SD6, SD7, SD9, SDA, SDC, SDD, SDN, SDT, SDY, SFC, SFI,
+            SFN, SGC, SGD, SJ1, SJD, SJE, SJM, SJS, SMC, SRA, SRB, SSC, SSI, SSM, ST8,
+            STB, STC, STP, SVC, SVI, SZL, TBC, TBX, TC6, TCM, TCR, TCT, TDH, TDN, THB,
+            THT, TJC, TKU, TMC, TMS, TNA, TNC, TNG, TPC, TPH, TPP, TRA, TRC, TSC, TTC,
+            TTF, TV4, TXM, TYA, UIC, UNI, VBH, VC2, VC5, VC6, VC7, VCG, VCS, VDL, VE1,
+            VFR, VGP, VGS, VHC, VHG, VIC, VID, VIP, VMC, VNA, VNC, VNE, VNM, VNR, VNS,
+            VSC, VSG, VSH, VTB, VTC, VTO, VTS, VTV, YBC))
+
+        portfolio_returns = np.dot(returns, stock_holdings)
+
+        wavelet_variance = compute_wavelet_variance(wavelet_decomposition(portfolio_returns))
+
+        portfolio_var = calculate_var_from_wavelet_variance(wavelet_variance, tail_probability_epsilon,
+                                                            scaling_factor=initial_cash)
+
+        portfolio_cvar = calculate_cvar(portfolio_returns, portfolio_var)
+        cvar_values[i, month] = portfolio_cvar
+
 class PortfolioOptimizationProblem(Problem):
     def __init__(self, stock_data, bank_interest_rate, initial_cash, duration, max_stocks):
         self.stock_data = stock_data
@@ -101,7 +133,7 @@ class PortfolioOptimizationProblem(Problem):
         deferred_dividends = np.zeros((X.shape[0], duration + 1))
         deferred_sale_proceeds = np.zeros((X.shape[0], duration + 1))
 
-        for i in range(X.shape[0]):
+        for i in range(X.shape[0]): # processing the i-th individual
             cash = self.initial_cash
             stock_holdings = np.zeros(n_stocks)
             previous_stock_holdings = np.zeros(n_stocks)  # To track holdings from the previous month
@@ -115,6 +147,37 @@ class PortfolioOptimizationProblem(Problem):
                 # Add deferred dividends and sale proceeds from the previous month
                 cash += deferred_dividends[i, month]
                 cash += deferred_sale_proceeds[i, month]
+
+                # Calculate CVaR at the beginning of each month
+                cal_wCVaR(month, stock_holdings, cvar_values, i)
+                # if 0 < month < duration:
+                #     returns = np.column_stack((
+                #         ABT, ACB, ACL, AGF, ALT, ANV, ASP, B82, BBC, BBS, BCC, BLF, BMC, BMI, BMP,
+                #         BPC, BST, BTS, BVS, CAN, CAP, CCM, CDC, CID, CII, CJC, CLC, CMC, COM, CTB,
+                #         CTC, CTN, DAC, DAE, DBC, DC4, DCS, DHA, DHG, DHT, DIC, DMC, DPC, DPM, DPR,
+                #         DQC, DRC, DST, DTC, DTT, DXP, DXV, EBS, FMC, FPT, GIL, GMC, GMD, GTA, HAG,
+                #         HAP, HAS, HAX, HBC, HCC, HCT, HDC, HEV, HHC, HJS, HMC, HPG, HRC, HSG, HSI,
+                #         HT1, HTP, HTV, HUT, ICF, IMP, ITA, KBC, KDC, KHP, KKC, KMR, KSH, L10, L18,
+                #         L43, L61, L62, LAF, LBE, LBM, LCG, LGC, LSS, LTC, MCO, MCP, MEC, MHC, MKV,
+                #         MTG, NAV, NBC, NGC, NHC, NSC, NST, NTL, NTP, ONE, OPC, PAC, PAN, PET, PGC,
+                #         PGS, PIT, PJC, PJT, PLC, PMS, PNC, POT, PPC, PSC, PTC, PTS, PVC, PVD, PVE,
+                #         PVG, PVI, PVS, PVT, QTC, RAL, RCL, REE, S12, S55, S99, SAM, SAP, SAV, SBT,
+                #         SC5, SCD, SCJ, SD5, SD6, SD7, SD9, SDA, SDC, SDD, SDN, SDT, SDY, SFC, SFI,
+                #         SFN, SGC, SGD, SJ1, SJD, SJE, SJM, SJS, SMC, SRA, SRB, SSC, SSI, SSM, ST8,
+                #         STB, STC, STP, SVC, SVI, SZL, TBC, TBX, TC6, TCM, TCR, TCT, TDH, TDN, THB,
+                #         THT, TJC, TKU, TMC, TMS, TNA, TNC, TNG, TPC, TPH, TPP, TRA, TRC, TSC, TTC,
+                #         TTF, TV4, TXM, TYA, UIC, UNI, VBH, VC2, VC5, VC6, VC7, VCG, VCS, VDL, VE1,
+                #         VFR, VGP, VGS, VHC, VHG, VIC, VID, VIP, VMC, VNA, VNC, VNE, VNM, VNR, VNS,
+                #         VSC, VSG, VSH, VTB, VTC, VTO, VTS, VTV, YBC))
+                #     portfolio_returns = np.dot(returns, stock_holdings)
+                #
+                #     wavelet_variance = compute_wavelet_variance(wavelet_decomposition(portfolio_returns))
+                #
+                #     portfolio_var = calculate_var_from_wavelet_variance(wavelet_variance, tail_probability_epsilon,
+                #                                                         scaling_factor=initial_cash)
+                #
+                #     portfolio_cvar = calculate_cvar(portfolio_returns, portfolio_var)
+                #     cvar_values[i, month] = portfolio_cvar
 
                 buy_decisions = X[i, month * n_stocks:(month + 1) * n_stocks]
                 sell_decisions = X[i, (duration + month) * n_stocks:(duration + month + 1) * n_stocks]
@@ -191,35 +254,35 @@ class PortfolioOptimizationProblem(Problem):
                 if unique_stocks_held > self.max_stocks:
                     cardinality_violations[i, month] = unique_stocks_held - self.max_stocks
 
-                # Calculate CVaR at the beginning of each month
-                if 0 < month < duration:
-                    returns = np.column_stack((
-                                              ABT, ACB, ACL, AGF, ALT, ANV, ASP, B82, BBC, BBS, BCC, BLF, BMC, BMI, BMP,
-                                              BPC, BST, BTS, BVS, CAN, CAP, CCM, CDC, CID, CII, CJC, CLC, CMC, COM, CTB,
-                                              CTC, CTN, DAC, DAE, DBC, DC4, DCS, DHA, DHG, DHT, DIC, DMC, DPC, DPM, DPR,
-                                              DQC, DRC, DST, DTC, DTT, DXP, DXV, EBS, FMC, FPT, GIL, GMC, GMD, GTA, HAG,
-                                              HAP, HAS, HAX, HBC, HCC, HCT, HDC, HEV, HHC, HJS, HMC, HPG, HRC, HSG, HSI,
-                                              HT1, HTP, HTV, HUT, ICF, IMP, ITA, KBC, KDC, KHP, KKC, KMR, KSH, L10, L18,
-                                              L43, L61, L62, LAF, LBE, LBM, LCG, LGC, LSS, LTC, MCO, MCP, MEC, MHC, MKV,
-                                              MTG, NAV, NBC, NGC, NHC, NSC, NST, NTL, NTP, ONE, OPC, PAC, PAN, PET, PGC,
-                                              PGS, PIT, PJC, PJT, PLC, PMS, PNC, POT, PPC, PSC, PTC, PTS, PVC, PVD, PVE,
-                                              PVG, PVI, PVS, PVT, QTC, RAL, RCL, REE, S12, S55, S99, SAM, SAP, SAV, SBT,
-                                              SC5, SCD, SCJ, SD5, SD6, SD7, SD9, SDA, SDC, SDD, SDN, SDT, SDY, SFC, SFI,
-                                              SFN, SGC, SGD, SJ1, SJD, SJE, SJM, SJS, SMC, SRA, SRB, SSC, SSI, SSM, ST8,
-                                              STB, STC, STP, SVC, SVI, SZL, TBC, TBX, TC6, TCM, TCR, TCT, TDH, TDN, THB,
-                                              THT, TJC, TKU, TMC, TMS, TNA, TNC, TNG, TPC, TPH, TPP, TRA, TRC, TSC, TTC,
-                                              TTF, TV4, TXM, TYA, UIC, UNI, VBH, VC2, VC5, VC6, VC7, VCG, VCS, VDL, VE1,
-                                              VFR, VGP, VGS, VHC, VHG, VIC, VID, VIP, VMC, VNA, VNC, VNE, VNM, VNR, VNS,
-                                              VSC, VSG, VSH, VTB, VTC, VTO, VTS, VTV, YBC))
-                    portfolio_returns = np.dot(returns, stock_holdings)
-
-                    wavelet_variance = compute_wavelet_variance(wavelet_decomposition(portfolio_returns))
-
-                    portfolio_var = calculate_var_from_wavelet_variance(wavelet_variance, tail_probability_epsilon,
-                                                                        scaling_factor=initial_cash)
-
-                    portfolio_cvar = calculate_cvar(portfolio_returns, portfolio_var)
-                    cvar_values[i, month] = portfolio_cvar
+                # # Calculate CVaR at the beginning of each month
+                # if 0 < month < duration:
+                #     returns = np.column_stack((
+                #                               ABT, ACB, ACL, AGF, ALT, ANV, ASP, B82, BBC, BBS, BCC, BLF, BMC, BMI, BMP,
+                #                               BPC, BST, BTS, BVS, CAN, CAP, CCM, CDC, CID, CII, CJC, CLC, CMC, COM, CTB,
+                #                               CTC, CTN, DAC, DAE, DBC, DC4, DCS, DHA, DHG, DHT, DIC, DMC, DPC, DPM, DPR,
+                #                               DQC, DRC, DST, DTC, DTT, DXP, DXV, EBS, FMC, FPT, GIL, GMC, GMD, GTA, HAG,
+                #                               HAP, HAS, HAX, HBC, HCC, HCT, HDC, HEV, HHC, HJS, HMC, HPG, HRC, HSG, HSI,
+                #                               HT1, HTP, HTV, HUT, ICF, IMP, ITA, KBC, KDC, KHP, KKC, KMR, KSH, L10, L18,
+                #                               L43, L61, L62, LAF, LBE, LBM, LCG, LGC, LSS, LTC, MCO, MCP, MEC, MHC, MKV,
+                #                               MTG, NAV, NBC, NGC, NHC, NSC, NST, NTL, NTP, ONE, OPC, PAC, PAN, PET, PGC,
+                #                               PGS, PIT, PJC, PJT, PLC, PMS, PNC, POT, PPC, PSC, PTC, PTS, PVC, PVD, PVE,
+                #                               PVG, PVI, PVS, PVT, QTC, RAL, RCL, REE, S12, S55, S99, SAM, SAP, SAV, SBT,
+                #                               SC5, SCD, SCJ, SD5, SD6, SD7, SD9, SDA, SDC, SDD, SDN, SDT, SDY, SFC, SFI,
+                #                               SFN, SGC, SGD, SJ1, SJD, SJE, SJM, SJS, SMC, SRA, SRB, SSC, SSI, SSM, ST8,
+                #                               STB, STC, STP, SVC, SVI, SZL, TBC, TBX, TC6, TCM, TCR, TCT, TDH, TDN, THB,
+                #                               THT, TJC, TKU, TMC, TMS, TNA, TNC, TNG, TPC, TPH, TPP, TRA, TRC, TSC, TTC,
+                #                               TTF, TV4, TXM, TYA, UIC, UNI, VBH, VC2, VC5, VC6, VC7, VCG, VCS, VDL, VE1,
+                #                               VFR, VGP, VGS, VHC, VHG, VIC, VID, VIP, VMC, VNA, VNC, VNE, VNM, VNR, VNS,
+                #                               VSC, VSG, VSH, VTB, VTC, VTO, VTS, VTV, YBC))
+                #     portfolio_returns = np.dot(returns, stock_holdings)
+                #
+                #     wavelet_variance = compute_wavelet_variance(wavelet_decomposition(portfolio_returns))
+                #
+                #     portfolio_var = calculate_var_from_wavelet_variance(wavelet_variance, tail_probability_epsilon,
+                #                                                         scaling_factor=initial_cash)
+                #
+                #     portfolio_cvar = calculate_cvar(portfolio_returns, portfolio_var)
+                #     cvar_values[i, month] = portfolio_cvar
 
                 monthly_log["BankDeposit"] = cash
                 log.append(monthly_log)
