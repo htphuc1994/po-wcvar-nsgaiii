@@ -65,7 +65,7 @@ def print_detail(log, cash, stock_holdings, stock_data):
     #     print(f"Final Holdings: Stock {stock['symbol']}, Amount: {stock_holdings[j]}")
 
 
-def cal_wCVaR(month, stock_holdings, cvar_values, i):
+def cal_po_wCVaR(month, stock_holdings, cvar_values, i):
     # Calculate CVaR at the beginning of each month
     if 0 < month < duration:
         returns = np.column_stack((
@@ -149,7 +149,7 @@ class PortfolioOptimizationProblem(Problem):
                 cash += deferred_sale_proceeds[i, month]
 
                 # Calculate CVaR at the beginning of each month
-                cal_wCVaR(month, stock_holdings, cvar_values, i)
+                cal_po_wCVaR(month, stock_holdings, cvar_values, i)
                 # if 0 < month < duration:
                 #     returns = np.column_stack((
                 #         ABT, ACB, ACL, AGF, ALT, ANV, ASP, B82, BBC, BBS, BCC, BLF, BMC, BMI, BMP,
