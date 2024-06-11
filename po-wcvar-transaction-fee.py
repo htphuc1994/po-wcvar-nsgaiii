@@ -1,8 +1,6 @@
 import numpy as np
-import sys
 import datetime
 import pywt
-import uuid
 from pymoo.core.problem import Problem
 from pymoo.algorithms.moo.nsga3 import NSGA3, hop
 from pymoo.util.ref_dirs import get_reference_directions
@@ -14,8 +12,6 @@ from assets_returns import *
 from constants import TRANS_FEE, BANK_INTEREST_RATE, INITIAL_CASH, DURATION, MAX_STOCKS, TERMINATION_GEN_NUM, \
     TAIL_PROBABILITY_EPSILON, POPULATION_SIZE
 from stock_data_inputs import STOCK_DATA_2023_INPUT_251_STOCKS
-
-
 
 
 def simulate_asset_returns(num_assets, num_points):
@@ -36,13 +32,9 @@ def compute_wavelet_variance(coeffs):
     return np.mean(variances)  # Return the mean of variances across levels
 
 
-# def calculate_var_from_wavelet_variances(wavelet_variances, weights, scaling_factor=1.0):
 #     """ Estimate portfolio VaR directly from wavelet variances. """
-#     weighted_variances = np.dot(wavelet_variances, weights)
-#     return scaling_factor * np.sqrt(weighted_variances)  # Simple model to convert variance to VaR
 def calculate_var_from_wavelet_variance(wavelet_variance, tail_probability, scaling_factor=1.0):
     """ Estimate portfolio VaR directly from wavelet variances. """
-    # weighted_variances = np.dot(wavelet_variances, weights)
     # Calculate the inverse of the cumulative distribution function for the given confidence level
     z_score = norm.ppf(1 - tail_probability)
     return scaling_factor * z_score * np.sqrt(wavelet_variance)  # Simple model to convert variance to VaR
@@ -96,9 +88,6 @@ class PortfolioOptimizationProblem(Problem):
                     break
                 sell_xu.append(month_price["matchedTradingVolume"])
         xu = sell_xu + sell_xu
-        # xu = np.concatenate(
-        #     [np.array([month_data["matchedTradingVolume"] for month_data in stock["prices"][:duration]]) for stock in
-        #      stock_data] * 2)
 
         super().__init__(n_var=2 * self.n_stocks * self.duration, n_obj=self.duration, n_constr=self.duration, xl=xl,
                          xu=xu)
@@ -204,15 +193,26 @@ class PortfolioOptimizationProblem(Problem):
 
                 # Calculate CVaR at the beginning of each month
                 if 0 < month < duration:
-                    # returns = simulate_asset_returns(n_stocks, 100)  # todo: past prices + price of the processing month
-                    returns = np.column_stack((ABT,ACB,ACL,AGF,ALT,ANV,ASP,B82,BBC,BBS,BCC,BLF,BMC,BMI,BMP,BPC,BST,BTS,BVS,CAN,CAP,CCM,CDC,CID,CII,CJC,CLC,CMC,COM,CTB,CTC,CTN,DAC,DAE,DBC,DC4,DCS,DHA,DHG,DHT,DIC,DMC,DPC,DPM,DPR,DQC,DRC,DST,DTC,DTT,DXP,DXV,EBS,FMC,FPT,GIL,GMC,GMD,GTA,HAG,HAP,HAS,HAX,HBC,HCC,HCT,HDC,HEV,HHC,HJS,HMC,HPG,HRC,HSG,HSI,HT1,HTP,HTV,HUT,ICF,IMP,ITA,KBC,KDC,KHP,KKC,KMR,KSH,L10,L18,L43,L61,L62,LAF,LBE,LBM,LCG,LGC,LSS,LTC,MCO,MCP,MEC,MHC,MKV,MTG,NAV,NBC,NGC,NHC,NSC,NST,NTL,NTP,ONE,OPC,PAC,PAN,PET,PGC,PGS,PIT,PJC,PJT,PLC,PMS,PNC,POT,PPC,PSC,PTC,PTS,PVC,PVD,PVE,PVG,PVI,PVS,PVT,QTC,RAL,RCL,REE,S12,S55,S99,SAM,SAP,SAV,SBT,SC5,SCD,SCJ,SD5,SD6,SD7,SD9,SDA,SDC,SDD,SDN,SDT,SDY,SFC,SFI,SFN,SGC,SGD,SJ1,SJD,SJE,SJM,SJS,SMC,SRA,SRB,SSC,SSI,SSM,ST8,STB,STC,STP,SVC,SVI,SZL,TBC,TBX,TC6,TCM,TCR,TCT,TDH,TDN,THB,THT,TJC,TKU,TMC,TMS,TNA,TNC,TNG,TPC,TPH,TPP,TRA,TRC,TSC,TTC,TTF,TV4,TXM,TYA,UIC,UNI,VBH,VC2,VC5,VC6,VC7,VCG,VCS,VDL,VE1,VFR,VGP,VGS,VHC,VHG,VIC,VID,VIP,VMC,VNA,VNC,VNE,VNM,VNR,VNS,VSC,VSG,VSH,VTB,VTC,VTO,VTS,VTV,YBC))
-                    # weights = stock_holdings.copy()
-                    # sum_weights = np.sum(weights)
-                    # weights /= sum_weights  # Normalize weights
+                    returns = np.column_stack((
+                                              ABT, ACB, ACL, AGF, ALT, ANV, ASP, B82, BBC, BBS, BCC, BLF, BMC, BMI, BMP,
+                                              BPC, BST, BTS, BVS, CAN, CAP, CCM, CDC, CID, CII, CJC, CLC, CMC, COM, CTB,
+                                              CTC, CTN, DAC, DAE, DBC, DC4, DCS, DHA, DHG, DHT, DIC, DMC, DPC, DPM, DPR,
+                                              DQC, DRC, DST, DTC, DTT, DXP, DXV, EBS, FMC, FPT, GIL, GMC, GMD, GTA, HAG,
+                                              HAP, HAS, HAX, HBC, HCC, HCT, HDC, HEV, HHC, HJS, HMC, HPG, HRC, HSG, HSI,
+                                              HT1, HTP, HTV, HUT, ICF, IMP, ITA, KBC, KDC, KHP, KKC, KMR, KSH, L10, L18,
+                                              L43, L61, L62, LAF, LBE, LBM, LCG, LGC, LSS, LTC, MCO, MCP, MEC, MHC, MKV,
+                                              MTG, NAV, NBC, NGC, NHC, NSC, NST, NTL, NTP, ONE, OPC, PAC, PAN, PET, PGC,
+                                              PGS, PIT, PJC, PJT, PLC, PMS, PNC, POT, PPC, PSC, PTC, PTS, PVC, PVD, PVE,
+                                              PVG, PVI, PVS, PVT, QTC, RAL, RCL, REE, S12, S55, S99, SAM, SAP, SAV, SBT,
+                                              SC5, SCD, SCJ, SD5, SD6, SD7, SD9, SDA, SDC, SDD, SDN, SDT, SDY, SFC, SFI,
+                                              SFN, SGC, SGD, SJ1, SJD, SJE, SJM, SJS, SMC, SRA, SRB, SSC, SSI, SSM, ST8,
+                                              STB, STC, STP, SVC, SVI, SZL, TBC, TBX, TC6, TCM, TCR, TCT, TDH, TDN, THB,
+                                              THT, TJC, TKU, TMC, TMS, TNA, TNC, TNG, TPC, TPH, TPP, TRA, TRC, TSC, TTC,
+                                              TTF, TV4, TXM, TYA, UIC, UNI, VBH, VC2, VC5, VC6, VC7, VCG, VCS, VDL, VE1,
+                                              VFR, VGP, VGS, VHC, VHG, VIC, VID, VIP, VMC, VNA, VNC, VNE, VNM, VNR, VNS,
+                                              VSC, VSG, VSH, VTB, VTC, VTO, VTS, VTV, YBC))
                     portfolio_returns = np.dot(returns, stock_holdings)
 
-                    # wavelet_variances = np.array(
-                    #     [compute_wavelet_variance(wavelet_decomposition(returns[:, k])) for k in range(n_stocks)])
                     wavelet_variance = compute_wavelet_variance(wavelet_decomposition(portfolio_returns))
 
                     portfolio_var = calculate_var_from_wavelet_variance(wavelet_variance, tail_probability_epsilon,
@@ -251,52 +251,6 @@ class PortfolioOptimizationProblem(Problem):
         out["G"] = cardinality_violations
 
 
-# Example stock data with monthly prices and trading capacities
-# stock_data = [
-#     {
-#         "symbol": "BCC",
-#         "companyName": "CTCP Xi măng Bỉm Sơn",
-#         "type": "HNX30",
-#         "year": 2023,
-#         "prices": [
-#             {"month": 1, "value": 11.6, "matchedTradingVolume": 16898285},
-#             {"month": 2, "value": 12.7, "matchedTradingVolume": 26045742},
-#             {"month": 3, "value": 12.4, "matchedTradingVolume": 20300759},
-#             {"month": 4, "value": 12.4, "matchedTradingVolume": 13811487},
-#             {"month": 5, "value": 13.3, "matchedTradingVolume": 20730116},
-#             {"month": 6, "value": 14.5, "matchedTradingVolume": 24793471},
-#             {"month": 7, "value": 14.6, "matchedTradingVolume": 22653644},
-#             {"month": 8, "value": 14.6, "matchedTradingVolume": 21295205},
-#             {"month": 9, "value": 13, "matchedTradingVolume": 9862493},
-#             {"month": 10, "value": 12.2, "matchedTradingVolume": 6465571},
-#             {"month": 11, "value": 9.8, "matchedTradingVolume": 5608050},
-#             {"month": 12, "value": 9.6, "matchedTradingVolume": 3821733}
-#         ],
-#         "dividendSpitingHistories": [{"month": 8, "value": 500}]
-#     },
-#     {
-#         "symbol": "BVS",
-#         "companyName": "CTCP Chứng khoán Bảo Việt",
-#         "type": "HNX30",
-#         "year": 2023,
-#         "prices": [
-#             {"month": 1, "value": 21, "matchedTradingVolume": 1438111},
-#             {"month": 2, "value": 19, "matchedTradingVolume": 1854612},
-#             {"month": 3, "value": 19.1, "matchedTradingVolume": 3134602},
-#             {"month": 4, "value": 20.2, "matchedTradingVolume": 3958340},
-#             {"month": 5, "value": 23.8, "matchedTradingVolume": 9386680},
-#             {"month": 6, "value": 25.3, "matchedTradingVolume": 14453718},
-#             {"month": 7, "value": 27, "matchedTradingVolume": 13688213},
-#             {"month": 8, "value": 28.8, "matchedTradingVolume": 13880792},
-#             {"month": 9, "value": 30.7, "matchedTradingVolume": 9906439},
-#             {"month": 10, "value": 26.9, "matchedTradingVolume": 6689071},
-#             {"month": 11, "value": 26, "matchedTradingVolume": 3668846},
-#             {"month": 12, "value": 26.1, "matchedTradingVolume": 3959357}
-#         ],
-#         "dividendSpitingHistories": [{"month": 10, "value": 1000}]
-#     },
-#     # Additional stocks can be added here
-# ]
 stock_data = STOCK_DATA_2023_INPUT_251_STOCKS
 
 bank_interest_rate = BANK_INTEREST_RATE
@@ -306,41 +260,6 @@ max_stocks = MAX_STOCKS  # Example cardinality constraint
 termination_gen_num = TERMINATION_GEN_NUM
 tail_probability_epsilon = TAIL_PROBABILITY_EPSILON
 population_size = POPULATION_SIZE
-
-# problem = PortfolioOptimizationProblem(stock_data, bank_interest_rate, initial_cash, duration, max_stocks)
-#
-# ref_dirs = get_reference_directions("energy", problem.n_obj, 1000, seed=1)
-# algorithm = NSGA3(pop_size=population_size, ref_dirs=ref_dirs)
-#
-# res = minimize(problem,
-#                algorithm,
-#                termination=('n_gen', termination_gen_num),
-#                seed=10,
-#                save_history=True,
-#                verbose=True)
-#
-# # Log the best solution found
-# best_solution = res.X
-# best_return = -res.F[:, 0]  # Negate to get the original positive value
-# best_cvar = res.F[:, 1:]
-#
-# print("Best solution found:")
-# print("X =", best_solution)
-# print("F (Returns) =", ["%.2f" % r for r in best_return])
-# print("F (CVaR) =", best_cvar)
-#
-#
-# F = res.pop.get("F")
-#
-# # calculate the fronts of the population
-# fronts, rank = NonDominatedSorting().do(F, return_rank=True, n_stop_if_ranked=population_size)
-#
-# hop_solution = res.pop[hop(res.pop, fronts[0])[0]]
-# # print(f"objectives = {hop_solution.F}")
-# print("Objectives =", ["%.2f" % v for v in hop_solution.F])
-# print(f"solution details = {hop_solution.X}")
-#
-# print("DONE - Thank you")
 
 def my_solve():
     problem = PortfolioOptimizationProblem(stock_data, bank_interest_rate, initial_cash, duration, max_stocks)
@@ -355,26 +274,13 @@ def my_solve():
                    save_history=True,
                    verbose=True)
 
-    # Log the best solution found
-    # best_solution = res.X
-    # best_return = -res.F[:, 0]  # Negate to get the original positive value
-    # best_cvar = res.F[:, 1:]
-
-    # print("Best solution found:")
-    # print("X =", best_solution)
-    # print("F (Returns) =", ["%.2f" % r for r in best_return])
-    # print("F (CVaR) =", best_cvar)
-
-
     F = res.pop.get("F")
 
     # calculate the fronts of the population
     fronts, rank = NonDominatedSorting().do(F, return_rank=True, n_stop_if_ranked=population_size)
 
     hop_solution = res.pop[hop(res.pop, fronts[0])[0]]
-    # print(f"objectives = {hop_solution.F}")
     print("Objectives =", ["%.2f" % v for v in hop_solution.F])
-    # print(f"solution details = {hop_solution.X}")
     print("Solution details =", ["%.2f" % v for v in hop_solution.X])
 
 
