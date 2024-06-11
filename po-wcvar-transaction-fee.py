@@ -10,7 +10,7 @@ from pymoo.util.nds.non_dominated_sorting import NonDominatedSorting
 
 from assets_returns import *
 from constants import TRANS_FEE, BANK_INTEREST_RATE, INITIAL_CASH, DURATION, MAX_STOCKS, TERMINATION_GEN_NUM, \
-    TAIL_PROBABILITY_EPSILON, POPULATION_SIZE
+    TAIL_PROBABILITY_EPSILON, POPULATION_SIZE, REFERENCES_POINTS_NUM
 from stock_data_inputs import STOCK_DATA_2023_INPUT_251_STOCKS
 
 
@@ -221,7 +221,7 @@ class PortfolioOptimizationProblem(Problem):
                     # Process buy decisions
                     if buy_decisions[j] > 0:
                         buy_amount = int(round(min(buy_decisions[j], stock_capacity)))
-                        transaction_fee = 0.0015 / 100 * stock_price * buy_amount
+                        transaction_fee = TRANS_FEE / 100 * stock_price * buy_amount
                         total_buy_cost = stock_price * buy_amount + transaction_fee
 
                         # Ensure we do not buy more than the available cash
@@ -327,7 +327,7 @@ class PortfolioOptimizationProblem(Problem):
 def my_solve():
     problem = PortfolioOptimizationProblem(stock_data, bank_interest_rate, initial_cash, duration, max_stocks)
 
-    ref_dirs = get_reference_directions("energy", problem.n_obj, 1339, seed=1)
+    ref_dirs = get_reference_directions("energy", problem.n_obj, REFERENCES_POINTS_NUM, seed=1)
     algorithm = NSGA3(pop_size=population_size, ref_dirs=ref_dirs)
 
     res = minimize(problem,
