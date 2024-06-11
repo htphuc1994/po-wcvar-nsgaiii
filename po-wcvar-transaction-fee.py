@@ -14,10 +14,15 @@ from constants import TRANS_FEE, BANK_INTEREST_RATE, INITIAL_CASH, DURATION, MAX
 from stock_data_inputs import STOCK_DATA_2023_INPUT_251_STOCKS
 
 
-# def simulate_asset_returns(num_assets, num_points):
-#     """ Simulate daily returns for assets. """
-#     np.random.seed(42)
-#     return np.random.normal(0.001, 0.01, size=(num_points, num_assets))
+stock_data = STOCK_DATA_2023_INPUT_251_STOCKS
+
+bank_interest_rate = BANK_INTEREST_RATE
+initial_cash = INITIAL_CASH  # 1 bln VND
+duration = DURATION  # 12 months
+max_stocks = MAX_STOCKS  # Example cardinality constraint
+termination_gen_num = TERMINATION_GEN_NUM
+tail_probability_epsilon = TAIL_PROBABILITY_EPSILON
+population_size = POPULATION_SIZE
 
 
 def wavelet_decomposition(returns, wavelet='db4', levels=1):
@@ -65,7 +70,7 @@ def print_detail(log, cash, stock_holdings, stock_data):
     #     print(f"Final Holdings: Stock {stock['symbol']}, Amount: {stock_holdings[j]}")
 
 
-def cal_po_wCVaR(month, stock_holdings, cvar_values, i):
+def cal_po_wCVaR(month, stock_holdings, cvar_values, i, stock_data):
     # Calculate CVaR at the beginning of each month
     if 0 < month < duration:
         returns = np.column_stack((
@@ -86,6 +91,12 @@ def cal_po_wCVaR(month, stock_holdings, cvar_values, i):
             TTF, TV4, TXM, TYA, UIC, UNI, VBH, VC2, VC5, VC6, VC7, VCG, VCS, VDL, VE1,
             VFR, VGP, VGS, VHC, VHG, VIC, VID, VIP, VMC, VNA, VNC, VNE, VNM, VNR, VNS,
             VSC, VSG, VSH, VTB, VTC, VTO, VTS, VTV, YBC))
+
+        current_month_prices = []
+        for stock_info in stock_data:
+            current_month_prices.append(stock_info["prices"][month]["value"]) # month also is the index = month + 1 in "month" field
+
+        returns = np.vstack((returns, np.array(current_month_prices).reshape(1, -1)))
 
         portfolio_returns = np.dot(returns, stock_holdings)
 
@@ -149,7 +160,7 @@ class PortfolioOptimizationProblem(Problem):
                 cash += deferred_sale_proceeds[i, month]
 
                 # Calculate CVaR at the beginning of each month
-                cal_po_wCVaR(month, stock_holdings, cvar_values, i)
+                cal_po_wCVaR(month, stock_holdings, cvar_values, i, stock_data)
                 # if 0 < month < duration:
                 #     returns = np.column_stack((
                 #         ABT, ACB, ACL, AGF, ALT, ANV, ASP, B82, BBC, BBS, BCC, BLF, BMC, BMI, BMP,
@@ -312,17 +323,6 @@ class PortfolioOptimizationProblem(Problem):
 
         out["F"] = np.column_stack((-total_cash, cvar_values[:, 1:]))
         out["G"] = cardinality_violations
-
-
-stock_data = STOCK_DATA_2023_INPUT_251_STOCKS
-
-bank_interest_rate = BANK_INTEREST_RATE
-initial_cash = INITIAL_CASH  # 1 bln VND
-duration = DURATION  # 12 months
-max_stocks = MAX_STOCKS  # Example cardinality constraint
-termination_gen_num = TERMINATION_GEN_NUM
-tail_probability_epsilon = TAIL_PROBABILITY_EPSILON
-population_size = POPULATION_SIZE
 
 def my_solve():
     problem = PortfolioOptimizationProblem(stock_data, bank_interest_rate, initial_cash, duration, max_stocks)
