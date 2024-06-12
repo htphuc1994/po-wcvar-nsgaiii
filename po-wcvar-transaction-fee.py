@@ -32,7 +32,6 @@ population_size = POPULATION_SIZE
 def wavelet_decomposition(returns, wavelet='db4', levels=WAVELET_LEVEL):
     """ Decompose asset returns using Discrete Wavelet Transform. """
     coeffs = pywt.wavedec(returns, wavelet, level=levels)
-    listToStr = ' '.join(map(str, returns))
     return coeffs[1:]  # Returning detail coefficients, ignoring approximation
 
 
