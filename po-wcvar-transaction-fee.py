@@ -1,5 +1,5 @@
 import sys
-
+import time
 import numpy as np
 import datetime
 import pywt
@@ -19,6 +19,31 @@ from stock_data_inputs_251 import STOCK_DATA_2023_INPUT_251_STOCKS
 
 # stock_data = STOCK_DATA_2023_INPUT_251_STOCKS
 stock_data = STOCK_DATA_2023_INPUT_100_STOCKS
+stock_returns = np.column_stack((
+    ABT,ACB,ACL,AGF,ALT,ANV,ASP,B82,BBC,BBS,BCC,BLF,BMC,BMI,BMP,BPC,BST,BTS,BVS,
+    CAN,CAP,CCM,CDC,CID,CII,CJC,CLC,CMC,COM,CTB,CTC,CTN,DAC,DAE,DBC,DC4,DCS,DHA,
+    DHG,DHT,DIC,DMC,DPC,DPM,DPR,DQC,DRC,DST,DTC,DTT,DXP,DXV,EBS,FMC,FPT,GIL,GMC,
+    GMD,GTA,HAG,HAP,HAS,HAX,HBC,HCC,HCT,HDC,HEV,HHC,HJS,HMC,HPG,HRC,HSG,HSI,HT1,
+    HTP,HTV,HUT,ICF,IMP,ITA,KBC,KDC,KHP,KKC,KMR,KSH,L10,L18,L43,L61,L62,LAF,LBE,
+    LBM,LCG,LGC,LSS,LTC))
+# stock_returns = np.column_stack((
+#     ABT, ACB, ACL, AGF, ALT, ANV, ASP, B82, BBC, BBS, BCC, BLF, BMC, BMI, BMP,
+#     BPC, BST, BTS, BVS, CAN, CAP, CCM, CDC, CID, CII, CJC, CLC, CMC, COM, CTB,
+#     CTC, CTN, DAC, DAE, DBC, DC4, DCS, DHA, DHG, DHT, DIC, DMC, DPC, DPM, DPR,
+#     DQC, DRC, DST, DTC, DTT, DXP, DXV, EBS, FMC, FPT, GIL, GMC, GMD, GTA, HAG,
+#     HAP, HAS, HAX, HBC, HCC, HCT, HDC, HEV, HHC, HJS, HMC, HPG, HRC, HSG, HSI,
+#     HT1, HTP, HTV, HUT, ICF, IMP, ITA, KBC, KDC, KHP, KKC, KMR, KSH, L10, L18,
+#     L43, L61, L62, LAF, LBE, LBM, LCG, LGC, LSS, LTC, MCO, MCP, MEC, MHC, MKV,
+#     MTG, NAV, NBC, NGC, NHC, NSC, NST, NTL, NTP, ONE, OPC, PAC, PAN, PET, PGC,
+#     PGS, PIT, PJC, PJT, PLC, PMS, PNC, POT, PPC, PSC, PTC, PTS, PVC, PVD, PVE,
+#     PVG, PVI, PVS, PVT, QTC, RAL, RCL, REE, S12, S55, S99, SAM, SAP, SAV, SBT,
+#     SC5, SCD, SCJ, SD5, SD6, SD7, SD9, SDA, SDC, SDD, SDN, SDT, SDY, SFC, SFI,
+#     SFN, SGC, SGD, SJ1, SJD, SJE, SJM, SJS, SMC, SRA, SRB, SSC, SSI, SSM, ST8,
+#     STB, STC, STP, SVC, SVI, SZL, TBC, TBX, TC6, TCM, TCR, TCT, TDH, TDN, THB,
+#     THT, TJC, TKU, TMC, TMS, TNA, TNC, TNG, TPC, TPH, TPP, TRA, TRC, TSC, TTC,
+#     TTF, TV4, TXM, TYA, UIC, UNI, VBH, VC2, VC5, VC6, VC7, VCG, VCS, VDL, VE1,
+#     VFR, VGP, VGS, VHC, VHG, VIC, VID, VIP, VMC, VNA, VNC, VNE, VNM, VNR, VNS,
+#     VSC, VSG, VSH, VTB, VTC, VTO, VTS, VTV, YBC))
 
 bank_interest_rate = BANK_INTEREST_RATE
 initial_cash = INITIAL_CASH  # 1 bln VND
@@ -74,42 +99,9 @@ def print_detail(log, cash, stock_holdings, stock_data):
     #     print(f"Final Holdings: Stock {stock['symbol']}, Amount: {stock_holdings[j]}")
 
 
-def cal_po_wCVaR(month, stock_holdings, cvar_values, i, stock_data):
+def cal_po_wCVaR(month, stock_holdings, cvar_values, i, stock_data, returns):
     # Calculate CVaR at the beginning of each month
     if 0 < month < duration:
-        # returns = np.column_stack((
-        #     ABT, ACB, ACL, AGF, ALT, ANV, ASP, B82, BBC, BBS, BCC, BLF, BMC, BMI, BMP,
-        #     BPC, BST, BTS, BVS, CAN, CAP, CCM, CDC, CID, CII, CJC, CLC, CMC, COM, CTB,
-        #     CTC, CTN, DAC, DAE, DBC, DC4, DCS, DHA, DHG, DHT, DIC, DMC, DPC, DPM, DPR,
-        #     DQC, DRC, DST, DTC, DTT, DXP, DXV, EBS, FMC, FPT, GIL, GMC, GMD, GTA, HAG,
-        #     HAP, HAS, HAX, HBC, HCC, HCT, HDC, HEV, HHC, HJS, HMC, HPG, HRC, HSG, HSI,
-        #     HT1, HTP, HTV, HUT, ICF, IMP, ITA, KBC, KDC, KHP, KKC, KMR, KSH, L10, L18,
-        #     L43, L61, L62, LAF, LBE, LBM, LCG, LGC, LSS, LTC, MCO, MCP, MEC, MHC, MKV,
-        #     MTG, NAV, NBC, NGC, NHC, NSC, NST, NTL, NTP, ONE, OPC, PAC, PAN, PET, PGC,
-        #     PGS, PIT, PJC, PJT, PLC, PMS, PNC, POT, PPC, PSC, PTC, PTS, PVC, PVD, PVE,
-        #     PVG, PVI, PVS, PVT, QTC, RAL, RCL, REE, S12, S55, S99, SAM, SAP, SAV, SBT,
-        #     SC5, SCD, SCJ, SD5, SD6, SD7, SD9, SDA, SDC, SDD, SDN, SDT, SDY, SFC, SFI,
-        #     SFN, SGC, SGD, SJ1, SJD, SJE, SJM, SJS, SMC, SRA, SRB, SSC, SSI, SSM, ST8,
-        #     STB, STC, STP, SVC, SVI, SZL, TBC, TBX, TC6, TCM, TCR, TCT, TDH, TDN, THB,
-        #     THT, TJC, TKU, TMC, TMS, TNA, TNC, TNG, TPC, TPH, TPP, TRA, TRC, TSC, TTC,
-        #     TTF, TV4, TXM, TYA, UIC, UNI, VBH, VC2, VC5, VC6, VC7, VCG, VCS, VDL, VE1,
-        #     VFR, VGP, VGS, VHC, VHG, VIC, VID, VIP, VMC, VNA, VNC, VNE, VNM, VNR, VNS,
-        #     VSC, VSG, VSH, VTB, VTC, VTO, VTS, VTV, YBC))
-
-        returns = np.column_stack((
-            ABT,ACB,ACL,AGF,ALT,ANV,ASP,B82,BBC,BBS,BCC,BLF,BMC,BMI,BMP,BPC,BST,BTS,BVS,
-            CAN,CAP,CCM,CDC,CID,CII,CJC,CLC,CMC,COM,CTB,CTC,CTN,DAC,DAE,DBC,DC4,DCS,DHA,
-            DHG,DHT,DIC,DMC,DPC,DPM,DPR,DQC,DRC,DST,DTC,DTT,DXP,DXV,EBS,FMC,FPT,GIL,GMC,
-            GMD,GTA,HAG,HAP,HAS,HAX,HBC,HCC,HCT,HDC,HEV,HHC,HJS,HMC,HPG,HRC,HSG,HSI,HT1,
-            HTP,HTV,HUT,ICF,IMP,ITA,KBC,KDC,KHP,KKC,KMR,KSH,L10,L18,L43,L61,L62,LAF,LBE,
-            LBM,LCG,LGC,LSS,LTC))
-
-        current_month_prices = []
-        for stock_info in stock_data:
-            current_month_prices.append(stock_info["prices"][month]["value"]) # month also is the index = month + 1 in "month" field
-
-        returns = np.vstack((returns, np.array(current_month_prices).reshape(1, -1)))
-
         portfolio_returns = np.dot(returns, stock_holdings)
 
         wavelet_variance = compute_wavelet_variance(wavelet_decomposition(portfolio_returns))
@@ -119,6 +111,7 @@ def cal_po_wCVaR(month, stock_holdings, cvar_values, i, stock_data):
 
         portfolio_cvar = calculate_cvar(portfolio_returns, portfolio_var)
         cvar_values[i, month] = portfolio_cvar
+
 
 class PortfolioOptimizationProblem(Problem):
     def __init__(self, stock_data, bank_interest_rate, initial_cash, duration, max_stocks):
@@ -162,6 +155,7 @@ class PortfolioOptimizationProblem(Problem):
             previous_stock_holdings = np.zeros(n_stocks)  # To track holdings from the previous month
             log = []
 
+            returns = stock_returns
             for month in range(duration):
                 # Update cash with bank interest
                 if month != 0:
@@ -171,8 +165,14 @@ class PortfolioOptimizationProblem(Problem):
                 cash += deferred_dividends[i, month]
                 cash += deferred_sale_proceeds[i, month]
 
-                # Calculate CVaR at the beginning of each month
-                cal_po_wCVaR(month, stock_holdings, cvar_values, i, stock_data)
+                if 0 < month < duration:
+                    current_month_prices = []
+                    for stock_info in stock_data:
+                        current_month_prices.append(stock_info["prices"][month]["value"]) # month also is the index = month + 1 in "month" field
+
+                    returns = np.vstack((returns, np.array(current_month_prices).reshape(1, -1)))
+                    # Calculate CVaR at the beginning of each month
+                    cal_po_wCVaR(month, stock_holdings, cvar_values, i, stock_data, returns)
 
                 buy_decisions = X[i, month * n_stocks:(month + 1) * n_stocks]
                 sell_decisions = X[i, (duration + month) * n_stocks:(duration + month + 1) * n_stocks]
@@ -306,14 +306,19 @@ timestamp = datetime.datetime.now().strftime("%d%m%Y%H%M%S")
 unique_filename = f"output-{timestamp}.txt"
 with open(unique_filename, 'w') as f:
     print("Starting..")
+    start = time.time()
     # Save the original standard output
-    original_stdout = sys.stdout
-
-    # Redirect standard output to the file
-    sys.stdout = f
+    # original_stdout = sys.stdout
+    #
+    # # Redirect standard output to the file
+    # sys.stdout = f
     print("Starting to write..")
     my_solve()
 
-    sys.stdout = original_stdout
+    end = time.time()
+    print("The time of execution of above program is :",
+          (end-start) * 10**3, "ms")
+
+    # sys.stdout = original_stdout
 
 print("DONE - Thank you")
