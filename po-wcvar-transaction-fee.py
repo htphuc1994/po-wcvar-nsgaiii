@@ -208,11 +208,14 @@ class PortfolioOptimizationProblem(Problem):
                         transaction_fee = TRANS_FEE / 100 * stock_price * buy_amount
                         total_buy_cost = stock_price * buy_amount + transaction_fee
 
+                        if np.count_nonzero(stock_holdings) >= MAX_STOCKS and stock_holdings[j] <= 0: # cardinality check
+                            break
                         # Ensure we do not buy more than the available cash
                         if total_buy_cost <= cash:
                             cash -= total_buy_cost
                             stock_holdings[j] += buy_amount
                             monthly_log["Buy"].append((stock_symbol, buy_amount))
+
 
                     # Aggregate sell decisions
                     if sell_decisions[j] > 0:
@@ -273,7 +276,7 @@ class PortfolioOptimizationProblem(Problem):
 
             total_cash[i] = cash
 
-            # print_detail(log, cash, stock_holdings, stock_data)
+            print_detail(log, cash, stock_holdings, stock_data)
 
         out["F"] = np.column_stack((-total_cash, cvar_values[:, 1:]))
         out["G"] = cardinality_violations
