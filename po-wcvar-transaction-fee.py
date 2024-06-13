@@ -159,7 +159,7 @@ class PortfolioOptimizationProblem(Problem):
             for month in range(duration):
                 # Update cash with bank interest
                 if month != 0:
-                    cash *= (1 + self.bank_interest_rate / 100)
+                    cash *= (1 + self.bank_interest_rate)
 
                 # Add deferred dividends and sale proceeds from the previous month
                 cash += deferred_dividends[i, month]
@@ -205,7 +205,7 @@ class PortfolioOptimizationProblem(Problem):
                     # Process buy decisions
                     if buy_decisions[j] > 0:
                         buy_amount = int(round(min(buy_decisions[j], stock_capacity)))
-                        transaction_fee = TRANS_FEE / 100 * stock_price * buy_amount
+                        transaction_fee = TRANS_FEE * stock_price * buy_amount
                         total_buy_cost = stock_price * buy_amount + transaction_fee
 
                         if np.count_nonzero(stock_holdings) >= MAX_STOCKS and stock_holdings[j] <= 0: # cardinality check
@@ -236,7 +236,7 @@ class PortfolioOptimizationProblem(Problem):
                 for j in range(n_stocks):
                     if aggregated_sell_decisions[j] > 0:
                         sell_amount = aggregated_sell_decisions[j]
-                        transaction_fee = TRANS_FEE / 100 * stock_price * sell_amount
+                        transaction_fee = TRANS_FEE * stock_price * sell_amount
                         total_sell_proceeds = stock_price * sell_amount - transaction_fee
 
                         # Defer sale proceeds to the next month
@@ -263,7 +263,7 @@ class PortfolioOptimizationProblem(Problem):
                         stock_price = self.stock_data[j]["prices"][m]['value']
                         stock_capacity = self.stock_data[j]["prices"][m]['matchedTradingVolume']
                         sell_amount = min(remaining_sell_amount, stock_capacity)
-                        transaction_fee = TRANS_FEE / 100 * stock_price * sell_amount
+                        transaction_fee = TRANS_FEE * stock_price * sell_amount
                         total_sell_proceeds = stock_price * sell_amount - transaction_fee
                         cash += total_sell_proceeds
                         remaining_sell_amount -= sell_amount
