@@ -227,7 +227,7 @@ class PortfolioOptimizationProblem(Problem):
                         if (month + 1) == dividend['month'] and previous_stock_holdings[j] > 0:
                             if month != duration - 1 and aggregated_sell_decisions[
                                 j] <= 0:  # Ensure no dividends are received if stock is sold in the same month
-                                dividends = dividend['value'] * previous_stock_holdings[j]
+                                dividends = dividend['value'] * previous_stock_holdings[j] / 1000  # kVND
                                 # Defer dividends to the next month
                                 deferred_dividends[i, month + 1] += dividends
                                 monthly_log["Dividends"] += dividends
@@ -276,7 +276,7 @@ class PortfolioOptimizationProblem(Problem):
 
             total_cash[i] = cash
 
-            # print_detail(log, cash, stock_holdings, stock_data)
+            print_detail(log, cash, stock_holdings, stock_data)
 
         out["F"] = np.column_stack((-total_cash, cvar_values[:, 1:]))
         out["G"] = cardinality_violations
