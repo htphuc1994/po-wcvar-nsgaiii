@@ -17,7 +17,7 @@ from stock_data_input_100 import STOCK_DATA_2023_INPUT_100_STOCKS
 from stock_data_inputs_251 import STOCK_DATA_2023_INPUT_251_STOCKS
 
 
-# stock_data = STOCK_DATA_2023_INPUT_251_STOCKS
+# stock_data = STOCK_DATA_2023_INPUT_249_STOCKS
 stock_data = STOCK_DATA_2023_INPUT_100_STOCKS
 stock_returns = np.column_stack((
     ABT,ACB,ACL,AGF,ALT,ANV,ASP,B82,BBC,BBS,BCC,BLF,BMC,BMI,BMP,BPC,BST,BTS,BVS,
@@ -276,7 +276,7 @@ class PortfolioOptimizationProblem(Problem):
 
             total_cash[i] = cash
 
-            print_detail(log, cash, stock_holdings, stock_data)
+            # print_detail(log, cash, stock_holdings, stock_data)
 
         out["F"] = np.column_stack((-total_cash, cvar_values[:, 1:]))
         out["G"] = cardinality_violations
