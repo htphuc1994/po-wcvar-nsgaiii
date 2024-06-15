@@ -253,7 +253,35 @@ def get_indices_with_min_value(array):
 
     return min_indices
 
+def sort_cvar_values(F):
+    if len(F) == 0 or len(F) == 1:
+        return F
+    # Create a tuple of columns in reversed order (excluding the first column), negated for descending sort
+    columns_to_sort = [F[:, i] for i in range(F.shape[1]-1, 0, -1)]
+    columns_to_sort = tuple(-col for col in columns_to_sort)
+
+    # Get the indices that would sort the array by the specified columns
+    sorted_indices = np.lexsort(columns_to_sort)
+
+    # Apply the sorted indices to the original array
+    sorted_F = F[sorted_indices]
+    return sorted_F
+
+BANK_INTEREST_RATE = 0.0045
+INITIAL_CASH = 1000000  # 1 BLN VND
+
 def hop(pop, indices):
+    # Extract the F values for the given indices
+    F_values = np.array([pop[i].F for i in indices]) # 1st element is return, the remaining elements are risks
+
+    F_with_profit_OK = F_values[-F_values >= INITIAL_CASH * (1+BANK_INTEREST_RATE)]
+    F_with_profit_not_OK = F_values[-F_values < INITIAL_CASH * (1+BANK_INTEREST_RATE)]
+
+    sorted_F_with_profit_OK = sort_cvar_values(F_with_profit_OK)
+    sorted_F_with_profit_not_OK = sort_cvar_values(F_with_profit_not_OK)
+    a=1
+
+def hop_v1(pop, indices):
     # print(f"HOP = {indices}")
     # Extract the F values for the given indices
     F_values = np.array([pop[i].F for i in indices]) # 1st element is return, the remaining elements are risks

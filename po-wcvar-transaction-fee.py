@@ -137,7 +137,7 @@ class PortfolioOptimizationProblem(Problem):
                 sell_xu.append(month_price["matchedTradingVolume"])
         xu = sell_xu + sell_xu
 
-        super().__init__(n_var=2 * self.n_stocks * self.duration, n_obj=self.duration, n_constr=self.duration, xl=xl,
+        super().__init__(n_var=2 * self.n_stocks * self.duration, n_obj=self.duration, n_constr=self.duration+1, xl=xl,
                          xu=xu)
 
     def _evaluate(self, X, out, *args, **kwargs):
@@ -276,10 +276,11 @@ class PortfolioOptimizationProblem(Problem):
 
             total_cash[i] = cash
 
-            print_detail(log, cash, stock_holdings, stock_data)
+            # print_detail(log, cash, stock_holdings, stock_data)
 
         out["F"] = np.column_stack((-total_cash, cvar_values[:, 1:]))
-        out["G"] = cardinality_violations
+        returns_constraint = total_cash - initial_cash * (1 + BANK_INTEREST_RATE)
+        out["G"] = np.column_stack((returns_constraint, cardinality_violations))
 
 def my_solve():
     problem = PortfolioOptimizationProblem(stock_data, bank_interest_rate, initial_cash, duration, max_stocks)
@@ -299,7 +300,12 @@ def my_solve():
     # calculate the fronts of the population
     fronts, rank = NonDominatedSorting().do(F, return_rank=True, n_stop_if_ranked=population_size)
 
-    hop_solution = res.pop[hop(res.pop, fronts[0])[0]]
+    # remove solutions with their returns < trivial solution (only bank deposits)
+    front_0 = [individual for individual in res.pop[fronts[0]] if individual.F[0]*-1 > INITIAL_CASH]
+
+    # hop_solution = res.pop[hop(res.pop, front_0)[0]]
+    len_front_0 = len(front_0)
+    hop_solution = front_0[hop(front_0, range(len_front_0))[0]]
     print("Objectives =", ["%.2f" % v for v in hop_solution.F])
     print("Solution details =", ["%.2f" % v for v in hop_solution.X])
 
