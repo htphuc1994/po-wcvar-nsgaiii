@@ -1,3 +1,8 @@
+
+# =========================================================================================================
+# NOTE: please replace the default NSGA-III of library by this class
+# =========================================================================================================
+
 import warnings
 
 import numpy as np
@@ -19,6 +24,8 @@ from pymoo.util.nds.non_dominated_sorting import NonDominatedSorting
 # =========================================================================================================
 # NOTE: please replace the default NSGA-III of library by this class
 # =========================================================================================================
+BANK_INTEREST_RATE = 0.0045
+INITIAL_CASH = 1000000  # 1 BLN VND
 
 def comp_by_cv_then_random(pop, P, **kwargs):
     S = np.full(P.shape[0], np.nan)
@@ -253,7 +260,40 @@ def get_indices_with_min_value(array):
 
     return min_indices
 
+def sort_cvar_values(F):
+    if len(F) <= 1:
+        return F
+
+    # Perform the lexsort and reverse the sorting order for descending sort
+    sorted_indices = np.lexsort(F[:, 1:].T[::-1])[::-1]
+
+    return F[sorted_indices]
+
 def hop(pop, indices):
+    if len(indices) <= 1:
+        return indices
+
+    # Extract the F values for the given indices
+    F_values = np.array([pop[i].F for i in indices])
+
+    # Split F values into those meeting the profit condition and those that don't
+    profit_threshold = -INITIAL_CASH * (1 + BANK_INTEREST_RATE)
+    F_with_profit_OK = F_values[F_values[:, 0] <= profit_threshold]
+    if len(F_with_profit_OK) > 0:
+        print(f"ACK len(F_with_profit_OK)={len(F_with_profit_OK)}")
+    F_with_profit_not_OK = F_values[F_values[:, 0] > profit_threshold]
+
+    # Sort the F values
+    sorted_F_with_profit_OK = sort_cvar_values(F_with_profit_OK)
+    sorted_F_with_profit_not_OK = sort_cvar_values(F_with_profit_not_OK)
+
+    # Map sorted F values back to their original indices
+    sorted_indices_OK = [indices[np.where(np.all(F_values == f, axis=1))[0][0]] for f in sorted_F_with_profit_OK]
+    sorted_indices_not_OK = [indices[np.where(np.all(F_values == f, axis=1))[0][0]] for f in sorted_F_with_profit_not_OK]
+
+    return sorted_indices_OK + sorted_indices_not_OK
+
+def hop_v1(pop, indices):
     # print(f"HOP = {indices}")
     # Extract the F values for the given indices
     F_values = np.array([pop[i].F for i in indices]) # 1st element is return, the remaining elements are risks
