@@ -137,7 +137,7 @@ class PortfolioOptimizationProblem(Problem):
                 sell_xu.append(month_price["matchedTradingVolume"])
         xu = sell_xu + sell_xu
 
-        super().__init__(n_var=2 * self.n_stocks * self.duration, n_obj=self.duration, n_constr=self.duration+1, xl=xl,
+        super().__init__(n_var=2 * self.n_stocks * self.duration, n_obj=self.duration, n_constr=self.duration, xl=xl,
                          xu=xu)
 
     def _evaluate(self, X, out, *args, **kwargs):
@@ -279,8 +279,9 @@ class PortfolioOptimizationProblem(Problem):
             # print_detail(log, cash, stock_holdings, stock_data)
 
         out["F"] = np.column_stack((-total_cash, cvar_values[:, 1:]))
-        returns_constraint = total_cash - initial_cash * (1 + BANK_INTEREST_RATE)
-        out["G"] = np.column_stack((returns_constraint, cardinality_violations))
+        # returns_constraint = total_cash - initial_cash * (1 + BANK_INTEREST_RATE)
+        # out["G"] = np.column_stack((returns_constraint, cardinality_violations))
+        out["G"] = cardinality_violations
 
 def my_solve():
     problem = PortfolioOptimizationProblem(stock_data, bank_interest_rate, initial_cash, duration, max_stocks)

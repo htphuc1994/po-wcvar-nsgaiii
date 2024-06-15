@@ -1,3 +1,8 @@
+
+# =========================================================================================================
+# NOTE: please replace the default NSGA-III of library by this class
+# =========================================================================================================
+
 import warnings
 
 import numpy as np
@@ -254,32 +259,38 @@ def get_indices_with_min_value(array):
     return min_indices
 
 def sort_cvar_values(F):
-    if len(F) == 0 or len(F) == 1:
+    if len(F) <= 1:
         return F
-    # Create a tuple of columns in reversed order (excluding the first column), negated for descending sort
-    columns_to_sort = [F[:, i] for i in range(F.shape[1]-1, 0, -1)]
-    columns_to_sort = tuple(-col for col in columns_to_sort)
 
-    # Get the indices that would sort the array by the specified columns
-    sorted_indices = np.lexsort(columns_to_sort)
+    # Perform the lexsort and reverse the sorting order for descending sort
+    sorted_indices = np.lexsort(F[:, 1:].T[::-1])[::-1]
 
-    # Apply the sorted indices to the original array
-    sorted_F = F[sorted_indices]
-    return sorted_F
+    return F[sorted_indices]
 
 BANK_INTEREST_RATE = 0.0045
 INITIAL_CASH = 1000000  # 1 BLN VND
 
 def hop(pop, indices):
+    if len(indices) <= 1:
+        return indices
+
     # Extract the F values for the given indices
-    F_values = np.array([pop[i].F for i in indices]) # 1st element is return, the remaining elements are risks
+    F_values = np.array([pop[i].F for i in indices])
 
-    F_with_profit_OK = F_values[-F_values >= INITIAL_CASH * (1+BANK_INTEREST_RATE)]
-    F_with_profit_not_OK = F_values[-F_values < INITIAL_CASH * (1+BANK_INTEREST_RATE)]
+    # Split F values into those meeting the profit condition and those that don't
+    profit_threshold = -INITIAL_CASH * (1 + BANK_INTEREST_RATE)
+    F_with_profit_OK = F_values[F_values[:, 0] <= profit_threshold]
+    F_with_profit_not_OK = F_values[F_values[:, 0] > profit_threshold]
 
+    # Sort the F values
     sorted_F_with_profit_OK = sort_cvar_values(F_with_profit_OK)
     sorted_F_with_profit_not_OK = sort_cvar_values(F_with_profit_not_OK)
-    a=1
+
+    # Map sorted F values back to their original indices
+    sorted_indices_OK = [indices[np.where(np.all(F_values == f, axis=1))[0][0]] for f in sorted_F_with_profit_OK]
+    sorted_indices_not_OK = [indices[np.where(np.all(F_values == f, axis=1))[0][0]] for f in sorted_F_with_profit_not_OK]
+
+    return sorted_indices_OK + sorted_indices_not_OK
 
 def hop_v1(pop, indices):
     # print(f"HOP = {indices}")
