@@ -24,6 +24,8 @@ from pymoo.util.nds.non_dominated_sorting import NonDominatedSorting
 # =========================================================================================================
 # NOTE: please replace the default NSGA-III of library by this class
 # =========================================================================================================
+BANK_INTEREST_RATE = 0.0045
+INITIAL_CASH = 1000000  # 1 BLN VND
 
 def comp_by_cv_then_random(pop, P, **kwargs):
     S = np.full(P.shape[0], np.nan)
@@ -267,9 +269,6 @@ def sort_cvar_values(F):
 
     return F[sorted_indices]
 
-BANK_INTEREST_RATE = 0.0045
-INITIAL_CASH = 1000000  # 1 BLN VND
-
 def hop(pop, indices):
     if len(indices) <= 1:
         return indices
@@ -280,6 +279,8 @@ def hop(pop, indices):
     # Split F values into those meeting the profit condition and those that don't
     profit_threshold = -INITIAL_CASH * (1 + BANK_INTEREST_RATE)
     F_with_profit_OK = F_values[F_values[:, 0] <= profit_threshold]
+    if len(F_with_profit_OK) > 0:
+        print(f"ACK len(F_with_profit_OK)={len(F_with_profit_OK)}")
     F_with_profit_not_OK = F_values[F_values[:, 0] > profit_threshold]
 
     # Sort the F values

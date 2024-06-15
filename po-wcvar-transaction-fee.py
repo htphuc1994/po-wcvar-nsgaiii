@@ -156,7 +156,9 @@ class PortfolioOptimizationProblem(Problem):
             log = []
 
             returns = stock_returns
-            for month in range(duration):
+
+            duration_plus_1 = duration + 1  # we just collect $$$ after the investment.
+            for month in range(duration_plus_1):
                 # Update cash with bank interest
                 if month != 0:
                     cash *= (1 + self.bank_interest_rate)
@@ -164,6 +166,8 @@ class PortfolioOptimizationProblem(Problem):
                 # Add deferred dividends and sale proceeds from the previous month
                 cash += deferred_dividends[i, month]
                 cash += deferred_sale_proceeds[i, month]
+                if month == duration:
+                    break
 
                 if 0 < month < duration:
                     current_month_prices = []
@@ -267,10 +271,16 @@ class PortfolioOptimizationProblem(Problem):
 
                         stock_price = self.stock_data[j]["prices"][m]['value']
                         stock_capacity = self.stock_data[j]["prices"][m]['matchedTradingVolume']
-                        sell_amount = min(remaining_sell_amount, stock_capacity - sell_decisions[j])
+
+                        new_capacity = stock_capacity - sell_decisions[j]
+                        if new_capacity < 0:
+                            new_capacity = 0
+                        sell_amount = min(remaining_sell_amount, new_capacity)
+                        if sell_amount <= 0:
+                            continue
                         transaction_fee = TRANS_FEE * stock_price * sell_amount
                         total_sell_proceeds = stock_price * sell_amount - transaction_fee
-                        cash += total_sell_proceeds
+                        cash += total_sell_proceeds * (1 + bank_interest_rate)
                         remaining_sell_amount -= sell_amount
                         if sell_amount > 0:
                             log[m]["Sell"].append((self.stock_data[j]['symbol'], sell_amount))
@@ -281,8 +291,11 @@ class PortfolioOptimizationProblem(Problem):
                             break
 
                     stock_holdings[j] = 0
+            # End investment so collect money
 
             total_cash[i] = cash
+            if total_cash[i] > initial_cash * (1+bank_interest_rate):
+                print(f"ACK>> total_cash[i] OK with i = {i} and cash = {cash}")
 
             # print_detail(log, cash, stock_holdings, stock_data)
 
@@ -310,7 +323,7 @@ def my_solve():
     fronts, rank = NonDominatedSorting().do(F, return_rank=True, n_stop_if_ranked=population_size)
 
     # remove solutions with their returns < trivial solution (only bank deposits)
-    front_0 = [individual for individual in res.pop[fronts[0]] if individual.F[0]*-1 > INITIAL_CASH]
+    front_0 = [individual for individual in res.pop[fronts[0]] if individual.F[0]*-1 > INITIAL_CASH * (1+bank_interest_rate)]
 
     # hop_solution = res.pop[hop(res.pop, front_0)[0]]
     len_front_0 = len(front_0)
