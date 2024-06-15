@@ -124,8 +124,8 @@ class PortfolioOptimizationProblem(Problem):
 
         # Define bounds for the decision variables
         # xl: half left (hl) is buy decisions | half right (hr) is sell decisions
-        # In hl portion: n months buy stock1 | n months buy stock2...
-        # In hr portion: n months sell stock1 | n months sell stock2...
+        # In hl portion: self.duration months buy stock1 | self.duration months buy stock2...
+        # In hr portion: self.duration months sell stock1 | self.duration months sell stock2...
         xl = np.zeros(2 * self.n_stocks * self.duration)  # Lower bounds (all zeros, no negative quantities)
 
         sell_xu = []
@@ -255,20 +255,28 @@ class PortfolioOptimizationProblem(Problem):
                 monthly_log["BankDeposit"] = cash
                 log.append(monthly_log)
 
+                X[i, month * n_stocks:(month + 1) * n_stocks] = buy_decisions
+                X[i, (duration + month) * n_stocks:(duration + month + 1) * n_stocks] = sell_decisions
+
             # Ensure all holdings are sold at the end of the last month
             for j in range(n_stocks):
                 remaining_sell_amount = stock_holdings[j]
                 if remaining_sell_amount > 0:
                     for m in range(duration - 1, -1, -1):
+                        sell_decisions = X[i, (duration + m) * n_stocks:(duration + m + 1) * n_stocks]
+
                         stock_price = self.stock_data[j]["prices"][m]['value']
                         stock_capacity = self.stock_data[j]["prices"][m]['matchedTradingVolume']
-                        sell_amount = min(remaining_sell_amount, stock_capacity)
+                        sell_amount = min(remaining_sell_amount, stock_capacity - sell_decisions[j])
                         transaction_fee = TRANS_FEE * stock_price * sell_amount
                         total_sell_proceeds = stock_price * sell_amount - transaction_fee
                         cash += total_sell_proceeds
                         remaining_sell_amount -= sell_amount
                         if sell_amount > 0:
                             log[m]["Sell"].append((self.stock_data[j]['symbol'], sell_amount))
+                            sell_decisions[j] = sell_decisions[j] + sell_amount
+
+                            X[i, (duration + m) * n_stocks:(duration + m + 1) * n_stocks] = sell_decisions
                         if remaining_sell_amount <= 0:
                             break
 
