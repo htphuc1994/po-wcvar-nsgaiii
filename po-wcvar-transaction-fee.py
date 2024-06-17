@@ -16,16 +16,15 @@ from constants import TRANS_FEE, BANK_INTEREST_RATE, INITIAL_CASH, DURATION, MAX
 from stock_data_input_100 import STOCK_DATA_2023_INPUT_100_STOCKS
 from stock_data_inputs_249 import STOCK_DATA_2023_INPUT_249_STOCKS
 
-
 # stock_data = STOCK_DATA_2023_INPUT_249_STOCKS
 stock_data = STOCK_DATA_2023_INPUT_100_STOCKS
 stock_returns = np.column_stack((
-    ABT,ACB,ACL,AGF,ALT,ANV,ASP,B82,BBC,BBS,BCC,BLF,BMC,BMI,BMP,BPC,BST,BTS,BVS,
-    CAN,CAP,CCM,CDC,CID,CII,CJC,CLC,CMC,COM,CTB,CTC,CTN,DAC,DAE,DBC,DC4,DCS,DHA,
-    DHG,DHT,DIC,DMC,DPC,DPM,DPR,DQC,DRC,DST,DTC,DTT,DXP,DXV,EBS,FMC,FPT,GIL,GMC,
-    GMD,GTA,HAG,HAP,HAS,HAX,HBC,HCC,HCT,HDC,HEV,HHC,HJS,HMC,HPG,HRC,HSG,HSI,HT1,
-    HTP,HTV,HUT,ICF,IMP,ITA,KBC,KDC,KHP,KKC,KMR,KSH,L10,L18,L43,L61,L62,LAF,LBE,
-    LBM,LCG,LGC,LSS,LTC))
+    ABT, ACB, ACL, AGF, ALT, ANV, ASP, B82, BBC, BBS, BCC, BLF, BMC, BMI, BMP, BPC, BST, BTS, BVS,
+    CAN, CAP, CCM, CDC, CID, CII, CJC, CLC, CMC, COM, CTB, CTC, CTN, DAC, DAE, DBC, DC4, DCS, DHA,
+    DHG, DHT, DIC, DMC, DPC, DPM, DPR, DQC, DRC, DST, DTC, DTT, DXP, DXV, EBS, FMC, FPT, GIL, GMC,
+    GMD, GTA, HAG, HAP, HAS, HAX, HBC, HCC, HCT, HDC, HEV, HHC, HJS, HMC, HPG, HRC, HSG, HSI, HT1,
+    HTP, HTV, HUT, ICF, IMP, ITA, KBC, KDC, KHP, KKC, KMR, KSH, L10, L18, L43, L61, L62, LAF, LBE,
+    LBM, LCG, LGC, LSS, LTC))
 # stock_returns = np.column_stack((
 #     ABT, ACB, ACL, AGF, ALT, ANV, ASP, B82, BBC, BBS, BCC, BLF, BMC, BMI, BMP,
 #     BPC, BST, BTS, BVS, CAN, CAP, CCM, CDC, CID, CII, CJC, CLC, CMC, COM, CTB,
@@ -99,7 +98,7 @@ def print_detail(log, cash, stock_holdings, stock_data):
     #     print(f"Final Holdings: Stock {stock['symbol']}, Amount: {stock_holdings[j]}")
 
 
-def cal_po_wCVaR(month, stock_holdings, cvar_values, i, stock_data, returns):
+def cal_po_wCVaR(month, stock_holdings, cvar_values, i, returns):
     # Calculate CVaR at the beginning of each month
     if 0 < month < duration:
         portfolio_returns = np.dot(returns, stock_holdings)
@@ -114,13 +113,13 @@ def cal_po_wCVaR(month, stock_holdings, cvar_values, i, stock_data, returns):
 
 
 class PortfolioOptimizationProblem(Problem):
-    def __init__(self, stock_data, bank_interest_rate, initial_cash, duration, max_stocks):
-        self.stock_data = stock_data
-        self.bank_interest_rate = bank_interest_rate
-        self.initial_cash = initial_cash
-        self.duration = duration
-        self.n_stocks = len(stock_data)
-        self.max_stocks = max_stocks
+    def __init__(self, _stock_data, _bank_interest_rate, _initial_cash, _duration, _max_stocks):
+        self.stock_data = _stock_data
+        self.bank_interest_rate = _bank_interest_rate
+        self.initial_cash = _initial_cash
+        self.duration = _duration
+        self.n_stocks = len(_stock_data)
+        self.max_stocks = _max_stocks
 
         # Define bounds for the decision variables
         # xl: half left (hl) is buy decisions | half right (hr) is sell decisions
@@ -129,7 +128,7 @@ class PortfolioOptimizationProblem(Problem):
         xl = np.zeros(2 * self.n_stocks * self.duration)  # Lower bounds (all zeros, no negative quantities)
 
         sell_xu = []
-        for stock in stock_data:
+        for stock in _stock_data:
             month_prices = sorted(stock["prices"], key=lambda x: x['month'])
             for month_price in month_prices:
                 if month_price["month"] > self.duration:
@@ -137,7 +136,8 @@ class PortfolioOptimizationProblem(Problem):
                 sell_xu.append(month_price["matchedTradingVolume"])
         xu = sell_xu + sell_xu
 
-        super().__init__(n_var=2 * self.n_stocks * self.duration, n_obj=self.duration, n_constr=self.duration+1, xl=xl,
+        super().__init__(n_var=2 * self.n_stocks * self.duration, n_obj=self.duration, n_constr=self.duration + 1,
+                         xl=xl,
                          xu=xu)
 
     def _evaluate(self, X, out, *args, **kwargs):
@@ -149,7 +149,7 @@ class PortfolioOptimizationProblem(Problem):
         deferred_dividends = np.zeros((X.shape[0], investment_duration + 1))
         deferred_sale_proceeds = np.zeros((X.shape[0], investment_duration + 1))
 
-        for i in range(X.shape[0]): # processing the i-th individual
+        for i in range(X.shape[0]):  # processing the i-th individual
             cash = self.initial_cash
             stock_holdings = np.zeros(n_stocks)
             previous_stock_holdings = np.zeros(n_stocks)  # To track holdings from the previous month
@@ -178,14 +178,16 @@ class PortfolioOptimizationProblem(Problem):
                 if 0 < month < investment_duration:
                     current_month_prices = []
                     for stock_info in stock_data:
-                        current_month_prices.append(stock_info["prices"][month]["value"]) # month also is the index = month + 1 in "month" field
+                        current_month_prices.append(stock_info["prices"][month][
+                                                        "value"])  # month also is the index = month + 1 in "month" field
 
                     returns = np.vstack((returns, np.array(current_month_prices).reshape(1, -1)))
                     # Calculate CVaR at the beginning of each month
-                    cal_po_wCVaR(month, stock_holdings, cvar_values, i, stock_data, returns)
+                    cal_po_wCVaR(month, stock_holdings, cvar_values, i, returns)
 
                 buy_decisions = X[i, month * n_stocks:(month + 1) * n_stocks]
-                sell_decisions = X[i, (investment_duration + month) * n_stocks:(investment_duration + month + 1) * n_stocks]
+                sell_decisions = X[i,
+                                 (investment_duration + month) * n_stocks:(investment_duration + month + 1) * n_stocks]
 
                 # Prevent buys in the last month
                 if month == investment_duration - 1:
@@ -201,24 +203,26 @@ class PortfolioOptimizationProblem(Problem):
                     stock_capacity = stock["prices"][month]['matchedTradingVolume']
 
                     # Prevent sells during dividend months
-                    if month == 0 or ((month + 1) in [dividend['month'] for dividend in stock['dividendSpitingHistories']]):
+                    if month == 0 or (
+                            (month + 1) in [dividend['month'] for dividend in stock['dividendSpitingHistories']]):
                         sell_decisions[j] = 0
                     # print(f"{buy_decisions[j]};{sell_decisions[j]}")
                     if (buy_decisions[j] > 0 and
-                            ((round(buy_decisions[j]) == round(sell_decisions[j])) or
-                             (round(buy_decisions[j]) >= stock_capacity and round(
+                            ((np.floor(buy_decisions[j]) == np.floor(sell_decisions[j])) or
+                             (np.floor(buy_decisions[j]) >= stock_capacity and np.floor(
                                  sell_decisions[j]) >= stock_capacity) or
-                             ((round(buy_decisions[j]) + stock_holdings[j] - int(
-                                 round(min(sell_decisions[j], stock_capacity))) <= 0)))):
+                             ((np.floor(buy_decisions[j]) + stock_holdings[j] - int(
+                                 np.floor(min(sell_decisions[j], stock_capacity))) <= 0)))):
                         sell_decisions[j] = 0
 
                     # Process buy decisions
                     if buy_decisions[j] > 0:
-                        buy_amount = int(round(min(buy_decisions[j], stock_capacity)))
+                        buy_amount = int(np.floor(min(buy_decisions[j], stock_capacity)))
                         transaction_fee = TRANS_FEE * stock_price * buy_amount
                         total_buy_cost = stock_price * buy_amount + transaction_fee
 
-                        if np.count_nonzero(stock_holdings) >= MAX_STOCKS and stock_holdings[j] <= 0: # cardinality check
+                        if np.count_nonzero(stock_holdings) >= MAX_STOCKS and stock_holdings[
+                            j] <= 0:  # cardinality check
                             break
                         # Ensure we do not buy more than the available cash
                         if total_buy_cost <= cash:
@@ -226,17 +230,15 @@ class PortfolioOptimizationProblem(Problem):
                             stock_holdings[j] += buy_amount
                             monthly_log["Buy"].append((stock_symbol, buy_amount))
 
-
                     # Aggregate sell decisions
                     if sell_decisions[j] > 0:
-                        sell_amount = int(round(min(sell_decisions[j], stock_holdings[j]))) * stock_price
+                        sell_amount = int(np.floor(min(sell_decisions[j], np.floor(stock_holdings[j]))))
                         aggregated_sell_decisions[j] += sell_amount
 
                     # Calculate dividends if current month is a dividend month
                     for dividend in stock['dividendSpitingHistories']:
                         if (month + 1) == dividend['month'] and previous_stock_holdings[j] > 0:
-                            if month != investment_duration - 1 and aggregated_sell_decisions[
-                                j] <= 0:  # Ensure no dividends are received if stock is sold in the same month
+                            if month != investment_duration - 1 and aggregated_sell_decisions[j] <= 0:  # Ensure no dividends are received if stock is sold in the same month
                                 dividends = dividend['value'] * previous_stock_holdings[j] / 1000  # kVND
                                 # Defer dividends to the next month
                                 deferred_dividends[i, month + 1] += dividends
@@ -244,10 +246,11 @@ class PortfolioOptimizationProblem(Problem):
 
                 # Process aggregated sell decisions
                 for j in range(n_stocks):
+                    stock_price = self.stock_data[j]["prices"][month]['value']
                     if aggregated_sell_decisions[j] > 0:
                         sell_amount = aggregated_sell_decisions[j]
-                        transaction_fee = TRANS_FEE * sell_amount
-                        total_sell_proceeds = sell_amount - transaction_fee
+                        transaction_fee = TRANS_FEE * sell_amount * stock_price
+                        total_sell_proceeds = sell_amount * stock_price - transaction_fee
 
                         # Defer sale proceeds to the next month
                         deferred_sale_proceeds[i, month + 1] += total_sell_proceeds
@@ -266,7 +269,7 @@ class PortfolioOptimizationProblem(Problem):
                 log.append(monthly_log)
 
                 X[i, month * n_stocks:(month + 1) * n_stocks] = buy_decisions
-                X[i, (investment_duration + month) * n_stocks:(investment_duration + month + 1) * n_stocks] = sell_decisions
+                X[i,(investment_duration + month) * n_stocks:(investment_duration + month + 1) * n_stocks] = sell_decisions
 
             # Ensure all holdings are sold at the end of the last month
             for j in range(n_stocks):
@@ -281,7 +284,7 @@ class PortfolioOptimizationProblem(Problem):
                         new_capacity = stock_capacity - sell_decisions[j]
                         if new_capacity < 0:
                             new_capacity = 0
-                        sell_amount = min(remaining_sell_amount, new_capacity)
+                        sell_amount = min(np.floor(remaining_sell_amount), new_capacity)
                         if sell_amount <= 0:
                             continue
                         transaction_fee = TRANS_FEE * stock_price * sell_amount
@@ -300,16 +303,17 @@ class PortfolioOptimizationProblem(Problem):
             # End investment so collect money
 
             total_cash[i] = cash
-            # if total_cash[i] > initial_cash * (1+bank_interest_rate):
-            #     print(f"ACK>> OK total_cash[{i}] = {cash}")
+            if total_cash[i] > initial_cash * (1 + bank_interest_rate):
+                print(f"ACK>> OK total_cash[{i}] = {cash}")
 
             # print_detail(log, cash, stock_holdings, stock_data)
 
-        out["F"] = np.column_stack((-total_cash, cvar_values[:, 1:]))
+        out["F"] = np.column_stack((cvar_values[:, 1:], -total_cash))
         # returns_constraint = total_cash - initial_cash * (1 + BANK_INTEREST_RATE)
         returns_constraint = total_cash - initial_cash
         out["G"] = np.column_stack((returns_constraint, cardinality_violations))
         # out["G"] = cardinality_violations
+
 
 def my_solve():
     problem = PortfolioOptimizationProblem(stock_data, bank_interest_rate, initial_cash, duration, max_stocks)
@@ -330,7 +334,8 @@ def my_solve():
     fronts, rank = NonDominatedSorting().do(F, return_rank=True, n_stop_if_ranked=population_size)
 
     # remove solutions with their returns < trivial solution (only bank deposits)
-    front_0 = [individual for individual in res.pop[fronts[0]] if individual.F[0]*-1 > INITIAL_CASH * (1+bank_interest_rate)]
+    front_0 = [individual for individual in res.pop[fronts[0]] if
+               individual.F[0] * -1 > INITIAL_CASH * (1 + bank_interest_rate)]
 
     # hop_solution = res.pop[hop(res.pop, front_0)[0]]
     len_front_0 = len(front_0)
@@ -355,7 +360,7 @@ with open(unique_filename, 'w') as f:
 
     end = time.time()
     print("The time of execution of above program is :",
-          (end-start) * 10**3, "ms")
+          (end - start) * 10 ** 3, "ms")
 
     # sys.stdout = original_stdout
 
