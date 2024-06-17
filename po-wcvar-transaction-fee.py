@@ -201,7 +201,7 @@ class PortfolioOptimizationProblem(Problem):
                     stock_capacity = stock["prices"][month]['matchedTradingVolume']
 
                     # Prevent sells during dividend months
-                    if (month + 1) in [dividend['month'] for dividend in stock['dividendSpitingHistories']]:
+                    if month == 0 or ((month + 1) in [dividend['month'] for dividend in stock['dividendSpitingHistories']]):
                         sell_decisions[j] = 0
                     # print(f"{buy_decisions[j]};{sell_decisions[j]}")
                     if (buy_decisions[j] > 0 and
@@ -300,13 +300,14 @@ class PortfolioOptimizationProblem(Problem):
             # End investment so collect money
 
             total_cash[i] = cash
-            if total_cash[i] > initial_cash * (1+bank_interest_rate):
-                print(f"ACK>> total_cash[i] OK with i = {i} and cash = {cash}")
+            # if total_cash[i] > initial_cash * (1+bank_interest_rate):
+            #     print(f"ACK>> OK total_cash[{i}] = {cash}")
 
             # print_detail(log, cash, stock_holdings, stock_data)
 
         out["F"] = np.column_stack((-total_cash, cvar_values[:, 1:]))
-        returns_constraint = total_cash - initial_cash * (1 + BANK_INTEREST_RATE)
+        # returns_constraint = total_cash - initial_cash * (1 + BANK_INTEREST_RATE)
+        returns_constraint = total_cash - initial_cash
         out["G"] = np.column_stack((returns_constraint, cardinality_violations))
         # out["G"] = cardinality_violations
 
