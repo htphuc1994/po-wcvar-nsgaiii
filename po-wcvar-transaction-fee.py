@@ -125,7 +125,7 @@ class PortfolioOptimizationProblem(Problem):
         # xl: half left (hl) is buy decisions | half right (hr) is sell decisions
         # In hl portion: self.duration months buy stock1 | self.duration months buy stock2...
         # In hr portion: self.duration months sell stock1 | self.duration months sell stock2...
-        xl = np.zeros(2 * self.n_stocks * self.duration)  # Lower bounds (all zeros, no negative quantities)
+        xl = np.zeros(2 * int(self.n_stocks) * int(self.duration))  # Lower bounds (all zeros, no negative quantities)
 
         sell_xu = []
         for stock in _stock_data:
@@ -133,14 +133,16 @@ class PortfolioOptimizationProblem(Problem):
             for month_price in month_prices:
                 if month_price["month"] > self.duration:
                     break
-                sell_xu.append(month_price["matchedTradingVolume"])
+                sell_xu.append(int(month_price["matchedTradingVolume"]))
         xu = sell_xu + sell_xu
 
         super().__init__(n_var=2 * self.n_stocks * self.duration, n_obj=self.duration, n_constr=self.duration + 1,
                          xl=xl,
-                         xu=xu)
+                         xu=xu,
+                         vtype=int)
 
     def _evaluate(self, X, out, *args, **kwargs):
+        X = np.array(X, dtype=int)
         n_stocks = self.n_stocks
         investment_duration = self.duration
         total_cash = np.zeros(X.shape[0])
