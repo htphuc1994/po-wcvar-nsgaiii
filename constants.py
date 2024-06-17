@@ -1,11 +1,12 @@
-BANK_INTEREST_RATE = 0.0045 # NOTE if change plz update the same variable at nsga3.py as well, because they are two seperate projects
 INITIAL_CASH = 1000000  # 1 BLN VND # NOTE if change plz update the same variable at nsga3.py as well, because they are two seperate projects
+INVESTMENT_INTEREST_EXPECTED = 0.1  # NOTE if change plz update the same variable at nsga3.py as well, because they are two seperate projects
 
 TRANS_FEE = 0.0015
 DURATION = 6  # 6 MONTHS
 MAX_STOCKS = 100  # CARDINALITY CONSTRAINT
 TERMINATION_GEN_NUM = 100
 TAIL_PROBABILITY_EPSILON = 0.1  # can change to 10%, 2.5%, and 1%
+BANK_INTEREST_RATE = 0.0045
 POPULATION_SIZE = 179
 REFERENCES_POINTS_NUM = 179
 WAVELET_LEVEL = 2

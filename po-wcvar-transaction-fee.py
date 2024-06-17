@@ -12,7 +12,7 @@ from pymoo.util.nds.non_dominated_sorting import NonDominatedSorting
 
 from assets_returns import *
 from constants import TRANS_FEE, BANK_INTEREST_RATE, INITIAL_CASH, DURATION, MAX_STOCKS, TERMINATION_GEN_NUM, \
-    TAIL_PROBABILITY_EPSILON, POPULATION_SIZE, REFERENCES_POINTS_NUM, WAVELET_LEVEL
+    TAIL_PROBABILITY_EPSILON, POPULATION_SIZE, REFERENCES_POINTS_NUM, WAVELET_LEVEL, INVESTMENT_INTEREST_EXPECTED
 from stock_data_input_100 import STOCK_DATA_2023_INPUT_100_STOCKS
 from stock_data_inputs_249 import STOCK_DATA_2023_INPUT_249_STOCKS
 
@@ -309,8 +309,8 @@ class PortfolioOptimizationProblem(Problem):
             # print_detail(log, cash, stock_holdings, stock_data)
 
         out["F"] = np.column_stack((cvar_values[:, 1:], -total_cash))
-        # returns_constraint = total_cash - initial_cash * (1 + BANK_INTEREST_RATE)
-        returns_constraint = total_cash - initial_cash
+        returns_constraint = total_cash - (1 + INVESTMENT_INTEREST_EXPECTED) * initial_cash
+        # returns_constraint = total_cash - initial_cash
         out["G"] = np.column_stack((returns_constraint, cardinality_violations))
         # out["G"] = cardinality_violations
 
@@ -335,7 +335,7 @@ def my_solve():
 
     # remove solutions with their returns < trivial solution (only bank deposits)
     front_0 = [individual for individual in res.pop[fronts[0]] if
-               individual.F[0] * -1 > INITIAL_CASH * (1 + bank_interest_rate)]
+               -individual.F[0] > INITIAL_CASH * (1 + INVESTMENT_INTEREST_EXPECTED)]
 
     # hop_solution = res.pop[hop(res.pop, front_0)[0]]
     len_front_0 = len(front_0)
