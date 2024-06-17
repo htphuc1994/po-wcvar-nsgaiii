@@ -137,17 +137,17 @@ class PortfolioOptimizationProblem(Problem):
                 sell_xu.append(month_price["matchedTradingVolume"])
         xu = sell_xu + sell_xu
 
-        super().__init__(n_var=2 * self.n_stocks * self.duration, n_obj=self.duration, n_constr=self.duration, xl=xl,
+        super().__init__(n_var=2 * self.n_stocks * self.duration, n_obj=self.duration, n_constr=self.duration+1, xl=xl,
                          xu=xu)
 
     def _evaluate(self, X, out, *args, **kwargs):
         n_stocks = self.n_stocks
-        duration = self.duration
+        investment_duration = self.duration
         total_cash = np.zeros(X.shape[0])
-        cvar_values = np.zeros((X.shape[0], duration))
-        cardinality_violations = np.zeros((X.shape[0], duration))
-        deferred_dividends = np.zeros((X.shape[0], duration + 1))
-        deferred_sale_proceeds = np.zeros((X.shape[0], duration + 1))
+        cvar_values = np.zeros((X.shape[0], investment_duration))
+        cardinality_violations = np.zeros((X.shape[0], investment_duration))
+        deferred_dividends = np.zeros((X.shape[0], investment_duration + 1))
+        deferred_sale_proceeds = np.zeros((X.shape[0], investment_duration + 1))
 
         for i in range(X.shape[0]): # processing the i-th individual
             cash = self.initial_cash
@@ -157,19 +157,25 @@ class PortfolioOptimizationProblem(Problem):
 
             returns = stock_returns
 
-            duration_plus_1 = duration + 1  # we just collect $$$ after the investment.
+            duration_plus_1 = investment_duration + 1  # we just collect $$$ after the investment.
             for month in range(duration_plus_1):
                 # Update cash with bank interest
-                if month != 0:
+                if cash < 0:
+                    print("ERROR somewhere then cash < 0")
+                if month != 0 and cash > 0:
                     cash *= (1 + self.bank_interest_rate)
 
                 # Add deferred dividends and sale proceeds from the previous month
+                if deferred_dividends[i, month] < 0 or deferred_sale_proceeds[i, month] < 0:
+                    print("ERROR somewhere then deferred_dividends or deferred_sale_proceeds < 0")
+                # if deferred_dividends[i, month] > 0 or deferred_sale_proceeds[i, month] > 0:
+                #     print("ACK: Received cash")
                 cash += deferred_dividends[i, month]
                 cash += deferred_sale_proceeds[i, month]
-                if month == duration:
+                if month == investment_duration:
                     break
 
-                if 0 < month < duration:
+                if 0 < month < investment_duration:
                     current_month_prices = []
                     for stock_info in stock_data:
                         current_month_prices.append(stock_info["prices"][month]["value"]) # month also is the index = month + 1 in "month" field
@@ -179,14 +185,14 @@ class PortfolioOptimizationProblem(Problem):
                     cal_po_wCVaR(month, stock_holdings, cvar_values, i, stock_data, returns)
 
                 buy_decisions = X[i, month * n_stocks:(month + 1) * n_stocks]
-                sell_decisions = X[i, (duration + month) * n_stocks:(duration + month + 1) * n_stocks]
+                sell_decisions = X[i, (investment_duration + month) * n_stocks:(investment_duration + month + 1) * n_stocks]
 
                 # Prevent buys in the last month
-                if month == duration - 1:
+                if month == investment_duration - 1:
                     buy_decisions[:] = 0
 
                 monthly_log = {"Month": month + 1, "Buy": [], "Sell": [], "Dividends": 0, "BankDeposit": 0}
-                aggregated_sell_decisions = np.zeros(n_stocks)
+                aggregated_sell_decisions = np.zeros(n_stocks)  # store $$$
 
                 for j in range(n_stocks):
                     stock = self.stock_data[j]
@@ -223,13 +229,13 @@ class PortfolioOptimizationProblem(Problem):
 
                     # Aggregate sell decisions
                     if sell_decisions[j] > 0:
-                        sell_amount = int(round(min(sell_decisions[j], stock_holdings[j])))
+                        sell_amount = int(round(min(sell_decisions[j], stock_holdings[j]))) * stock_price
                         aggregated_sell_decisions[j] += sell_amount
 
                     # Calculate dividends if current month is a dividend month
                     for dividend in stock['dividendSpitingHistories']:
                         if (month + 1) == dividend['month'] and previous_stock_holdings[j] > 0:
-                            if month != duration - 1 and aggregated_sell_decisions[
+                            if month != investment_duration - 1 and aggregated_sell_decisions[
                                 j] <= 0:  # Ensure no dividends are received if stock is sold in the same month
                                 dividends = dividend['value'] * previous_stock_holdings[j] / 1000  # kVND
                                 # Defer dividends to the next month
@@ -240,8 +246,8 @@ class PortfolioOptimizationProblem(Problem):
                 for j in range(n_stocks):
                     if aggregated_sell_decisions[j] > 0:
                         sell_amount = aggregated_sell_decisions[j]
-                        transaction_fee = TRANS_FEE * stock_price * sell_amount
-                        total_sell_proceeds = stock_price * sell_amount - transaction_fee
+                        transaction_fee = TRANS_FEE * sell_amount
+                        total_sell_proceeds = sell_amount - transaction_fee
 
                         # Defer sale proceeds to the next month
                         deferred_sale_proceeds[i, month + 1] += total_sell_proceeds
@@ -260,14 +266,14 @@ class PortfolioOptimizationProblem(Problem):
                 log.append(monthly_log)
 
                 X[i, month * n_stocks:(month + 1) * n_stocks] = buy_decisions
-                X[i, (duration + month) * n_stocks:(duration + month + 1) * n_stocks] = sell_decisions
+                X[i, (investment_duration + month) * n_stocks:(investment_duration + month + 1) * n_stocks] = sell_decisions
 
             # Ensure all holdings are sold at the end of the last month
             for j in range(n_stocks):
                 remaining_sell_amount = stock_holdings[j]
                 if remaining_sell_amount > 0:
-                    for m in range(duration - 1, -1, -1):
-                        sell_decisions = X[i, (duration + m) * n_stocks:(duration + m + 1) * n_stocks]
+                    for m in range(investment_duration - 1, -1, -1):
+                        sell_decisions = X[i, (investment_duration + m) * n_stocks:(investment_duration + m + 1) * n_stocks]
 
                         stock_price = self.stock_data[j]["prices"][m]['value']
                         stock_capacity = self.stock_data[j]["prices"][m]['matchedTradingVolume']
@@ -286,7 +292,7 @@ class PortfolioOptimizationProblem(Problem):
                             log[m]["Sell"].append((self.stock_data[j]['symbol'], sell_amount))
                             sell_decisions[j] = sell_decisions[j] + sell_amount
 
-                            X[i, (duration + m) * n_stocks:(duration + m + 1) * n_stocks] = sell_decisions
+                            X[i, (investment_duration + m) * n_stocks:(investment_duration + m + 1) * n_stocks] = sell_decisions
                         if remaining_sell_amount <= 0:
                             break
 
@@ -300,9 +306,9 @@ class PortfolioOptimizationProblem(Problem):
             # print_detail(log, cash, stock_holdings, stock_data)
 
         out["F"] = np.column_stack((-total_cash, cvar_values[:, 1:]))
-        # returns_constraint = total_cash - initial_cash * (1 + BANK_INTEREST_RATE)
-        # out["G"] = np.column_stack((returns_constraint, cardinality_violations))
-        out["G"] = cardinality_violations
+        returns_constraint = total_cash - initial_cash * (1 + BANK_INTEREST_RATE)
+        out["G"] = np.column_stack((returns_constraint, cardinality_violations))
+        # out["G"] = cardinality_violations
 
 def my_solve():
     problem = PortfolioOptimizationProblem(stock_data, bank_interest_rate, initial_cash, duration, max_stocks)
