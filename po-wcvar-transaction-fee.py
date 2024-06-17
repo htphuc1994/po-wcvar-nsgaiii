@@ -303,12 +303,12 @@ class PortfolioOptimizationProblem(Problem):
             # End investment so collect money
 
             total_cash[i] = cash
-            if total_cash[i] > initial_cash * (1 + bank_interest_rate):
-                print(f"ACK>> OK total_cash[{i}] = {cash}")
+            # if total_cash[i] > initial_cash * (1 + bank_interest_rate):
+            #     print(f"ACK>> OK total_cash[{i}] = {cash}")
 
             # print_detail(log, cash, stock_holdings, stock_data)
 
-        out["F"] = np.column_stack((cvar_values[:, 1:], -total_cash))
+        out["F"] = np.column_stack((-total_cash, cvar_values[:, 1:]))
         returns_constraint = total_cash - (1 + INVESTMENT_INTEREST_EXPECTED) * initial_cash
         # returns_constraint = total_cash - initial_cash
         out["G"] = np.column_stack((returns_constraint, cardinality_violations))
@@ -335,11 +335,11 @@ def my_solve():
 
     # remove solutions with their returns < trivial solution (only bank deposits)
     front_0 = [individual for individual in res.pop[fronts[0]] if
-               -individual.F[0] > INITIAL_CASH * (1 + INVESTMENT_INTEREST_EXPECTED)]
+               -individual.F[0] > INITIAL_CASH * (1 + BANK_INTEREST_RATE)]
 
     # hop_solution = res.pop[hop(res.pop, front_0)[0]]
     len_front_0 = len(front_0)
-    hop_solution = front_0[hop(front_0, range(len_front_0))[0]]
+    hop_solution = front_0[hop(front_0, np.arange(len_front_0))[0]]
     print("Objectives =", ["%.2f" % v for v in hop_solution.F])
     print("Solution details =", ["%.2f" % v for v in hop_solution.X])
 

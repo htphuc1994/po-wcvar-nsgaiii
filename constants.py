@@ -1,5 +1,5 @@
 INITIAL_CASH = 1000000  # 1 BLN VND # NOTE if change plz update the same variable at nsga3.py as well, because they are two seperate projects
-INVESTMENT_INTEREST_EXPECTED = 0.1  # NOTE if change plz update the same variable at nsga3.py as well, because they are two seperate projects
+INVESTMENT_INTEREST_EXPECTED = 0.2  # NOTE if change plz update the same variable at nsga3.py as well, because they are two seperate projects
 
 TRANS_FEE = 0.0015
 DURATION = 6  # 6 MONTHS
