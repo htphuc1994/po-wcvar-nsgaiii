@@ -52,7 +52,8 @@ max_stocks = MAX_STOCKS  # Example cardinality constraint
 termination_gen_num = TERMINATION_GEN_NUM
 tail_probability_epsilon = TAIL_PROBABILITY_EPSILON
 population_size = POPULATION_SIZE
-BANK_INTEREST_RATE_AFTER_N_INVESTMENT_PERIOD = math.pow(1+BANK_INTEREST_RATE, DURATION)-1
+BANK_INTEREST_RATE_AFTER_N_INVESTMENT_PERIOD = math.pow(1 + BANK_INTEREST_RATE, DURATION) - 1
+
 
 def wavelet_decomposition(returns, wavelet='db4', levels=WAVELET_LEVEL):
     """ Decompose asset returns using Discrete Wavelet Transform. """
@@ -241,7 +242,8 @@ class PortfolioOptimizationProblem(Problem):
                     # Calculate dividends if current month is a dividend month
                     for dividend in stock['dividendSpitingHistories']:
                         if (month + 1) == dividend['month'] and previous_stock_holdings[j] > 0:
-                            if month != investment_duration - 1 and aggregated_sell_decisions[j] <= 0:  # Ensure no dividends are received if stock is sold in the same month
+                            if month != investment_duration - 1 and aggregated_sell_decisions[
+                                j] <= 0:  # Ensure no dividends are received if stock is sold in the same month
                                 dividends = dividend['value'] * previous_stock_holdings[j] / 1000  # kVND
                                 # Defer dividends to the next month
                                 deferred_dividends[i, month + 1] += dividends
@@ -272,14 +274,16 @@ class PortfolioOptimizationProblem(Problem):
                 log.append(monthly_log)
 
                 X[i, month * n_stocks:(month + 1) * n_stocks] = buy_decisions
-                X[i,(investment_duration + month) * n_stocks:(investment_duration + month + 1) * n_stocks] = sell_decisions
+                X[i,
+                (investment_duration + month) * n_stocks:(investment_duration + month + 1) * n_stocks] = sell_decisions
 
             # Ensure all holdings are sold at the end of the last month
             for j in range(n_stocks):
                 remaining_sell_amount = stock_holdings[j]
                 if remaining_sell_amount > 0:
                     for m in range(investment_duration - 1, -1, -1):
-                        sell_decisions = X[i, (investment_duration + m) * n_stocks:(investment_duration + m + 1) * n_stocks]
+                        sell_decisions = X[i,
+                                         (investment_duration + m) * n_stocks:(investment_duration + m + 1) * n_stocks]
 
                         stock_price = self.stock_data[j]["prices"][m]['value']
                         stock_capacity = self.stock_data[j]["prices"][m]['matchedTradingVolume']
@@ -298,7 +302,8 @@ class PortfolioOptimizationProblem(Problem):
                             log[m]["Sell"].append((self.stock_data[j]['symbol'], sell_amount))
                             sell_decisions[j] = sell_decisions[j] + sell_amount
 
-                            X[i, (investment_duration + m) * n_stocks:(investment_duration + m + 1) * n_stocks] = sell_decisions
+                            X[i, (investment_duration + m) * n_stocks:(
+                                                                                  investment_duration + m + 1) * n_stocks] = sell_decisions
                         if remaining_sell_amount <= 0:
                             break
 
@@ -344,10 +349,9 @@ def my_solve():
     len_front_0 = len(front_0)
     hop_solution = front_0[hop(front_0, np.arange(len_front_0))[0]]
 
-
     print("Objectives =", ["%.2f" % v for v in hop_solution.F])
     solution_details = np.array(hop_solution.X, dtype=int)
-    print("Solution details =", ["%.2f" % v for v in solution_details])
+    print("Solution details =", [v for v in solution_details])
 
 
 # Open a file in write mode
