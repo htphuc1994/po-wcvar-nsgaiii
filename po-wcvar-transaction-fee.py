@@ -359,23 +359,26 @@ def my_solve():
 
 
 # Open a file in write mode
-timestamp = datetime.datetime.now().strftime("%d%m%Y%H%M%S")
-unique_filename = f"output-{timestamp}.txt"
-with open(unique_filename, 'w') as f:
-    print("Starting..")
-    start = time.time()
-    # Save the original standard output
-    original_stdout = sys.stdout
+def execute():
+    timestamp = datetime.datetime.now().strftime("%d%m%Y%H%M%S")
+    unique_filename = f"output-{timestamp}.txt"
+    with open(unique_filename, 'w') as f:
+        start = time.time()
+        # Save the original standard output
+        original_stdout = sys.stdout
 
-    # Redirect standard output to the file
-    sys.stdout = f
-    print("Starting to write..")
-    my_solve()
+        # Redirect standard output to the file
+        sys.stdout = f
+        print("Starting to write..")
+        my_solve()
 
-    end = time.time()
-    print("The time of execution of above program is :",
-          (end - start) * 10 ** 3, "ms")
+        end = time.time()
+        print("The time of execution of above program is :",
+              (end - start) * 10 ** 3, "ms")
 
-    sys.stdout = original_stdout
+        sys.stdout = original_stdout
 
+for i in range(30):
+    print(f"Starting loop i={i}...")
+    execute()
 print("DONE - Thank you")
