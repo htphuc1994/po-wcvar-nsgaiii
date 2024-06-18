@@ -14,11 +14,15 @@ from pymoo.util.nds.non_dominated_sorting import NonDominatedSorting
 from assets_returns import *
 from constants import TRANS_FEE, BANK_INTEREST_RATE, INITIAL_CASH, DURATION, MAX_STOCKS, TERMINATION_GEN_NUM, \
     TAIL_PROBABILITY_EPSILON, POPULATION_SIZE, REFERENCES_POINTS_NUM, WAVELET_LEVEL, INVESTMENT_INTEREST_EXPECTED
+from manual_test_four_stocks import STOCK_DATA_2023_INPUT_3_STOCKS
 from stock_data_input_100 import STOCK_DATA_2023_INPUT_100_STOCKS
 from stock_data_inputs_249 import STOCK_DATA_2023_INPUT_249_STOCKS
 
 # stock_data = STOCK_DATA_2023_INPUT_249_STOCKS
 stock_data = STOCK_DATA_2023_INPUT_100_STOCKS
+# stock_data = STOCK_DATA_2023_INPUT_3_STOCKS
+# stock_returns = np.column_stack((
+#     ABT, ACB, ACL))
 stock_returns = np.column_stack((
     ABT, ACB, ACL, AGF, ALT, ANV, ASP, B82, BBC, BBS, BCC, BLF, BMC, BMI, BMP, BPC, BST, BTS, BVS,
     CAN, CAP, CCM, CDC, CID, CII, CJC, CLC, CMC, COM, CTB, CTC, CTN, DAC, DAE, DBC, DC4, DCS, DHA,

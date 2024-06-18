@@ -1,0 +1,614 @@
+Starting to write..
+
+Compiled modules for significant speedup can not be used!
+https://pymoo.org/installation.html#installation
+
+To disable this warning:
+from pymoo.config import Config
+Config.warnings['not_compiled'] = False
+
+ACK FOUND > 1; len(fronts)=12
+==========================================================================================
+n_gen  |  n_eval  | n_nds  |     cv_min    |     cv_avg    |      eps      |   indicator  
+==========================================================================================
+     1 |      179 |      6 |  0.000000E+00 |  0.000000E+00 |             - |             -
+ACK FOUND > 1; len(fronts)=9
+niching len = 26
+     2 |      358 |      8 |  0.000000E+00 |  0.000000E+00 |  0.0403814839 |         ideal
+ACK FOUND > 1; len(fronts)=8
+niching len = 48
+     3 |      537 |      7 |  0.000000E+00 |  0.000000E+00 |  0.7168643359 |         ideal
+ACK FOUND > 1; len(fronts)=7
+niching len = 41
+     4 |      716 |      7 |  0.000000E+00 |  0.000000E+00 |  0.0840902253 |         ideal
+ACK FOUND > 1; len(fronts)=7
+niching len = 46
+     5 |      895 |     12 |  0.000000E+00 |  0.000000E+00 |  0.0318605972 |         ideal
+ACK FOUND > 1; len(fronts)=6
+niching len = 44
+     6 |     1074 |      8 |  0.000000E+00 |  0.000000E+00 |  0.0350042636 |         ideal
+ACK FOUND > 1; len(fronts)=5
+niching len = 59
+     7 |     1253 |     15 |  0.000000E+00 |  0.000000E+00 |  0.0158157735 |         ideal
+ACK FOUND > 1; len(fronts)=4
+niching len = 54
+     8 |     1432 |     14 |  0.000000E+00 |  0.000000E+00 |  0.0098818906 |         ideal
+ACK FOUND > 1; len(fronts)=4
+niching len = 62
+     9 |     1611 |     15 |  0.000000E+00 |  0.000000E+00 |  0.3300068229 |         ideal
+ACK FOUND > 1; len(fronts)=4
+niching len = 62
+    10 |     1790 |     15 |  0.000000E+00 |  0.000000E+00 |  0.1907209603 |         ideal
+ACK FOUND > 1; len(fronts)=3
+niching len = 68
+    11 |     1969 |     13 |  0.000000E+00 |  0.000000E+00 |  0.0667398972 |         ideal
+ACK FOUND > 1; len(fronts)=3
+niching len = 64
+    12 |     2148 |     19 |  0.000000E+00 |  0.000000E+00 |  0.0339686953 |         ideal
+ACK FOUND > 1; len(fronts)=3
+niching len = 74
+    13 |     2327 |     10 |  0.000000E+00 |  0.000000E+00 |  0.1594195426 |         ideal
+ACK FOUND > 1; len(fronts)=3
+niching len = 86
+    14 |     2506 |     18 |  0.000000E+00 |  0.000000E+00 |  0.3174526009 |         ideal
+ACK FOUND > 1; len(fronts)=2
+niching len = 122
+    15 |     2685 |     22 |  0.000000E+00 |  0.000000E+00 |  0.0803475157 |         ideal
+ACK FOUND > 1; len(fronts)=2
+niching len = 121
+    16 |     2864 |     26 |  0.000000E+00 |  0.000000E+00 |  0.0061326020 |         ideal
+ACK FOUND > 1; len(fronts)=2
+niching len = 99
+    17 |     3043 |     31 |  0.000000E+00 |  0.000000E+00 |  0.0764967059 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 221
+    18 |     3222 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0492051118 |             f
+ACK FOUND > 1; len(fronts)=1
+niching len = 235
+    19 |     3401 |     36 |  0.000000E+00 |  0.000000E+00 |  0.1149032228 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 242
+    20 |     3580 |     37 |  0.000000E+00 |  0.000000E+00 |  0.1030611631 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 250
+    21 |     3759 |     38 |  0.000000E+00 |  0.000000E+00 |  0.0499577975 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 235
+    22 |     3938 |     38 |  0.000000E+00 |  0.000000E+00 |  0.1300289837 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 254
+    23 |     4117 |     37 |  0.000000E+00 |  0.000000E+00 |  0.0964400569 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 246
+    24 |     4296 |     23 |  0.000000E+00 |  0.000000E+00 |  0.3904063195 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 260
+    25 |     4475 |     24 |  0.000000E+00 |  0.000000E+00 |  0.0155517109 |             f
+ACK FOUND > 1; len(fronts)=1
+niching len = 247
+    26 |     4654 |     29 |  0.000000E+00 |  0.000000E+00 |  0.0357887265 |         nadir
+ACK FOUND > 1; len(fronts)=1
+niching len = 248
+    27 |     4833 |     35 |  0.000000E+00 |  0.000000E+00 |  0.2427108720 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 250
+    28 |     5012 |     37 |  0.000000E+00 |  0.000000E+00 |  0.0278764381 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 265
+    29 |     5191 |     39 |  0.000000E+00 |  0.000000E+00 |  0.0801263637 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 288
+    30 |     5370 |     38 |  0.000000E+00 |  0.000000E+00 |  0.0163758914 |         nadir
+ACK FOUND > 1; len(fronts)=1
+niching len = 280
+    31 |     5549 |     32 |  0.000000E+00 |  0.000000E+00 |  0.0338030602 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 302
+    32 |     5728 |     28 |  0.000000E+00 |  0.000000E+00 |  0.1729277430 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 288
+    33 |     5907 |     35 |  0.000000E+00 |  0.000000E+00 |  0.1701383315 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 291
+    34 |     6086 |     35 |  0.000000E+00 |  0.000000E+00 |  0.0950357470 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 279
+    35 |     6265 |     38 |  0.000000E+00 |  0.000000E+00 |  0.0725562905 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 268
+    36 |     6444 |     39 |  0.000000E+00 |  0.000000E+00 |  0.0060556452 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 288
+    37 |     6623 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0581219807 |         nadir
+ACK FOUND > 1; len(fronts)=1
+niching len = 286
+    38 |     6802 |     37 |  0.000000E+00 |  0.000000E+00 |  0.0176600498 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 290
+    39 |     6981 |     38 |  0.000000E+00 |  0.000000E+00 |  0.0570330408 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 297
+    40 |     7160 |     37 |  0.000000E+00 |  0.000000E+00 |  0.0420793707 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 290
+    41 |     7339 |     32 |  0.000000E+00 |  0.000000E+00 |  0.0124079259 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 295
+    42 |     7518 |     32 |  0.000000E+00 |  0.000000E+00 |  0.1498115269 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 290
+    43 |     7697 |     35 |  0.000000E+00 |  0.000000E+00 |  0.1828894563 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 275
+    44 |     7876 |     34 |  0.000000E+00 |  0.000000E+00 |  0.0058372290 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 286
+    45 |     8055 |     35 |  0.000000E+00 |  0.000000E+00 |  0.1375141777 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 307
+    46 |     8234 |     32 |  0.000000E+00 |  0.000000E+00 |  0.1575112500 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 301
+    47 |     8413 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0049287602 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 292
+    48 |     8592 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0307822598 |             f
+ACK FOUND > 1; len(fronts)=1
+niching len = 292
+    49 |     8771 |     38 |  0.000000E+00 |  0.000000E+00 |  0.0235231813 |             f
+ACK FOUND > 1; len(fronts)=1
+niching len = 285
+    50 |     8950 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0239171590 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 296
+    51 |     9129 |     40 |  0.000000E+00 |  0.000000E+00 |  0.0548190863 |             f
+ACK FOUND > 1; len(fronts)=1
+niching len = 284
+    52 |     9308 |     39 |  0.000000E+00 |  0.000000E+00 |  0.1271731738 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 302
+    53 |     9487 |     37 |  0.000000E+00 |  0.000000E+00 |  0.0338889466 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 289
+    54 |     9666 |     32 |  0.000000E+00 |  0.000000E+00 |  0.0368134043 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 286
+    55 |     9845 |     39 |  0.000000E+00 |  0.000000E+00 |  0.1677136112 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 285
+    56 |    10024 |     39 |  0.000000E+00 |  0.000000E+00 |  0.1290214510 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 297
+    57 |    10203 |     42 |  0.000000E+00 |  0.000000E+00 |  0.0664939065 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 301
+    58 |    10382 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0745025929 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 275
+    59 |    10561 |     37 |  0.000000E+00 |  0.000000E+00 |  0.0050369032 |         nadir
+ACK FOUND > 1; len(fronts)=1
+niching len = 303
+    60 |    10740 |     33 |  0.000000E+00 |  0.000000E+00 |  0.0664371547 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 295
+    61 |    10919 |     37 |  0.000000E+00 |  0.000000E+00 |  0.0338658185 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 280
+    62 |    11098 |     36 |  0.000000E+00 |  0.000000E+00 |  0.1031565069 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 294
+    63 |    11277 |     34 |  0.000000E+00 |  0.000000E+00 |  0.0664205318 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 305
+    64 |    11456 |     32 |  0.000000E+00 |  0.000000E+00 |  0.0496709058 |             f
+ACK FOUND > 1; len(fronts)=1
+niching len = 296
+    65 |    11635 |     34 |  0.000000E+00 |  0.000000E+00 |  0.0040835993 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 289
+    66 |    11814 |     35 |  0.000000E+00 |  0.000000E+00 |  0.0671912535 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 289
+    67 |    11993 |     32 |  0.000000E+00 |  0.000000E+00 |  0.1076220383 |         nadir
+ACK FOUND > 1; len(fronts)=1
+niching len = 294
+    68 |    12172 |     35 |  0.000000E+00 |  0.000000E+00 |  0.0125061799 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 296
+    69 |    12351 |     35 |  0.000000E+00 |  0.000000E+00 |  0.0299656415 |             f
+ACK FOUND > 1; len(fronts)=1
+niching len = 275
+    70 |    12530 |     34 |  0.000000E+00 |  0.000000E+00 |  0.0594453926 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 305
+    71 |    12709 |     37 |  0.000000E+00 |  0.000000E+00 |  0.0165639744 |         nadir
+ACK FOUND > 1; len(fronts)=1
+niching len = 294
+    72 |    12888 |     37 |  0.000000E+00 |  0.000000E+00 |  0.0476556825 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 298
+    73 |    13067 |     35 |  0.000000E+00 |  0.000000E+00 |  0.0059499799 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 288
+    74 |    13246 |     35 |  0.000000E+00 |  0.000000E+00 |  0.0415003589 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 295
+    75 |    13425 |     38 |  0.000000E+00 |  0.000000E+00 |  0.0448259197 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 290
+    76 |    13604 |     34 |  0.000000E+00 |  0.000000E+00 |  0.0133477416 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 300
+    77 |    13783 |     38 |  0.000000E+00 |  0.000000E+00 |  0.0183325658 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 289
+    78 |    13962 |     38 |  0.000000E+00 |  0.000000E+00 |  0.0153432113 |             f
+ACK FOUND > 1; len(fronts)=1
+niching len = 299
+    79 |    14141 |     35 |  0.000000E+00 |  0.000000E+00 |  0.0063092142 |         nadir
+ACK FOUND > 1; len(fronts)=1
+niching len = 297
+    80 |    14320 |     37 |  0.000000E+00 |  0.000000E+00 |  0.0253012657 |         nadir
+ACK FOUND > 1; len(fronts)=1
+niching len = 278
+    81 |    14499 |     38 |  0.000000E+00 |  0.000000E+00 |  0.0276171935 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 285
+    82 |    14678 |     32 |  0.000000E+00 |  0.000000E+00 |  0.0342435013 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 299
+    83 |    14857 |     32 |  0.000000E+00 |  0.000000E+00 |  0.0052146940 |         nadir
+ACK FOUND > 1; len(fronts)=1
+niching len = 296
+    84 |    15036 |     33 |  0.000000E+00 |  0.000000E+00 |  0.0180971811 |         nadir
+ACK FOUND > 1; len(fronts)=1
+niching len = 287
+    85 |    15215 |     33 |  0.000000E+00 |  0.000000E+00 |  0.0157293968 |             f
+ACK FOUND > 1; len(fronts)=1
+niching len = 299
+    86 |    15394 |     30 |  0.000000E+00 |  0.000000E+00 |  0.0099059769 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 296
+    87 |    15573 |     31 |  0.000000E+00 |  0.000000E+00 |  0.0029005217 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 285
+    88 |    15752 |     32 |  0.000000E+00 |  0.000000E+00 |  0.0067297748 |             f
+ACK FOUND > 1; len(fronts)=1
+niching len = 301
+    89 |    15931 |     32 |  0.000000E+00 |  0.000000E+00 |  0.0920170628 |         nadir
+ACK FOUND > 1; len(fronts)=1
+niching len = 294
+    90 |    16110 |     31 |  0.000000E+00 |  0.000000E+00 |  0.0045244802 |         nadir
+ACK FOUND > 1; len(fronts)=1
+niching len = 296
+    91 |    16289 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0395945518 |         nadir
+ACK FOUND > 1; len(fronts)=1
+niching len = 299
+    92 |    16468 |     34 |  0.000000E+00 |  0.000000E+00 |  0.1085698151 |         nadir
+ACK FOUND > 1; len(fronts)=1
+niching len = 284
+    93 |    16647 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0097868019 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 301
+    94 |    16826 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0613884205 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 297
+    95 |    17005 |     37 |  0.000000E+00 |  0.000000E+00 |  0.0837621683 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 314
+    96 |    17184 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0914196788 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 308
+    97 |    17363 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0090259392 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 308
+    98 |    17542 |     34 |  0.000000E+00 |  0.000000E+00 |  0.0091081488 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 298
+    99 |    17721 |     34 |  0.000000E+00 |  0.000000E+00 |  0.0441104474 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 288
+   100 |    17900 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0078820661 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 303
+   101 |    18079 |     36 |  0.000000E+00 |  0.000000E+00 |  0.1406126012 |         nadir
+ACK FOUND > 1; len(fronts)=1
+niching len = 298
+   102 |    18258 |     37 |  0.000000E+00 |  0.000000E+00 |  0.0111571016 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 303
+   103 |    18437 |     37 |  0.000000E+00 |  0.000000E+00 |  0.0168684270 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 307
+   104 |    18616 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0035597885 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 294
+   105 |    18795 |     40 |  0.000000E+00 |  0.000000E+00 |  0.0867449506 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 300
+   106 |    18974 |     38 |  0.000000E+00 |  0.000000E+00 |  0.0946415343 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 300
+   107 |    19153 |     39 |  0.000000E+00 |  0.000000E+00 |  0.0482581143 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 287
+   108 |    19332 |     37 |  0.000000E+00 |  0.000000E+00 |  0.0454463641 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 305
+   109 |    19511 |     38 |  0.000000E+00 |  0.000000E+00 |  0.1590476190 |         nadir
+ACK FOUND > 1; len(fronts)=1
+niching len = 309
+   110 |    19690 |     33 |  0.000000E+00 |  0.000000E+00 |  0.0747651812 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 306
+   111 |    19869 |     37 |  0.000000E+00 |  0.000000E+00 |  0.1103375686 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 292
+   112 |    20048 |     37 |  0.000000E+00 |  0.000000E+00 |  0.0285719458 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 295
+   113 |    20227 |     39 |  0.000000E+00 |  0.000000E+00 |  0.0654407159 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 319
+   114 |    20406 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0077083514 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 299
+   115 |    20585 |     37 |  0.000000E+00 |  0.000000E+00 |  0.0115343683 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 298
+   116 |    20764 |     37 |  0.000000E+00 |  0.000000E+00 |  0.1673015873 |         nadir
+ACK FOUND > 1; len(fronts)=1
+niching len = 312
+   117 |    20943 |     37 |  0.000000E+00 |  0.000000E+00 |  0.1174386510 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 298
+   118 |    21122 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0833089209 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 308
+   119 |    21301 |     35 |  0.000000E+00 |  0.000000E+00 |  0.0285509036 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 310
+   120 |    21480 |     35 |  0.000000E+00 |  0.000000E+00 |  0.0385823831 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 314
+   121 |    21659 |     35 |  0.000000E+00 |  0.000000E+00 |  0.0604892701 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 304
+   122 |    21838 |     31 |  0.000000E+00 |  0.000000E+00 |  0.0653812085 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 317
+   123 |    22017 |     30 |  0.000000E+00 |  0.000000E+00 |  0.0121418044 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 297
+   124 |    22196 |     32 |  0.000000E+00 |  0.000000E+00 |  0.0038194163 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 306
+   125 |    22375 |     33 |  0.000000E+00 |  0.000000E+00 |  0.0055091567 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 308
+   126 |    22554 |     33 |  0.000000E+00 |  0.000000E+00 |  0.0091928152 |             f
+ACK FOUND > 1; len(fronts)=1
+niching len = 298
+   127 |    22733 |     33 |  0.000000E+00 |  0.000000E+00 |  0.0300682931 |         nadir
+ACK FOUND > 1; len(fronts)=1
+niching len = 302
+   128 |    22912 |     34 |  0.000000E+00 |  0.000000E+00 |  0.0189983626 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 316
+   129 |    23091 |     42 |  0.000000E+00 |  0.000000E+00 |  0.0353947268 |         nadir
+ACK FOUND > 1; len(fronts)=1
+niching len = 324
+   130 |    23270 |     32 |  0.000000E+00 |  0.000000E+00 |  0.0179720499 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 314
+   131 |    23449 |     34 |  0.000000E+00 |  0.000000E+00 |  0.0176547577 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 323
+   132 |    23628 |     38 |  0.000000E+00 |  0.000000E+00 |  0.0179720499 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 310
+   133 |    23807 |     39 |  0.000000E+00 |  0.000000E+00 |  0.0626575126 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 307
+   134 |    23986 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0593684820 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 314
+   135 |    24165 |     35 |  0.000000E+00 |  0.000000E+00 |  0.0565080887 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 303
+   136 |    24344 |     35 |  0.000000E+00 |  0.000000E+00 |  0.0295313015 |             f
+ACK FOUND > 1; len(fronts)=1
+niching len = 318
+   137 |    24523 |     35 |  0.000000E+00 |  0.000000E+00 |  0.0989156825 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 308
+   138 |    24702 |     35 |  0.000000E+00 |  0.000000E+00 |  0.0055497250 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 304
+   139 |    24881 |     38 |  0.000000E+00 |  0.000000E+00 |  0.0740279044 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 315
+   140 |    25060 |     38 |  0.000000E+00 |  0.000000E+00 |  0.0352753611 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 304
+   141 |    25239 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0836685099 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 308
+   142 |    25418 |     33 |  0.000000E+00 |  0.000000E+00 |  0.1221199434 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 299
+   143 |    25597 |     33 |  0.000000E+00 |  0.000000E+00 |  0.0153069878 |         nadir
+ACK FOUND > 1; len(fronts)=1
+niching len = 296
+   144 |    25776 |     33 |  0.000000E+00 |  0.000000E+00 |  0.0113867163 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 303
+   145 |    25955 |     37 |  0.000000E+00 |  0.000000E+00 |  0.0784852972 |         nadir
+ACK FOUND > 1; len(fronts)=1
+niching len = 292
+   146 |    26134 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0127355706 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 312
+   147 |    26313 |     37 |  0.000000E+00 |  0.000000E+00 |  0.0061737867 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 293
+   148 |    26492 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0639663582 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 311
+   149 |    26671 |     35 |  0.000000E+00 |  0.000000E+00 |  0.0036990719 |             f
+ACK FOUND > 1; len(fronts)=1
+niching len = 316
+   150 |    26850 |     30 |  0.000000E+00 |  0.000000E+00 |  0.0609175135 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 297
+   151 |    27029 |     32 |  0.000000E+00 |  0.000000E+00 |  0.0790187397 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 314
+   152 |    27208 |     33 |  0.000000E+00 |  0.000000E+00 |  0.1931216931 |         nadir
+ACK FOUND > 1; len(fronts)=1
+niching len = 308
+   153 |    27387 |     33 |  0.000000E+00 |  0.000000E+00 |  0.0748262003 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 311
+   154 |    27566 |     32 |  0.000000E+00 |  0.000000E+00 |  0.1764062126 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 309
+   155 |    27745 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0800030420 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 316
+   156 |    27924 |     35 |  0.000000E+00 |  0.000000E+00 |  0.0026708769 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 306
+   157 |    28103 |     34 |  0.000000E+00 |  0.000000E+00 |  0.0471157191 |         nadir
+ACK FOUND > 1; len(fronts)=1
+niching len = 310
+   158 |    28282 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0683012835 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 318
+   159 |    28461 |     34 |  0.000000E+00 |  0.000000E+00 |  0.0647276650 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 318
+   160 |    28640 |     28 |  0.000000E+00 |  0.000000E+00 |  0.1198655370 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 289
+   161 |    28819 |     32 |  0.000000E+00 |  0.000000E+00 |  0.0101970668 |             f
+ACK FOUND > 1; len(fronts)=1
+niching len = 306
+   162 |    28998 |     31 |  0.000000E+00 |  0.000000E+00 |  0.1069790790 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 313
+   163 |    29177 |     31 |  0.000000E+00 |  0.000000E+00 |  0.2163430162 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 318
+   164 |    29356 |     34 |  0.000000E+00 |  0.000000E+00 |  0.1205406603 |         nadir
+ACK FOUND > 1; len(fronts)=1
+niching len = 306
+   165 |    29535 |     34 |  0.000000E+00 |  0.000000E+00 |  0.0148492247 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 286
+   166 |    29714 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0140036587 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 300
+   167 |    29893 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0559018435 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 296
+   168 |    30072 |     35 |  0.000000E+00 |  0.000000E+00 |  0.3347833092 |         nadir
+ACK FOUND > 1; len(fronts)=1
+niching len = 310
+   169 |    30251 |     34 |  0.000000E+00 |  0.000000E+00 |  0.0027826016 |             f
+ACK FOUND > 1; len(fronts)=1
+niching len = 307
+   170 |    30430 |     34 |  0.000000E+00 |  0.000000E+00 |  0.0056238437 |             f
+ACK FOUND > 1; len(fronts)=1
+niching len = 300
+   171 |    30609 |     34 |  0.000000E+00 |  0.000000E+00 |  0.0080369772 |             f
+ACK FOUND > 1; len(fronts)=1
+niching len = 307
+   172 |    30788 |     34 |  0.000000E+00 |  0.000000E+00 |  0.0035143921 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 299
+   173 |    30967 |     33 |  0.000000E+00 |  0.000000E+00 |  0.0809893530 |         nadir
+ACK FOUND > 1; len(fronts)=1
+niching len = 292
+   174 |    31146 |     27 |  0.000000E+00 |  0.000000E+00 |  0.2019871253 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 293
+   175 |    31325 |     31 |  0.000000E+00 |  0.000000E+00 |  0.0853320351 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 318
+   176 |    31504 |     32 |  0.000000E+00 |  0.000000E+00 |  0.0124128676 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 311
+   177 |    31683 |     32 |  0.000000E+00 |  0.000000E+00 |  0.0051512440 |             f
+ACK FOUND > 1; len(fronts)=1
+niching len = 298
+   178 |    31862 |     34 |  0.000000E+00 |  0.000000E+00 |  0.0102508444 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 309
+   179 |    32041 |     32 |  0.000000E+00 |  0.000000E+00 |  0.0705003359 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 328
+   180 |    32220 |     38 |  0.000000E+00 |  0.000000E+00 |  0.0918615072 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 315
+   181 |    32399 |     37 |  0.000000E+00 |  0.000000E+00 |  0.0031873519 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 305
+   182 |    32578 |     37 |  0.000000E+00 |  0.000000E+00 |  0.1152426503 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 316
+   183 |    32757 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0298180640 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 323
+   184 |    32936 |     35 |  0.000000E+00 |  0.000000E+00 |  0.0088392255 |         nadir
+ACK FOUND > 1; len(fronts)=1
+niching len = 316
+   185 |    33115 |     35 |  0.000000E+00 |  0.000000E+00 |  0.0306268371 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 327
+   186 |    33294 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0053803631 |         nadir
+ACK FOUND > 1; len(fronts)=1
+niching len = 306
+   187 |    33473 |     35 |  0.000000E+00 |  0.000000E+00 |  0.1177127925 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 311
+   188 |    33652 |     34 |  0.000000E+00 |  0.000000E+00 |  0.1295692347 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 310
+   189 |    33831 |     37 |  0.000000E+00 |  0.000000E+00 |  0.0044820717 |         nadir
+ACK FOUND > 1; len(fronts)=1
+niching len = 321
+   190 |    34010 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0102601676 |             f
+ACK FOUND > 1; len(fronts)=1
+niching len = 307
+   191 |    34189 |     37 |  0.000000E+00 |  0.000000E+00 |  0.0054504649 |         nadir
+ACK FOUND > 1; len(fronts)=1
+niching len = 319
+   192 |    34368 |     34 |  0.000000E+00 |  0.000000E+00 |  0.0084214846 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 323
+   193 |    34547 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0328141505 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 309
+   194 |    34726 |     36 |  0.000000E+00 |  0.000000E+00 |  0.2250688445 |         nadir
+ACK FOUND > 1; len(fronts)=1
+niching len = 319
+   195 |    34905 |     38 |  0.000000E+00 |  0.000000E+00 |  0.0225785261 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 313
+   196 |    35084 |     33 |  0.000000E+00 |  0.000000E+00 |  0.0228043578 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 315
+   197 |    35263 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0177989854 |         ideal
+ACK FOUND > 1; len(fronts)=1
+niching len = 325
+   198 |    35442 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0176791362 |             f
+ACK FOUND > 1; len(fronts)=1
+niching len = 301
+   199 |    35621 |     34 |  0.000000E+00 |  0.000000E+00 |  0.0123137545 |         nadir
+ACK FOUND > 1; len(fronts)=1
+niching len = 310
+   200 |    35800 |     32 |  0.000000E+00 |  0.000000E+00 |  0.1318544584 |         ideal
+Objectives = ['-1019093.95', '305648.34', '360008.22', '852442.03']
+Solution details = [2045, 0, 11295, 6735, 50766391, 19837149, 37998607, 21039975, 389248, 2158909, 398809, 924689, 1496, 1549, 7149, 6762, 38205487, 114983, 31170879, 35707458, 1076064, 0, 189711, 602192]
+The time of execution of above program is : 22416.300058364868 ms
