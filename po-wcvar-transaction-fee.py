@@ -1,3 +1,4 @@
+import math
 import sys
 import time
 import numpy as np
@@ -51,7 +52,7 @@ max_stocks = MAX_STOCKS  # Example cardinality constraint
 termination_gen_num = TERMINATION_GEN_NUM
 tail_probability_epsilon = TAIL_PROBABILITY_EPSILON
 population_size = POPULATION_SIZE
-
+BANK_INTEREST_RATE_AFTER_N_INVESTMENT_PERIOD = math.pow(1+BANK_INTEREST_RATE, DURATION)-1
 
 def wavelet_decomposition(returns, wavelet='db4', levels=WAVELET_LEVEL):
     """ Decompose asset returns using Discrete Wavelet Transform. """
@@ -337,7 +338,7 @@ def my_solve():
 
     # remove solutions with their returns < trivial solution (only bank deposits)
     front_0 = [individual for individual in res.pop[fronts[0]] if
-               -individual.F[0] > INITIAL_CASH * (1 + BANK_INTEREST_RATE)]
+               -individual.F[0] > INITIAL_CASH * (1 + BANK_INTEREST_RATE_AFTER_N_INVESTMENT_PERIOD)]
 
     # hop_solution = res.pop[hop(res.pop, front_0)[0]]
     len_front_0 = len(front_0)
