@@ -125,7 +125,7 @@ class PortfolioOptimizationProblem(Problem):
         # xl: half left (hl) is buy decisions | half right (hr) is sell decisions
         # In hl portion: self.duration months buy stock1 | self.duration months buy stock2...
         # In hr portion: self.duration months sell stock1 | self.duration months sell stock2...
-        xl = np.zeros(2 * int(self.n_stocks) * int(self.duration))  # Lower bounds (all zeros, no negative quantities)
+        xl = np.zeros(2 * self.n_stocks * self.duration, dtype=int)  # Lower bounds (all zeros, no negative quantities)
 
         sell_xu = []
         for stock in _stock_data:
@@ -139,7 +139,7 @@ class PortfolioOptimizationProblem(Problem):
         super().__init__(n_var=2 * self.n_stocks * self.duration, n_obj=self.duration, n_constr=self.duration + 1,
                          xl=xl,
                          xu=xu,
-                         vtype=int)
+                         type_var=int)
 
     def _evaluate(self, X, out, *args, **kwargs):
         X = np.array(X, dtype=int)
@@ -342,8 +342,11 @@ def my_solve():
     # hop_solution = res.pop[hop(res.pop, front_0)[0]]
     len_front_0 = len(front_0)
     hop_solution = front_0[hop(front_0, np.arange(len_front_0))[0]]
+
+
     print("Objectives =", ["%.2f" % v for v in hop_solution.F])
-    print("Solution details =", ["%.2f" % v for v in hop_solution.X])
+    solution_details = np.array(hop_solution.X, dtype=int)
+    print("Solution details =", ["%.2f" % v for v in solution_details])
 
 
 # Open a file in write mode
