@@ -361,10 +361,10 @@ with open(unique_filename, 'w') as f:
     print("Starting..")
     start = time.time()
     # Save the original standard output
-    # original_stdout = sys.stdout
-    #
-    # # Redirect standard output to the file
-    # sys.stdout = f
+    original_stdout = sys.stdout
+
+    # Redirect standard output to the file
+    sys.stdout = f
     print("Starting to write..")
     my_solve()
 
@@ -372,6 +372,6 @@ with open(unique_filename, 'w') as f:
     print("The time of execution of above program is :",
           (end - start) * 10 ** 3, "ms")
 
-    # sys.stdout = original_stdout
+    sys.stdout = original_stdout
 
 print("DONE - Thank you")
