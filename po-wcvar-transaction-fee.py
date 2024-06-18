@@ -226,6 +226,10 @@ class PortfolioOptimizationProblem(Problem):
                     # Process buy decisions
                     if buy_decisions[j] > 0:
                         buy_amount = int(np.floor(min(buy_decisions[j], stock_capacity)))
+
+                        buy_amount_restricted_by_current_cash = np.floor(cash/stock_price/(1 + TRANS_FEE))
+                        buy_amount = int(np.floor(min(buy_amount, buy_amount_restricted_by_current_cash)))
+                        buy_decisions[j] = buy_amount
                         transaction_fee = TRANS_FEE * stock_price * buy_amount
                         total_buy_cost = stock_price * buy_amount + transaction_fee
 
