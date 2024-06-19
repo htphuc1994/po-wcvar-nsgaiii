@@ -324,6 +324,7 @@ class PortfolioOptimizationProblem(Problem):
 
             # print_detail(log, cash, stock_holdings, stock_data)
 
+
         out["F"] = np.column_stack((-total_cash, cvar_values[:, 1:]))
         returns_constraint = total_cash - (1 + INVESTMENT_INTEREST_EXPECTED) * initial_cash
         # returns_constraint = total_cash - initial_cash
@@ -366,7 +367,7 @@ def my_solve():
 def execute():
     timestamp = datetime.datetime.now().strftime("%d%m%Y%H%M%S")
     unique_filename = f"output-{timestamp}.txt"
-    with open(unique_filename, 'w') as f:
+    with open("output/" + unique_filename, 'w') as f:
         start = time.time()
         # Save the original standard output
         original_stdout = sys.stdout
