@@ -146,6 +146,7 @@ class PortfolioOptimizationProblem(Problem):
                          xl=xl,
                          xu=xu,
                          type_var=int)
+        self.manipulated_solutions = []
 
     def _evaluate(self, X, out, *args, **kwargs):
         X = np.array(X, dtype=int)
@@ -324,6 +325,12 @@ class PortfolioOptimizationProblem(Problem):
 
             # print_detail(log, cash, stock_holdings, stock_data)
 
+        # Store the manipulated solution using the index of the solution
+        # idx = kwargs.get('idx')
+        # if idx is not None:
+        #     self.manipulated_solutions[idx] = X
+        self.manipulated_solutions.clear()
+        self.manipulated_solutions.extend(X)
 
         out["F"] = np.column_stack((-total_cash, cvar_values[:, 1:]))
         returns_constraint = total_cash - (1 + INVESTMENT_INTEREST_EXPECTED) * initial_cash
@@ -346,6 +353,7 @@ def my_solve():
                    verbose=True)
 
     F = res.pop.get("F")
+    # F = problem.manipulated_solutions
 
     # calculate the fronts of the population
     fronts, rank = NonDominatedSorting().do(F, return_rank=True, n_stop_if_ranked=population_size)
@@ -358,8 +366,17 @@ def my_solve():
     len_front_0 = len(front_0)
     hop_solution = front_0[hop(front_0, np.arange(len_front_0))[0]]
 
+    len_F = len(F)
+    hop_solution_index = 0
+    for i in range(len_F):
+        if all(a == b for a, b in zip(F[i], hop_solution.F)):
+            hop_solution_index = i
+            break
+    # hop_solution_index = F.index(hop_solution.F)
+
     print("Objectives =", ["%.2f" % v for v in hop_solution.F])
-    solution_details = np.array(hop_solution.X, dtype=int)
+    # solution_details = np.array(hop_solution.X, dtype=int)
+    solution_details = problem.manipulated_solutions[hop_solution_index]
     print("Solution details =", [v for v in solution_details])
 
 
