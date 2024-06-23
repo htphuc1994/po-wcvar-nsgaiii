@@ -186,8 +186,7 @@ class CustomRepair(Repair):
                     stock_capacity = stock["prices"][month]['matchedTradingVolume']
 
                     # Prevent sells during dividend months
-                    if month == 0 or (
-                            (month + 1) in [dividend['month'] for dividend in stock['dividendSpitingHistories']]):
+                    if month == 0 or ((month + 1) in [dividend['month'] for dividend in stock['dividendSpitingHistories']]):
                         sell_decisions[j] = 0
                     # print(f"{buy_decisions[j]};{sell_decisions[j]}")
                     if (buy_decisions[j] > 0 and
@@ -436,8 +435,7 @@ class PortfolioOptimizationProblem(Problem):
                     # Calculate dividends if current month is a dividend month
                     for dividend in stock['dividendSpitingHistories']:
                         if (month + 1) == dividend['month'] and previous_stock_holdings[j] > 0:
-                            if month != investment_duration - 1 and aggregated_sell_decisions[
-                                j] <= 0:  # Ensure no dividends are received if stock is sold in the same month
+                            if month != investment_duration - 1 and aggregated_sell_decisions[j] <= 0:  # Ensure no dividends are received if stock is sold in the same month
                                 dividends = dividend['value'] * previous_stock_holdings[j] / 1000  # kVND
                                 # Defer dividends to the next month
                                 deferred_dividends[i, month + 1] += dividends
