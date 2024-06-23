@@ -2,7 +2,7 @@ INITIAL_CASH = 1000000  # 1 BLN VND # NOTE if change plz update the same variabl
 BANK_INTEREST_RATE = 0.0045  # NOTE if change plz update the same variable at nsga3.py as well, because they are two seperate projects
 DURATION = 6  # 6 MONTHS # NOTE if change plz update the same variable at nsga3.py as well, because they are two seperate projects
 
-INVESTMENT_INTEREST_EXPECTED = 0.3
+INVESTMENT_INTEREST_EXPECTED = 0.2
 TRANS_FEE = 0.0015
 
 MAX_STOCKS = 100  # CARDINALITY CONSTRAINT

@@ -6,13 +6,26 @@ from pymoo.core.problem import Problem
 from pymoo.core.repair import Repair
 
 
-class BinaryRepair(Repair):
+class CustomRepair(Repair):
     def _do(self, problem, pop, **kwargs):
         X = pop
-        X = X.reshape((X.shape[0], problem.n, problem.tau, 3))
+
+        X = X.reshape((X.shape[0], problem.n, problem.tau, 3))  # Reshape to (pop_size, n, tau, 3)
+
+        # Ensure x is binary
         x = X[:, :, :, 0]
-        x = np.round(x)  # Round to nearest integer (0 or 1)
+        x = np.where(x > 0.5, 1, 0)  # Directly set to 0 or 1 based on threshold 0.5
         X[:, :, :, 0] = x
+
+        # Ensure y and q are non-negative integers
+        y = X[:, :, :, 1]
+        y = np.maximum(0, np.round(y))  # Ensure y is at least 0
+        X[:, :, :, 1] = y
+
+        q = X[:, :, :, 2]
+        q = np.maximum(0, np.round(q))  # Ensure q is at least 0
+        X[:, :, :, 2] = q
+
         pop = X.reshape((X.shape[0], -1))
         return pop
 
@@ -34,20 +47,44 @@ class PortfolioOptimizationProblem(Problem):
         self.INF = INF
         self.Theta = Theta
 
-        super().__init__(n_var=n * tau * 3,  # Number of decision variables
-                         n_obj=2,           # Number of objectives
-                         n_constr=n * tau * 5 + 4 + tau, # Number of constraints
-                         xl=np.zeros(n * tau * 3), # Lower bounds of decision variables
-                         xu=np.ones(n * tau * 3))  # Upper bounds of decision variables
+        n_vars = n * tau * 3
+
+        xl = np.zeros(n_vars)
+        xu = np.ones(n_vars)
+        xu[0::3] = 1  # Set upper bound of x to 1
+        xu[1::3] = INF  # Set upper bound of y to INF
+        xu[2::3] = INF  # Set upper bound of q to INF
+
+        # Recalculate the number of constraints
+        # n_constr = (
+        #         n * tau  # x_{1,j,0} = y_{1,j,0} = 0
+        #         + n  # q_{j,0} = y_{0,j,0}
+        #         + 1  # theta_{0} = Theta
+        #         + n * (tau - 1)  # y_{1,j,t} <= q_{j,t-1}
+        #         + tau  # sum_{j=1}^{n} (1+\xi)C_{j,t}y_{0,j,t} <= theta_t
+        #         + n * tau  # y_{i,j,t} <= Q_{j,t}
+        #         + n * tau  # y_{i,j,t} <= x_{i,j,t} * INF
+        #         + n * (tau - 1)  # q_{j,t} = q_{j,t-1} + y_{0,j,t} - y_{1,j,t}
+        #         + n * tau  # z_{j,t} = 0 if q_{j,t} <= 0, else 1
+        #         + tau  # sum_{j=1}^nz_{j,t} <= K
+        #         + n  # dispose of all investments
+        # )
+        n_constr = 645
+
+        super().__init__(n_var=n_vars,  # Number of decision variables
+                         n_obj=2,  # Number of objectives
+                         n_constr=n_constr,  # Number of constraints
+                         xl=xl,  # Lower bounds of decision variables
+                         xu=xu)  # Upper bounds of decision variables
 
     def _evaluate(self, X, out, *args, **kwargs):
         # Reshape the decision variable matrix into (population size, n, tau, 3)
         X = X.reshape((X.shape[0], self.n, self.tau, 3))
 
         # Extract decision variables
-        x = X[:, :, :, 0]  # First type of decision variable (binary)
-        y = X[:, :, :, 1]  # Second type of decision variable
-        q = X[:, :, :, 2]  # Third type of decision variable
+        x = X[:, :, :, 0]  # Binary indicators for buying (i=0) or selling (i=1)
+        y = X[:, :, :, 1]  # Amount of stock j purchased (i=0) or sold (i=1)
+        q = X[:, :, :, 2]  # Quantity of stock j held
 
         # Objective 1: Minimize CVaR
         CVaR_t = np.zeros((X.shape[0], self.tau - 1))
@@ -73,48 +110,49 @@ class PortfolioOptimizationProblem(Problem):
         constraints = []
 
         # Constraint: x_{1,j,0} = y_{1,j,0} = 0
-        constraints.append(x[:, :, 0].reshape(-1, 1))
-        constraints.append(y[:, :, 0].reshape(-1, 1))
+        constraints.append(x[:, :, 0].reshape(X.shape[0], -1))
+        constraints.append(y[:, :, 0].reshape(X.shape[0], -1))
 
         # Constraint: q_{j,0} = y_{0,j,0}
-        constraints.append((q[:, :, 0] - y[:, :, 0]).reshape(-1, 1))
+        constraints.append((q[:, :, 0] - y[:, :, 0]).reshape(X.shape[0], -1))
 
         # Constraint: theta_{0} = Theta
-        constraints.append((theta[:, 0] - self.Theta).reshape(-1, 1))
+        constraints.append((theta[:, 0] - self.Theta).reshape(X.shape[0], -1))
 
         # Constraint: y_{1,j,t} <= q_{j,t-1}
         for t in range(1, self.tau):
-            constraints.append((y[:, :, t] - q[:, :, t-1]).reshape(-1, 1))
+            constraints.append((y[:, :, t] - q[:, :, t-1]).reshape(X.shape[0], -1))
 
         # Constraint: sum_{j=1}^{n} (1+\xi)C_{j,t}y_{0,j,t} <= theta_t
         for t in range(self.tau):
-            constraints.append((np.sum((1 + self.xi) * self.C[:, t] * y[:, :, t], axis=1) - theta[:, t]).reshape(-1, 1))
+            constraints.append((np.sum((1 + self.xi) * self.C[:, t] * y[:, :, t], axis=1) - theta[:, t]).reshape(X.shape[0], -1))
 
         # Constraint: y_{i,j,t} <= Q_{j,t}
         for t in range(self.tau):
-            constraints.append((y[:, :, t] - self.Q[:, t]).reshape(-1, 1))
+            constraints.append((y[:, :, t] - self.Q[:, t]).reshape(X.shape[0], -1))
 
         # Constraint: y_{i,j,t} <= x_{i,j,t} * INF
         for t in range(self.tau):
-            constraints.append((y[:, :, t] - x[:, :, t] * self.INF).reshape(-1, 1))
+            constraints.append((y[:, :, t] - x[:, :, t] * self.INF).reshape(X.shape[0], -1))
 
         # Constraint: q_{j,t} = q_{j,t-1} + y_{0,j,t} - y_{1,j,t}
         for t in range(1, self.tau):
-            constraints.append((q[:, :, t] - (q[:, :, t-1] + y[:, :, t] - y[:, :, t])).reshape(-1, 1))
+            constraints.append((q[:, :, t] - (q[:, :, t-1] + y[:, :, t] - y[:, :, t])).reshape(X.shape[0], -1))
 
         # Constraint: z_{j,t} = 0 if q_{j,t} <= 0, else 1
         z = np.where(q > 0, 1, 0)
         for t in range(self.tau):
-            constraints.append((z[:, :, t] - (q[:, :, t] > 0).astype(int)).reshape(-1, 1))
+            constraints.append((z[:, :, t] - (q[:, :, t] > 0).astype(int)).reshape(X.shape[0], -1))
 
         # Constraint: sum_{j=1}^nz_{j,t} <= K
         for t in range(self.tau):
-            constraints.append((np.sum(z[:, :, t], axis=1) - self.K).reshape(-1, 1))
+            constraints.append((np.sum(z[:, :, t], axis=1) - self.K).reshape(X.shape[0], -1))
 
         # Constraint: dispose of all investments
-        constraints.append((y[:, :, self.tau-1] - q[:, :, self.tau-2]).reshape(-1, 1))
+        constraints.append((y[:, :, self.tau-1] - q[:, :, self.tau-2]).reshape(X.shape[0], -1))
 
         out["G"] = np.hstack(constraints)
+
 
 
 # Define the parameters (example values)
@@ -135,8 +173,8 @@ Theta = 10000  # Initial idle cash
 # Define the reference directions
 ref_dirs = get_reference_directions("das-dennis", 2, n_partitions=12)
 
-# Initialize the algorithm with BinaryRepair
-algorithm = NSGA3(pop_size=92, ref_dirs=ref_dirs, repair=BinaryRepair())
+# Initialize the algorithm with CustomRepair
+algorithm = NSGA3(pop_size=92, ref_dirs=ref_dirs, repair=CustomRepair())
 
 # Define the problem
 problem = PortfolioOptimizationProblem(n, K, tau, epsilon, alpha, xi, beta, C, D, Q, sigma, INF, Theta)
@@ -151,3 +189,6 @@ res = minimize(problem,
 
 # Print the results
 print("Best solution found: \nX = %s\nF = %s" % (res.X, res.F))
+
+
+# X (pop_size,n,τ,3)

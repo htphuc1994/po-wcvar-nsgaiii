@@ -1,6 +1,7 @@
 import math
 import sys
 import time
+import pandas as pd
 import numpy as np
 import datetime
 import pywt
@@ -20,6 +21,8 @@ from stock_data_input_100 import STOCK_DATA_2023_INPUT_100_STOCKS
 from stock_data_inputs_249 import STOCK_DATA_2023_INPUT_249_STOCKS
 from wavelet_cvar_utils import compute_wavelet_variance, wavelet_decomposition, calculate_var_from_wavelet_variance, \
     calculate_cvar, cal_po_wCVaR
+
+
 
 # stock_data = STOCK_DATA_2023_INPUT_249_STOCKS
 stock_data = STOCK_DATA_2023_INPUT_100_STOCKS
@@ -87,6 +90,55 @@ BANK_INTEREST_RATE_AFTER_N_INVESTMENT_PERIOD = math.pow(1 + BANK_INTEREST_RATE, 
 #     """ Calculate Conditional Value-at-Risk (CVaR) based on VaR. """
 #     losses_exceeding_var = [loss for loss in portfolio_returns if loss <= var]
 #     return np.mean(losses_exceeding_var) if losses_exceeding_var else 0
+
+def print_detail_v2(log, cash, stock_holdings, stock_data):
+    # Create an empty DataFrame to store the structured data
+    columns = ["Month", "Action", "Stock", "Amount", "Dividends", "BankDeposit"]
+    df = pd.DataFrame(columns=columns)
+
+    # Populate the DataFrame with log data
+    for entry in log:
+        month = entry['Month']
+        dividends = entry['Dividends']
+        bank_deposit = entry['BankDeposit']
+
+        # Process Buy actions
+        if entry["Buy"]:
+            for stock, amount in entry["Buy"]:
+                df = df.append({
+                    "Month": month,
+                    "Action": "Buy",
+                    "Stock": stock,
+                    "Amount": amount,
+                    "Dividends": dividends,
+                    "BankDeposit": bank_deposit
+                }, ignore_index=True)
+
+        # Process Sell actions
+        if entry["Sell"]:
+            for stock, amount in entry["Sell"]:
+                df = df.append({
+                    "Month": month,
+                    "Action": "Sell",
+                    "Stock": stock,
+                    "Amount": amount,
+                    "Dividends": dividends,
+                    "BankDeposit": bank_deposit
+                }, ignore_index=True)
+
+        # Add row for Dividends and Bank Deposit only if no Buy or Sell actions
+        if not entry["Buy"] and not entry["Sell"]:
+            df = df.append({
+                "Month": month,
+                "Action": "None",
+                "Stock": None,
+                "Amount": None,
+                "Dividends": dividends,
+                "BankDeposit": bank_deposit
+            }, ignore_index=True)
+    # Log final cash and holdings to ensure we do not hold any stocks
+    print(f"Final Cash: {cash:.2f} => return: {(cash-initial_cash)/initial_cash:.2f}")
+    # import tools.display_dataframe_to_user(name="Investment Log", dataframe=df)
 
 
 def print_detail(log, cash, stock_holdings, stock_data):
@@ -557,10 +609,10 @@ def my_solve():
     #         break
     # hop_solution_index = F.index(hop_solution.F)
 
-    print("Objectives =", ["%.2f" % v for v in hop_solution.F])
-    solution_details = np.array(hop_solution.X, dtype=int)
+    print("Objectives =", ["%.5f" % v for v in hop_solution.F])
+    # solution_details = np.array(hop_solution.X, dtype=int)
     # solution_details = problem.manipulated_solutions[hop_solution_index]
-    print("Solution details =", [v for v in solution_details])
+    # print("Solution details =", [v for v in solution_details])
 
 
 # Open a file in write mode
