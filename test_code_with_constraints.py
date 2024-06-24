@@ -6,7 +6,7 @@ from pymoo.core.problem import Problem
 from pymoo.core.repair import Repair
 
 from constants import REFERENCES_POINTS_NUM, POPULATION_SIZE, TERMINATION_GEN_NUM, MAX_STOCKS, DURATION, \
-    TAIL_PROBABILITY_EPSILON, BANK_INTEREST_RATE, TRANS_FEE, INITIAL_CASH
+    TAIL_PROBABILITY_EPSILON, BANK_INTEREST_RATE, TRANS_FEE, INITIAL_CASH, INVESTMENT_INTEREST_EXPECTED
 from handle_matrix_inputs_for_constraints_based_sol import C, D, Q, stocks_len
 
 
@@ -52,7 +52,21 @@ class PortfolioOptimizationProblem(Problem):
         xu = np.ones(n_vars)
         xu[0::1] = 1  # Set upper bound of x to 1
         xu[1::1] = INF  # Set upper bound of y to INF
-
+        # # Set upper bound for x to 1
+        # xu[0:n*tau*2:2] = 1
+        # # Set upper bound for y to INF
+        # xu[1:n*tau*2:2] = 8000
+        # xu[:, 0, :, :, :] = 1
+        # xu[:, 1, :, :, :] = 8000
+        xu_ = np.zeros((2, n, tau, 2))  # first row for x, second row for y
+        expected_cash_after_investment = INITIAL_CASH*(1+INVESTMENT_INTEREST_EXPECTED)
+        for j in range(n):
+            for t in range(tau):
+                for b in range(2):
+                    xu_[0, j, t, b] = 1
+                    xu_[1, j, t, b] = min(self.Q[j, t], expected_cash_after_investment/C[j, t])
+        # xu = [xu_[0], xu_[1]]
+        xu = xu_.reshape(-1)
         # Recalculate the number of constraints
         # n_constr = (
         #         n * tau  # x_{i,j,0} = y_{i,j,0} = 0
@@ -67,7 +81,7 @@ class PortfolioOptimizationProblem(Problem):
         #         + tau  # sum_{j=1}^nz_{j,t} <= K
         #         + n  # dispose of all investments
         # )
-        n_constr = 4413
+        n_constr = 717
 
         super().__init__(n_var=n_vars,  # Number of decision variables
                          n_obj=2,  # Number of objectives
