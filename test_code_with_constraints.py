@@ -199,5 +199,3 @@ res = minimize(problem,
 
 # Print the results
 print("Best solution found: \nX = %s\nF = %s" % (res.X, res.F))
-
-# X (pop_size,n,τ,3)
