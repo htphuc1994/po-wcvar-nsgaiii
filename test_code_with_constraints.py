@@ -12,14 +12,14 @@ class CustomRepair(Repair):
         X = X.reshape((X.shape[0], 2, problem.n, problem.tau, 2))  # Reshape to (pop_size, 2, n, tau, binary_decision)
 
         # Ensure x is binary
-        x = X[:, 0, :, :]
+        x = X[:, 0, :, :, :]
         x = np.where(x > 0.5, 1, 0)  # Directly set to 0 or 1 based on threshold 0.5
-        X[:, 0, :, :] = x
+        X[:, 0, :, :, :] = x
 
         # Ensure y and q are non-negative integers
-        y = X[:, 1, :, :]
-        y = np.maximum(0, np.round(y))  # Ensure y is at least 0
-        X[:, 1, :, :] = y
+        y = X[:, 1, :, :, :]
+        y = np.maximum(0, np.floor(y))  # Ensure y is at least 0
+        X[:, 1, :, :, :] = y
 
         pop = X.reshape((X.shape[0], -1))
         return pop
@@ -63,7 +63,7 @@ class PortfolioOptimizationProblem(Problem):
         #         + tau  # sum_{j=1}^nz_{j,t} <= K
         #         + n  # dispose of all investments
         # )
-        n_constr = 645
+        n_constr = 885
 
         super().__init__(n_var=n_vars,  # Number of decision variables
                          n_obj=2,  # Number of objectives
@@ -79,6 +79,17 @@ class PortfolioOptimizationProblem(Problem):
         x = X[:, 0, :, :, :]  # Binary indicators for buying (i=0) or selling (i=1)
         y = X[:, 1, :, :, :]  # Amount of stock j purchased (i=0) or sold (i=1)
         q = np.zeros((X.shape[0], self.n, self.tau))  # Quantity of stock j held
+
+        for individual in range(X.shape[0]):
+            for i in range(2):
+                for j in range(n):
+                    for t in range(tau):
+                        for binary_decision_i in range(2):
+                            if y[individual, i, t, binary_decision_i] > 0:
+                                if x[individual, j, t, binary_decision_i] > 0:
+                                    y[individual, i, t, binary_decision_i] = 1
+                                else:
+                                    y[individual, i, t, binary_decision_i] = 0
 
         # Calculate q
         for t in range(1, self.tau):
@@ -127,12 +138,12 @@ class PortfolioOptimizationProblem(Problem):
 
         # Constraint: y_{i,j,t} <= Q_{j,t}
         for t in range(self.tau):
-            for i in range(1):
+            for i in range(2):
                 constraints.append((y[:, :, t, i] - self.Q[:, t]).reshape(X.shape[0], -1))
 
         # Constraint: y_{i,j,t} <= x_{i,j,t} * INF
         for t in range(self.tau):
-            for i in range(1):
+            for i in range(2):
                 constraints.append((y[:, :, t, i] - x[:, :, t, i] * self.INF).reshape(X.shape[0], -1))
 
         # Constraint: q_{j,t} = q_{j,t-1} + y_{0,j,t} - y_{1,j,t}
@@ -181,7 +192,7 @@ problem = PortfolioOptimizationProblem(n, K, tau, epsilon, alpha, xi, beta, C, D
 # Minimize the problem using NSGA-III
 res = minimize(problem,
                algorithm,
-               termination=('n_gen', 1000),
+               termination=('n_gen', 2139),
                seed=1,
                save_history=True,
                verbose=True)
