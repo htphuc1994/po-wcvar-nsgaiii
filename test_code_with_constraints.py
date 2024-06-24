@@ -5,6 +5,10 @@ from pymoo.optimize import minimize
 from pymoo.core.problem import Problem
 from pymoo.core.repair import Repair
 
+from constants import REFERENCES_POINTS_NUM, POPULATION_SIZE, TERMINATION_GEN_NUM, MAX_STOCKS, DURATION, \
+    TAIL_PROBABILITY_EPSILON, BANK_INTEREST_RATE, TRANS_FEE, INITIAL_CASH
+from handle_matrix_inputs_for_constraints_based_sol import C, D, Q, stocks_len
+
 
 class CustomRepair(Repair):
     def _do(self, problem, pop, **kwargs):
@@ -63,7 +67,7 @@ class PortfolioOptimizationProblem(Problem):
         #         + tau  # sum_{j=1}^nz_{j,t} <= K
         #         + n  # dispose of all investments
         # )
-        n_constr = 885
+        n_constr = 4413
 
         super().__init__(n_var=n_vars,  # Number of decision variables
                          n_obj=2,  # Number of objectives
@@ -108,7 +112,8 @@ class PortfolioOptimizationProblem(Problem):
         for t in range(1, self.tau):
             term1 = (1 + self.alpha) * (theta[:, t-1] - np.sum((1 + self.xi) * self.C[:, t-1] * y[:, :, t-1, 0], axis=1))
             term2 = np.sum((1 - self.xi) * self.C[:, t-1] * y[:, :, t-1, 1], axis=1)
-            term3 = np.sum(self.beta * self.D[:, t-1] * q[:, :, t-2], axis=1) if t > 1 else 0
+            # term3 = np.sum(self.beta * self.D[:, t-1] * q[:, :, t-2], axis=1) if t > 1 else 0
+            term3 = np.sum(self.D[:, t-1] * q[:, :, t-2], axis=1) if t > 1 else 0
             theta[:, t] = term1 + term2 + term3
 
         obj2 = -theta[:, -1]
@@ -166,36 +171,35 @@ class PortfolioOptimizationProblem(Problem):
 
 
 # Define the parameters (example values)
-n = 10  # Stock quantity
-K = 5  # Preferred quantity of stock kinds to be retained
-tau = 12  # Decision-making period in months
-epsilon = 0.05  # Tail probability
-alpha = 0.01  # Monthly bank interest rate
-xi = 0.02  # Transaction fee percentage
-beta = 0.03  # Share dividend price
-C = np.random.rand(n, tau)  # Stock prices
-D = np.random.rand(n, tau)  # Dividend payout ratios
-Q = np.random.randint(1, 100, size=(n, tau))  # Highest amount of stock traded
+n = stocks_len  # Stock quantity
+K = MAX_STOCKS  # Preferred quantity of stock kinds to be retained
+tau = DURATION  # Decision-making period in months
+epsilon = TAIL_PROBABILITY_EPSILON  # Tail probability
+alpha = BANK_INTEREST_RATE  # Monthly bank interest rate
+xi = TRANS_FEE  # Transaction fee percentage
+beta = 10  # Share dividend price
+# C = np.random.rand(n, tau)  # Stock prices
+# D = np.random.rand(n, tau)  # Dividend payout ratios
+# Q = np.random.randint(1, 100, size=(n, tau))  # Highest amount of stock traded
 sigma = np.random.rand(tau)  # Wavelet portfolio variance
 INF = 1e6  # A significantly high value
-Theta = 10000  # Initial idle cash
-
-# Define the reference directions
-ref_dirs = get_reference_directions("das-dennis", 2, n_partitions=12)
-
-# Initialize the algorithm with CustomRepair
-algorithm = NSGA3(pop_size=339, ref_dirs=ref_dirs, repair=CustomRepair())
+Theta = INITIAL_CASH  # Initial idle cash
 
 # Define the problem
 problem = PortfolioOptimizationProblem(n, K, tau, epsilon, alpha, xi, beta, C, D, Q, sigma, INF, Theta)
 
+# Define the reference directions
+ref_dirs = get_reference_directions("energy", problem.n_obj, REFERENCES_POINTS_NUM, seed=1)
+
+# Initialize the algorithm with CustomRepair
+algorithm = NSGA3(pop_size=POPULATION_SIZE, ref_dirs=ref_dirs, repair=CustomRepair())
+
 # Minimize the problem using NSGA-III
 res = minimize(problem,
                algorithm,
-               termination=('n_gen', 2139),
+               termination=('n_gen', TERMINATION_GEN_NUM),
                seed=1,
                save_history=True,
                verbose=True)
-
 # Print the results
 print("Best solution found: \nX = %s\nF = %s" % (res.X, res.F))
