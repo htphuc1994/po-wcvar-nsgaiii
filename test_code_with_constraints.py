@@ -49,9 +49,9 @@ class PortfolioOptimizationProblem(Problem):
         n_vars = 2 * n * tau * 2  # x and y are (2, n, tau, binary_decision)
 
         xl = np.zeros(n_vars)
-        xu = np.ones(n_vars)
-        xu[0::1] = 1  # Set upper bound of x to 1
-        xu[1::1] = INF  # Set upper bound of y to INF
+        # xu = np.ones(n_vars)
+        # xu[0::1] = 1  # Set upper bound of x to 1
+        # xu[1::1] = INF  # Set upper bound of y to INF
         # # Set upper bound for x to 1
         # xu[0:n*tau*2:2] = 1
         # # Set upper bound for y to INF
