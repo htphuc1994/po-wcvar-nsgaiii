@@ -5,10 +5,24 @@ from pymoo.optimize import minimize
 from pymoo.core.problem import Problem
 from pymoo.core.repair import Repair
 
+from assets_returns import *
 from constants import REFERENCES_POINTS_NUM, POPULATION_SIZE, TERMINATION_GEN_NUM, MAX_STOCKS, DURATION, \
     TAIL_PROBABILITY_EPSILON, BANK_INTEREST_RATE, TRANS_FEE, INITIAL_CASH, INVESTMENT_INTEREST_EXPECTED
 from handle_matrix_inputs_for_constraints_based_sol import C, D, Q, stocks_len
+from stock_data_input_16 import STOCK_DATA_2023_INPUT_16_STOCKS
+from wavelet_cvar_utils import cal_po_wCVaR
 
+stock_data = STOCK_DATA_2023_INPUT_16_STOCKS
+LEN_STOCK_DATA = len(stock_data)
+stock_returns = np.column_stack((
+    ABT, ACB, ACL, AGF, ALT, ANV, ASP, B82, BBC, BBS, BCC, BLF, BMC, BMI, BMP, BPC))
+# stock_returns = np.column_stack((
+#     ABT, ACB, ACL, AGF, ALT, ANV, ASP, B82, BBC, BBS, BCC, BLF, BMC, BMI, BMP, BPC, BST, BTS, BVS,
+#     CAN, CAP, CCM, CDC, CID, CII, CJC, CLC, CMC, COM, CTB, CTC, CTN, DAC, DAE, DBC, DC4, DCS, DHA,
+#     DHG, DHT, DIC, DMC, DPC, DPM, DPR, DQC, DRC, DST, DTC, DTT, DXP, DXV, EBS, FMC, FPT, GIL, GMC,
+#     GMD, GTA, HAG, HAP, HAS, HAX, HBC, HCC, HCT, HDC, HEV, HHC, HJS, HMC, HPG, HRC, HSG, HSI, HT1,
+#     HTP, HTV, HUT, ICF, IMP, ITA, KBC, KDC, KHP, KKC, KMR, KSH, L10, L18, L43, L61, L62, LAF, LBE,
+#     LBM, LCG, LGC, LSS, LTC))
 
 class CustomRepair(Repair):
     def _do(self, problem, pop, **kwargs):
@@ -85,7 +99,7 @@ class PortfolioOptimizationProblem(Problem):
         n_constr = 717
 
         super().__init__(n_var=n_vars,  # Number of decision variables
-                         n_obj=2,  # Number of objectives
+                         n_obj=DURATION,  # Number of objectives
                          n_constr=n_constr,  # Number of constraints
                          xl=xl,  # Lower bounds of decision variables
                          xu=xu)  # Upper bounds of decision variables
@@ -113,12 +127,6 @@ class PortfolioOptimizationProblem(Problem):
         for t in range(1, self.tau):
             q[:, :, t] = q[:, :, t-1] + y[:, :, t, 0] - y[:, :, t, 1]
 
-        # Objective 1: Minimize CVaR
-        CVaR_t = np.zeros((X.shape[0], self.tau - 1))
-        for t in range(1, self.tau):
-            VaR_t = self.Theta * np.percentile(self.sigma, 1 - self.epsilon)
-            CVaR_t[:, t-1] = (1 / self.epsilon) * np.mean(np.maximum(0, VaR_t - self.sigma[t-1]))
-        obj1 = np.sum(CVaR_t, axis=1)
 
         # Objective 2: Maximize theta_tau
         theta = np.zeros((X.shape[0], self.tau))
@@ -132,7 +140,26 @@ class PortfolioOptimizationProblem(Problem):
 
         obj2 = -theta[:, -1]
 
-        out["F"] = np.column_stack([obj1, obj2])
+        # Objective 1: Minimize CVaR
+        CVaR_t = np.zeros((X.shape[0], self.tau))
+        for individual in range(POPULATION_SIZE):
+
+            returns = stock_returns
+            for t in range(1, self.tau):
+                # VaR_t = self.Theta * np.percentile(self.sigma, 1 - self.epsilon)
+                # CVaR_t[:, t-1] = (1 / self.epsilon) * np.mean(np.maximum(0, VaR_t - self.sigma[t-1]))
+                current_month_prices = []
+                for stock_info in stock_data:
+                    current_month_prices.append(stock_info["prices"][t]["value"])  # month also is the index = month + 1 in "month" field
+
+                returns = np.vstack((returns, np.array(current_month_prices).reshape(1, -1)))
+                # Calculate CVaR at the beginning of each month
+                cal_po_wCVaR(t, q[individual, :, t], CVaR_t, individual, returns, DURATION, TAIL_PROBABILITY_EPSILON, INITIAL_CASH, theta[individual, t])
+        # obj1 = np.sum(CVaR_t, axis=1)
+        obj1 = CVaR_t[:, 1:]
+
+        # out["F"] = np.column_stack([obj1, obj2])
+        out["F"] = np.column_stack((-(theta[:, -1]-INITIAL_CASH)/INITIAL_CASH, CVaR_t[:, 1:]))
 
         # Constraints
         constraints = []
