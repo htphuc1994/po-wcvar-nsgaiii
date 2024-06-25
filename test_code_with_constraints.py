@@ -65,6 +65,7 @@ class PortfolioOptimizationProblem(Problem):
                 for b in range(2):
                     xu_[0, j, t, b] = 1
                     xu_[1, j, t, b] = min(self.Q[j, t], expected_cash_after_investment/C[j, t])
+                    # xu_[1, j, t, b] = 100
         # xu = [xu_[0], xu_[1]]
         xu = xu_.reshape(-1)
         # Recalculate the number of constraints
@@ -99,15 +100,14 @@ class PortfolioOptimizationProblem(Problem):
         q = np.zeros((X.shape[0], self.n, self.tau))  # Quantity of stock j held
 
         for individual in range(X.shape[0]):
-            for i in range(2):
-                for j in range(n):
-                    for t in range(tau):
-                        for binary_decision_i in range(2):
-                            if y[individual, i, t, binary_decision_i] > 0:
-                                if x[individual, j, t, binary_decision_i] > 0:
-                                    y[individual, i, t, binary_decision_i] = 1
-                                else:
-                                    y[individual, i, t, binary_decision_i] = 0
+            for j in range(n):
+                for t in range(tau):
+                    for binary_decision_i in range(2):
+                        if y[individual, j, t, binary_decision_i] > 0:
+                            if x[individual, j, t, binary_decision_i] > 0:
+                                y[individual, j, t, binary_decision_i] = 1
+                            else:
+                                y[individual, j, t, binary_decision_i] = 0
 
         # Calculate q
         for t in range(1, self.tau):
@@ -137,7 +137,7 @@ class PortfolioOptimizationProblem(Problem):
         # Constraints
         constraints = []
 
-        # Constraint: x_{1,j,0} = y_{1,j,0} = 0
+        # Constraint 1: x_{1,j,0} = y_{1,j,0} = 0
         constraints.append(x[:, :, 0, 1].reshape(X.shape[0], -1))  # Selling constraint for x
         constraints.append(y[:, :, 0, 1].reshape(X.shape[0], -1))  # Selling constraint for y
 
