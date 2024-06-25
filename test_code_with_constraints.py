@@ -1,9 +1,10 @@
 import numpy as np
-from pymoo.algorithms.moo.nsga3 import NSGA3
+from pymoo.algorithms.moo.nsga3 import NSGA3, BANK_INTEREST_RATE_AFTER_N_INVESTMENT_PERIOD, hop
 from pymoo.util.ref_dirs import get_reference_directions
 from pymoo.optimize import minimize
 from pymoo.core.problem import Problem
 from pymoo.core.repair import Repair
+from pymoo.util.nds.non_dominated_sorting import NonDominatedSorting
 
 from assets_returns import *
 from constants import REFERENCES_POINTS_NUM, POPULATION_SIZE, TERMINATION_GEN_NUM, MAX_STOCKS, DURATION, \
@@ -227,3 +228,13 @@ res = minimize(problem,
                verbose=True)
 # Print the results
 print("Best solution found: \nX = %s\nF = %s" % (res.X, res.F))
+
+F = res.pop.get("F")
+fronts, rank = NonDominatedSorting().do(F, return_rank=True, n_stop_if_ranked=POPULATION_SIZE)
+front_0 = [individual for individual in res.pop[fronts[0]] if
+           -individual.F[0] > BANK_INTEREST_RATE_AFTER_N_INVESTMENT_PERIOD]
+len_front_0 = len(front_0)
+if len_front_0 <= 0:
+    print("No HOP solution found.")
+hop_solution = front_0[hop(front_0, np.arange(len_front_0))[0]]
+print("Objectives =", ["%.5f" % v for v in hop_solution.F])
