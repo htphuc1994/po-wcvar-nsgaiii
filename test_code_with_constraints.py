@@ -88,7 +88,7 @@ class PortfolioOptimizationProblem(Problem):
         #         + tau  # sum_{j=1}^nz_{j,t} <= K
         #         + n  # dispose of all investments
         # )
-        n_constr = 4413
+        n_constr = 4414
 
         super().__init__(n_var=n_vars,  # Number of decision variables
                          n_obj=DURATION,  # Number of objectives
@@ -147,6 +147,10 @@ class PortfolioOptimizationProblem(Problem):
 
         # Constraints
         constraints = []
+
+        # NEW constraint to overcome trivial solutions:
+        # theta_{tau} > (BANK_INTEREST_RATE_AFTER_N_INVESTMENT_PERIOD+1)*init_cash
+        constraints.append((BANK_INTEREST_RATE_AFTER_N_INVESTMENT_PERIOD + 1) * INITIAL_CASH - (theta[:, -1]).reshape(X.shape[0], -1))
 
         # Constraint 1: x_{1,j,0} = y_{1,j,0} = 0
         constraints.append(x[:, :, 0, 1].reshape(X.shape[0], -1))  # Selling constraint for x
