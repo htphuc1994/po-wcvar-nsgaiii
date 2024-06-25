@@ -63,15 +63,6 @@ class PortfolioOptimizationProblem(Problem):
         n_vars = 2 * n * tau * 2  # x and y are (2, n, tau, binary_decision)
 
         xl = np.zeros(n_vars)
-        # xu = np.ones(n_vars)
-        # xu[0::1] = 1  # Set upper bound of x to 1
-        # xu[1::1] = INF  # Set upper bound of y to INF
-        # # Set upper bound for x to 1
-        # xu[0:n*tau*2:2] = 1
-        # # Set upper bound for y to INF
-        # xu[1:n*tau*2:2] = 8000
-        # xu[:, 0, :, :, :] = 1
-        # xu[:, 1, :, :, :] = 8000
         xu_ = np.zeros((2, n, tau, 2))  # first row for x, second row for y
         expected_cash_after_investment = INITIAL_CASH*(1+INVESTMENT_INTEREST_EXPECTED)
         for j in range(n):
@@ -134,11 +125,8 @@ class PortfolioOptimizationProblem(Problem):
         for t in range(1, self.tau):
             term1 = (1 + self.alpha) * (theta[:, t-1] - np.sum((1 + self.xi) * self.C[:, t-1] * y[:, :, t-1, 0], axis=1))
             term2 = np.sum((1 - self.xi) * self.C[:, t-1] * y[:, :, t-1, 1], axis=1)
-            # term3 = np.sum(self.beta * self.D[:, t-1] * q[:, :, t-2], axis=1) if t > 1 else 0
             term3 = np.sum(self.D[:, t-1] * q[:, :, t-2], axis=1) if t > 1 else 0
             theta[:, t] = term1 + term2 + term3
-
-        obj2 = -theta[:, -1]
 
         # Objective 1: Minimize CVaR
         CVaR_t = np.zeros((X.shape[0], self.tau))
@@ -146,8 +134,6 @@ class PortfolioOptimizationProblem(Problem):
 
             returns = stock_returns
             for t in range(1, self.tau):
-                # VaR_t = self.Theta * np.percentile(self.sigma, 1 - self.epsilon)
-                # CVaR_t[:, t-1] = (1 / self.epsilon) * np.mean(np.maximum(0, VaR_t - self.sigma[t-1]))
                 current_month_prices = []
                 for stock_info in stock_data:
                     current_month_prices.append(stock_info["prices"][t]["value"])  # month also is the index = month + 1 in "month" field
@@ -155,10 +141,7 @@ class PortfolioOptimizationProblem(Problem):
                 returns = np.vstack((returns, np.array(current_month_prices).reshape(1, -1)))
                 # Calculate CVaR at the beginning of each month
                 cal_po_wCVaR(t, q[individual, :, t], CVaR_t, individual, returns, DURATION, TAIL_PROBABILITY_EPSILON, INITIAL_CASH, theta[individual, t])
-        # obj1 = np.sum(CVaR_t, axis=1)
-        obj1 = CVaR_t[:, 1:]
 
-        # out["F"] = np.column_stack([obj1, obj2])
         out["F"] = np.column_stack((-(theta[:, -1]-INITIAL_CASH)/INITIAL_CASH, CVaR_t[:, 1:]))
 
         # Constraints
