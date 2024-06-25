@@ -241,4 +241,5 @@ len_front_0 = len(front_0)
 if len_front_0 <= 0:
     print("No HOP solution found.")
 hop_solution = front_0[hop(front_0, np.arange(len_front_0))[0]]
-print("Objectives =", ["%.5f" % v for v in hop_solution.F])
+print("Objectives =", ["%.6f" % v for v in hop_solution.F])
+print("Solution details =", ["%.1f" % v for v in hop_solution.X])
