@@ -8,7 +8,8 @@ from pymoo.util.nds.non_dominated_sorting import NonDominatedSorting
 
 from assets_returns import *
 from constants import REFERENCES_POINTS_NUM, POPULATION_SIZE, TERMINATION_GEN_NUM, MAX_STOCKS, DURATION, \
-    TAIL_PROBABILITY_EPSILON, BANK_INTEREST_RATE, TRANS_FEE, INITIAL_CASH, INVESTMENT_INTEREST_EXPECTED
+    TAIL_PROBABILITY_EPSILON, BANK_INTEREST_RATE, TRANS_FEE, INITIAL_CASH, INVESTMENT_INTEREST_EXPECTED, \
+    BENCHMARK_FINAL_RETURN
 from handle_matrix_inputs_for_constraints_based_sol import C, D, Q, stocks_len
 from stock_data_input_100 import STOCK_DATA_2023_INPUT_100_STOCKS
 from wavelet_cvar_utils import cal_po_wCVaR
@@ -88,7 +89,7 @@ class PortfolioOptimizationProblem(Problem):
         #         + tau  # sum_{j=1}^nz_{j,t} <= K
         #         + n  # dispose of all investments
         # )
-        n_constr = 4414
+        n_constr = 6213
 
         super().__init__(n_var=n_vars,  # Number of decision variables
                          n_obj=DURATION,  # Number of objectives
@@ -124,15 +125,15 @@ class PortfolioOptimizationProblem(Problem):
         theta = np.zeros((X.shape[0], self.tau))
         theta[:, 0] = self.Theta
         for t in range(1, self.tau):
-            term1 = (1 + self.alpha) * (theta[:, t-1] - np.sum((1 + self.xi) * self.C[:, t-1] * y[:, :, t-1, 0], axis=1))
-            term2 = np.sum((1 - self.xi) * self.C[:, t-1] * y[:, :, t-1, 1], axis=1)
-            term3 = np.sum(self.D[:, t-1] * q[:, :, t-2], axis=1) if t > 1 else 0
-            theta[:, t] = term1 + term2 + term3
+            for j in range(n):
+                term1 = (1 + self.alpha) * (theta[:, t-1] - np.sum((1 + self.xi) * self.C[j, t-1] * y[:, j, t-1, 0]))
+                term2 = np.sum((1 - self.xi) * self.C[j, t-1] * y[:, j, t-1, 1])
+                term3 = np.sum(self.D[j, t-1] * q[:, j, t-2]) if t > 1 else 0
+                theta[:, t] = term1 + term2 + term3
 
         # Objective 1: Minimize CVaR
         CVaR_t = np.zeros((X.shape[0], self.tau))
         for individual in range(POPULATION_SIZE):
-
             returns = stock_returns
             for t in range(1, self.tau):
                 current_month_prices = []
@@ -150,11 +151,16 @@ class PortfolioOptimizationProblem(Problem):
 
         # NEW constraint to overcome trivial solutions:
         # theta_{tau} > (BANK_INTEREST_RATE_AFTER_N_INVESTMENT_PERIOD+1)*init_cash
-        constraints.append((BANK_INTEREST_RATE_AFTER_N_INVESTMENT_PERIOD + 1) * INITIAL_CASH - (theta[:, -1]).reshape(X.shape[0], -1))
+        # constraints.append((BENCHMARK_FINAL_RETURN - theta[:, -1]).reshape(X.shape[0], -1))
+
+        # Constraint: q_{j,t} >= 0, y[] >= 0
+        constraints.append((-q[:, :, :]).reshape(X.shape[0], -1))
+        constraints.append((-y[:, :, :]).reshape(X.shape[0], -1))
+        constraints.append((-theta[:, :]).reshape(X.shape[0], -1))
 
         # Constraint 1: x_{1,j,0} = y_{1,j,0} = 0
-        constraints.append(x[:, :, 0, 1].reshape(X.shape[0], -1))  # Selling constraint for x
-        constraints.append(y[:, :, 0, 1].reshape(X.shape[0], -1))  # Selling constraint for y
+        constraints.append((-x[:, :, 0, 1]).reshape(X.shape[0], -1))  # Selling constraint for x
+        constraints.append((-y[:, :, 0, 1]).reshape(X.shape[0], -1))  # Selling constraint for y
 
         # Constraint: q_{j,0} = y_{0,j,0}
         constraints.append((q[:, :, 0] - y[:, :, 0, 0]).reshape(X.shape[0], -1))
@@ -168,12 +174,14 @@ class PortfolioOptimizationProblem(Problem):
 
         # Constraint: sum_{j=1}^{n} (1+\xi)C_{j,t}y_{0,j,t} <= theta_t
         for t in range(self.tau):
-            constraints.append((np.sum((1 + self.xi) * self.C[:, t] * y[:, :, t, 0], axis=1) - theta[:, t]).reshape(X.shape[0], -1))
+            for j in range(n):
+                constraints.append((np.sum((1 + self.xi) * self.C[j, t] * y[:, j, t, 0]) - theta[:, t]).reshape(X.shape[0], -1))
 
         # Constraint: y_{i,j,t} <= Q_{j,t}
         for t in range(self.tau):
-            for i in range(2):
-                constraints.append((y[:, :, t, i] - self.Q[:, t]).reshape(X.shape[0], -1))
+            for j in range(n):
+                for i in range(2):
+                    constraints.append((y[:, j, t, i] - self.Q[j, t]).reshape(X.shape[0], -1))
 
         # Constraint: y_{i,j,t} <= x_{i,j,t} * INF
         for t in range(self.tau):
@@ -184,10 +192,8 @@ class PortfolioOptimizationProblem(Problem):
         for t in range(1, self.tau):
             constraints.append((q[:, :, t] - (q[:, :, t-1] + y[:, :, t, 0] - y[:, :, t, 1])).reshape(X.shape[0], -1))
 
-        # Constraint: z_{j,t} = 0 if q_{j,t} <= 0, else 1
+        # z_{j,t} = 0 if q_{j,t} <= 0, else 1
         z = np.where(q > 0, 1, 0)
-        for t in range(self.tau):
-            constraints.append((z[:, :, t] - (q[:, :, t] > 0).astype(int)).reshape(X.shape[0], -1))
 
         # Constraint: sum_{j=1}^nz_{j,t} <= K
         for t in range(self.tau):

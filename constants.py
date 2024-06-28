@@ -1,3 +1,5 @@
+import math
+
 INITIAL_CASH = 1000000  # 1 BLN VND # NOTE if change plz update the same variable at nsga3.py as well, because they are two seperate projects
 BANK_INTEREST_RATE = 0.0045  # NOTE if change plz update the same variable at nsga3.py as well, because they are two seperate projects
 DURATION = 6  # 6 MONTHS # NOTE if change plz update the same variable at nsga3.py as well, because they are two seperate projects
@@ -5,12 +7,15 @@ DURATION = 6  # 6 MONTHS # NOTE if change plz update the same variable at nsga3.
 INVESTMENT_INTEREST_EXPECTED = 0.3
 TRANS_FEE = 0.0015
 
+BANK_INTEREST_RATE_AFTER_N_INVESTMENT_PERIOD = math.pow(1+BANK_INTEREST_RATE, DURATION)-1
+BENCHMARK_FINAL_RETURN = (BANK_INTEREST_RATE_AFTER_N_INVESTMENT_PERIOD + 1) * INITIAL_CASH
+
 MAX_STOCKS = 100  # CARDINALITY CONSTRAINT
-TERMINATION_GEN_NUM = 600
+TERMINATION_GEN_NUM = 366
 TAIL_PROBABILITY_EPSILON = 0.1  # can change to 10%, 2.5%, and 1%
 
-POPULATION_SIZE = 279
-REFERENCES_POINTS_NUM = 279
+POPULATION_SIZE = 379
+REFERENCES_POINTS_NUM = 379
 WAVELET_LEVEL = 2
 STOCK_DATA_2023_INPUT_29_STOCKS = [
     {
