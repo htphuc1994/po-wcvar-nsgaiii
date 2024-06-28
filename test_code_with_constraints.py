@@ -89,7 +89,7 @@ class PortfolioOptimizationProblem(Problem):
         #         + tau  # sum_{j=1}^nz_{j,t} <= K
         #         + n  # dispose of all investments
         # )
-        n_constr = 6213
+        n_constr = 6214
 
         super().__init__(n_var=n_vars,  # Number of decision variables
                          n_obj=DURATION,  # Number of objectives
@@ -107,8 +107,8 @@ class PortfolioOptimizationProblem(Problem):
         q = np.zeros((X.shape[0], self.n, self.tau))  # Quantity of stock j held
 
         for individual in range(X.shape[0]):
-            for j in range(n):
-                for t in range(tau):
+            for t in range(tau):
+                for j in range(n):
                     for binary_decision_i in range(2):
                         if y[individual, j, t, binary_decision_i] > 0:
                             if x[individual, j, t, binary_decision_i] > 0:
@@ -122,10 +122,10 @@ class PortfolioOptimizationProblem(Problem):
 
 
         # Objective 2: Maximize theta_tau
-        theta = np.zeros((X.shape[0], self.tau))
+        theta = np.zeros((X.shape[0], self.tau+1))
         theta[:, 0] = self.Theta
         for individual in range(POPULATION_SIZE):
-            for t in range(1, self.tau):
+            for t in range(1, self.tau+1):
                 for j in range(n):
                     term1 = (1 + self.alpha) * (theta[individual, t-1] - np.sum((1 + self.xi) * self.C[j, t-1] * y[individual, j, t-1, 0]))
                     term2 = np.sum((1 - self.xi) * self.C[j, t-1] * y[individual, j, t-1, 1])
