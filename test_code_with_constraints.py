@@ -124,12 +124,13 @@ class PortfolioOptimizationProblem(Problem):
         # Objective 2: Maximize theta_tau
         theta = np.zeros((X.shape[0], self.tau))
         theta[:, 0] = self.Theta
-        for t in range(1, self.tau):
-            for j in range(n):
-                term1 = (1 + self.alpha) * (theta[:, t-1] - np.sum((1 + self.xi) * self.C[j, t-1] * y[:, j, t-1, 0]))
-                term2 = np.sum((1 - self.xi) * self.C[j, t-1] * y[:, j, t-1, 1])
-                term3 = np.sum(self.D[j, t-1] * q[:, j, t-2]) if t > 1 else 0
-                theta[:, t] = term1 + term2 + term3
+        for individual in range(POPULATION_SIZE):
+            for t in range(1, self.tau):
+                for j in range(n):
+                    term1 = (1 + self.alpha) * (theta[individual, t-1] - np.sum((1 + self.xi) * self.C[j, t-1] * y[individual, j, t-1, 0]))
+                    term2 = np.sum((1 - self.xi) * self.C[j, t-1] * y[individual, j, t-1, 1])
+                    term3 = np.sum(self.D[j, t-1] * q[individual, j, t-2]) if t > 1 else 0
+                    theta[individual, t] = term1 + term2 + term3
 
         # Objective 1: Minimize CVaR
         CVaR_t = np.zeros((X.shape[0], self.tau))
