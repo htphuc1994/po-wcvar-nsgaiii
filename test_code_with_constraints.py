@@ -12,7 +12,7 @@ from pymoo.util.nds.non_dominated_sorting import NonDominatedSorting
 from assets_returns import *
 from constants import REFERENCES_POINTS_NUM, POPULATION_SIZE, TERMINATION_GEN_NUM, MAX_STOCKS, DURATION, \
     TAIL_PROBABILITY_EPSILON, BANK_INTEREST_RATE, TRANS_FEE, INITIAL_CASH, INVESTMENT_INTEREST_EXPECTED, \
-    BENCHMARK_FINAL_RETURN
+    BENCHMARK_FINAL_RETURN, LOT_SIZE
 from handle_matrix_inputs_for_constraints_based_sol import C, D, Q, stock_returns, stock_data, LEN_STOCK_DATA
 from wavelet_cvar_utils import cal_po_wCVaR
 
@@ -98,21 +98,19 @@ class PortfolioOptimizationProblem(Problem):
         q = np.zeros((X.shape[0], self.n, self.tau))  # Quantity of stock j held
 
         # Calculate q
-        for t in range(0, self.tau):
-            if t <= 0:
-                q[:, :, t] = y[:, :, t, 0] - y[:, :, t, 1]
-            else:
-                q[:, :, t] = q[:, :, t-1] + y[:, :, t, 0] - y[:, :, t, 1]
-
-        # for individual in range(X.shape[0]):
-        #     for t in range(tau):
-        #         for j in range(n):
-        #             for binary_decision_i in range(2):
-        #                 if y[individual, j, t, binary_decision_i] > 0:
-        #                     if x[individual, j, t, binary_decision_i] > 0:
-        #                         y[individual, j, t, binary_decision_i] = 1
-        #                     else:
-        #                         y[individual, j, t, binary_decision_i] = 0
+        for i in range(POPULATION_SIZE):
+            for t in range(0, self.tau):
+                for j in range(LEN_STOCK_DATA):
+                    y_0 = 0
+                    y_1 = 0
+                    if x[i, j, t, 0] > 0:
+                        y_0 = y[i, j, t, 0]
+                    if x[i, j, t, 1] > 0:
+                        y_1 = y[i, j, t, 1]
+                    if t <= 0:
+                        q[i, j, t] = y_0 - y_1
+                    else:
+                        q[i, j, t] = q[i, j, t-1] + y_0 - y_1
 
         # Objective 2: Maximize theta_tau
         theta = np.zeros((X.shape[0], self.tau+1))

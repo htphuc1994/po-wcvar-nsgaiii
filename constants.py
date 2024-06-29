@@ -1,6 +1,6 @@
 import math
 
-INITIAL_CASH = 1000000  # 1 BLN VND # NOTE if change plz update the same variable at nsga3.py as well, because they are two seperate projects
+INITIAL_CASH = 100000  # 1 BLN VND # NOTE if change plz update the same variable at nsga3.py as well, because they are two seperate projects
 BANK_INTEREST_RATE = 0.0045  # NOTE if change plz update the same variable at nsga3.py as well, because they are two seperate projects
 DURATION = 4  # 6 MONTHS # NOTE if change plz update the same variable at nsga3.py as well, because they are two seperate projects
 WAVELET_LEVEL = 1
@@ -13,8 +13,10 @@ BANK_INTEREST_RATE_AFTER_N_INVESTMENT_PERIOD = math.pow(1+BANK_INTEREST_RATE, DU
 BENCHMARK_FINAL_RETURN = (BANK_INTEREST_RATE_AFTER_N_INVESTMENT_PERIOD + 1) * INITIAL_CASH
 
 MAX_STOCKS = 16  # CARDINALITY CONSTRAINT
-TERMINATION_GEN_NUM = 1379
+TERMINATION_GEN_NUM = 10000
 TAIL_PROBABILITY_EPSILON = 0.1  # can change to 10%, 2.5%, and 1%
+
+LOT_SIZE = 100
 
 POPULATION_SIZE = 379
 REFERENCES_POINTS_NUM = 379
