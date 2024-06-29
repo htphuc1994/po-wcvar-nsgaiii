@@ -1,4 +1,7 @@
 import numpy as np
+import sys
+import time
+import datetime
 from pymoo.algorithms.moo.nsga3 import NSGA3, BANK_INTEREST_RATE_AFTER_N_INVESTMENT_PERIOD, hop
 from pymoo.util.ref_dirs import get_reference_directions
 from pymoo.optimize import minimize
@@ -230,23 +233,54 @@ ref_dirs = get_reference_directions("energy", problem.n_obj, REFERENCES_POINTS_N
 # Initialize the algorithm with CustomRepair
 algorithm = NSGA3(pop_size=POPULATION_SIZE, ref_dirs=ref_dirs, repair=CustomRepair())
 
-# Minimize the problem using NSGA-III
-res = minimize(problem,
-               algorithm,
-               termination=('n_gen', TERMINATION_GEN_NUM),
-               seed=1,
-               save_history=True,
-               verbose=True)
-# Print the results
-print("Best solution found: \nX = %s\nF = %s" % (res.X, res.F))
 
-F = res.pop.get("F")
-fronts, rank = NonDominatedSorting().do(F, return_rank=True, n_stop_if_ranked=POPULATION_SIZE)
-front_0 = [individual for individual in res.pop[fronts[0]] if
-           -individual.F[0] > BANK_INTEREST_RATE_AFTER_N_INVESTMENT_PERIOD]
-len_front_0 = len(front_0)
-if len_front_0 <= 0:
-    print("No HOP solution found.")
-hop_solution = front_0[hop(front_0, np.arange(len_front_0))[0]]
-print("Objectives =", ["%.6f" % v for v in hop_solution.F])
-print("Solution details =", ["%.1f" % v for v in hop_solution.X])
+def m_solve():
+    # Minimize the problem using NSGA-III
+    res = minimize(problem,
+                   algorithm,
+                   termination=('n_gen', TERMINATION_GEN_NUM),
+                   seed=1,
+                   save_history=True,
+                   verbose=True)
+    # Print the results
+    print("Best solution found: \nX = %s\nF = %s" % (res.X, res.F))
+
+    F = res.pop.get("F")
+    fronts, rank = NonDominatedSorting().do(F, return_rank=True, n_stop_if_ranked=POPULATION_SIZE)
+    front_0 = [individual for individual in res.pop[fronts[0]] if
+               -individual.F[0] > BANK_INTEREST_RATE_AFTER_N_INVESTMENT_PERIOD]
+    len_front_0 = len(front_0)
+    if len_front_0 <= 0:
+        print("No HOP solution found.")
+        return
+    hop_solution = front_0[hop(front_0, np.arange(len_front_0))[0]]
+    print("Objectives =", ["%.6f" % v for v in hop_solution.F])
+    print("Solution details =", ["%.1f" % v for v in hop_solution.X])
+
+
+# Open a file in write mode
+def execute():
+    timestamp = datetime.datetime.now().strftime("%d%m%Y%H%M%S")
+    unique_filename = f"output-{timestamp}.txt"
+    with open("output/constraints-violations-restrain" + unique_filename, 'w') as f:
+        start = time.time()
+        # Save the original standard output
+        original_stdout = sys.stdout
+
+        # Redirect standard output to the file
+        sys.stdout = f
+        print("Starting to write..")
+        m_solve()
+
+        end = time.time()
+        print("The time of execution of above program is :",
+              (end - start) * 10 ** 3, "ms")
+
+        sys.stdout = original_stdout
+
+
+if __name__ == "__main__":
+    for i in range(30):
+        print(f"Starting loop i={i}...")
+        execute()
+    print("DONE - Thank you")
