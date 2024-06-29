@@ -13,21 +13,9 @@ from assets_returns import *
 from constants import REFERENCES_POINTS_NUM, POPULATION_SIZE, TERMINATION_GEN_NUM, MAX_STOCKS, DURATION, \
     TAIL_PROBABILITY_EPSILON, BANK_INTEREST_RATE, TRANS_FEE, INITIAL_CASH, INVESTMENT_INTEREST_EXPECTED, \
     BENCHMARK_FINAL_RETURN
-from handle_matrix_inputs_for_constraints_based_sol import C, D, Q, stocks_len
-from stock_data_input_100 import STOCK_DATA_2023_INPUT_100_STOCKS
+from handle_matrix_inputs_for_constraints_based_sol import C, D, Q, stock_returns, stock_data, LEN_STOCK_DATA
 from wavelet_cvar_utils import cal_po_wCVaR
 
-stock_data = STOCK_DATA_2023_INPUT_100_STOCKS
-LEN_STOCK_DATA = len(stock_data)
-# stock_returns = np.column_stack((
-#     ABT, ACB, ACL, AGF, ALT, ANV, ASP, B82, BBC, BBS, BCC, BLF, BMC, BMI, BMP, BPC))
-stock_returns = np.column_stack((
-    ABT, ACB, ACL, AGF, ALT, ANV, ASP, B82, BBC, BBS, BCC, BLF, BMC, BMI, BMP, BPC, BST, BTS, BVS,
-    CAN, CAP, CCM, CDC, CID, CII, CJC, CLC, CMC, COM, CTB, CTC, CTN, DAC, DAE, DBC, DC4, DCS, DHA,
-    DHG, DHT, DIC, DMC, DPC, DPM, DPR, DQC, DRC, DST, DTC, DTT, DXP, DXV, EBS, FMC, FPT, GIL, GMC,
-    GMD, GTA, HAG, HAP, HAS, HAX, HBC, HCC, HCT, HDC, HEV, HHC, HJS, HMC, HPG, HRC, HSG, HSI, HT1,
-    HTP, HTV, HUT, ICF, IMP, ITA, KBC, KDC, KHP, KKC, KMR, KSH, L10, L18, L43, L61, L62, LAF, LBE,
-    LBM, LCG, LGC, LSS, LTC))
 
 class CustomRepair(Repair):
     def _do(self, problem, pop, **kwargs):
@@ -92,7 +80,7 @@ class PortfolioOptimizationProblem(Problem):
         #         + tau  # sum_{j=1}^nz_{j,t} <= K
         #         + n  # dispose of all investments
         # )
-        n_constr = 4210
+        n_constr = 778
 
         super().__init__(n_var=n_vars,  # Number of decision variables
                          n_obj=DURATION,  # Number of objectives
@@ -109,20 +97,22 @@ class PortfolioOptimizationProblem(Problem):
         y = X[:, 1, :, :, :]  # Amount of stock j purchased (i=0) or sold (i=1)
         q = np.zeros((X.shape[0], self.n, self.tau))  # Quantity of stock j held
 
-        for individual in range(X.shape[0]):
-            for t in range(tau):
-                for j in range(n):
-                    for binary_decision_i in range(2):
-                        if y[individual, j, t, binary_decision_i] > 0:
-                            if x[individual, j, t, binary_decision_i] > 0:
-                                y[individual, j, t, binary_decision_i] = 1
-                            else:
-                                y[individual, j, t, binary_decision_i] = 0
-
         # Calculate q
-        for t in range(1, self.tau):
-            q[:, :, t] = q[:, :, t-1] + y[:, :, t, 0] - y[:, :, t, 1]
+        for t in range(0, self.tau):
+            if t <= 0:
+                q[:, :, t] = y[:, :, t, 0] - y[:, :, t, 1]
+            else:
+                q[:, :, t] = q[:, :, t-1] + y[:, :, t, 0] - y[:, :, t, 1]
 
+        # for individual in range(X.shape[0]):
+        #     for t in range(tau):
+        #         for j in range(n):
+        #             for binary_decision_i in range(2):
+        #                 if y[individual, j, t, binary_decision_i] > 0:
+        #                     if x[individual, j, t, binary_decision_i] > 0:
+        #                         y[individual, j, t, binary_decision_i] = 1
+        #                     else:
+        #                         y[individual, j, t, binary_decision_i] = 0
 
         # Objective 2: Maximize theta_tau
         theta = np.zeros((X.shape[0], self.tau+1))
@@ -163,54 +153,60 @@ class PortfolioOptimizationProblem(Problem):
         constraints.append((-theta[:, :]).reshape(X.shape[0], -1))
 
         # Constraint 1: x_{1,j,0} = y_{1,j,0} = 0
-        constraints.append((-x[:, :, 0, 1]).reshape(X.shape[0], -1))  # Selling constraint for x
-        constraints.append((-y[:, :, 0, 1]).reshape(X.shape[0], -1))  # Selling constraint for y
+        constraints.append((x[:, :, 0, 1]).reshape(X.shape[0], -1))  # Selling constraint for x
+        constraints.append((y[:, :, 0, 1]).reshape(X.shape[0], -1))  # Selling constraint for y
 
-        # Constraint: q_{j,0} = y_{0,j,0}
+        # Constraint 2: q_{j,0} = y_{0,j,0}
         constraints.append((q[:, :, 0] - y[:, :, 0, 0]).reshape(X.shape[0], -1))
 
-        # Constraint: theta_{0} = Theta
+        # Constraint 3: theta_{0} = Theta
         constraints.append((theta[:, 0] - self.Theta).reshape(X.shape[0], -1))
 
-        # Constraint: y_{1,j,t} <= q_{j,t-1}
+        # Constraint 4: y_{1,j,t} <= q_{j,t-1}
         for t in range(1, self.tau):
             constraints.append((y[:, :, t, 1] - q[:, :, t-1]).reshape(X.shape[0], -1))
 
-        # Constraint: sum_{j=1}^{n} (1+\xi)C_{j,t}y_{0,j,t} <= theta_t
+        # Constraint 5: sum_{j=1}^{n} (1+\xi)C_{j,t}y_{0,j,t} <= theta_t
         for t in range(self.tau):
             for j in range(n):
                 constraints.append((np.sum((1 + self.xi) * self.C[j, t] * y[:, j, t, 0]) - theta[:, t]).reshape(X.shape[0], -1))
 
-        # Constraint: y_{i,j,t} <= Q_{j,t}
+        # Constraint 6: y_{i,j,t} <= Q_{j,t}
         for t in range(self.tau):
             for j in range(n):
-                for i in range(2):
-                    constraints.append((y[:, j, t, i] - self.Q[j, t]).reshape(X.shape[0], -1))
+                for b in range(2):
+                    constraints.append((y[:, j, t, b] - self.Q[j, t]).reshape(X.shape[0], -1))
 
-        # Constraint: y_{i,j,t} <= x_{i,j,t} * INF
+        # Constraint 7: x_{0,j,t} + x_{1,j,t} \leq 1
         for t in range(self.tau):
-            for i in range(2):
-                constraints.append((y[:, :, t, i] - x[:, :, t, i] * self.INF).reshape(X.shape[0], -1))
+            constraints.append((x[:, :, t, 0] + x[:, :, t, 1] - 1).reshape(X.shape[0], -1))
 
-        # Constraint: q_{j,t} = q_{j,t-1} + y_{0,j,t} - y_{1,j,t}
+        # Constraint 8: y_{i,j,t} <= x_{i,j,t} * INF
+        for t in range(self.tau):
+            for b in range(2):
+                constraints.append((y[:, :, t, b] - x[:, :, t, b] * self.INF).reshape(X.shape[0], -1))
+
+        # Constraint 9: q_{j,t} = q_{j,t-1} + y_{0,j,t} - y_{1,j,t}
         for t in range(1, self.tau):
             constraints.append((q[:, :, t] - (q[:, :, t-1] + y[:, :, t, 0] - y[:, :, t, 1])).reshape(X.shape[0], -1))
 
         # z_{j,t} = 0 if q_{j,t} <= 0, else 1
         z = np.where(q > 0, 1, 0)
 
-        # Constraint: sum_{j=1}^nz_{j,t} <= K
+        # Constraint 10: sum_{j=1}^nz_{j,t} <= K
         for t in range(self.tau):
             constraints.append((np.sum(z[:, :, t], axis=1) - self.K).reshape(X.shape[0], -1))
 
-        # Constraint: dispose of all investments
+        # Constraint: dispose of all investments \tau - 1
         constraints.append((y[:, :, self.tau-1, 1] - q[:, :, self.tau-2]).reshape(X.shape[0], -1))
+        constraints.append((q[:, :, self.tau-1]).reshape(X.shape[0], -1))
+        constraints.append((x[:, :, self.tau-1, 0]).reshape(X.shape[0], -1))  # cannot buy
 
         out["G"] = np.hstack(constraints)
 
 
 # Define the parameters (example values)
-n = stocks_len  # Stock quantity
+n = LEN_STOCK_DATA  # Stock quantity
 K = MAX_STOCKS  # Preferred quantity of stock kinds to be retained
 tau = DURATION  # Decision-making period in months
 epsilon = TAIL_PROBABILITY_EPSILON  # Tail probability
@@ -265,18 +261,18 @@ def execute():
     with open("output/constraints-violations-restrain" + unique_filename, 'w') as f:
         start = time.time()
         # Save the original standard output
-        original_stdout = sys.stdout
-
-        # Redirect standard output to the file
-        sys.stdout = f
-        print("Starting to write..")
+        # original_stdout = sys.stdout
+        #
+        # # Redirect standard output to the file
+        # sys.stdout = f
+        # print("Starting to write..")
         m_solve()
 
         end = time.time()
         print("The time of execution of above program is :",
               (end - start) * 10 ** 3, "ms")
 
-        sys.stdout = original_stdout
+        # sys.stdout = original_stdout
 
 
 if __name__ == "__main__":
