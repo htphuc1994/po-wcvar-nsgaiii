@@ -92,7 +92,7 @@ class PortfolioOptimizationProblem(Problem):
         #         + tau  # sum_{j=1}^nz_{j,t} <= K
         #         + n  # dispose of all investments
         # )
-        n_constr = 6214
+        n_constr = 4210
 
         super().__init__(n_var=n_vars,  # Number of decision variables
                          n_obj=DURATION,  # Number of objectives
