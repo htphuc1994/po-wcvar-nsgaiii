@@ -1,5 +1,5 @@
-input_file = 'output/output-01072024213446.txt'  # Replace with your input file path
-output_file = 'output/only-retain-valid-individuals/04-months-100-stocks-no-cardinality/output-refined.txt'  # Replace with your output file path
+input_file = 'output/output-02072024162732.txt'  # Replace with your input file path
+output_file = 'output/out-refined.txt'  # Replace with your output file path
 patterns = ['len(fronts)', '========', 'n_gen  |  n_eval', '     ']  # The pattern to look for
 
 with open(input_file, 'r') as infile, open(output_file, 'w') as outfile:

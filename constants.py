@@ -1,9 +1,9 @@
 import math
 
-INITIAL_CASH = 100000  # 1 BLN VND # NOTE if change plz update the same variable at nsga3.py as well, because they are two seperate projects
+INITIAL_CASH = 10000000  # 1 BLN VND # NOTE if change plz update the same variable at nsga3.py as well, because they are two seperate projects
 BANK_INTEREST_RATE = 0.0045  # NOTE if change plz update the same variable at nsga3.py as well, because they are two seperate projects
 DURATION = 4  # 6 MONTHS # NOTE if change plz update the same variable at nsga3.py as well, because they are two seperate projects
-WAVELET_LEVEL = 1
+WAVELET_LEVEL = 3
 
 
 INVESTMENT_INTEREST_EXPECTED = 0.3

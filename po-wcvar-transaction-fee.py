@@ -751,7 +751,7 @@ class PortfolioOptimizationProblem(Problem):
             # if total_cash[i] > initial_cash * (1 + bank_interest_rate):
             #     print(f"ACK>> OK total_cash[{i}] = {cash}")
 
-            if cash > (1 + INVESTMENT_INTEREST_EXPECTED) * initial_cash:
+            if cash > (1 + BANK_INTEREST_RATE_AFTER_N_INVESTMENT_PERIOD) * initial_cash:
                 print_detail(log, cash, stock_holdings, stock_data)
 
         # Store the manipulated solution using the index of the solution
@@ -833,7 +833,7 @@ def execute():
 
         sys.stdout = original_stdout
 
-for i in range(30):
+for i in range(3):
     print(f"Starting loop i={i}...")
     execute()
 print("DONE - Thank you")
