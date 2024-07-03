@@ -1,0 +1,2446 @@
+Objectives = ['-0.16979', '0.85916', '0.83659', '-0.07605', '-0.28419', '-0.23761', '-0.21670', '-0.21267', '-0.20675', '-0.23106', '-0.27787', '-0.23981']
+The time of execution of above program is : 1551944.8907375336 ms
+
+ACK FOUND > 1; len(fronts)=5
+==========================================================================================
+n_gen  |  n_eval  | n_nds  |     cv_min    |     cv_avg    |      eps      |   indicator
+==========================================================================================
+     1 |      339 |      5 |  0.000000E+00 |  8.637182E+03 |             - |             -
+ACK FOUND > 1; len(fronts)=2
+     2 |      678 |      6 |  0.000000E+00 |  0.000000E+00 |  0.1193887477 |         ideal
+ACK FOUND > 1; len(fronts)=2
+     3 |     1017 |      9 |  0.000000E+00 |  0.000000E+00 |  0.1252380553 |         ideal
+ACK FOUND > 1; len(fronts)=1
+     4 |     1356 |      5 |  0.000000E+00 |  0.000000E+00 |  1.5425225648 |         ideal
+ACK FOUND > 1; len(fronts)=1
+     5 |     1695 |      8 |  0.000000E+00 |  0.000000E+00 |  0.4887630264 |         ideal
+ACK FOUND > 1; len(fronts)=1
+     6 |     2034 |     11 |  0.000000E+00 |  0.000000E+00 |  0.0937312906 |         ideal
+ACK FOUND > 1; len(fronts)=1
+     7 |     2373 |     14 |  0.000000E+00 |  0.000000E+00 |  0.5980665075 |         ideal
+ACK FOUND > 1; len(fronts)=1
+     8 |     2712 |     16 |  0.000000E+00 |  0.000000E+00 |  0.2194137945 |         ideal
+ACK FOUND > 1; len(fronts)=1
+     9 |     3051 |     16 |  0.000000E+00 |  0.000000E+00 |  0.1303866206 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    10 |     3390 |     14 |  0.000000E+00 |  0.000000E+00 |  0.1093150822 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    11 |     3729 |     16 |  0.000000E+00 |  0.000000E+00 |  0.2193362143 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    12 |     4068 |     14 |  0.000000E+00 |  0.000000E+00 |  0.2685623191 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    13 |     4407 |      8 |  0.000000E+00 |  0.000000E+00 |  0.3529971369 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    14 |     4746 |      7 |  0.000000E+00 |  0.000000E+00 |  0.8068226230 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    15 |     5085 |      8 |  0.000000E+00 |  0.000000E+00 |  0.2956324431 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    16 |     5424 |     10 |  0.000000E+00 |  0.000000E+00 |  0.1295308203 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    17 |     5763 |     10 |  0.000000E+00 |  0.000000E+00 |  0.1488057514 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    18 |     6102 |     11 |  0.000000E+00 |  0.000000E+00 |  0.2729453019 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    19 |     6441 |      5 |  0.000000E+00 |  0.000000E+00 |  0.3405785011 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    20 |     6780 |      9 |  0.000000E+00 |  0.000000E+00 |  0.3525036206 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    21 |     7119 |      6 |  0.000000E+00 |  0.000000E+00 |  0.7241163719 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    22 |     7458 |      8 |  0.000000E+00 |  0.000000E+00 |  0.1747346344 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    23 |     7797 |      6 |  0.000000E+00 |  0.000000E+00 |  0.2566981357 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    24 |     8136 |      7 |  0.000000E+00 |  0.000000E+00 |  0.3559876793 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    25 |     8475 |      7 |  0.000000E+00 |  0.000000E+00 |  0.2677208655 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    26 |     8814 |      7 |  0.000000E+00 |  0.000000E+00 |  0.4730524354 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    27 |     9153 |      9 |  0.000000E+00 |  0.000000E+00 |  0.1940311418 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    28 |     9492 |      9 |  0.000000E+00 |  0.000000E+00 |  0.1318157266 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    29 |     9831 |      9 |  0.000000E+00 |  0.000000E+00 |  0.4758872330 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    30 |    10170 |      9 |  0.000000E+00 |  0.000000E+00 |  0.4518237973 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    31 |    10509 |     10 |  0.000000E+00 |  0.000000E+00 |  0.6232519166 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    32 |    10848 |     13 |  0.000000E+00 |  0.000000E+00 |  0.7433938067 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    33 |    11187 |     16 |  0.000000E+00 |  0.000000E+00 |  0.0287787484 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    34 |    11526 |     14 |  0.000000E+00 |  0.000000E+00 |  0.0734277688 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    35 |    11865 |     10 |  0.000000E+00 |  0.000000E+00 |  0.1982153114 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    36 |    12204 |     12 |  0.000000E+00 |  0.000000E+00 |  0.1194080613 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    37 |    12543 |     15 |  0.000000E+00 |  0.000000E+00 |  0.0080655730 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    38 |    12882 |     16 |  0.000000E+00 |  0.000000E+00 |  0.1259547799 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    39 |    13221 |     15 |  0.000000E+00 |  0.000000E+00 |  0.3245865648 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    40 |    13560 |     10 |  0.000000E+00 |  0.000000E+00 |  0.2724473767 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    41 |    13899 |      9 |  0.000000E+00 |  0.000000E+00 |  1.3157421001 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    42 |    14238 |     11 |  0.000000E+00 |  0.000000E+00 |  0.6314167826 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    43 |    14577 |      7 |  0.000000E+00 |  0.000000E+00 |  0.1078271149 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    44 |    14916 |     11 |  0.000000E+00 |  0.000000E+00 |  0.0959322926 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    45 |    15255 |     11 |  0.000000E+00 |  0.000000E+00 |  0.1912768415 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    46 |    15594 |     10 |  0.000000E+00 |  0.000000E+00 |  0.2452964021 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    47 |    15933 |     15 |  0.000000E+00 |  0.000000E+00 |  0.1974310554 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    48 |    16272 |     14 |  0.000000E+00 |  0.000000E+00 |  0.1856990887 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    49 |    16611 |     16 |  0.000000E+00 |  0.000000E+00 |  0.0560016316 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    50 |    16950 |     18 |  0.000000E+00 |  0.000000E+00 |  0.2105428048 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    51 |    17289 |     18 |  0.000000E+00 |  0.000000E+00 |  0.3275530910 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    52 |    17628 |     19 |  0.000000E+00 |  0.000000E+00 |  0.2682056429 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    53 |    17967 |     18 |  0.000000E+00 |  0.000000E+00 |  0.1288000057 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    54 |    18306 |     17 |  0.000000E+00 |  0.000000E+00 |  0.5783688815 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    55 |    18645 |     19 |  0.000000E+00 |  0.000000E+00 |  0.1843935193 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    56 |    18984 |     18 |  0.000000E+00 |  0.000000E+00 |  0.0783495089 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    57 |    19323 |     18 |  0.000000E+00 |  0.000000E+00 |  0.1151476044 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    58 |    19662 |     15 |  0.000000E+00 |  0.000000E+00 |  0.1376457011 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    59 |    20001 |     14 |  0.000000E+00 |  0.000000E+00 |  1.5431793665 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    60 |    20340 |     17 |  0.000000E+00 |  0.000000E+00 |  0.5498938092 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    61 |    20679 |     19 |  0.000000E+00 |  0.000000E+00 |  0.0251923097 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    62 |    21018 |     22 |  0.000000E+00 |  0.000000E+00 |  0.1008443418 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    63 |    21357 |     19 |  0.000000E+00 |  0.000000E+00 |  0.2607935720 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    64 |    21696 |     17 |  0.000000E+00 |  0.000000E+00 |  0.3712255196 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    65 |    22035 |     21 |  0.000000E+00 |  0.000000E+00 |  0.2037456018 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    66 |    22374 |     22 |  0.000000E+00 |  0.000000E+00 |  0.3090582477 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    67 |    22713 |     13 |  0.000000E+00 |  0.000000E+00 |  0.2405074995 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    68 |    23052 |     13 |  0.000000E+00 |  0.000000E+00 |  1.3223482805 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    69 |    23391 |     16 |  0.000000E+00 |  0.000000E+00 |  0.3660257424 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    70 |    23730 |     14 |  0.000000E+00 |  0.000000E+00 |  0.4628593889 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    71 |    24069 |     15 |  0.000000E+00 |  0.000000E+00 |  0.0719126659 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    72 |    24408 |     14 |  0.000000E+00 |  0.000000E+00 |  0.1407291308 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    73 |    24747 |     11 |  0.000000E+00 |  0.000000E+00 |  0.2673477075 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    74 |    25086 |     14 |  0.000000E+00 |  0.000000E+00 |  0.4703599055 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    75 |    25425 |     15 |  0.000000E+00 |  0.000000E+00 |  0.5910237572 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    76 |    25764 |     13 |  0.000000E+00 |  0.000000E+00 |  0.2998469661 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    77 |    26103 |     16 |  0.000000E+00 |  0.000000E+00 |  0.2044237278 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    78 |    26442 |     18 |  0.000000E+00 |  0.000000E+00 |  0.3566980687 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    79 |    26781 |     20 |  0.000000E+00 |  0.000000E+00 |  0.2742043214 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    80 |    27120 |     12 |  0.000000E+00 |  0.000000E+00 |  0.8488663776 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    81 |    27459 |     15 |  0.000000E+00 |  0.000000E+00 |  0.2484967093 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    82 |    27798 |     15 |  0.000000E+00 |  0.000000E+00 |  0.2693163913 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    83 |    28137 |      9 |  0.000000E+00 |  0.000000E+00 |  0.0818940767 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    84 |    28476 |     16 |  0.000000E+00 |  0.000000E+00 |  0.5384883006 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    85 |    28815 |     13 |  0.000000E+00 |  0.000000E+00 |  0.5377018398 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    86 |    29154 |     12 |  0.000000E+00 |  0.000000E+00 |  0.5074889326 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    87 |    29493 |     10 |  0.000000E+00 |  0.000000E+00 |  0.6539349816 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    88 |    29832 |     13 |  0.000000E+00 |  0.000000E+00 |  0.4265532137 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    89 |    30171 |      7 |  0.000000E+00 |  0.000000E+00 |  1.4720690440 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    90 |    30510 |     15 |  0.000000E+00 |  0.000000E+00 |  0.5003586849 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    91 |    30849 |     12 |  0.000000E+00 |  0.000000E+00 |  0.3169991352 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    92 |    31188 |     12 |  0.000000E+00 |  0.000000E+00 |  0.2066731204 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    93 |    31527 |     14 |  0.000000E+00 |  0.000000E+00 |  0.0421476814 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    94 |    31866 |     13 |  0.000000E+00 |  0.000000E+00 |  0.2908690254 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    95 |    32205 |     12 |  0.000000E+00 |  0.000000E+00 |  0.2387993842 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    96 |    32544 |     14 |  0.000000E+00 |  0.000000E+00 |  0.0818357305 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    97 |    32883 |     11 |  0.000000E+00 |  0.000000E+00 |  0.5543797069 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    98 |    33222 |     10 |  0.000000E+00 |  0.000000E+00 |  0.2462605721 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    99 |    33561 |     17 |  0.000000E+00 |  0.000000E+00 |  0.0715040500 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   100 |    33900 |     15 |  0.000000E+00 |  0.000000E+00 |  0.0927810802 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   101 |    34239 |     13 |  0.000000E+00 |  0.000000E+00 |  0.0374138646 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   102 |    34578 |     15 |  0.000000E+00 |  0.000000E+00 |  0.0388680692 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   103 |    34917 |     19 |  0.000000E+00 |  0.000000E+00 |  0.4791368696 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   104 |    35256 |     18 |  0.000000E+00 |  0.000000E+00 |  0.9198901623 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   105 |    35595 |     19 |  0.000000E+00 |  0.000000E+00 |  0.0802613081 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   106 |    35934 |     24 |  0.000000E+00 |  0.000000E+00 |  0.0165449171 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   107 |    36273 |     25 |  0.000000E+00 |  0.000000E+00 |  0.0552791876 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   108 |    36612 |     22 |  0.000000E+00 |  0.000000E+00 |  0.1383694603 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   109 |    36951 |     25 |  0.000000E+00 |  0.000000E+00 |  0.0233833096 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   110 |    37290 |     28 |  0.000000E+00 |  0.000000E+00 |  0.0204735416 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   111 |    37629 |     26 |  0.000000E+00 |  0.000000E+00 |  0.0196621226 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   112 |    37968 |     24 |  0.000000E+00 |  0.000000E+00 |  0.0376646371 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   113 |    38307 |     31 |  0.000000E+00 |  0.000000E+00 |  0.1118330233 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   114 |    38646 |     22 |  0.000000E+00 |  0.000000E+00 |  0.0849219751 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   115 |    38985 |     17 |  0.000000E+00 |  0.000000E+00 |  0.6197764485 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   116 |    39324 |     24 |  0.000000E+00 |  0.000000E+00 |  0.4010286073 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   117 |    39663 |     26 |  0.000000E+00 |  0.000000E+00 |  0.4715314027 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   118 |    40002 |     26 |  0.000000E+00 |  0.000000E+00 |  0.3204358411 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   119 |    40341 |     19 |  0.000000E+00 |  0.000000E+00 |  0.6610746213 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   120 |    40680 |     20 |  0.000000E+00 |  0.000000E+00 |  0.1482591233 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   121 |    41019 |     16 |  0.000000E+00 |  0.000000E+00 |  0.2579293311 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   122 |    41358 |     18 |  0.000000E+00 |  0.000000E+00 |  0.3089653779 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   123 |    41697 |     17 |  0.000000E+00 |  0.000000E+00 |  0.4556275397 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   124 |    42036 |     13 |  0.000000E+00 |  0.000000E+00 |  0.0868877523 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   125 |    42375 |     14 |  0.000000E+00 |  0.000000E+00 |  0.1537018716 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   126 |    42714 |     22 |  0.000000E+00 |  0.000000E+00 |  0.3478615101 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   127 |    43053 |     26 |  0.000000E+00 |  0.000000E+00 |  0.2661316736 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   128 |    43392 |     19 |  0.000000E+00 |  0.000000E+00 |  0.1422709815 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   129 |    43731 |     30 |  0.000000E+00 |  0.000000E+00 |  0.0470521024 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   130 |    44070 |     27 |  0.000000E+00 |  0.000000E+00 |  0.0366535371 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   131 |    44409 |     22 |  0.000000E+00 |  0.000000E+00 |  0.0116342394 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   132 |    44748 |     31 |  0.000000E+00 |  0.000000E+00 |  0.1243904249 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   133 |    45087 |     23 |  0.000000E+00 |  0.000000E+00 |  0.1420615174 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   134 |    45426 |     30 |  0.000000E+00 |  0.000000E+00 |  0.0976801192 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   135 |    45765 |     24 |  0.000000E+00 |  0.000000E+00 |  0.0732446213 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   136 |    46104 |     27 |  0.000000E+00 |  0.000000E+00 |  0.2876689286 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   137 |    46443 |     32 |  0.000000E+00 |  0.000000E+00 |  0.0661469941 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   138 |    46782 |     20 |  0.000000E+00 |  0.000000E+00 |  0.0057919052 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   139 |    47121 |     28 |  0.000000E+00 |  0.000000E+00 |  0.0711941048 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   140 |    47460 |     26 |  0.000000E+00 |  0.000000E+00 |  0.1503508928 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   141 |    47799 |     23 |  0.000000E+00 |  0.000000E+00 |  0.1307000271 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   142 |    48138 |     29 |  0.000000E+00 |  0.000000E+00 |  0.4336997873 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   143 |    48477 |     25 |  0.000000E+00 |  0.000000E+00 |  0.0433255425 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   144 |    48816 |     28 |  0.000000E+00 |  0.000000E+00 |  0.0869192942 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   145 |    49155 |     32 |  0.000000E+00 |  0.000000E+00 |  0.0572811858 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   146 |    49494 |     28 |  0.000000E+00 |  0.000000E+00 |  0.0772315762 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   147 |    49833 |     33 |  0.000000E+00 |  0.000000E+00 |  0.0164438211 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   148 |    50172 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0482689267 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   149 |    50511 |     29 |  0.000000E+00 |  0.000000E+00 |  0.1078543495 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   150 |    50850 |     27 |  0.000000E+00 |  0.000000E+00 |  0.0624094295 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   151 |    51189 |     23 |  0.000000E+00 |  0.000000E+00 |  0.0930694549 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   152 |    51528 |     25 |  0.000000E+00 |  0.000000E+00 |  0.0720804652 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   153 |    51867 |     25 |  0.000000E+00 |  0.000000E+00 |  0.0950930833 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   154 |    52206 |     26 |  0.000000E+00 |  0.000000E+00 |  0.1050860388 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   155 |    52545 |     24 |  0.000000E+00 |  0.000000E+00 |  0.1298527651 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   156 |    52884 |     23 |  0.000000E+00 |  0.000000E+00 |  0.0514871796 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   157 |    53223 |     28 |  0.000000E+00 |  0.000000E+00 |  0.2374850988 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   158 |    53562 |     25 |  0.000000E+00 |  0.000000E+00 |  0.2930163644 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   159 |    53901 |     28 |  0.000000E+00 |  0.000000E+00 |  0.2275390677 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   160 |    54240 |     25 |  0.000000E+00 |  0.000000E+00 |  0.0975841493 |             f
+ACK FOUND > 1; len(fronts)=1
+   161 |    54579 |     22 |  0.000000E+00 |  0.000000E+00 |  0.3608104392 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   162 |    54918 |     26 |  0.000000E+00 |  0.000000E+00 |  0.2673094792 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   163 |    55257 |     27 |  0.000000E+00 |  0.000000E+00 |  0.0550402418 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   164 |    55596 |     30 |  0.000000E+00 |  0.000000E+00 |  0.0384027991 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   165 |    55935 |     28 |  0.000000E+00 |  0.000000E+00 |  0.3939179417 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   166 |    56274 |     31 |  0.000000E+00 |  0.000000E+00 |  0.0158822447 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   167 |    56613 |     26 |  0.000000E+00 |  0.000000E+00 |  0.0153090207 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   168 |    56952 |     21 |  0.000000E+00 |  0.000000E+00 |  0.0212754995 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   169 |    57291 |     26 |  0.000000E+00 |  0.000000E+00 |  0.0396267049 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   170 |    57630 |     27 |  0.000000E+00 |  0.000000E+00 |  0.0412617730 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   171 |    57969 |     24 |  0.000000E+00 |  0.000000E+00 |  0.0032839905 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   172 |    58308 |     24 |  0.000000E+00 |  0.000000E+00 |  0.1914589240 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   173 |    58647 |     24 |  0.000000E+00 |  0.000000E+00 |  0.3144842996 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   174 |    58986 |     30 |  0.000000E+00 |  0.000000E+00 |  0.0336619171 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   175 |    59325 |     21 |  0.000000E+00 |  0.000000E+00 |  0.0325656934 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   176 |    59664 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0044661134 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   177 |    60003 |     33 |  0.000000E+00 |  0.000000E+00 |  0.0125600208 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   178 |    60342 |     28 |  0.000000E+00 |  0.000000E+00 |  0.0220464189 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   179 |    60681 |     32 |  0.000000E+00 |  0.000000E+00 |  0.0083703631 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   180 |    61020 |     27 |  0.000000E+00 |  0.000000E+00 |  0.1609483474 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   181 |    61359 |     26 |  0.000000E+00 |  0.000000E+00 |  0.1894202107 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   182 |    61698 |     29 |  0.000000E+00 |  0.000000E+00 |  0.0161807464 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   183 |    62037 |     28 |  0.000000E+00 |  0.000000E+00 |  0.0140727364 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   184 |    62376 |     22 |  0.000000E+00 |  0.000000E+00 |  0.0079916994 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   185 |    62715 |     27 |  0.000000E+00 |  0.000000E+00 |  0.0080560812 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   186 |    63054 |     28 |  0.000000E+00 |  0.000000E+00 |  0.0199448270 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   187 |    63393 |     29 |  0.000000E+00 |  0.000000E+00 |  0.3436311265 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   188 |    63732 |     31 |  0.000000E+00 |  0.000000E+00 |  0.2557481140 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   189 |    64071 |     28 |  0.000000E+00 |  0.000000E+00 |  0.3757249486 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   190 |    64410 |     25 |  0.000000E+00 |  0.000000E+00 |  0.2731105146 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   191 |    64749 |     27 |  0.000000E+00 |  0.000000E+00 |  0.3521019896 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   192 |    65088 |     23 |  0.000000E+00 |  0.000000E+00 |  0.0802382233 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   193 |    65427 |     24 |  0.000000E+00 |  0.000000E+00 |  0.1119082312 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   194 |    65766 |     24 |  0.000000E+00 |  0.000000E+00 |  0.0131854603 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   195 |    66105 |     23 |  0.000000E+00 |  0.000000E+00 |  0.0133616397 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   196 |    66444 |     21 |  0.000000E+00 |  0.000000E+00 |  0.1053521361 |             f
+ACK FOUND > 1; len(fronts)=1
+   197 |    66783 |     20 |  0.000000E+00 |  0.000000E+00 |  0.1020279721 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   198 |    67122 |     23 |  0.000000E+00 |  0.000000E+00 |  0.0925820167 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   199 |    67461 |     22 |  0.000000E+00 |  0.000000E+00 |  0.1254100791 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   200 |    67800 |     20 |  0.000000E+00 |  0.000000E+00 |  0.1025321440 |         ideal
+
+
+Month 1:
+  Buy: Stock ABT, Amount: 753
+  Buy: Stock ACB, Amount: 1782
+  Buy: Stock ACL, Amount: 346
+  Buy: Stock AGF, Amount: 3615
+  Buy: Stock ALT, Amount: 4127
+  Buy: Stock ANV, Amount: 1480
+  Buy: Stock ASP, Amount: 843
+  Buy: Stock B82, Amount: 9772
+  Buy: Stock BBC, Amount: 1600
+  Buy: Stock BBS, Amount: 2706
+  Buy: Stock BCC, Amount: 895
+  Buy: Stock BMC, Amount: 492469
+  Buy: Stock BMI, Amount: 10535
+  Buy: Stock BMP, Amount: 32438
+  Buy: Stock BPC, Amount: 0
+  Buy: Stock BST, Amount: 0
+  Buy: Stock BTS, Amount: 1
+  Buy: Stock BVS, Amount: 0
+  Buy: Stock CAN, Amount: 0
+  Buy: Stock CAP, Amount: 0
+  Buy: Stock CCM, Amount: 0
+  Buy: Stock CDC, Amount: 0
+  Buy: Stock CID, Amount: 0
+  Buy: Stock CII, Amount: 0
+  Buy: Stock CMC, Amount: 0
+  Buy: Stock CTC, Amount: 0
+  Buy: Stock CTN, Amount: 0
+  Buy: Stock DCS, Amount: 1
+  Buy: Stock DMC, Amount: 0
+  Buy: Stock DPC, Amount: 0
+  Buy: Stock DQC, Amount: 0
+  Buy: Stock DRC, Amount: 0
+  Buy: Stock DXV, Amount: 0
+  Buy: Stock FPT, Amount: 0
+  Buy: Stock HAP, Amount: 0
+  Buy: Stock HBC, Amount: 0
+  Buy: Stock HDC, Amount: 0
+  Buy: Stock HTP, Amount: 0
+  Buy: Stock ICF, Amount: 0
+  Buy: Stock IMP, Amount: 0
+  Buy: Stock ITA, Amount: 0
+  Buy: Stock KDC, Amount: 0
+  Buy: Stock KKC, Amount: 0
+  Buy: Stock L43, Amount: 0
+  Buy: Stock L62, Amount: 0
+  Buy: Stock LSS, Amount: 0
+  Dividends: 0.00
+  Bank Deposit: 0.87
+Month 2:
+  Buy: Stock ACB, Amount: 0
+  Buy: Stock AGF, Amount: 0
+  Buy: Stock B82, Amount: 0
+  Buy: Stock CDC, Amount: 0
+  Buy: Stock DTT, Amount: 0
+  Buy: Stock EBS, Amount: 0
+  Buy: Stock GMD, Amount: 0
+  Buy: Stock HCC, Amount: 0
+  Buy: Stock HDC, Amount: 0
+  Buy: Stock HJS, Amount: 0
+  Buy: Stock HMC, Amount: 0
+  Buy: Stock HT1, Amount: 0
+  Buy: Stock HTV, Amount: 0
+  Buy: Stock IMP, Amount: 0
+  Buy: Stock ITA, Amount: 0
+  Buy: Stock KBC, Amount: 0
+  Buy: Stock L10, Amount: 0
+  Buy: Stock LBE, Amount: 0
+  Buy: Stock LTC, Amount: 0
+  Sell: Stock ABT, Amount: 5.0
+  Sell: Stock ACL, Amount: 346.0
+  Sell: Stock AGF, Amount: 110.0
+  Sell: Stock ALT, Amount: 4127.0
+  Sell: Stock ANV, Amount: 1480.0
+  Sell: Stock ASP, Amount: 843.0
+  Sell: Stock BBC, Amount: 570.0
+  Sell: Stock BBS, Amount: 787.0
+  Sell: Stock BCC, Amount: 895.0
+  Sell: Stock BMC, Amount: 7279.0
+  Sell: Stock BMI, Amount: 831.0
+  Sell: Stock BMP, Amount: 1845.0
+  Sell: Stock BTS, Amount: 1.0
+  Dividends: 0.00
+  Bank Deposit: 0.87
+Month 3:
+  Buy: Stock ABT, Amount: 7075
+  Buy: Stock ACB, Amount: 1271
+  Buy: Stock ACL, Amount: 2452
+  Buy: Stock AGF, Amount: 2463
+  Buy: Stock ALT, Amount: 109
+  Buy: Stock ANV, Amount: 249
+  Buy: Stock ASP, Amount: 4
+  Buy: Stock B82, Amount: 1
+  Buy: Stock BLF, Amount: 0
+  Buy: Stock BPC, Amount: 0
+  Buy: Stock BVS, Amount: 0
+  Buy: Stock CAN, Amount: 0
+  Buy: Stock CAP, Amount: 0
+  Buy: Stock CID, Amount: 0
+  Buy: Stock COM, Amount: 0
+  Buy: Stock CTC, Amount: 0
+  Buy: Stock CTN, Amount: 0
+  Buy: Stock DTT, Amount: 0
+  Buy: Stock GMC, Amount: 0
+  Buy: Stock HRC, Amount: 0
+  Buy: Stock HUT, Amount: 0
+  Buy: Stock ICF, Amount: 0
+  Buy: Stock KBC, Amount: 0
+  Buy: Stock KMR, Amount: 0
+  Buy: Stock L43, Amount: 900
+  Sell: Stock ACB, Amount: 1467.0
+  Sell: Stock AGF, Amount: 68.0
+  Sell: Stock B82, Amount: 13.0
+  Sell: Stock BBS, Amount: 1919.0
+  Sell: Stock BMC, Amount: 485190.0
+  Sell: Stock BMI, Amount: 9704.0
+  Sell: Stock BMP, Amount: 30593.0
+  Sell: Stock DCS, Amount: 1.0
+  Dividends: 1496.00
+  Bank Deposit: 79865.23
+Month 4:
+  Buy: Stock ABT, Amount: 0
+  Buy: Stock AGF, Amount: 150
+  Buy: Stock ALT, Amount: 78
+  Buy: Stock ANV, Amount: 1
+  Buy: Stock ASP, Amount: 103
+  Buy: Stock B82, Amount: 2350
+  Buy: Stock BMC, Amount: 1327
+  Buy: Stock BMI, Amount: 9339
+  Buy: Stock BMP, Amount: 83710
+  Buy: Stock BPC, Amount: 73
+  Buy: Stock BST, Amount: 81
+  Buy: Stock BTS, Amount: 1341
+  Buy: Stock BVS, Amount: 1612
+  Buy: Stock CAN, Amount: 15348
+  Buy: Stock CAP, Amount: 14493
+  Buy: Stock CCM, Amount: 0
+  Buy: Stock CDC, Amount: 0
+  Buy: Stock CID, Amount: 0
+  Buy: Stock CII, Amount: 0
+  Buy: Stock CJC, Amount: 1
+  Buy: Stock CLC, Amount: 0
+  Buy: Stock CMC, Amount: 0
+  Buy: Stock COM, Amount: 0
+  Buy: Stock CTC, Amount: 0
+  Buy: Stock CTN, Amount: 0
+  Buy: Stock DAE, Amount: 0
+  Buy: Stock DBC, Amount: 0
+  Buy: Stock DCS, Amount: 42
+  Buy: Stock DHA, Amount: 0
+  Buy: Stock DHG, Amount: 0
+  Buy: Stock DIC, Amount: 0
+  Buy: Stock DMC, Amount: 0
+  Buy: Stock DPC, Amount: 1
+  Buy: Stock DPM, Amount: 0
+  Buy: Stock DPR, Amount: 0
+  Buy: Stock DRC, Amount: 0
+  Buy: Stock DST, Amount: 0
+  Buy: Stock DTC, Amount: 0
+  Buy: Stock DTT, Amount: 0
+  Buy: Stock DXP, Amount: 0
+  Buy: Stock GIL, Amount: 0
+  Buy: Stock GMC, Amount: 0
+  Buy: Stock GMD, Amount: 0
+  Buy: Stock GTA, Amount: 0
+  Buy: Stock HAG, Amount: 0
+  Buy: Stock HAS, Amount: 0
+  Buy: Stock HAX, Amount: 0
+  Buy: Stock HBC, Amount: 0
+  Buy: Stock HCC, Amount: 0
+  Buy: Stock HCT, Amount: 0
+  Buy: Stock HEV, Amount: 0
+  Buy: Stock HJS, Amount: 0
+  Buy: Stock HPG, Amount: 0
+  Buy: Stock HRC, Amount: 0
+  Buy: Stock HSG, Amount: 0
+  Buy: Stock HT1, Amount: 0
+  Buy: Stock HTP, Amount: 0
+  Buy: Stock HTV, Amount: 0
+  Buy: Stock ICF, Amount: 0
+  Buy: Stock IMP, Amount: 0
+  Buy: Stock ITA, Amount: 1
+  Buy: Stock KBC, Amount: 0
+  Buy: Stock KKC, Amount: 0
+  Buy: Stock L10, Amount: 0
+  Buy: Stock LCG, Amount: 0
+  Buy: Stock LSS, Amount: 0
+  Buy: Stock LTC, Amount: 0
+  Sell: Stock AGF, Amount: 233.0
+  Sell: Stock ALT, Amount: 104.0
+  Sell: Stock ASP, Amount: 6.0
+  Sell: Stock BST, Amount: 42.0
+  Sell: Stock BTS, Amount: 795.0
+  Sell: Stock DCS, Amount: 35.0
+  Sell: Stock ITA, Amount: 1.0
+  Dividends: 0.00
+  Bank Deposit: 2.24
+Month 5:
+  Buy: Stock ABT, Amount: 234
+  Buy: Stock ACB, Amount: 1
+  Buy: Stock ACL, Amount: 0
+  Buy: Stock AGF, Amount: 0
+  Buy: Stock ALT, Amount: 0
+  Buy: Stock ANV, Amount: 0
+  Buy: Stock ASP, Amount: 0
+  Buy: Stock B82, Amount: 2
+  Buy: Stock BBC, Amount: 0
+  Buy: Stock BBS, Amount: 0
+  Buy: Stock BCC, Amount: 0
+  Buy: Stock BMC, Amount: 0
+  Buy: Stock BMI, Amount: 0
+  Buy: Stock BMP, Amount: 0
+  Buy: Stock BPC, Amount: 0
+  Buy: Stock BST, Amount: 0
+  Buy: Stock BTS, Amount: 0
+  Buy: Stock BVS, Amount: 0
+  Buy: Stock CAP, Amount: 0
+  Buy: Stock CDC, Amount: 0
+  Buy: Stock CID, Amount: 0
+  Buy: Stock CII, Amount: 0
+  Buy: Stock CMC, Amount: 0
+  Buy: Stock COM, Amount: 0
+  Buy: Stock CTC, Amount: 0
+  Buy: Stock CTN, Amount: 0
+  Buy: Stock DAC, Amount: 0
+  Buy: Stock DBC, Amount: 0
+  Buy: Stock DC4, Amount: 0
+  Buy: Stock DCS, Amount: 0
+  Buy: Stock DHG, Amount: 0
+  Buy: Stock DHT, Amount: 0
+  Buy: Stock DIC, Amount: 0
+  Buy: Stock DMC, Amount: 0
+  Buy: Stock DPC, Amount: 0
+  Buy: Stock DPM, Amount: 0
+  Buy: Stock DPR, Amount: 0
+  Buy: Stock DTC, Amount: 0
+  Buy: Stock DXP, Amount: 0
+  Buy: Stock DXV, Amount: 0
+  Buy: Stock FMC, Amount: 0
+  Buy: Stock FPT, Amount: 0
+  Buy: Stock GIL, Amount: 0
+  Buy: Stock GTA, Amount: 0
+  Buy: Stock HAG, Amount: 0
+  Buy: Stock HAP, Amount: 0
+  Buy: Stock HAS, Amount: 0
+  Buy: Stock HAX, Amount: 0
+  Buy: Stock HBC, Amount: 0
+  Buy: Stock HCT, Amount: 0
+  Buy: Stock HDC, Amount: 0
+  Buy: Stock HEV, Amount: 0
+  Buy: Stock HHC, Amount: 0
+  Buy: Stock HJS, Amount: 0
+  Buy: Stock HMC, Amount: 0
+  Buy: Stock HPG, Amount: 0
+  Buy: Stock HRC, Amount: 0
+  Buy: Stock HSG, Amount: 0
+  Buy: Stock HT1, Amount: 0
+  Buy: Stock HTP, Amount: 0
+  Buy: Stock HUT, Amount: 0
+  Buy: Stock ICF, Amount: 0
+  Buy: Stock IMP, Amount: 0
+  Buy: Stock ITA, Amount: 0
+  Buy: Stock KBC, Amount: 0
+  Buy: Stock KDC, Amount: 0
+  Buy: Stock KHP, Amount: 0
+  Buy: Stock KKC, Amount: 0
+  Buy: Stock KSH, Amount: 0
+  Buy: Stock L10, Amount: 0
+  Buy: Stock L18, Amount: 0
+  Buy: Stock L62, Amount: 0
+  Buy: Stock LAF, Amount: 0
+  Buy: Stock LBE, Amount: 0
+  Buy: Stock LBM, Amount: 0
+  Buy: Stock LCG, Amount: 0
+  Buy: Stock LGC, Amount: 0
+  Buy: Stock LSS, Amount: 0
+  Sell: Stock ABT, Amount: 653.0
+  Sell: Stock ACB, Amount: 1587.0
+  Sell: Stock ACL, Amount: 457.0
+  Sell: Stock ANV, Amount: 250.0
+  Sell: Stock ASP, Amount: 101.0
+  Sell: Stock BPC, Amount: 18.0
+  Sell: Stock CAN, Amount: 71.0
+  Dividends: 505727.90
+  Bank Deposit: 0.27
+Month 6:
+  Buy: Stock ABT, Amount: 7824
+  Buy: Stock ACB, Amount: 14901
+  Buy: Stock ACL, Amount: 0
+  Buy: Stock AGF, Amount: 3
+  Buy: Stock ALT, Amount: 0
+  Buy: Stock ANV, Amount: 0
+  Buy: Stock ASP, Amount: 0
+  Buy: Stock B82, Amount: 2
+  Buy: Stock BBC, Amount: 0
+  Buy: Stock BBS, Amount: 0
+  Buy: Stock BCC, Amount: 0
+  Buy: Stock BLF, Amount: 0
+  Buy: Stock BMC, Amount: 0
+  Buy: Stock BMI, Amount: 0
+  Buy: Stock BMP, Amount: 0
+  Buy: Stock BPC, Amount: 0
+  Buy: Stock BST, Amount: 0
+  Buy: Stock BTS, Amount: 0
+  Buy: Stock BVS, Amount: 0
+  Buy: Stock CAN, Amount: 0
+  Buy: Stock CAP, Amount: 0
+  Buy: Stock CCM, Amount: 0
+  Buy: Stock CDC, Amount: 0
+  Buy: Stock CID, Amount: 0
+  Buy: Stock CMC, Amount: 0
+  Buy: Stock CTB, Amount: 0
+  Buy: Stock CTC, Amount: 0
+  Buy: Stock CTN, Amount: 0
+  Buy: Stock DC4, Amount: 0
+  Buy: Stock DCS, Amount: 0
+  Buy: Stock DHA, Amount: 0
+  Buy: Stock DMC, Amount: 0
+  Buy: Stock DPM, Amount: 0
+  Buy: Stock DPR, Amount: 0
+  Buy: Stock DRC, Amount: 0
+  Buy: Stock DTC, Amount: 0
+  Buy: Stock DTT, Amount: 0
+  Buy: Stock DXP, Amount: 0
+  Buy: Stock DXV, Amount: 0
+  Buy: Stock EBS, Amount: 0
+  Buy: Stock GMD, Amount: 0
+  Buy: Stock GTA, Amount: 0
+  Buy: Stock HCC, Amount: 0
+  Buy: Stock HJS, Amount: 0
+  Buy: Stock HMC, Amount: 0
+  Buy: Stock HPG, Amount: 0
+  Buy: Stock HRC, Amount: 0
+  Buy: Stock HUT, Amount: 0
+  Buy: Stock ITA, Amount: 0
+  Buy: Stock KBC, Amount: 0
+  Buy: Stock KDC, Amount: 0
+  Buy: Stock KHP, Amount: 0
+  Buy: Stock KKC, Amount: 0
+  Buy: Stock KSH, Amount: 0
+  Buy: Stock L10, Amount: 0
+  Buy: Stock L43, Amount: 0
+  Buy: Stock L61, Amount: 0
+  Buy: Stock LAF, Amount: 0
+  Buy: Stock LBE, Amount: 0
+  Buy: Stock LBM, Amount: 0
+  Buy: Stock LGC, Amount: 0
+  Buy: Stock LSS, Amount: 0
+  Sell: Stock ABT, Amount: 178.0
+  Sell: Stock B82, Amount: 436.0
+  Sell: Stock BBC, Amount: 36.0
+  Sell: Stock BMC, Amount: 512.0
+  Sell: Stock BTS, Amount: 546.0
+  Sell: Stock BVS, Amount: 1612.0
+  Sell: Stock CAP, Amount: 3076.0
+  Dividends: 27585.00
+  Bank Deposit: 0.26
+Month 7:
+  Buy: Stock ABT, Amount: 8720
+  Buy: Stock ACB, Amount: 0
+  Buy: Stock ACL, Amount: 0
+  Buy: Stock AGF, Amount: 2
+  Buy: Stock B82, Amount: 2
+  Buy: Stock BBC, Amount: 0
+  Buy: Stock BCC, Amount: 0
+  Buy: Stock BMI, Amount: 0
+  Buy: Stock BMP, Amount: 0
+  Buy: Stock BST, Amount: 0
+  Buy: Stock BTS, Amount: 0
+  Buy: Stock CAN, Amount: 0
+  Buy: Stock CAP, Amount: 0
+  Buy: Stock CCM, Amount: 0
+  Buy: Stock CDC, Amount: 0
+  Buy: Stock CID, Amount: 0
+  Buy: Stock CJC, Amount: 0
+  Buy: Stock CLC, Amount: 0
+  Buy: Stock CMC, Amount: 0
+  Buy: Stock CTC, Amount: 0
+  Buy: Stock DAC, Amount: 0
+  Buy: Stock DC4, Amount: 0
+  Buy: Stock DCS, Amount: 0
+  Buy: Stock DHA, Amount: 0
+  Buy: Stock DHG, Amount: 0
+  Buy: Stock DIC, Amount: 0
+  Buy: Stock DMC, Amount: 0
+  Buy: Stock DPC, Amount: 0
+  Buy: Stock DPM, Amount: 0
+  Buy: Stock DPR, Amount: 0
+  Buy: Stock DQC, Amount: 0
+  Buy: Stock DRC, Amount: 0
+  Buy: Stock DTC, Amount: 0
+  Buy: Stock DXP, Amount: 0
+  Buy: Stock DXV, Amount: 0
+  Buy: Stock FMC, Amount: 0
+  Buy: Stock FPT, Amount: 0
+  Buy: Stock GIL, Amount: 0
+  Buy: Stock GMC, Amount: 0
+  Buy: Stock GMD, Amount: 0
+  Buy: Stock GTA, Amount: 0
+  Buy: Stock HAP, Amount: 0
+  Buy: Stock HAX, Amount: 0
+  Buy: Stock HBC, Amount: 0
+  Buy: Stock HCC, Amount: 0
+  Buy: Stock HCT, Amount: 0
+  Buy: Stock HDC, Amount: 0
+  Buy: Stock HEV, Amount: 0
+  Buy: Stock HHC, Amount: 0
+  Buy: Stock HJS, Amount: 0
+  Buy: Stock HPG, Amount: 0
+  Buy: Stock HSI, Amount: 0
+  Buy: Stock HTP, Amount: 0
+  Buy: Stock HUT, Amount: 0
+  Buy: Stock ICF, Amount: 0
+  Buy: Stock IMP, Amount: 0
+  Buy: Stock ITA, Amount: 0
+  Buy: Stock KBC, Amount: 0
+  Buy: Stock KHP, Amount: 0
+  Buy: Stock KSH, Amount: 0
+  Buy: Stock L10, Amount: 0
+  Buy: Stock L61, Amount: 0
+  Buy: Stock L62, Amount: 0
+  Buy: Stock LBE, Amount: 0
+  Buy: Stock LCG, Amount: 0
+  Sell: Stock ACB, Amount: 7461.0
+  Sell: Stock AGF, Amount: 176.0
+  Sell: Stock B82, Amount: 2662.0
+  Sell: Stock BBC, Amount: 1.0
+  Sell: Stock BMC, Amount: 815.0
+  Sell: Stock BMI, Amount: 1542.0
+  Sell: Stock BMP, Amount: 3846.0
+  Sell: Stock BPC, Amount: 55.0
+  Sell: Stock CAN, Amount: 2692.0
+  Sell: Stock L43, Amount: 15.0
+  Dividends: 15050.00
+  Bank Deposit: 0.65
+Month 8:
+  Buy: Stock ABT, Amount: 13432
+  Buy: Stock ACB, Amount: 11383
+  Buy: Stock ACL, Amount: 0
+  Buy: Stock AGF, Amount: 0
+  Buy: Stock ALT, Amount: 0
+  Buy: Stock ANV, Amount: 0
+  Buy: Stock ASP, Amount: 0
+  Buy: Stock B82, Amount: 2
+  Buy: Stock BBC, Amount: 0
+  Buy: Stock BBS, Amount: 0
+  Buy: Stock BCC, Amount: 0
+  Buy: Stock BLF, Amount: 0
+  Buy: Stock BMC, Amount: 0
+  Buy: Stock BMP, Amount: 0
+  Buy: Stock BPC, Amount: 0
+  Buy: Stock BTS, Amount: 0
+  Buy: Stock BVS, Amount: 0
+  Buy: Stock CAN, Amount: 0
+  Buy: Stock CAP, Amount: 0
+  Buy: Stock CII, Amount: 0
+  Buy: Stock CLC, Amount: 0
+  Buy: Stock CMC, Amount: 0
+  Buy: Stock COM, Amount: 0
+  Buy: Stock CTB, Amount: 0
+  Buy: Stock CTC, Amount: 0
+  Buy: Stock CTN, Amount: 0
+  Buy: Stock DAC, Amount: 0
+  Buy: Stock DBC, Amount: 0
+  Buy: Stock DHA, Amount: 0
+  Buy: Stock DHG, Amount: 0
+  Buy: Stock DHT, Amount: 0
+  Buy: Stock DPC, Amount: 0
+  Buy: Stock DPM, Amount: 0
+  Buy: Stock DPR, Amount: 0
+  Buy: Stock DQC, Amount: 0
+  Buy: Stock DST, Amount: 0
+  Buy: Stock DTC, Amount: 0
+  Buy: Stock DTT, Amount: 0
+  Buy: Stock DXV, Amount: 0
+  Buy: Stock EBS, Amount: 0
+  Buy: Stock FMC, Amount: 0
+  Buy: Stock FPT, Amount: 0
+  Buy: Stock GIL, Amount: 0
+  Buy: Stock GMC, Amount: 0
+  Buy: Stock GMD, Amount: 0
+  Buy: Stock HAG, Amount: 0
+  Buy: Stock HAS, Amount: 0
+  Buy: Stock HBC, Amount: 0
+  Buy: Stock HCT, Amount: 0
+  Buy: Stock HDC, Amount: 0
+  Buy: Stock HEV, Amount: 0
+  Buy: Stock HPG, Amount: 0
+  Buy: Stock HRC, Amount: 0
+  Buy: Stock HSG, Amount: 0
+  Buy: Stock HSI, Amount: 0
+  Buy: Stock HUT, Amount: 0
+  Buy: Stock ICF, Amount: 0
+  Buy: Stock KDC, Amount: 0
+  Buy: Stock KHP, Amount: 0
+  Buy: Stock KSH, Amount: 0
+  Buy: Stock L10, Amount: 0
+  Buy: Stock L18, Amount: 0
+  Buy: Stock L43, Amount: 0
+  Buy: Stock L61, Amount: 0
+  Buy: Stock LBE, Amount: 0
+  Buy: Stock LBM, Amount: 0
+  Buy: Stock LCG, Amount: 0
+  Buy: Stock LGC, Amount: 0
+  Sell: Stock ABT, Amount: 3024.0
+  Sell: Stock ACB, Amount: 18823.0
+  Sell: Stock AGF, Amount: 632.0
+  Sell: Stock B82, Amount: 9020.0
+  Sell: Stock BMI, Amount: 7797.0
+  Sell: Stock BMP, Amount: 11750.0
+  Sell: Stock CAN, Amount: 633.0
+  Sell: Stock CAP, Amount: 2713.0
+  Sell: Stock CJC, Amount: 1.0
+  Sell: Stock DCS, Amount: 7.0
+  Sell: Stock L43, Amount: 8.0
+  Dividends: 1986.00
+  Bank Deposit: 0.68
+Month 9:
+  Buy: Stock ABT, Amount: 37900
+  Buy: Stock ACB, Amount: 9761
+  Buy: Stock ACL, Amount: 96
+  Buy: Stock AGF, Amount: 2808
+  Buy: Stock ALT, Amount: 0
+  Buy: Stock B82, Amount: 1
+  Buy: Stock BMC, Amount: 0
+  Buy: Stock BMI, Amount: 0
+  Buy: Stock BTS, Amount: 18
+  Buy: Stock BVS, Amount: 0
+  Buy: Stock CAN, Amount: 0
+  Buy: Stock CAP, Amount: 3786
+  Buy: Stock CCM, Amount: 1
+  Buy: Stock CDC, Amount: 0
+  Buy: Stock CID, Amount: 0
+  Buy: Stock CII, Amount: 0
+  Buy: Stock CLC, Amount: 0
+  Buy: Stock CMC, Amount: 0
+  Buy: Stock COM, Amount: 0
+  Buy: Stock CTB, Amount: 4
+  Buy: Stock CTC, Amount: 13328
+  Buy: Stock CTN, Amount: 13
+  Buy: Stock DAC, Amount: 0
+  Buy: Stock DAE, Amount: 105
+  Buy: Stock DBC, Amount: 0
+  Buy: Stock DC4, Amount: 35
+  Buy: Stock DCS, Amount: 64
+  Buy: Stock DHA, Amount: 8
+  Buy: Stock DHG, Amount: 0
+  Buy: Stock DHT, Amount: 4
+  Buy: Stock DIC, Amount: 13502
+  Buy: Stock DMC, Amount: 37
+  Buy: Stock DPC, Amount: 123
+  Sell: Stock ABT, Amount: 22498.0
+  Sell: Stock ACB, Amount: 2524.0
+  Sell: Stock AGF, Amount: 1159.0
+  Sell: Stock CAN, Amount: 11.0
+  Sell: Stock CAP, Amount: 83.0
+  Sell: Stock CTB, Amount: 2.0
+  Sell: Stock CTC, Amount: 1790.0
+  Sell: Stock DC4, Amount: 26.0
+  Dividends: 83.00
+  Bank Deposit: 288694.47
+Month 10:
+  Buy: Stock ABT, Amount: 7200
+  Buy: Stock ACB, Amount: 31410
+  Buy: Stock ACL, Amount: 14
+  Buy: Stock AGF, Amount: 17
+  Buy: Stock ALT, Amount: 4
+  Sell: Stock ABT, Amount: 7142.0
+  Sell: Stock ACB, Amount: 33999.0
+  Sell: Stock ACL, Amount: 20.0
+  Sell: Stock AGF, Amount: 1212.0
+  Dividends: 0.00
+  Bank Deposit: 158492.96
+Month 11:
+  Buy: Stock ABT, Amount: 1000
+  Buy: Stock ACB, Amount: 48491
+  Buy: Stock ACL, Amount: 1404
+  Buy: Stock AGF, Amount: 1
+  Buy: Stock ALT, Amount: 0
+  Sell: Stock ABT, Amount: 35.0
+  Sell: Stock ACL, Amount: 3489.0
+  Dividends: 0.00
+  Bank Deposit: 0.62
+Month 12:
+  Sell: Stock ABT, Amount: 50603.0
+  Sell: Stock AGF, Amount: 5469.0
+  Sell: Stock BMP, Amount: 24573.0
+  Sell: Stock CAN, Amount: 11941.0
+  Sell: Stock CAP, Amount: 10465.0
+  Sell: Stock CCM, Amount: 1.0
+  Sell: Stock CTB, Amount: 2.0
+  Sell: Stock CTC, Amount: 11538.0
+  Sell: Stock CTN, Amount: 13.0
+  Sell: Stock DAE, Amount: 105.0
+  Sell: Stock DC4, Amount: 9.0
+  Sell: Stock DCS, Amount: 64.0
+  Sell: Stock DHA, Amount: 8.0
+  Sell: Stock DHT, Amount: 4.0
+  Sell: Stock DIC, Amount: 13502.0
+  Sell: Stock DMC, Amount: 37.0
+  Sell: Stock DPC, Amount: 124.0
+  Sell: Stock L43, Amount: 877.0
+  Sell: Stock ACB, Amount: 53139.0
+  Sell: Stock ALT, Amount: 87.0
+  Sell: Stock B82, Amount: 1.0
+  Sell: Stock BBC, Amount: 993.0
+  Sell: Stock BMP, Amount: 43541.0
+  Sell: Stock BST, Amount: 39.0
+  Sell: Stock BTS, Amount: 18.0
+  Sell: Stock CAP, Amount: 1942.0
+  Dividends: 0.00
+  Bank Deposit: 45891.13
+
+
+Final Cash: 12367896.21 => return: 0.24
+Month 1:
+  Buy: Stock ABT, Amount: 26
+  Buy: Stock ACB, Amount: 1931
+  Buy: Stock ACL, Amount: 2832
+  Buy: Stock AGF, Amount: 1890
+  Buy: Stock ALT, Amount: 4043
+  Buy: Stock ANV, Amount: 6715
+  Buy: Stock ASP, Amount: 645
+  Buy: Stock B82, Amount: 177
+  Buy: Stock BBC, Amount: 1600
+  Buy: Stock BBS, Amount: 2802
+  Buy: Stock BCC, Amount: 443
+  Buy: Stock BMC, Amount: 2293
+  Buy: Stock BMI, Amount: 10655
+  Buy: Stock BMP, Amount: 64355
+  Buy: Stock BPC, Amount: 176
+  Buy: Stock BST, Amount: 197
+  Buy: Stock BTS, Amount: 49
+  Buy: Stock BVS, Amount: 79
+  Buy: Stock CAN, Amount: 0
+  Buy: Stock CAP, Amount: 27343
+  Buy: Stock CCM, Amount: 0
+  Buy: Stock CDC, Amount: 3
+  Buy: Stock CID, Amount: 0
+  Buy: Stock CII, Amount: 1954
+  Buy: Stock CMC, Amount: 0
+  Buy: Stock CTC, Amount: 0
+  Buy: Stock CTN, Amount: 0
+  Buy: Stock DCS, Amount: 0
+  Buy: Stock DMC, Amount: 0
+  Buy: Stock DPC, Amount: 0
+  Buy: Stock DQC, Amount: 0
+  Buy: Stock DRC, Amount: 0
+  Buy: Stock DTC, Amount: 0
+  Buy: Stock FPT, Amount: 0
+  Buy: Stock HAP, Amount: 0
+  Buy: Stock HBC, Amount: 0
+  Buy: Stock HDC, Amount: 0
+  Buy: Stock HTP, Amount: 193
+  Buy: Stock ICF, Amount: 2
+  Buy: Stock IMP, Amount: 1
+  Buy: Stock ITA, Amount: 0
+  Buy: Stock KDC, Amount: 9
+  Dividends: 0.00
+  Bank Deposit: 2808931.65
+Month 2:
+  Buy: Stock ACB, Amount: 0
+  Buy: Stock AGF, Amount: 10
+  Buy: Stock B82, Amount: 0
+  Buy: Stock BMP, Amount: 88
+  Buy: Stock CDC, Amount: 0
+  Sell: Stock ABT, Amount: 11.0
+  Sell: Stock ACL, Amount: 2832.0
+  Sell: Stock ALT, Amount: 2399.0
+  Sell: Stock ANV, Amount: 354.0
+  Sell: Stock ASP, Amount: 50.0
+  Sell: Stock BBC, Amount: 1600.0
+  Sell: Stock BBS, Amount: 501.0
+  Sell: Stock BCC, Amount: 443.0
+  Sell: Stock BMC, Amount: 2293.0
+  Sell: Stock BMI, Amount: 1447.0
+  Sell: Stock BMP, Amount: 1142.0
+  Sell: Stock BPC, Amount: 146.0
+  Sell: Stock BST, Amount: 197.0
+  Sell: Stock BTS, Amount: 49.0
+  Sell: Stock BVS, Amount: 79.0
+  Sell: Stock CAP, Amount: 4.0
+  Sell: Stock CII, Amount: 1954.0
+  Dividends: 0.00
+  Bank Deposit: 2816036.56
+Month 3:
+  Buy: Stock ABT, Amount: 4810
+  Buy: Stock ACB, Amount: 171
+  Buy: Stock ACL, Amount: 69
+  Buy: Stock AGF, Amount: 169
+  Buy: Stock ALT, Amount: 109
+  Buy: Stock ANV, Amount: 8456
+  Buy: Stock ASP, Amount: 0
+  Buy: Stock B82, Amount: 1
+  Buy: Stock BPC, Amount: 0
+  Buy: Stock BVS, Amount: 0
+  Buy: Stock CAP, Amount: 0
+  Buy: Stock CID, Amount: 0
+  Buy: Stock COM, Amount: 0
+  Buy: Stock CTC, Amount: 0
+  Buy: Stock CTN, Amount: 0
+  Buy: Stock DTT, Amount: 0
+  Buy: Stock GMC, Amount: 174
+  Buy: Stock HRC, Amount: 1
+  Buy: Stock HUT, Amount: 0
+  Buy: Stock ICF, Amount: 0
+  Buy: Stock KBC, Amount: 0
+  Buy: Stock KMR, Amount: 0
+  Sell: Stock AGF, Amount: 39.0
+  Sell: Stock B82, Amount: 80.0
+  Sell: Stock BBS, Amount: 2301.0
+  Sell: Stock BMI, Amount: 57.0
+  Sell: Stock BMP, Amount: 63301.0
+  Sell: Stock BPC, Amount: 16.0
+  Sell: Stock CAP, Amount: 814.0
+  Sell: Stock CDC, Amount: 3.0
+  Sell: Stock GMC, Amount: 3.0
+  Sell: Stock HTP, Amount: 165.0
+  Sell: Stock IMP, Amount: 1.0
+  Sell: Stock KDC, Amount: 9.0
+  Dividends: 30.00
+  Bank Deposit: 2757991.78
+Month 4:
+  Buy: Stock AGF, Amount: 327
+  Buy: Stock ALT, Amount: 208
+  Buy: Stock ANV, Amount: 1
+  Buy: Stock ASP, Amount: 10
+  Buy: Stock B82, Amount: 2380
+  Buy: Stock BMC, Amount: 1084
+  Buy: Stock BMI, Amount: 4370
+  Buy: Stock BMP, Amount: 50805
+  Buy: Stock BPC, Amount: 577
+  Buy: Stock BST, Amount: 42
+  Buy: Stock BTS, Amount: 322
+  Buy: Stock BVS, Amount: 111
+  Buy: Stock CAN, Amount: 15348
+  Buy: Stock CAP, Amount: 22144
+  Buy: Stock CCM, Amount: 0
+  Buy: Stock CDC, Amount: 0
+  Buy: Stock CID, Amount: 0
+  Buy: Stock CII, Amount: 5
+  Buy: Stock CJC, Amount: 0
+  Buy: Stock CLC, Amount: 0
+  Buy: Stock CMC, Amount: 0
+  Buy: Stock COM, Amount: 0
+  Buy: Stock CTC, Amount: 0
+  Buy: Stock CTN, Amount: 11
+  Buy: Stock DAE, Amount: 0
+  Buy: Stock DBC, Amount: 0
+  Buy: Stock DCS, Amount: 0
+  Buy: Stock DHA, Amount: 0
+  Buy: Stock DHG, Amount: 0
+  Buy: Stock DIC, Amount: 0
+  Buy: Stock DMC, Amount: 0
+  Buy: Stock DPC, Amount: 0
+  Buy: Stock DPM, Amount: 0
+  Buy: Stock DPR, Amount: 0
+  Buy: Stock DRC, Amount: 0
+  Buy: Stock DST, Amount: 0
+  Buy: Stock DTC, Amount: 0
+  Buy: Stock DTT, Amount: 0
+  Buy: Stock DXP, Amount: 0
+  Buy: Stock GIL, Amount: 0
+  Buy: Stock GMC, Amount: 0
+  Buy: Stock GMD, Amount: 0
+  Buy: Stock GTA, Amount: 0
+  Buy: Stock HAG, Amount: 0
+  Buy: Stock HAS, Amount: 0
+  Buy: Stock HAX, Amount: 0
+  Buy: Stock HBC, Amount: 0
+  Buy: Stock HCC, Amount: 0
+  Buy: Stock HCT, Amount: 0
+  Buy: Stock HEV, Amount: 0
+  Buy: Stock HJS, Amount: 0
+  Buy: Stock HPG, Amount: 0
+  Buy: Stock HRC, Amount: 0
+  Buy: Stock HSG, Amount: 0
+  Buy: Stock HT1, Amount: 0
+  Buy: Stock HTP, Amount: 0
+  Buy: Stock HTV, Amount: 0
+  Buy: Stock ICF, Amount: 0
+  Buy: Stock IMP, Amount: 0
+  Buy: Stock ITA, Amount: 0
+  Buy: Stock KBC, Amount: 0
+  Buy: Stock KKC, Amount: 0
+  Buy: Stock L10, Amount: 0
+  Buy: Stock LCG, Amount: 0
+  Buy: Stock LSS, Amount: 0
+  Buy: Stock LTC, Amount: 0
+  Sell: Stock AGF, Amount: 402.0
+  Sell: Stock ALT, Amount: 105.0
+  Sell: Stock ANV, Amount: 2.0
+  Sell: Stock ASP, Amount: 11.0
+  Sell: Stock B82, Amount: 490.0
+  Sell: Stock BMI, Amount: 1547.0
+  Sell: Stock BMP, Amount: 1122.0
+  Sell: Stock GMC, Amount: 38.0
+  Dividends: 0.00
+  Bank Deposit: 0.15
+Month 5:
+  Buy: Stock ABT, Amount: 45
+  Buy: Stock ACB, Amount: 5035
+  Buy: Stock ACL, Amount: 0
+  Buy: Stock AGF, Amount: 1
+  Buy: Stock ALT, Amount: 0
+  Buy: Stock ANV, Amount: 0
+  Buy: Stock ASP, Amount: 0
+  Buy: Stock B82, Amount: 2
+  Buy: Stock BBC, Amount: 0
+  Buy: Stock BBS, Amount: 0
+  Buy: Stock BCC, Amount: 0
+  Buy: Stock BMC, Amount: 0
+  Buy: Stock BMI, Amount: 0
+  Buy: Stock BMP, Amount: 0
+  Buy: Stock BPC, Amount: 0
+  Buy: Stock BST, Amount: 0
+  Buy: Stock BTS, Amount: 0
+  Buy: Stock BVS, Amount: 0
+  Buy: Stock CAP, Amount: 0
+  Buy: Stock CDC, Amount: 0
+  Buy: Stock CII, Amount: 0
+  Buy: Stock CMC, Amount: 0
+  Buy: Stock COM, Amount: 0
+  Buy: Stock CTC, Amount: 0
+  Buy: Stock CTN, Amount: 0
+  Buy: Stock DAC, Amount: 0
+  Buy: Stock DBC, Amount: 0
+  Buy: Stock DC4, Amount: 0
+  Buy: Stock DCS, Amount: 0
+  Buy: Stock DHG, Amount: 0
+  Buy: Stock DHT, Amount: 0
+  Buy: Stock DIC, Amount: 0
+  Buy: Stock DMC, Amount: 0
+  Buy: Stock DPC, Amount: 0
+  Buy: Stock DPM, Amount: 0
+  Buy: Stock DPR, Amount: 0
+  Buy: Stock DTC, Amount: 0
+  Buy: Stock DXP, Amount: 0
+  Buy: Stock DXV, Amount: 0
+  Buy: Stock FMC, Amount: 0
+  Buy: Stock FPT, Amount: 0
+  Buy: Stock GIL, Amount: 0
+  Buy: Stock GTA, Amount: 0
+  Buy: Stock HAG, Amount: 0
+  Buy: Stock HAP, Amount: 0
+  Buy: Stock HAS, Amount: 0
+  Buy: Stock HBC, Amount: 0
+  Buy: Stock HCT, Amount: 0
+  Buy: Stock HDC, Amount: 0
+  Buy: Stock HEV, Amount: 0
+  Buy: Stock HHC, Amount: 0
+  Buy: Stock HJS, Amount: 0
+  Buy: Stock HMC, Amount: 0
+  Buy: Stock HPG, Amount: 0
+  Buy: Stock HRC, Amount: 0
+  Buy: Stock HSG, Amount: 0
+  Buy: Stock HT1, Amount: 0
+  Buy: Stock HTP, Amount: 0
+  Buy: Stock HUT, Amount: 0
+  Buy: Stock ICF, Amount: 0
+  Buy: Stock IMP, Amount: 0
+  Buy: Stock ITA, Amount: 0
+  Buy: Stock KBC, Amount: 0
+  Buy: Stock KDC, Amount: 0
+  Buy: Stock KHP, Amount: 0
+  Buy: Stock KKC, Amount: 0
+  Buy: Stock KSH, Amount: 0
+  Buy: Stock L10, Amount: 0
+  Buy: Stock L18, Amount: 0
+  Buy: Stock L62, Amount: 0
+  Buy: Stock LAF, Amount: 0
+  Buy: Stock LBE, Amount: 0
+  Buy: Stock LBM, Amount: 0
+  Buy: Stock LCG, Amount: 0
+  Buy: Stock LGC, Amount: 0
+  Buy: Stock LSS, Amount: 0
+  Sell: Stock ABT, Amount: 681.0
+  Sell: Stock ACB, Amount: 1824.0
+  Sell: Stock ACL, Amount: 69.0
+  Sell: Stock ALT, Amount: 1856.0
+  Sell: Stock ANV, Amount: 50.0
+  Sell: Stock B82, Amount: 22.0
+  Sell: Stock BPC, Amount: 33.0
+  Sell: Stock CAN, Amount: 3.0
+  Sell: Stock GMC, Amount: 133.0
+  Dividends: 468705.30
+  Bank Deposit: 0.67
+Month 6:
+  Buy: Stock ABT, Amount: 7820
+  Buy: Stock ACB, Amount: 14231
+  Buy: Stock ACL, Amount: 1
+  Buy: Stock AGF, Amount: 0
+  Buy: Stock ALT, Amount: 0
+  Buy: Stock ANV, Amount: 0
+  Buy: Stock ASP, Amount: 0
+  Buy: Stock B82, Amount: 2
+  Buy: Stock BBC, Amount: 0
+  Buy: Stock BBS, Amount: 0
+  Buy: Stock BCC, Amount: 0
+  Buy: Stock BLF, Amount: 0
+  Buy: Stock BMC, Amount: 0
+  Buy: Stock BMI, Amount: 0
+  Buy: Stock BMP, Amount: 0
+  Buy: Stock BPC, Amount: 0
+  Buy: Stock BST, Amount: 0
+  Buy: Stock BTS, Amount: 0
+  Buy: Stock BVS, Amount: 0
+  Buy: Stock CAN, Amount: 0
+  Buy: Stock CAP, Amount: 0
+  Buy: Stock CCM, Amount: 0
+  Buy: Stock CDC, Amount: 0
+  Buy: Stock CID, Amount: 0
+  Buy: Stock CLC, Amount: 0
+  Buy: Stock CMC, Amount: 0
+  Buy: Stock CTB, Amount: 0
+  Buy: Stock CTC, Amount: 0
+  Buy: Stock CTN, Amount: 0
+  Buy: Stock DC4, Amount: 0
+  Buy: Stock DCS, Amount: 0
+  Buy: Stock DHA, Amount: 0
+  Buy: Stock DMC, Amount: 0
+  Buy: Stock DPM, Amount: 0
+  Buy: Stock DPR, Amount: 0
+  Buy: Stock DRC, Amount: 0
+  Buy: Stock DTC, Amount: 0
+  Buy: Stock DTT, Amount: 0
+  Buy: Stock DXP, Amount: 0
+  Buy: Stock DXV, Amount: 0
+  Buy: Stock EBS, Amount: 0
+  Buy: Stock GMD, Amount: 0
+  Buy: Stock GTA, Amount: 0
+  Buy: Stock HAP, Amount: 0
+  Buy: Stock HCC, Amount: 0
+  Buy: Stock HJS, Amount: 0
+  Buy: Stock HMC, Amount: 0
+  Buy: Stock HPG, Amount: 0
+  Buy: Stock HRC, Amount: 0
+  Buy: Stock HSG, Amount: 0
+  Buy: Stock HUT, Amount: 0
+  Buy: Stock ITA, Amount: 0
+  Buy: Stock KBC, Amount: 0
+  Buy: Stock KDC, Amount: 0
+  Buy: Stock KHP, Amount: 0
+  Buy: Stock KKC, Amount: 0
+  Buy: Stock KSH, Amount: 0
+  Buy: Stock L10, Amount: 0
+  Buy: Stock L43, Amount: 0
+  Buy: Stock L61, Amount: 0
+  Buy: Stock LAF, Amount: 0
+  Buy: Stock LBE, Amount: 0
+  Buy: Stock LBM, Amount: 0
+  Buy: Stock LCG, Amount: 0
+  Buy: Stock LGC, Amount: 0
+  Buy: Stock LSS, Amount: 0
+  Sell: Stock ABT, Amount: 183.0
+  Sell: Stock ANV, Amount: 1242.0
+  Sell: Stock B82, Amount: 207.0
+  Sell: Stock BMC, Amount: 506.0
+  Sell: Stock BTS, Amount: 322.0
+  Sell: Stock CII, Amount: 5.0
+  Sell: Stock HTP, Amount: 28.0
+  Sell: Stock ICF, Amount: 2.0
+  Dividends: 34317.50
+  Bank Deposit: 0.73
+Month 7:
+  Buy: Stock ABT, Amount: 2768
+  Buy: Stock ACB, Amount: 0
+  Buy: Stock ACL, Amount: 0
+  Buy: Stock AGF, Amount: 3
+  Buy: Stock ALT, Amount: 0
+  Buy: Stock B82, Amount: 0
+  Buy: Stock BBC, Amount: 0
+  Buy: Stock BCC, Amount: 0
+  Buy: Stock BMP, Amount: 0
+  Buy: Stock BST, Amount: 0
+  Buy: Stock BTS, Amount: 1
+  Buy: Stock CAN, Amount: 0
+  Buy: Stock CAP, Amount: 0
+  Buy: Stock CCM, Amount: 0
+  Buy: Stock CDC, Amount: 0
+  Buy: Stock CID, Amount: 0
+  Buy: Stock CJC, Amount: 0
+  Buy: Stock CLC, Amount: 0
+  Buy: Stock CMC, Amount: 0
+  Buy: Stock DAC, Amount: 0
+  Buy: Stock DC4, Amount: 0
+  Buy: Stock DCS, Amount: 0
+  Buy: Stock DHA, Amount: 0
+  Buy: Stock DHG, Amount: 0
+  Buy: Stock DIC, Amount: 0
+  Buy: Stock DMC, Amount: 0
+  Buy: Stock DPC, Amount: 0
+  Buy: Stock DPM, Amount: 0
+  Buy: Stock DPR, Amount: 0
+  Buy: Stock DQC, Amount: 0
+  Buy: Stock DRC, Amount: 0
+  Buy: Stock DTC, Amount: 0
+  Buy: Stock DXP, Amount: 0
+  Buy: Stock DXV, Amount: 0
+  Buy: Stock FMC, Amount: 0
+  Buy: Stock FPT, Amount: 0
+  Buy: Stock GIL, Amount: 0
+  Buy: Stock GMC, Amount: 0
+  Buy: Stock GMD, Amount: 0
+  Buy: Stock GTA, Amount: 0
+  Buy: Stock HAP, Amount: 0
+  Buy: Stock HAX, Amount: 0
+  Buy: Stock HBC, Amount: 0
+  Buy: Stock HCC, Amount: 0
+  Buy: Stock HCT, Amount: 0
+  Buy: Stock HDC, Amount: 0
+  Buy: Stock HEV, Amount: 0
+  Buy: Stock HHC, Amount: 0
+  Buy: Stock HJS, Amount: 0
+  Buy: Stock HPG, Amount: 0
+  Buy: Stock HSI, Amount: 0
+  Buy: Stock HTP, Amount: 0
+  Buy: Stock HUT, Amount: 0
+  Buy: Stock ICF, Amount: 0
+  Buy: Stock IMP, Amount: 0
+  Buy: Stock ITA, Amount: 0
+  Buy: Stock KBC, Amount: 0
+  Buy: Stock KHP, Amount: 0
+  Buy: Stock KSH, Amount: 0
+  Buy: Stock L10, Amount: 0
+  Buy: Stock L61, Amount: 0
+  Buy: Stock L62, Amount: 0
+  Buy: Stock LBE, Amount: 0
+  Buy: Stock LCG, Amount: 0
+  Sell: Stock ACB, Amount: 3954.0
+  Sell: Stock AGF, Amount: 194.0
+  Sell: Stock ANV, Amount: 6389.0
+  Sell: Stock ASP, Amount: 594.0
+  Sell: Stock B82, Amount: 96.0
+  Sell: Stock BMC, Amount: 578.0
+  Sell: Stock BMI, Amount: 2967.0
+  Sell: Stock BMP, Amount: 2427.0
+  Sell: Stock BPC, Amount: 430.0
+  Sell: Stock BVS, Amount: 111.0
+  Sell: Stock CTN, Amount: 11.0
+  Dividends: 11826.00
+  Bank Deposit: 0.20
+Month 8:
+  Buy: Stock ABT, Amount: 13453
+  Buy: Stock ACB, Amount: 7986
+  Buy: Stock ACL, Amount: 0
+  Buy: Stock AGF, Amount: 3
+  Buy: Stock ALT, Amount: 0
+  Buy: Stock ANV, Amount: 0
+  Buy: Stock ASP, Amount: 0
+  Buy: Stock B82, Amount: 3
+  Buy: Stock BBC, Amount: 0
+  Buy: Stock BBS, Amount: 0
+  Buy: Stock BCC, Amount: 0
+  Buy: Stock BLF, Amount: 0
+  Buy: Stock BMC, Amount: 0
+  Buy: Stock BMI, Amount: 0
+  Buy: Stock BMP, Amount: 0
+  Buy: Stock BPC, Amount: 0
+  Buy: Stock BST, Amount: 0
+  Buy: Stock BTS, Amount: 0
+  Buy: Stock BVS, Amount: 0
+  Buy: Stock CAN, Amount: 0
+  Buy: Stock CAP, Amount: 0
+  Buy: Stock CII, Amount: 0
+  Buy: Stock CLC, Amount: 0
+  Buy: Stock CMC, Amount: 0
+  Buy: Stock CTB, Amount: 0
+  Buy: Stock CTC, Amount: 0
+  Buy: Stock CTN, Amount: 0
+  Buy: Stock DAC, Amount: 0
+  Buy: Stock DBC, Amount: 0
+  Buy: Stock DC4, Amount: 0
+  Buy: Stock DHA, Amount: 0
+  Buy: Stock DHG, Amount: 0
+  Buy: Stock DHT, Amount: 0
+  Buy: Stock DPC, Amount: 0
+  Buy: Stock DPM, Amount: 0
+  Buy: Stock DPR, Amount: 0
+  Buy: Stock DQC, Amount: 0
+  Buy: Stock DST, Amount: 0
+  Buy: Stock DTC, Amount: 0
+  Buy: Stock DTT, Amount: 0
+  Buy: Stock DXV, Amount: 0
+  Buy: Stock EBS, Amount: 0
+  Buy: Stock FMC, Amount: 0
+  Buy: Stock FPT, Amount: 0
+  Buy: Stock GIL, Amount: 0
+  Buy: Stock GMC, Amount: 0
+  Buy: Stock GMD, Amount: 0
+  Buy: Stock HAG, Amount: 0
+  Buy: Stock HAS, Amount: 0
+  Buy: Stock HBC, Amount: 0
+  Buy: Stock HCT, Amount: 0
+  Buy: Stock HDC, Amount: 0
+  Buy: Stock HEV, Amount: 0
+  Buy: Stock HPG, Amount: 0
+  Buy: Stock HRC, Amount: 0
+  Buy: Stock HSG, Amount: 0
+  Buy: Stock HSI, Amount: 0
+  Buy: Stock HUT, Amount: 0
+  Buy: Stock ICF, Amount: 0
+  Buy: Stock KDC, Amount: 0
+  Buy: Stock KHP, Amount: 0
+  Buy: Stock KSH, Amount: 0
+  Buy: Stock L10, Amount: 0
+  Buy: Stock L18, Amount: 0
+  Buy: Stock L43, Amount: 0
+  Buy: Stock L61, Amount: 0
+  Buy: Stock LBE, Amount: 0
+  Buy: Stock LBM, Amount: 0
+  Buy: Stock LCG, Amount: 0
+  Buy: Stock LGC, Amount: 0
+  Sell: Stock ABT, Amount: 28047.0
+  Sell: Stock ACB, Amount: 23576.0
+  Sell: Stock ANV, Amount: 121.0
+  Sell: Stock BST, Amount: 1.0
+  Sell: Stock CAP, Amount: 38901.0
+  Dividends: 0.00
+  Bank Deposit: 0.13
+Month 9:
+  Buy: Stock ABT, Amount: 23330
+  Buy: Stock ACB, Amount: 93245
+  Buy: Stock ACL, Amount: 510
+  Buy: Stock AGF, Amount: 14
+  Buy: Stock ALT, Amount: 5
+  Buy: Stock B82, Amount: 16
+  Buy: Stock BMC, Amount: 0
+  Buy: Stock BMI, Amount: 0
+  Buy: Stock BTS, Amount: 19
+  Buy: Stock BVS, Amount: 0
+  Buy: Stock CAN, Amount: 8
+  Buy: Stock CAP, Amount: 203
+  Buy: Stock CCM, Amount: 1
+  Buy: Stock CDC, Amount: 5
+  Buy: Stock CID, Amount: 0
+  Buy: Stock CII, Amount: 7
+  Buy: Stock CLC, Amount: 0
+  Buy: Stock CMC, Amount: 304
+  Buy: Stock COM, Amount: 2
+  Buy: Stock CTB, Amount: 56
+  Buy: Stock CTC, Amount: 434
+  Buy: Stock CTN, Amount: 158
+  Buy: Stock DAC, Amount: 0
+  Buy: Stock DAE, Amount: 118
+  Buy: Stock DBC, Amount: 0
+  Buy: Stock DC4, Amount: 3
+  Sell: Stock B82, Amount: 388.0
+  Sell: Stock CAN, Amount: 20.0
+  Sell: Stock CAP, Amount: 359.0
+  Sell: Stock CMC, Amount: 4.0
+  Sell: Stock CTN, Amount: 111.0
+  Sell: Stock DAE, Amount: 15.0
+  Dividends: 25.90
+  Bank Deposit: 1539622.68
+Month 10:
+  Buy: Stock ABT, Amount: 1026
+  Buy: Stock ACB, Amount: 21232
+  Buy: Stock ACL, Amount: 618
+  Buy: Stock AGF, Amount: 0
+  Buy: Stock ALT, Amount: 0
+  Buy: Stock ANV, Amount: 15
+  Sell: Stock ABT, Amount: 7116.0
+  Dividends: 7014.00
+  Bank Deposit: 1046734.95
+Month 11:
+  Buy: Stock ABT, Amount: 999
+  Buy: Stock ACB, Amount: 54393
+  Buy: Stock ACL, Amount: 0
+  Buy: Stock AGF, Amount: 2
+  Buy: Stock ALT, Amount: 0
+  Buy: Stock ANV, Amount: 0
+  Sell: Stock ABT, Amount: 959.0
+  Sell: Stock ACB, Amount: 102491.0
+  Sell: Stock ACL, Amount: 1129.0
+  Sell: Stock AGF, Amount: 1399.0
+  Sell: Stock ALT, Amount: 5.0
+  Dividends: 0.00
+  Bank Deposit: 2.28
+Month 12:
+  Sell: Stock ABT, Amount: 17280.0
+  Sell: Stock AGF, Amount: 385.0
+  Sell: Stock BMI, Amount: 9007.0
+  Sell: Stock BMP, Amount: 26164.0
+  Sell: Stock BPC, Amount: 128.0
+  Sell: Stock CAN, Amount: 15333.0
+  Sell: Stock CAP, Amount: 488.0
+  Sell: Stock CCM, Amount: 1.0
+  Sell: Stock CDC, Amount: 5.0
+  Sell: Stock CII, Amount: 7.0
+  Sell: Stock CMC, Amount: 300.0
+  Sell: Stock COM, Amount: 2.0
+  Sell: Stock CTB, Amount: 56.0
+  Sell: Stock CTC, Amount: 434.0
+  Sell: Stock CTN, Amount: 47.0
+  Sell: Stock DAE, Amount: 103.0
+  Sell: Stock DC4, Amount: 3.0
+  Sell: Stock HRC, Amount: 1.0
+  Sell: Stock ACB, Amount: 66379.0
+  Sell: Stock ANV, Amount: 7029.0
+  Sell: Stock B82, Amount: 1298.0
+  Sell: Stock BMP, Amount: 21092.0
+  Sell: Stock BST, Amount: 41.0
+  Sell: Stock BTS, Amount: 20.0
+  Sell: Stock CAP, Amount: 9124.0
+  Dividends: 0.00
+  Bank Deposit: 2439000.94
+
+
+Final Cash: 11973255.87 => return: 0.20
+Month 1:
+  Buy: Stock ABT, Amount: 764
+  Buy: Stock ACB, Amount: 1841
+  Buy: Stock ACL, Amount: 7811
+  Buy: Stock AGF, Amount: 4857
+  Buy: Stock ALT, Amount: 3253
+  Buy: Stock ANV, Amount: 1457
+  Buy: Stock ASP, Amount: 621
+  Buy: Stock B82, Amount: 2561
+  Buy: Stock BBC, Amount: 1600
+  Buy: Stock BBS, Amount: 2703
+  Buy: Stock BCC, Amount: 909
+  Buy: Stock BMC, Amount: 484947
+  Buy: Stock BMI, Amount: 13147
+  Buy: Stock BMP, Amount: 31952
+  Buy: Stock BPC, Amount: 4
+  Buy: Stock BST, Amount: 0
+  Buy: Stock BTS, Amount: 1
+  Buy: Stock BVS, Amount: 0
+  Buy: Stock CAN, Amount: 0
+  Buy: Stock CAP, Amount: 0
+  Buy: Stock CCM, Amount: 0
+  Buy: Stock CDC, Amount: 0
+  Buy: Stock CID, Amount: 0
+  Buy: Stock CII, Amount: 0
+  Buy: Stock CMC, Amount: 0
+  Buy: Stock CTC, Amount: 0
+  Buy: Stock CTN, Amount: 0
+  Buy: Stock DCS, Amount: 0
+  Buy: Stock DMC, Amount: 0
+  Buy: Stock DPC, Amount: 0
+  Buy: Stock DQC, Amount: 0
+  Buy: Stock DRC, Amount: 0
+  Buy: Stock DXV, Amount: 0
+  Buy: Stock FPT, Amount: 0
+  Buy: Stock HAP, Amount: 0
+  Buy: Stock HBC, Amount: 0
+  Buy: Stock HDC, Amount: 0
+  Buy: Stock HTP, Amount: 0
+  Buy: Stock HUT, Amount: 0
+  Buy: Stock ICF, Amount: 0
+  Buy: Stock IMP, Amount: 0
+  Buy: Stock ITA, Amount: 0
+  Buy: Stock KDC, Amount: 0
+  Buy: Stock KKC, Amount: 0
+  Buy: Stock L43, Amount: 0
+  Buy: Stock L62, Amount: 0
+  Buy: Stock LSS, Amount: 0
+  Dividends: 0.00
+  Bank Deposit: 3.72
+Month 2:
+  Buy: Stock ACB, Amount: 0
+  Buy: Stock AGF, Amount: 0
+  Buy: Stock B82, Amount: 0
+  Buy: Stock CDC, Amount: 0
+  Buy: Stock CII, Amount: 0
+  Buy: Stock DTT, Amount: 0
+  Buy: Stock EBS, Amount: 0
+  Buy: Stock GMD, Amount: 0
+  Buy: Stock HCC, Amount: 0
+  Buy: Stock HDC, Amount: 0
+  Buy: Stock HJS, Amount: 0
+  Buy: Stock HMC, Amount: 0
+  Buy: Stock HT1, Amount: 0
+  Buy: Stock HTV, Amount: 0
+  Buy: Stock ITA, Amount: 0
+  Buy: Stock KBC, Amount: 0
+  Buy: Stock L10, Amount: 0
+  Buy: Stock LBE, Amount: 0
+  Buy: Stock LSS, Amount: 0
+  Buy: Stock LTC, Amount: 0
+  Sell: Stock ABT, Amount: 10.0
+  Sell: Stock ACL, Amount: 7811.0
+  Sell: Stock ALT, Amount: 3253.0
+  Sell: Stock ANV, Amount: 1457.0
+  Sell: Stock ASP, Amount: 621.0
+  Sell: Stock B82, Amount: 2187.0
+  Sell: Stock BBC, Amount: 1600.0
+  Sell: Stock BCC, Amount: 909.0
+  Sell: Stock BMC, Amount: 5084.0
+  Sell: Stock BMI, Amount: 1431.0
+  Sell: Stock BMP, Amount: 1834.0
+  Sell: Stock BPC, Amount: 4.0
+  Sell: Stock BTS, Amount: 1.0
+  Dividends: 0.00
+  Bank Deposit: 3.74
+Month 3:
+  Buy: Stock ABT, Amount: 680
+  Buy: Stock ACB, Amount: 132
+  Buy: Stock ACL, Amount: 64
+  Buy: Stock AGF, Amount: 186
+  Buy: Stock ALT, Amount: 45
+  Buy: Stock ANV, Amount: 16251
+  Buy: Stock ASP, Amount: 1
+  Buy: Stock B82, Amount: 1
+  Buy: Stock BPC, Amount: 0
+  Buy: Stock BVS, Amount: 17
+  Buy: Stock CAN, Amount: 0
+  Buy: Stock CID, Amount: 0
+  Buy: Stock COM, Amount: 0
+  Buy: Stock CTC, Amount: 0
+  Buy: Stock CTN, Amount: 0
+  Buy: Stock DTT, Amount: 0
+  Buy: Stock GMC, Amount: 0
+  Buy: Stock HRC, Amount: 0
+  Buy: Stock HUT, Amount: 0
+  Buy: Stock ICF, Amount: 0
+  Buy: Stock KBC, Amount: 0
+  Buy: Stock KMR, Amount: 0
+  Buy: Stock L43, Amount: 496
+  Sell: Stock ACB, Amount: 1537.0
+  Sell: Stock AGF, Amount: 110.0
+  Sell: Stock B82, Amount: 14.0
+  Sell: Stock BBS, Amount: 2703.0
+  Sell: Stock BMC, Amount: 479863.0
+  Sell: Stock BMI, Amount: 11716.0
+  Sell: Stock BMP, Amount: 30118.0
+  Dividends: 1508.00
+  Bank Deposit: 0.33
+Month 4:
+  Buy: Stock ABT, Amount: 0
+  Buy: Stock AGF, Amount: 332
+  Buy: Stock ALT, Amount: 200
+  Buy: Stock ANV, Amount: 2
+  Buy: Stock ASP, Amount: 7
+  Buy: Stock B82, Amount: 3486
+  Buy: Stock BMC, Amount: 1255
+  Buy: Stock BMI, Amount: 7347
+  Buy: Stock BMP, Amount: 52916
+  Buy: Stock BPC, Amount: 47
+  Buy: Stock BST, Amount: 210
+  Buy: Stock BTS, Amount: 332
+  Buy: Stock BVS, Amount: 108
+  Buy: Stock CAN, Amount: 15348
+  Buy: Stock CAP, Amount: 40577
+  Buy: Stock CCM, Amount: 0
+  Buy: Stock CDC, Amount: 0
+  Buy: Stock CID, Amount: 0
+  Buy: Stock CII, Amount: 0
+  Buy: Stock CJC, Amount: 0
+  Buy: Stock CLC, Amount: 0
+  Buy: Stock CMC, Amount: 0
+  Buy: Stock COM, Amount: 0
+  Buy: Stock CTC, Amount: 0
+  Buy: Stock CTN, Amount: 1
+  Buy: Stock DAE, Amount: 1
+  Buy: Stock DBC, Amount: 0
+  Buy: Stock DCS, Amount: 42
+  Buy: Stock DHA, Amount: 0
+  Buy: Stock DHG, Amount: 0
+  Buy: Stock DIC, Amount: 0
+  Buy: Stock DMC, Amount: 0
+  Buy: Stock DPC, Amount: 2
+  Buy: Stock DPM, Amount: 0
+  Buy: Stock DPR, Amount: 0
+  Buy: Stock DRC, Amount: 0
+  Buy: Stock DST, Amount: 0
+  Buy: Stock DTC, Amount: 0
+  Buy: Stock DTT, Amount: 0
+  Buy: Stock DXP, Amount: 0
+  Buy: Stock GIL, Amount: 0
+  Buy: Stock GMC, Amount: 0
+  Buy: Stock GMD, Amount: 0
+  Buy: Stock GTA, Amount: 0
+  Buy: Stock HAG, Amount: 0
+  Buy: Stock HAS, Amount: 0
+  Buy: Stock HAX, Amount: 0
+  Buy: Stock HBC, Amount: 0
+  Buy: Stock HCC, Amount: 0
+  Buy: Stock HCT, Amount: 0
+  Buy: Stock HEV, Amount: 0
+  Buy: Stock HJS, Amount: 0
+  Buy: Stock HPG, Amount: 0
+  Buy: Stock HRC, Amount: 0
+  Buy: Stock HSG, Amount: 0
+  Buy: Stock HTP, Amount: 0
+  Buy: Stock HTV, Amount: 0
+  Buy: Stock ICF, Amount: 0
+  Buy: Stock IMP, Amount: 0
+  Buy: Stock ITA, Amount: 0
+  Buy: Stock KBC, Amount: 0
+  Buy: Stock KKC, Amount: 0
+  Buy: Stock L10, Amount: 0
+  Buy: Stock LCG, Amount: 0
+  Buy: Stock LSS, Amount: 0
+  Buy: Stock LTC, Amount: 0
+  Sell: Stock AGF, Amount: 425.0
+  Sell: Stock ALT, Amount: 110.0
+  Sell: Stock ASP, Amount: 3.0
+  Sell: Stock B82, Amount: 90.0
+  Sell: Stock BST, Amount: 103.0
+  Sell: Stock DCS, Amount: 13.0
+  Dividends: 0.00
+  Bank Deposit: 1.22
+Month 5:
+  Buy: Stock ABT, Amount: 147
+  Buy: Stock ACB, Amount: 1
+  Buy: Stock ACL, Amount: 0
+  Buy: Stock AGF, Amount: 1
+  Buy: Stock ALT, Amount: 0
+  Buy: Stock ANV, Amount: 0
+  Buy: Stock ASP, Amount: 0
+  Buy: Stock B82, Amount: 0
+  Buy: Stock BBC, Amount: 0
+  Buy: Stock BBS, Amount: 0
+  Buy: Stock BCC, Amount: 0
+  Buy: Stock BMC, Amount: 0
+  Buy: Stock BMI, Amount: 0
+  Buy: Stock BMP, Amount: 0
+  Buy: Stock BPC, Amount: 0
+  Buy: Stock BST, Amount: 0
+  Buy: Stock BTS, Amount: 0
+  Buy: Stock BVS, Amount: 0
+  Buy: Stock CAP, Amount: 0
+  Buy: Stock CDC, Amount: 0
+  Buy: Stock CII, Amount: 0
+  Buy: Stock CMC, Amount: 0
+  Buy: Stock COM, Amount: 0
+  Buy: Stock CTC, Amount: 0
+  Buy: Stock CTN, Amount: 0
+  Buy: Stock DAC, Amount: 0
+  Buy: Stock DBC, Amount: 0
+  Buy: Stock DC4, Amount: 0
+  Buy: Stock DCS, Amount: 0
+  Buy: Stock DHG, Amount: 0
+  Buy: Stock DHT, Amount: 0
+  Buy: Stock DIC, Amount: 0
+  Buy: Stock DMC, Amount: 0
+  Buy: Stock DPC, Amount: 0
+  Buy: Stock DPM, Amount: 0
+  Buy: Stock DTC, Amount: 0
+  Buy: Stock DXP, Amount: 0
+  Buy: Stock DXV, Amount: 0
+  Buy: Stock FMC, Amount: 0
+  Buy: Stock FPT, Amount: 0
+  Buy: Stock GIL, Amount: 0
+  Buy: Stock GTA, Amount: 0
+  Buy: Stock HAG, Amount: 0
+  Buy: Stock HAP, Amount: 0
+  Buy: Stock HAS, Amount: 0
+  Buy: Stock HAX, Amount: 0
+  Buy: Stock HBC, Amount: 0
+  Buy: Stock HCT, Amount: 0
+  Buy: Stock HDC, Amount: 0
+  Buy: Stock HEV, Amount: 0
+  Buy: Stock HHC, Amount: 0
+  Buy: Stock HJS, Amount: 0
+  Buy: Stock HMC, Amount: 0
+  Buy: Stock HPG, Amount: 0
+  Buy: Stock HRC, Amount: 0
+  Buy: Stock HSG, Amount: 0
+  Buy: Stock HT1, Amount: 0
+  Buy: Stock HTP, Amount: 0
+  Buy: Stock HUT, Amount: 0
+  Buy: Stock ICF, Amount: 0
+  Buy: Stock IMP, Amount: 0
+  Buy: Stock ITA, Amount: 0
+  Buy: Stock KBC, Amount: 0
+  Buy: Stock KDC, Amount: 0
+  Buy: Stock KHP, Amount: 0
+  Buy: Stock KKC, Amount: 0
+  Buy: Stock KSH, Amount: 0
+  Buy: Stock L10, Amount: 0
+  Buy: Stock L18, Amount: 0
+  Buy: Stock L62, Amount: 0
+  Buy: Stock LAF, Amount: 0
+  Buy: Stock LBE, Amount: 0
+  Buy: Stock LBM, Amount: 0
+  Buy: Stock LCG, Amount: 0
+  Buy: Stock LGC, Amount: 0
+  Buy: Stock LSS, Amount: 0
+  Sell: Stock ABT, Amount: 727.0
+  Sell: Stock ACB, Amount: 437.0
+  Sell: Stock ALT, Amount: 135.0
+  Sell: Stock ANV, Amount: 145.0
+  Sell: Stock B82, Amount: 640.0
+  Sell: Stock CAN, Amount: 290.0
+  Dividends: 452007.70
+  Bank Deposit: 0.60
+Month 6:
+  Buy: Stock ABT, Amount: 7822
+  Buy: Stock ACB, Amount: 11322
+  Buy: Stock ACL, Amount: 1
+  Buy: Stock AGF, Amount: 2
+  Buy: Stock ALT, Amount: 0
+  Buy: Stock ANV, Amount: 0
+  Buy: Stock ASP, Amount: 0
+  Buy: Stock B82, Amount: 0
+  Buy: Stock BBC, Amount: 0
+  Buy: Stock BBS, Amount: 0
+  Buy: Stock BCC, Amount: 0
+  Buy: Stock BLF, Amount: 0
+  Buy: Stock BMC, Amount: 0
+  Buy: Stock BMI, Amount: 0
+  Buy: Stock BMP, Amount: 0
+  Buy: Stock BPC, Amount: 0
+  Buy: Stock BST, Amount: 0
+  Buy: Stock BTS, Amount: 0
+  Buy: Stock BVS, Amount: 0
+  Buy: Stock CAN, Amount: 0
+  Buy: Stock CAP, Amount: 0
+  Buy: Stock CCM, Amount: 0
+  Buy: Stock CDC, Amount: 0
+  Buy: Stock CID, Amount: 0
+  Buy: Stock CMC, Amount: 0
+  Buy: Stock CTB, Amount: 0
+  Buy: Stock CTC, Amount: 0
+  Buy: Stock CTN, Amount: 0
+  Buy: Stock DC4, Amount: 0
+  Buy: Stock DCS, Amount: 0
+  Buy: Stock DHA, Amount: 0
+  Buy: Stock DMC, Amount: 0
+  Buy: Stock DPM, Amount: 0
+  Buy: Stock DPR, Amount: 0
+  Buy: Stock DRC, Amount: 0
+  Buy: Stock DTC, Amount: 0
+  Buy: Stock DTT, Amount: 0
+  Buy: Stock DXP, Amount: 0
+  Buy: Stock DXV, Amount: 0
+  Buy: Stock EBS, Amount: 0
+  Buy: Stock GMD, Amount: 0
+  Buy: Stock GTA, Amount: 0
+  Buy: Stock HAX, Amount: 0
+  Buy: Stock HCC, Amount: 0
+  Buy: Stock HJS, Amount: 0
+  Buy: Stock HMC, Amount: 0
+  Buy: Stock HPG, Amount: 0
+  Buy: Stock HRC, Amount: 0
+  Buy: Stock HUT, Amount: 0
+  Buy: Stock ITA, Amount: 0
+  Buy: Stock KBC, Amount: 0
+  Buy: Stock KDC, Amount: 0
+  Buy: Stock KHP, Amount: 0
+  Buy: Stock KKC, Amount: 0
+  Buy: Stock KSH, Amount: 0
+  Buy: Stock L10, Amount: 0
+  Buy: Stock L43, Amount: 0
+  Buy: Stock L61, Amount: 0
+  Buy: Stock LAF, Amount: 0
+  Buy: Stock LBE, Amount: 0
+  Buy: Stock LBM, Amount: 0
+  Buy: Stock LGC, Amount: 0
+  Buy: Stock LSS, Amount: 0
+  Sell: Stock ABT, Amount: 162.0
+  Sell: Stock ACL, Amount: 65.0
+  Sell: Stock ANV, Amount: 1061.0
+  Sell: Stock B82, Amount: 254.0
+  Sell: Stock BMC, Amount: 508.0
+  Sell: Stock BTS, Amount: 332.0
+  Sell: Stock CAP, Amount: 1769.0
+  Dividends: 26260.50
+  Bank Deposit: 0.41
+Month 7:
+  Buy: Stock ABT, Amount: 5892
+  Buy: Stock ACB, Amount: 1
+  Buy: Stock ACL, Amount: 0
+  Buy: Stock AGF, Amount: 0
+  Buy: Stock B82, Amount: 0
+  Buy: Stock BBC, Amount: 0
+  Buy: Stock BCC, Amount: 0
+  Buy: Stock BMP, Amount: 0
+  Buy: Stock BST, Amount: 0
+  Buy: Stock BTS, Amount: 0
+  Buy: Stock CAN, Amount: 0
+  Buy: Stock CAP, Amount: 0
+  Buy: Stock CCM, Amount: 0
+  Buy: Stock CDC, Amount: 0
+  Buy: Stock CID, Amount: 0
+  Buy: Stock CJC, Amount: 0
+  Buy: Stock CLC, Amount: 0
+  Buy: Stock CMC, Amount: 0
+  Buy: Stock DAC, Amount: 0
+  Buy: Stock DC4, Amount: 0
+  Buy: Stock DCS, Amount: 0
+  Buy: Stock DHA, Amount: 0
+  Buy: Stock DHG, Amount: 0
+  Buy: Stock DIC, Amount: 0
+  Buy: Stock DMC, Amount: 0
+  Buy: Stock DPC, Amount: 0
+  Buy: Stock DPM, Amount: 0
+  Buy: Stock DPR, Amount: 0
+  Buy: Stock DQC, Amount: 0
+  Buy: Stock DRC, Amount: 0
+  Buy: Stock DTC, Amount: 0
+  Buy: Stock DXP, Amount: 0
+  Buy: Stock DXV, Amount: 0
+  Buy: Stock FMC, Amount: 0
+  Buy: Stock FPT, Amount: 0
+  Buy: Stock GIL, Amount: 0
+  Buy: Stock GMC, Amount: 0
+  Buy: Stock GMD, Amount: 0
+  Buy: Stock GTA, Amount: 0
+  Buy: Stock HAP, Amount: 0
+  Buy: Stock HAX, Amount: 0
+  Buy: Stock HBC, Amount: 0
+  Buy: Stock HCC, Amount: 0
+  Buy: Stock HCT, Amount: 0
+  Buy: Stock HDC, Amount: 0
+  Buy: Stock HEV, Amount: 0
+  Buy: Stock HHC, Amount: 0
+  Buy: Stock HJS, Amount: 0
+  Buy: Stock HPG, Amount: 0
+  Buy: Stock HSI, Amount: 0
+  Buy: Stock HTP, Amount: 0
+  Buy: Stock HUT, Amount: 0
+  Buy: Stock ICF, Amount: 0
+  Buy: Stock IMP, Amount: 0
+  Buy: Stock KBC, Amount: 0
+  Buy: Stock KHP, Amount: 0
+  Buy: Stock KSH, Amount: 0
+  Buy: Stock L10, Amount: 0
+  Buy: Stock L61, Amount: 0
+  Buy: Stock L62, Amount: 0
+  Buy: Stock LBE, Amount: 0
+  Buy: Stock LCG, Amount: 0
+  Sell: Stock ACB, Amount: 10153.0
+  Sell: Stock AGF, Amount: 478.0
+  Sell: Stock ANV, Amount: 15047.0
+  Sell: Stock ASP, Amount: 5.0
+  Sell: Stock B82, Amount: 2701.0
+  Sell: Stock BMC, Amount: 747.0
+  Sell: Stock BMI, Amount: 125.0
+  Sell: Stock BMP, Amount: 130.0
+  Sell: Stock BPC, Amount: 47.0
+  Sell: Stock BVS, Amount: 125.0
+  Sell: Stock CAN, Amount: 11.0
+  Sell: Stock CTN, Amount: 1.0
+  Sell: Stock L43, Amount: 496.0
+  Sell: Stock CAN, Amount: 2762.0
+  Dividends: 8514.00
+  Bank Deposit: 0.43
+Month 8:
+  Buy: Stock ABT, Amount: 13471
+  Buy: Stock ACB, Amount: 14459
+  Buy: Stock ACL, Amount: 0
+  Buy: Stock AGF, Amount: 0
+  Buy: Stock ALT, Amount: 0
+  Buy: Stock ANV, Amount: 0
+  Buy: Stock ASP, Amount: 0
+  Buy: Stock B82, Amount: 3
+  Buy: Stock BBC, Amount: 0
+  Buy: Stock BBS, Amount: 0
+  Buy: Stock BCC, Amount: 0
+  Buy: Stock BLF, Amount: 0
+  Buy: Stock BMC, Amount: 0
+  Buy: Stock BMP, Amount: 0
+  Buy: Stock BPC, Amount: 0
+  Buy: Stock BTS, Amount: 0
+  Buy: Stock BVS, Amount: 0
+  Buy: Stock CAN, Amount: 0
+  Buy: Stock CAP, Amount: 0
+  Buy: Stock CII, Amount: 0
+  Buy: Stock CLC, Amount: 0
+  Buy: Stock CMC, Amount: 0
+  Buy: Stock COM, Amount: 0
+  Buy: Stock CTB, Amount: 0
+  Buy: Stock CTC, Amount: 0
+  Buy: Stock CTN, Amount: 0
+  Buy: Stock DAC, Amount: 0
+  Buy: Stock DBC, Amount: 0
+  Buy: Stock DC4, Amount: 0
+  Buy: Stock DHA, Amount: 0
+  Buy: Stock DHG, Amount: 0
+  Buy: Stock DHT, Amount: 0
+  Buy: Stock DPC, Amount: 0
+  Buy: Stock DPM, Amount: 0
+  Buy: Stock DPR, Amount: 0
+  Buy: Stock DQC, Amount: 0
+  Buy: Stock DST, Amount: 0
+  Buy: Stock DTC, Amount: 0
+  Buy: Stock DTT, Amount: 0
+  Buy: Stock DXV, Amount: 0
+  Buy: Stock EBS, Amount: 0
+  Buy: Stock FMC, Amount: 0
+  Buy: Stock FPT, Amount: 0
+  Buy: Stock GIL, Amount: 0
+  Buy: Stock GMC, Amount: 0
+  Buy: Stock GMD, Amount: 0
+  Buy: Stock HAG, Amount: 0
+  Buy: Stock HAS, Amount: 0
+  Buy: Stock HBC, Amount: 0
+  Buy: Stock HCT, Amount: 0
+  Buy: Stock HDC, Amount: 0
+  Buy: Stock HEV, Amount: 0
+  Buy: Stock HPG, Amount: 0
+  Buy: Stock HRC, Amount: 0
+  Buy: Stock HSG, Amount: 0
+  Buy: Stock HSI, Amount: 0
+  Buy: Stock HUT, Amount: 0
+  Buy: Stock ICF, Amount: 0
+  Buy: Stock KDC, Amount: 0
+  Buy: Stock KHP, Amount: 0
+  Buy: Stock KSH, Amount: 0
+  Buy: Stock L10, Amount: 0
+  Buy: Stock L18, Amount: 0
+  Buy: Stock L43, Amount: 0
+  Buy: Stock L61, Amount: 0
+  Buy: Stock LBM, Amount: 0
+  Buy: Stock LCG, Amount: 0
+  Buy: Stock LGC, Amount: 0
+  Sell: Stock ABT, Amount: 5727.0
+  Sell: Stock ACB, Amount: 15629.0
+  Sell: Stock BMI, Amount: 7222.0
+  Sell: Stock CAN, Amount: 56.0
+  Sell: Stock CAP, Amount: 6551.0
+  Sell: Stock DAE, Amount: 1.0
+  Sell: Stock DCS, Amount: 29.0
+  Sell: Stock CAN, Amount: 8666.93476710578
+  Dividends: 0.00
+  Bank Deposit: 0.18
+Month 9:
+  Buy: Stock ABT, Amount: 37804
+  Buy: Stock ACB, Amount: 0
+  Buy: Stock ACL, Amount: 0
+  Buy: Stock AGF, Amount: 3
+  Buy: Stock ALT, Amount: 0
+  Buy: Stock B82, Amount: 0
+  Buy: Stock BMC, Amount: 0
+  Buy: Stock BMI, Amount: 0
+  Buy: Stock BTS, Amount: 0
+  Buy: Stock BVS, Amount: 0
+  Buy: Stock CAN, Amount: 0
+  Buy: Stock CAP, Amount: 0
+  Buy: Stock CCM, Amount: 0
+  Buy: Stock CDC, Amount: 0
+  Buy: Stock CID, Amount: 0
+  Buy: Stock CII, Amount: 0
+  Buy: Stock CLC, Amount: 0
+  Buy: Stock CMC, Amount: 0
+  Buy: Stock COM, Amount: 0
+  Buy: Stock CTB, Amount: 0
+  Buy: Stock CTC, Amount: 0
+  Buy: Stock CTN, Amount: 0
+  Buy: Stock DAC, Amount: 0
+  Buy: Stock DAE, Amount: 0
+  Buy: Stock DBC, Amount: 0
+  Buy: Stock DC4, Amount: 0
+  Buy: Stock DCS, Amount: 0
+  Buy: Stock DHA, Amount: 0
+  Buy: Stock DHG, Amount: 0
+  Buy: Stock DHT, Amount: 0
+  Buy: Stock DIC, Amount: 0
+  Buy: Stock DMC, Amount: 0
+  Buy: Stock DPC, Amount: 0
+  Buy: Stock DPM, Amount: 0
+  Buy: Stock DPR, Amount: 0
+  Buy: Stock DQC, Amount: 0
+  Buy: Stock DRC, Amount: 0
+  Buy: Stock DST, Amount: 0
+  Buy: Stock DTC, Amount: 0
+  Buy: Stock DTT, Amount: 0
+  Buy: Stock DXP, Amount: 0
+  Buy: Stock DXV, Amount: 0
+  Buy: Stock EBS, Amount: 0
+  Buy: Stock FMC, Amount: 0
+  Buy: Stock FPT, Amount: 0
+  Buy: Stock GIL, Amount: 0
+  Buy: Stock GMC, Amount: 0
+  Buy: Stock GMD, Amount: 0
+  Buy: Stock GTA, Amount: 0
+  Buy: Stock HAG, Amount: 0
+  Buy: Stock HAP, Amount: 0
+  Buy: Stock HAS, Amount: 0
+  Buy: Stock HAX, Amount: 0
+  Buy: Stock HBC, Amount: 0
+  Buy: Stock HCC, Amount: 0
+  Buy: Stock HCT, Amount: 0
+  Buy: Stock HDC, Amount: 0
+  Buy: Stock HEV, Amount: 0
+  Buy: Stock HHC, Amount: 0
+  Buy: Stock HJS, Amount: 0
+  Buy: Stock HMC, Amount: 0
+  Buy: Stock HPG, Amount: 0
+  Buy: Stock HRC, Amount: 0
+  Buy: Stock HSG, Amount: 0
+  Buy: Stock HSI, Amount: 0
+  Buy: Stock HT1, Amount: 0
+  Buy: Stock HTP, Amount: 0
+  Buy: Stock HTV, Amount: 0
+  Buy: Stock HUT, Amount: 0
+  Buy: Stock ICF, Amount: 0
+  Buy: Stock IMP, Amount: 0
+  Buy: Stock ITA, Amount: 0
+  Buy: Stock KBC, Amount: 0
+  Buy: Stock KDC, Amount: 0
+  Buy: Stock KHP, Amount: 0
+  Buy: Stock KKC, Amount: 0
+  Buy: Stock KMR, Amount: 0
+  Buy: Stock KSH, Amount: 0
+  Buy: Stock L10, Amount: 0
+  Buy: Stock L18, Amount: 0
+  Buy: Stock L43, Amount: 0
+  Buy: Stock L61, Amount: 0
+  Buy: Stock L62, Amount: 0
+  Buy: Stock LAF, Amount: 0
+  Buy: Stock LBE, Amount: 0
+  Buy: Stock LBM, Amount: 0
+  Buy: Stock LCG, Amount: 0
+  Buy: Stock LGC, Amount: 0
+  Buy: Stock LSS, Amount: 0
+  Buy: Stock LTC, Amount: 0
+  Sell: Stock ABT, Amount: 20452.0
+  Sell: Stock AGF, Amount: 4368.0
+  Sell: Stock CAN, Amount: 8.0
+  Sell: Stock CAP, Amount: 158.0
+  Sell: Stock ABT, Amount: 9701.0
+  Sell: Stock CAN, Amount: 306.29145268699455
+  Dividends: 0.00
+  Bank Deposit: 0.40
+Month 10:
+  Buy: Stock ABT, Amount: 7028
+  Buy: Stock ACB, Amount: 20066
+  Buy: Stock ACL, Amount: 481
+  Buy: Stock AGF, Amount: 80
+  Buy: Stock ALT, Amount: 5
+  Buy: Stock ANV, Amount: 11
+  Buy: Stock ASP, Amount: 0
+  Buy: Stock B82, Amount: 1
+  Buy: Stock BBC, Amount: 0
+  Buy: Stock BBS, Amount: 5
+  Buy: Stock BCC, Amount: 0
+  Buy: Stock BLF, Amount: 0
+  Buy: Stock BMC, Amount: 2
+  Buy: Stock BMI, Amount: 7
+  Buy: Stock BMP, Amount: 0
+  Buy: Stock BPC, Amount: 872
+  Buy: Stock BST, Amount: 0
+  Buy: Stock BTS, Amount: 1
+  Buy: Stock BVS, Amount: 0
+  Buy: Stock CAN, Amount: 0
+  Buy: Stock CAP, Amount: 0
+  Buy: Stock CCM, Amount: 0
+  Buy: Stock CDC, Amount: 0
+  Buy: Stock CID, Amount: 0
+  Buy: Stock CII, Amount: 0
+  Buy: Stock CJC, Amount: 0
+  Buy: Stock CLC, Amount: 0
+  Buy: Stock CMC, Amount: 0
+  Buy: Stock COM, Amount: 0
+  Buy: Stock CTB, Amount: 0
+  Buy: Stock CTC, Amount: 0
+  Buy: Stock CTN, Amount: 1
+  Buy: Stock DAC, Amount: 0
+  Buy: Stock DAE, Amount: 0
+  Buy: Stock DBC, Amount: 0
+  Buy: Stock DC4, Amount: 0
+  Buy: Stock DCS, Amount: 0
+  Buy: Stock DHA, Amount: 0
+  Buy: Stock DHG, Amount: 0
+  Buy: Stock DHT, Amount: 0
+  Buy: Stock DIC, Amount: 0
+  Buy: Stock DMC, Amount: 0
+  Buy: Stock DPC, Amount: 0
+  Buy: Stock DPM, Amount: 0
+  Buy: Stock DPR, Amount: 0
+  Buy: Stock DQC, Amount: 0
+  Buy: Stock DRC, Amount: 0
+  Buy: Stock DST, Amount: 0
+  Buy: Stock DTC, Amount: 0
+  Buy: Stock DTT, Amount: 0
+  Buy: Stock DXP, Amount: 0
+  Buy: Stock DXV, Amount: 0
+  Buy: Stock EBS, Amount: 0
+  Buy: Stock FMC, Amount: 0
+  Buy: Stock FPT, Amount: 0
+  Buy: Stock GIL, Amount: 0
+  Buy: Stock GMC, Amount: 0
+  Buy: Stock GMD, Amount: 0
+  Buy: Stock GTA, Amount: 0
+  Buy: Stock HAG, Amount: 0
+  Buy: Stock HAP, Amount: 0
+  Buy: Stock HAS, Amount: 0
+  Buy: Stock HAX, Amount: 0
+  Buy: Stock HBC, Amount: 0
+  Buy: Stock HCC, Amount: 0
+  Buy: Stock HCT, Amount: 0
+  Buy: Stock HDC, Amount: 0
+  Buy: Stock HEV, Amount: 0
+  Buy: Stock HHC, Amount: 0
+  Buy: Stock HJS, Amount: 0
+  Buy: Stock HMC, Amount: 0
+  Buy: Stock HPG, Amount: 0
+  Buy: Stock HRC, Amount: 0
+  Buy: Stock HSG, Amount: 0
+  Buy: Stock HSI, Amount: 0
+  Buy: Stock HT1, Amount: 0
+  Buy: Stock HTP, Amount: 0
+  Buy: Stock HTV, Amount: 0
+  Buy: Stock HUT, Amount: 0
+  Buy: Stock ICF, Amount: 0
+  Buy: Stock IMP, Amount: 0
+  Buy: Stock ITA, Amount: 0
+  Buy: Stock KBC, Amount: 0
+  Buy: Stock KDC, Amount: 0
+  Buy: Stock KHP, Amount: 0
+  Buy: Stock KKC, Amount: 0
+  Buy: Stock KMR, Amount: 0
+  Buy: Stock KSH, Amount: 0
+  Buy: Stock L10, Amount: 0
+  Buy: Stock L18, Amount: 0
+  Buy: Stock L43, Amount: 0
+  Buy: Stock L61, Amount: 0
+  Buy: Stock L62, Amount: 0
+  Buy: Stock LAF, Amount: 0
+  Buy: Stock LBE, Amount: 0
+  Buy: Stock LBM, Amount: 0
+  Buy: Stock LCG, Amount: 0
+  Buy: Stock LGC, Amount: 0
+  Buy: Stock LSS, Amount: 0
+  Buy: Stock LTC, Amount: 0
+  Sell: Stock ABT, Amount: 7503.0
+  Sell: Stock ACL, Amount: 181.0
+  Sell: Stock CAN, Amount: 7.0
+  Sell: Stock CAP, Amount: 12156.0
+  Sell: Stock CAN, Amount: 595.6886189854156
+  Dividends: 0.00
+  Bank Deposit: 0.37
+Month 11:
+  Buy: Stock ABT, Amount: 1000
+  Buy: Stock ACB, Amount: 33244
+  Buy: Stock ACL, Amount: 1092
+  Buy: Stock AGF, Amount: 526
+  Buy: Stock ALT, Amount: 33956
+  Buy: Stock ANV, Amount: 0
+  Buy: Stock ASP, Amount: 1
+  Buy: Stock B82, Amount: 4
+  Buy: Stock BBC, Amount: 0
+  Buy: Stock BBS, Amount: 0
+  Buy: Stock BCC, Amount: 0
+  Buy: Stock BLF, Amount: 0
+  Buy: Stock BMC, Amount: 0
+  Buy: Stock BMI, Amount: 0
+  Buy: Stock BMP, Amount: 0
+  Buy: Stock BST, Amount: 0
+  Buy: Stock BTS, Amount: 0
+  Buy: Stock BVS, Amount: 0
+  Buy: Stock CAP, Amount: 0
+  Buy: Stock CCM, Amount: 0
+  Buy: Stock CDC, Amount: 0
+  Buy: Stock CID, Amount: 0
+  Buy: Stock CII, Amount: 0
+  Buy: Stock CJC, Amount: 0
+  Buy: Stock CLC, Amount: 0
+  Buy: Stock CMC, Amount: 0
+  Buy: Stock COM, Amount: 0
+  Buy: Stock CTB, Amount: 0
+  Buy: Stock CTC, Amount: 0
+  Buy: Stock CTN, Amount: 0
+  Buy: Stock DAE, Amount: 0
+  Buy: Stock DBC, Amount: 0
+  Buy: Stock DC4, Amount: 0
+  Buy: Stock DCS, Amount: 0
+  Buy: Stock DHA, Amount: 0
+  Buy: Stock DHT, Amount: 0
+  Buy: Stock DPC, Amount: 0
+  Buy: Stock DPR, Amount: 0
+  Buy: Stock DQC, Amount: 0
+  Buy: Stock DRC, Amount: 0
+  Buy: Stock DST, Amount: 0
+  Buy: Stock DTC, Amount: 0
+  Buy: Stock DXP, Amount: 0
+  Buy: Stock FPT, Amount: 0
+  Buy: Stock GIL, Amount: 0
+  Buy: Stock GMC, Amount: 0
+  Buy: Stock HAG, Amount: 0
+  Buy: Stock HAS, Amount: 0
+  Buy: Stock HAX, Amount: 0
+  Buy: Stock HBC, Amount: 0
+  Buy: Stock HCC, Amount: 0
+  Buy: Stock HCT, Amount: 0
+  Buy: Stock HDC, Amount: 0
+  Buy: Stock HEV, Amount: 0
+  Buy: Stock HHC, Amount: 0
+  Buy: Stock HMC, Amount: 0
+  Buy: Stock HRC, Amount: 0
+  Buy: Stock HSG, Amount: 0
+  Buy: Stock HSI, Amount: 0
+  Buy: Stock HT1, Amount: 0
+  Buy: Stock HTP, Amount: 0
+  Buy: Stock HTV, Amount: 0
+  Buy: Stock HUT, Amount: 0
+  Buy: Stock ICF, Amount: 0
+  Buy: Stock IMP, Amount: 0
+  Buy: Stock ITA, Amount: 0
+  Buy: Stock KBC, Amount: 0
+  Buy: Stock KKC, Amount: 0
+  Buy: Stock KMR, Amount: 0
+  Buy: Stock KSH, Amount: 0
+  Buy: Stock L18, Amount: 0
+  Buy: Stock L43, Amount: 0
+  Buy: Stock L61, Amount: 0
+  Buy: Stock LCG, Amount: 0
+  Buy: Stock LGC, Amount: 0
+  Buy: Stock LTC, Amount: 0
+  Sell: Stock ABT, Amount: 994.0
+  Sell: Stock ACB, Amount: 4602.0
+  Sell: Stock ALT, Amount: 33961.0
+  Sell: Stock BST, Amount: 106.0
+  Sell: Stock CAP, Amount: 6.0
+  Sell: Stock ABT, Amount: 5.5475910007568245
+  Dividends: 343109.00
+  Bank Deposit: 0.05
+Month 12:
+  Sell: Stock ABT, Amount: 29326.0
+  Sell: Stock AGF, Amount: 606.0
+  Sell: Stock BBS, Amount: 5.0
+  Sell: Stock BMC, Amount: 2.0
+  Sell: Stock BMI, Amount: 7.0
+  Sell: Stock BMP, Amount: 26113.0
+  Sell: Stock BPC, Amount: 872.0
+  Sell: Stock CAN, Amount: 2645.0
+  Sell: Stock CAP, Amount: 4819.0
+  Sell: Stock CTN, Amount: 1.0
+  Sell: Stock DPC, Amount: 2.0
+  Sell: Stock ACB, Amount: 48708.0
+  Sell: Stock ACL, Amount: 1392.0
+  Sell: Stock ANV, Amount: 11.0
+  Sell: Stock ASP, Amount: 1.0
+  Sell: Stock B82, Amount: 170.0
+  Sell: Stock BMP, Amount: 26673.0
+  Sell: Stock BST, Amount: 1.0
+  Sell: Stock BTS, Amount: 1.0
+  Sell: Stock CAP, Amount: 15118.0
+  Dividends: 0.00
+  Bank Deposit: 947246.88
+
+
+Final Cash: 11697900.64 => return: 0.17
