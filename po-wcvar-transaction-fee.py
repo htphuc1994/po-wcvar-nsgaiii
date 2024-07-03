@@ -1,11 +1,14 @@
 import math
 import sys
 import time
+import random
+
 import pandas as pd
 import numpy as np
 import datetime
 import pywt
 from pymoo.core.repair import Repair
+from pymoo.core.sampling import Sampling
 from pymoo.core.problem import Problem
 from pymoo.algorithms.moo.nsga3 import NSGA3, hop
 from pymoo.util.ref_dirs import get_reference_directions
@@ -17,44 +20,42 @@ from assets_returns import *
 from constants import TRANS_FEE, BANK_INTEREST_RATE, INITIAL_CASH, DURATION, MAX_STOCKS, TERMINATION_GEN_NUM, \
     TAIL_PROBABILITY_EPSILON, POPULATION_SIZE, REFERENCES_POINTS_NUM, WAVELET_LEVEL, INVESTMENT_INTEREST_EXPECTED
 from manual_test_four_stocks import STOCK_DATA_2023_INPUT_3_STOCKS
-from stock_data_input_100 import STOCK_DATA_2023_INPUT_100_STOCKS
-from stock_data_inputs_249 import STOCK_DATA_2023_INPUT_249_STOCKS
+from stock_data_input_249 import STOCK_DATA_2023_INPUT_249_STOCKS
 from wavelet_cvar_utils import compute_wavelet_variance, wavelet_decomposition, calculate_var_from_wavelet_variance, \
     calculate_cvar, cal_po_wCVaR
 
 
 
-# stock_data = STOCK_DATA_2023_INPUT_249_STOCKS
-stock_data = STOCK_DATA_2023_INPUT_100_STOCKS
+stock_data = STOCK_DATA_2023_INPUT_249_STOCKS
 LEN_STOCK_DATA = len(stock_data)
 # stock_data = STOCK_DATA_2023_INPUT_3_STOCKS
 # stock_returns = np.column_stack((
 #     ABT, ACB, ACL))
-stock_returns = np.column_stack((
-    ABT, ACB, ACL, AGF, ALT, ANV, ASP, B82, BBC, BBS, BCC, BLF, BMC, BMI, BMP, BPC, BST, BTS, BVS,
-    CAN, CAP, CCM, CDC, CID, CII, CJC, CLC, CMC, COM, CTB, CTC, CTN, DAC, DAE, DBC, DC4, DCS, DHA,
-    DHG, DHT, DIC, DMC, DPC, DPM, DPR, DQC, DRC, DST, DTC, DTT, DXP, DXV, EBS, FMC, FPT, GIL, GMC,
-    GMD, GTA, HAG, HAP, HAS, HAX, HBC, HCC, HCT, HDC, HEV, HHC, HJS, HMC, HPG, HRC, HSG, HSI, HT1,
-    HTP, HTV, HUT, ICF, IMP, ITA, KBC, KDC, KHP, KKC, KMR, KSH, L10, L18, L43, L61, L62, LAF, LBE,
-    LBM, LCG, LGC, LSS, LTC))
 # stock_returns = np.column_stack((
-#     ABT, ACB, ACL, AGF, ALT, ANV, ASP, B82, BBC, BBS, BCC, BLF, BMC, BMI, BMP,
-#     BPC, BST, BTS, BVS, CAN, CAP, CCM, CDC, CID, CII, CJC, CLC, CMC, COM, CTB,
-#     CTC, CTN, DAC, DAE, DBC, DC4, DCS, DHA, DHG, DHT, DIC, DMC, DPC, DPM, DPR,
-#     DQC, DRC, DST, DTC, DTT, DXP, DXV, EBS, FMC, FPT, GIL, GMC, GMD, GTA, HAG,
-#     HAP, HAS, HAX, HBC, HCC, HCT, HDC, HEV, HHC, HJS, HMC, HPG, HRC, HSG, HSI,
-#     HT1, HTP, HTV, HUT, ICF, IMP, ITA, KBC, KDC, KHP, KKC, KMR, KSH, L10, L18,
-#     L43, L61, L62, LAF, LBE, LBM, LCG, LGC, LSS, LTC, MCO, MCP, MEC, MHC, MKV,
-#     MTG, NAV, NBC, NGC, NHC, NSC, NST, NTL, NTP, ONE, OPC, PAC, PAN, PET, PGC,
-#     PGS, PIT, PJC, PJT, PLC, PMS, PNC, POT, PPC, PSC, PTC, PTS, PVC, PVD, PVE,
-#     PVG, PVI, PVS, PVT, QTC, RAL, RCL, REE, S12, S55, S99, SAM, SAP, SAV, SBT,
-#     SC5, SCD, SCJ, SD5, SD6, SD7, SD9, SDA, SDC, SDD, SDN, SDT, SDY, SFC, SFI,
-#     SFN, SGC, SGD, SJ1, SJD, SJE, SJM, SJS, SMC, SRA, SRB, SSC, SSI, SSM, ST8,
-#     STB, STC, STP, SVC, SVI, SZL, TBC, TBX, TC6, TCM, TCR, TCT, TDH, TDN, THB,
-#     THT, TJC, TKU, TMC, TMS, TNA, TNC, TNG, TPC, TPH, TPP, TRA, TRC, TSC, TTC,
-#     TTF, TV4, TXM, TYA, UIC, UNI, VBH, VC2, VC5, VC6, VC7, VCG, VCS, VDL, VE1,
-#     VFR, VGP, VGS, VHC, VHG, VIC, VID, VIP, VMC, VNA, VNC, VNE, VNM, VNR, VNS,
-#     VSC, VSG, VSH, VTB, VTC, VTO, VTS, VTV, YBC))
+#     ABT, ACB, ACL, AGF, ALT, ANV, ASP, B82, BBC, BBS, BCC, BLF, BMC, BMI, BMP, BPC, BST, BTS, BVS,
+#     CAN, CAP, CCM, CDC, CID, CII, CJC, CLC, CMC, COM, CTB, CTC, CTN, DAC, DAE, DBC, DC4, DCS, DHA,
+#     DHG, DHT, DIC, DMC, DPC, DPM, DPR, DQC, DRC, DST, DTC, DTT, DXP, DXV, EBS, FMC, FPT, GIL, GMC,
+#     GMD, GTA, HAG, HAP, HAS, HAX, HBC, HCC, HCT, HDC, HEV, HHC, HJS, HMC, HPG, HRC, HSG, HSI, HT1,
+#     HTP, HTV, HUT, ICF, IMP, ITA, KBC, KDC, KHP, KKC, KMR, KSH, L10, L18, L43, L61, L62, LAF, LBE,
+#     LBM, LCG, LGC, LSS, LTC))
+stock_returns = np.column_stack((
+    ABT, ACB, ACL, AGF, ALT, ANV, ASP, B82, BBC, BBS, BCC, BLF, BMC, BMI, BMP,
+    BPC, BST, BTS, BVS, CAN, CAP, CCM, CDC, CID, CII, CJC, CLC, CMC, COM, CTB,
+    CTC, CTN, DAC, DAE, DBC, DC4, DCS, DHA, DHG, DHT, DIC, DMC, DPC, DPM, DPR,
+    DQC, DRC, DST, DTC, DTT, DXP, DXV, EBS, FMC, FPT, GIL, GMC, GMD, GTA, HAG,
+    HAP, HAS, HAX, HBC, HCC, HCT, HDC, HEV, HHC, HJS, HMC, HPG, HRC, HSG, HSI,
+    HT1, HTP, HTV, HUT, ICF, IMP, ITA, KBC, KDC, KHP, KKC, KMR, KSH, L10, L18,
+    L43, L61, L62, LAF, LBE, LBM, LCG, LGC, LSS, LTC, MCO, MCP, MEC, MHC, MKV,
+    MTG, NAV, NBC, NGC, NHC, NSC, NST, NTL, NTP, ONE, OPC, PAC, PAN, PET, PGC,
+    PGS, PIT, PJC, PJT, PLC, PMS, PNC, POT, PPC, PSC, PTC, PTS, PVC, PVD, PVE,
+    PVG, PVI, PVS, PVT, QTC, RAL, RCL, REE, S12, S55, S99, SAM, SAP, SAV, SBT,
+    SC5, SCD, SCJ, SD5, SD6, SD7, SD9, SDA, SDC, SDD, SDN, SDT, SDY, SFC, SFI,
+    SFN, SGC, SGD, SJ1, SJD, SJE, SJM, SJS, SMC, SRA, SRB, SSC, SSI, SSM, ST8,
+    STB, STC, STP, SVC, SVI, SZL, TBC, TBX, TC6, TCM, TCR, TCT, TDH, TDN, THB,
+    THT, TJC, TKU, TMC, TMS, TNA, TNC, TNG, TPC, TPH, TPP, TRA, TRC, TSC, TTC,
+    TTF, TV4, TXM, TYA, UIC, UNI, VBH, VC2, VC5, VC6, VC7, VCG, VCS, VDL, VE1,
+    VFR, VGP, VGS, VHC, VHG, VIC, VID, VIP, VMC, VNA, VNC, VNE, VNM, VNR, VNS,
+    VSC, VSG, VSH, VTB, VTC, VTO, VTS, VTV, YBC))
 
 bank_interest_rate = BANK_INTEREST_RATE
 initial_cash = INITIAL_CASH  # 1 bln VND
@@ -172,6 +173,195 @@ def print_detail(log, cash, stock_holdings, stock_data):
 #
 #         portfolio_cvar = calculate_cvar(portfolio_returns, portfolio_var)
 #         cvar_values[i, month] = portfolio_cvar
+
+class CustomSampling(Sampling):
+
+    def _do(self, problem, n_samples, **kwargs):
+        # pop = np.array(pop, dtype=int)
+        pop = np.zeros((POPULATION_SIZE, problem.n_var))
+        for i in range(POPULATION_SIZE):
+            for j in range(problem.n_var):
+                if problem.xu[j] == 0:
+                    pop[i, j] = 0
+                else:
+                    pop[i, j] = random.choice(range(math.floor(problem.xu[j])))
+
+        n_stocks = LEN_STOCK_DATA
+        investment_duration = DURATION
+        total_cash = np.zeros(pop.shape[0])
+        # cvar_values = np.zeros((pop.shape[0], investment_duration))
+        # cardinality_violations = np.zeros((pop.shape[0], investment_duration))
+        deferred_dividends = np.zeros((pop.shape[0], investment_duration + 1))
+        deferred_sale_proceeds = np.zeros((pop.shape[0], investment_duration + 1))
+
+        for i in range(pop.shape[0]):  # processing the i-th individual
+            cash = INITIAL_CASH
+            stock_holdings = np.zeros(n_stocks)
+            previous_stock_holdings = np.zeros(n_stocks)  # To track holdings from the previous month
+
+            # returns = stock_returns
+
+            duration_plus_1 = investment_duration + 1  # we just collect $$$ after the investment.
+            for month in range(duration_plus_1):
+                # Update cash with bank interest
+                if cash < 0:
+                    print("ERROR somewhere then cash < 0")
+                if month != 0 and cash > 0:
+                    cash *= (1 + BANK_INTEREST_RATE)
+
+                # Add deferred dividends and sale proceeds from the previous month
+                if deferred_dividends[i, month] < 0 or deferred_sale_proceeds[i, month] < 0:
+                    print("ERROR somewhere then deferred_dividends or deferred_sale_proceeds < 0")
+                # if deferred_dividends[i, month] > 0 or deferred_sale_proceeds[i, month] > 0:
+                #     print("ACK: Received cash")
+                cash += deferred_dividends[i, month]
+                cash += deferred_sale_proceeds[i, month]
+                if month == investment_duration:
+                    break
+
+                # if 0 < month < investment_duration:
+                #     current_month_prices = []
+                #     for stock_info in stock_data:
+                #         current_month_prices.append(stock_info["prices"][month][
+                #                                         "value"])  # month also is the index = month + 1 in "month" field
+                #
+                #     returns = np.vstack((returns, np.array(current_month_prices).reshape(1, -1)))
+                #     # Calculate CVaR at the beginning of each month
+                #     cal_po_wCVaR(month, stock_holdings, cvar_values, i, returns, duration, tail_probability_epsilon, initial_cash, cash)
+
+                buy_decisions = pop[i, month * n_stocks:(month + 1) * n_stocks]
+                sell_decisions = pop[i, (investment_duration + month) * n_stocks:(investment_duration + month + 1) * n_stocks]
+
+                # Prevent buys in the last month
+                if month == investment_duration - 1:
+                    buy_decisions[:] = 0
+
+                # monthly_log = {"Month": month + 1, "Buy": [], "Sell": [], "Dividends": 0, "BankDeposit": 0}
+                aggregated_sell_decisions = np.zeros(n_stocks)  # store $$$
+
+                for j in range(n_stocks):
+                    stock = stock_data[j]
+                    stock_symbol = stock['symbol']
+                    stock_price = stock["prices"][month]['value']
+                    stock_capacity = stock["prices"][month]['matchedTradingVolume']
+
+                    # Prevent sells during dividend months
+                    if month == 0 or ((month + 1) in [dividend['month'] for dividend in stock['dividendSpitingHistories']]):
+                        sell_decisions[j] = 0
+                    # print(f"{buy_decisions[j]};{sell_decisions[j]}")
+                    if (buy_decisions[j] > 0 and
+                            ((np.floor(buy_decisions[j]) == np.floor(sell_decisions[j])) or
+                             (np.floor(buy_decisions[j]) >= stock_capacity and np.floor(
+                                 sell_decisions[j]) >= stock_capacity) or
+                             ((np.floor(buy_decisions[j]) + stock_holdings[j] - int(np.floor(min(sell_decisions[j], stock_capacity))) <= 0)))):
+                        sell_decisions[j] = 0
+
+                    # Process buy decisions
+                    if buy_decisions[j] > 0:
+                        buy_amount = int(np.floor(min(buy_decisions[j], stock_capacity)))
+
+                        buy_amount_restricted_by_current_cash = np.floor(cash/stock_price/(1 + TRANS_FEE))
+                        buy_amount = int(np.floor(min(buy_amount, buy_amount_restricted_by_current_cash)))
+                        buy_decisions[j] = buy_amount
+                        transaction_fee = TRANS_FEE * stock_price * buy_amount
+                        total_buy_cost = stock_price * buy_amount + transaction_fee
+
+                        if np.count_nonzero(stock_holdings) >= MAX_STOCKS and stock_holdings[
+                            j] <= 0:  # cardinality check
+                            break
+                        # Ensure we do not buy more than the available cash
+                        if total_buy_cost <= cash:
+                            cash -= total_buy_cost
+                            stock_holdings[j] += buy_amount
+                            # monthly_log["Buy"].append((stock_symbol, buy_amount))
+
+                    # Aggregate sell decisions
+                    if sell_decisions[j] > 0:
+                        sell_amount = int(np.floor(min(sell_decisions[j], np.floor(stock_holdings[j]))))
+                        aggregated_sell_decisions[j] += sell_amount
+
+                    # Calculate dividends if current month is a dividend month
+                    for dividend in stock['dividendSpitingHistories']:
+                        if (month + 1) == dividend['month'] and previous_stock_holdings[j] > 0:
+                            if month != investment_duration - 1 and aggregated_sell_decisions[
+                                j] <= 0:  # Ensure no dividends are received if stock is sold in the same month
+                                dividends = dividend['value'] * previous_stock_holdings[j] / 1000  # kVND
+                                # Defer dividends to the next month
+                                deferred_dividends[i, month + 1] += dividends
+                                # monthly_log["Dividends"] += dividends
+
+                # Process aggregated sell decisions
+                for j in range(n_stocks):
+                    stock_price = stock_data[j]["prices"][month]['value']
+                    if aggregated_sell_decisions[j] > 0:
+                        sell_amount = aggregated_sell_decisions[j]
+                        transaction_fee = TRANS_FEE * sell_amount * stock_price
+                        total_sell_proceeds = sell_amount * stock_price - transaction_fee
+
+                        # Defer sale proceeds to the next month
+                        deferred_sale_proceeds[i, month + 1] += total_sell_proceeds
+                        stock_holdings[j] -= sell_amount
+                        # monthly_log["Sell"].append((stock_data[j]['symbol'], sell_amount))
+
+                # Save the current holdings to use for dividend eligibility in the next month
+                previous_stock_holdings = stock_holdings.copy()
+
+                # Check for cardinality constraint violation
+                unique_stocks_held = np.sum(stock_holdings > 0)
+                # if unique_stocks_held > self.max_stocks:
+                #     cardinality_violations[i, month] = unique_stocks_held - self.max_stocks
+
+                # monthly_log["BankDeposit"] = cash
+                # log.append(monthly_log)
+
+                pop[i, month * n_stocks:(month + 1) * n_stocks] = buy_decisions
+                pop[i,
+                (investment_duration + month) * n_stocks:(investment_duration + month + 1) * n_stocks] = sell_decisions
+
+            # Ensure all holdings are sold at the end of the last month
+            for j in range(n_stocks):
+                remaining_sell_amount = stock_holdings[j]
+                if remaining_sell_amount > 0:
+                    for m in range(investment_duration - 1, -1, -1):
+                        sell_decisions = pop[i,
+                                         (investment_duration + m) * n_stocks:(investment_duration + m + 1) * n_stocks]
+
+                        stock_price = stock_data[j]["prices"][m]['value']
+                        stock_capacity = stock_data[j]["prices"][m]['matchedTradingVolume']
+
+                        new_capacity = stock_capacity - sell_decisions[j]
+                        if new_capacity < 0:
+                            new_capacity = 0
+                        sell_amount = min(np.floor(remaining_sell_amount), new_capacity)
+                        if sell_amount <= 0:
+                            continue
+                        transaction_fee = TRANS_FEE * stock_price * sell_amount
+                        total_sell_proceeds = stock_price * sell_amount - transaction_fee
+                        cash += total_sell_proceeds * (1 + bank_interest_rate)
+                        remaining_sell_amount -= sell_amount
+                        if sell_amount > 0:
+                            # log[m]["Sell"].append((stock_data[j]['symbol'], sell_amount))
+                            sell_decisions[j] = sell_decisions[j] + sell_amount
+
+                            pop[i, (investment_duration + m) * n_stocks:(
+                                                                                investment_duration + m + 1) * n_stocks] = sell_decisions
+                        if remaining_sell_amount <= 0:
+                            break
+
+                    stock_holdings[j] = 0
+            # End investment so collect money
+
+            total_cash[i] = cash
+            # if total_cash[i] > initial_cash * (1 + bank_interest_rate):
+            #     print(f"ACK>> OK total_cash[{i}] = {cash}")
+
+            # print_detail(log, cash, stock_holdings, stock_data)
+
+        # Store the manipulated solution using the index of the solution
+        # idx = kwargs.get('idx')
+        # if idx is not None:
+        #     self.manipulated_solutions[idx] = X
+        return pop
 
 class CustomRepair(Repair):
     def _do(self, problem, pop, **kwargs):
@@ -372,12 +562,13 @@ class PortfolioOptimizationProblem(Problem):
         xl = np.zeros(2 * self.n_stocks * self.duration, dtype=int)  # Lower bounds (all zeros, no negative quantities)
 
         sell_xu = []
+        expected_cash_after_investment = INITIAL_CASH*(1+INVESTMENT_INTEREST_EXPECTED)
         for stock in _stock_data:
             month_prices = sorted(stock["prices"], key=lambda x: x['month'])
             for month_price in month_prices:
                 if month_price["month"] > self.duration:
                     break
-                sell_xu.append(int(month_price["matchedTradingVolume"]))
+                sell_xu.append(min(int(month_price["matchedTradingVolume"]), int(expected_cash_after_investment/month_price["value"])))
         xu = sell_xu + sell_xu
 
         super().__init__(n_var=2 * self.n_stocks * self.duration, n_obj=self.duration, n_constr=self.duration + 1,
@@ -454,10 +645,8 @@ class PortfolioOptimizationProblem(Problem):
                     # print(f"{buy_decisions[j]};{sell_decisions[j]}")
                     if (buy_decisions[j] > 0 and
                             ((np.floor(buy_decisions[j]) == np.floor(sell_decisions[j])) or
-                             (np.floor(buy_decisions[j]) >= stock_capacity and np.floor(
-                                 sell_decisions[j]) >= stock_capacity) or
-                             ((np.floor(buy_decisions[j]) + stock_holdings[j] - int(
-                                 np.floor(min(sell_decisions[j], stock_capacity))) <= 0)))):
+                             (np.floor(buy_decisions[j]) >= stock_capacity and np.floor(sell_decisions[j]) >= stock_capacity) or
+                             (np.floor(buy_decisions[j]) + stock_holdings[j] - int(np.floor(min(0 if math.isnan(sell_decisions[j]) else sell_decisions[j], stock_capacity))) <= 0))):
                         sell_decisions[j] = 0
 
                     # Process buy decisions
@@ -542,6 +731,8 @@ class PortfolioOptimizationProblem(Problem):
                         remaining_sell_amount -= sell_amount
                         if sell_amount > 0:
                             log[m]["Sell"].append((self.stock_data[j]['symbol'], sell_amount))
+                            if math.isnan(sell_decisions[j]) or math.isnan(sell_amount):
+                                sell_decisions[j] = 0
                             sell_decisions[j] = sell_decisions[j] + sell_amount
 
                             X[i, (investment_duration + m) * n_stocks:(investment_duration + m + 1) * n_stocks] = sell_decisions
@@ -555,7 +746,8 @@ class PortfolioOptimizationProblem(Problem):
             # if total_cash[i] > initial_cash * (1 + bank_interest_rate):
             #     print(f"ACK>> OK total_cash[{i}] = {cash}")
 
-            print_detail(log, cash, stock_holdings, stock_data)
+            if cash > (1 + BANK_INTEREST_RATE_AFTER_N_INVESTMENT_PERIOD) * initial_cash:
+                print_detail(log, cash, stock_holdings, stock_data)
 
         # Store the manipulated solution using the index of the solution
         # idx = kwargs.get('idx')
@@ -575,7 +767,8 @@ def my_solve():
     problem = PortfolioOptimizationProblem(stock_data, bank_interest_rate, initial_cash, duration, max_stocks)
 
     ref_dirs = get_reference_directions("energy", problem.n_obj, REFERENCES_POINTS_NUM, seed=1)
-    algorithm = NSGA3(pop_size=population_size, ref_dirs=ref_dirs, repair=CustomRepair())
+    # algorithm = NSGA3(pop_size=population_size, ref_dirs=ref_dirs, repair=CustomRepair())
+    algorithm = NSGA3(pop_size=population_size, ref_dirs=ref_dirs, sampling=CustomSampling())
 
     res = minimize(problem,
                    algorithm,
@@ -635,7 +828,7 @@ def execute():
 
         sys.stdout = original_stdout
 
-for i in range(30):
+for i in range(3):
     print(f"Starting loop i={i}...")
     execute()
 print("DONE - Thank you")

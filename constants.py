@@ -1,17 +1,27 @@
-INITIAL_CASH = 1000000  # 1 BLN VND # NOTE if change plz update the same variable at nsga3.py as well, because they are two seperate projects
-BANK_INTEREST_RATE = 0.0045  # NOTE if change plz update the same variable at nsga3.py as well, because they are two seperate projects
-DURATION = 6  # 6 MONTHS # NOTE if change plz update the same variable at nsga3.py as well, because they are two seperate projects
+import math
 
-INVESTMENT_INTEREST_EXPECTED = 0.2
+INITIAL_CASH = 10000000  # 1 BLN VND # NOTE if change plz update the same variable at nsga3.py as well, because they are two seperate projects
+BANK_INTEREST_RATE = 0.0045  # NOTE if change plz update the same variable at nsga3.py as well, because they are two seperate projects
+DURATION = 12  # 6 MONTHS # NOTE if change plz update the same variable at nsga3.py as well, because they are two seperate projects
+WAVELET_LEVEL = 3  # 12, 6, 4 months => 3, 2, 1
+
+
+INVESTMENT_INTEREST_EXPECTED = 0.3
 TRANS_FEE = 0.0015
 
-MAX_STOCKS = 100  # CARDINALITY CONSTRAINT
-TERMINATION_GEN_NUM = 50
+BANK_INTEREST_RATE_AFTER_N_INVESTMENT_PERIOD = math.pow(1+BANK_INTEREST_RATE, DURATION)-1
+BENCHMARK_FINAL_RETURN = (BANK_INTEREST_RATE_AFTER_N_INVESTMENT_PERIOD + 1) * INITIAL_CASH
+
+MAX_STOCKS = 125  # CARDINALITY CONSTRAINT
+TERMINATION_GEN_NUM = 200
 TAIL_PROBABILITY_EPSILON = 0.1  # can change to 10%, 2.5%, and 1%
 
-POPULATION_SIZE = 179
-REFERENCES_POINTS_NUM = 179
-WAVELET_LEVEL = 2
+LOT_SIZE = 100
+
+REBUILD_Y_SCALING_FACTOR = 1000
+
+POPULATION_SIZE = 339
+REFERENCES_POINTS_NUM = 339
 STOCK_DATA_2023_INPUT_29_STOCKS = [
     {
         "symbol": "BCC",
