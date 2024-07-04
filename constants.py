@@ -1,6 +1,6 @@
 import math
 
-INITIAL_CASH = 1000000  # 1 BLN VND # NOTE if change plz update the same variable at nsga3.py as well, because they are two seperate projects
+INITIAL_CASH = 100000  # 1 BLN VND # NOTE if change plz update the same variable at nsga3.py as well, because they are two seperate projects
 DURATION = 12  # 6 MONTHS # NOTE if change plz update the same variable at nsga3.py as well, because they are two seperate projects
 WAVELET_LEVEL = 3  # 12, 6, 4 months => 3, 2, 1 todo change me if change DURATION
 
