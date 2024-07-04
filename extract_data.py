@@ -1,4 +1,4 @@
-input_file = 'output/output-04072024081937.txt'  # Replace with your input file path
+input_file = 'output/output-04072024092059.txt'  # Replace with your input file path
 output_file = 'output/out-refined.txt'  # Replace with your output file path
 patterns = ['len(fronts)', '========', 'n_gen  |  n_eval', '     ']  # The pattern to look for
 
