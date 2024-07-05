@@ -150,11 +150,14 @@ def print_detail(log, cash, stock_holdings, stock_data):
         print(f"Month {entry['Month']}:")
         if entry["Buy"]:
             for stock, amount in entry["Buy"]:
-                print(f"  Buy: Stock {stock}, Amount: {amount}")
+                if float(amount) > 0:
+                    print(f"  Buy: Stock {stock}, Amount: {amount}")
         if entry["Sell"]:
             for stock, amount in entry["Sell"]:
-                print(f"  Sell: Stock {stock}, Amount: {amount}")
-        print(f"  Dividends: {entry['Dividends']:.2f}")
+                if float(amount) > 0:
+                    print(f"  Sell: Stock {stock}, Amount: {amount}")
+        if float(entry['Dividends']) > 0:
+            print(f"  Dividends: {entry['Dividends']:.2f}")
         print(f"  Bank Deposit: {entry['BankDeposit']:.2f}")
     print("\n")
 
