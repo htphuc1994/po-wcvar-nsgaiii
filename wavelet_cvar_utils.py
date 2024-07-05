@@ -21,7 +21,7 @@ def calculate_var_from_wavelet_variance(wavelet_variance, tail_probability, scal
     """ Estimate portfolio VaR directly from wavelet variances. """
     # Calculate the inverse of the cumulative distribution function for the given confidence level
     z_score = norm.ppf(1 - tail_probability)
-    return scaling_factor * 1/z_score * np.sqrt(wavelet_variance)  # Simple model to convert variance to VaR
+    return z_score * np.sqrt(wavelet_variance)  # Simple model to convert variance to VaR
 
 
 def calculate_cvar(portfolio_returns, var):
