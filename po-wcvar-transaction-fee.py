@@ -7,6 +7,7 @@ import pandas as pd
 import numpy as np
 import datetime
 import pywt
+from pymoo.algorithms.moo import nsga3
 from pymoo.core.repair import Repair
 from pymoo.core.sampling import Sampling
 from pymoo.core.problem import Problem
@@ -16,6 +17,7 @@ from pymoo.optimize import minimize
 from scipy.stats import norm
 from pymoo.util.nds.non_dominated_sorting import NonDominatedSorting
 
+import constants
 from assets_returns import *
 from constants import TRANS_FEE, BANK_INTEREST_RATE, INITIAL_CASH, DURATION, MAX_STOCKS, TERMINATION_GEN_NUM, \
     TAIL_PROBABILITY_EPSILON, POPULATION_SIZE, REFERENCES_POINTS_NUM, WAVELET_LEVEL, INVESTMENT_INTEREST_EXPECTED
@@ -831,4 +833,7 @@ def execute():
 for i in range(3):
     print(f"Starting loop i={i}...")
     execute()
+
+    # constants.DURATION = 12
+    # nsga3.
 print("DONE - Thank you")

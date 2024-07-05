@@ -21,13 +21,13 @@ def calculate_var_from_wavelet_variance(wavelet_variance, tail_probability, scal
     """ Estimate portfolio VaR directly from wavelet variances. """
     # Calculate the inverse of the cumulative distribution function for the given confidence level
     z_score = norm.ppf(1 - tail_probability)
-    return scaling_factor * z_score * np.sqrt(wavelet_variance)  # Simple model to convert variance to VaR
+    return scaling_factor * 1/z_score * np.sqrt(wavelet_variance)  # Simple model to convert variance to VaR
 
 
 def calculate_cvar(portfolio_returns, var):
     """ Calculate Conditional Value-at-Risk (CVaR) based on VaR. """
     losses_exceeding_var = [loss for loss in portfolio_returns if loss <= var]
-    return np.mean(losses_exceeding_var) if losses_exceeding_var else 0
+    return -np.mean(losses_exceeding_var) if losses_exceeding_var else 0
 
 def cal_po_wCVaR(month, stock_holdings, cvar_values, i, returns, duration, tail_probability_epsilon, initial_cash, beginning_month_cash):
     # Calculate CVaR at the beginning of each month
