@@ -25,9 +25,12 @@ from pymoo.util.nds.non_dominated_sorting import NonDominatedSorting
 # =========================================================================================================
 # NOTE: please replace the default NSGA-III of library by this class
 # =========================================================================================================
-BANK_INTEREST_RATE = 0.0045
 INITIAL_CASH = 1000000  # 1 BLN VND
-DURATION = 6
+DURATION = 12
+
+
+
+BANK_INTEREST_RATE = 0.0045
 BANK_INTEREST_RATE_AFTER_N_INVESTMENT_PERIOD = math.pow(1+BANK_INTEREST_RATE, DURATION)-1
 
 def comp_by_cv_then_random(pop, P, **kwargs):
@@ -268,7 +271,8 @@ def sort_cvar_values(F):
         return F
 
     # Perform the lexsort and reverse the sorting order for descending sort
-    sorted_indices = np.lexsort(F[:, 1:].T[::-1])[::-1]
+    # sorted_indices = np.lexsort(F[:, 1:].T[::-1])[::-1]
+    sorted_indices = np.lexsort(F[:, 1:].T[::-1])
 
     return F[sorted_indices]
 
