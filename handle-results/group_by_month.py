@@ -13,15 +13,16 @@ def plot_columns():
 
     # the 2nd try
     # quarter
-    values = [0.01812, 0.20160, 0.29196, 0.21139]  # Generate random values between 0 and 1 for the columns
+    # values = [0.01812, 0.29034, 0.16607, 0.25116]  # Generate random values between 0 and 1 for the columns
     # half year
-    # values = [0.0273055, 0.28858, 0.26191, 0.16046]
+    # values = [0.0273055, 0.20915, 0.13659, 0.22311]
     # 1 year
+    values = [0.0553567, 0.20202, 0.29067, 0.26279]
 
     # Plot the bar chart
     plt.figure(figsize=(10, 6))
     # plt.bar(columns, values, color=['b', 'g', 'r', 'c'])
-    plt.bar(columns, values, color=['tab:blue', 'tab:orange', 'tab:pink', 'tab:purple'])
+    plt.bar(columns, values, color=['tab:blue', 'tab:purple', 'tab:pink', 'tab:orange'])
 
     # Set y-axis range from 0 to 1
     plt.ylim(0, 1)

@@ -50,15 +50,17 @@ def plot_multiple_lines(x, y_arrays):
         plt.plot(x, y, linestyle='-', label='', color=color)
         # Add a single marker at different positions to avoid overlap
         marker_position = len(x) // (num_lines + 1) * (i + 1)
-        plt.plot(x[marker_position], y[marker_position], marker=marker_styles[i % num_markers], markersize=10, label=line_name, color=color)
+        plt.plot(x[marker_position], y[marker_position], marker=marker_styles[i % num_markers], markersize=12, label=line_name, color=color)
 
 
     # Add labels and title
     plt.xlabel('Month', fontsize=16)
     plt.ylabel('WCVaR', fontsize=16)
     plt.title('The relationship between WCVaR and tail probability', fontsize=16)
-    plt.legend()
+    plt.legend(fontsize=14)
 
+    plt.tick_params(axis='y', labelsize=14)
+    plt.tick_params(axis='x', labelsize=14)
     # Show the plot
     plt.show()
 
