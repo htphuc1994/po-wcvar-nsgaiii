@@ -17,17 +17,17 @@ def extract_arrays(text):
 
 # Given text data
 text_data = """
-ACK FOUND > 1; len(fronts)=8
+ACK FOUND > 1; len(fronts)=3
 ==========================================================================================
 n_gen  |  n_eval  | n_nds  |     cv_min    |     cv_avg    |      eps      |   indicator
 ==========================================================================================
-     1 |      339 |      9 |  0.000000E+00 |  4.969395E+03 |             - |             -
+     1 |      179 |      5 |  0.000000E+00 |  2.904208E+02 |             - |             -
 ACK FOUND > 1; len(fronts)=2
-     2 |      678 |      9 |  0.000000E+00 |  0.000000E+00 |  0.1373336305 |         ideal
+     2 |      358 |     11 |  0.000000E+00 |  0.000000E+00 |  0.3183081868 |         ideal
 """
 
 # Extract arrays
 ack_array, n_nds_array = extract_arrays(text_data)
 
-print("ACK Array:", ack_array)
-print("n_nds Array:", n_nds_array)
+print("ACK_Array =", ack_array)
+print("n_nds_Array =", n_nds_array)
