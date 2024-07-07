@@ -146,6 +146,7 @@ def print_detail_v2(log, cash, stock_holdings, stock_data):
 
 
 def print_detail(log, cash, stock_holdings, stock_data):
+    print(f"Begin print with Final Cash: {cash:.2f} => return: {(cash-initial_cash)/initial_cash:.5f}")
     for entry in log:
         print(f"Month {entry['Month']}:")
         if entry["Buy"]:
@@ -162,7 +163,7 @@ def print_detail(log, cash, stock_holdings, stock_data):
     print("\n")
 
     # Log final cash and holdings to ensure we do not hold any stocks
-    print(f"Final Cash: {cash:.2f} => return: {(cash-initial_cash)/initial_cash:.2f}")
+    print(f"Final Cash: {cash:.2f} => return: {(cash-initial_cash)/initial_cash:.5f}")
     # for j, stock in enumerate(stock_data):
     #     print(f"Final Holdings: Stock {stock['symbol']}, Amount: {stock_holdings[j]}")
 
