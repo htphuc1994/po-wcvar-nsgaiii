@@ -32,6 +32,7 @@ def plot_columns():
     plt.tick_params(axis='y', labelsize=14)
     plt.tick_params(axis='x', labelsize=14)
     # Show the plot
+    # plt.grid(True)
     plt.show()
 
 # Call the function to plot the columns

@@ -186,7 +186,7 @@ def plot_multiple_lines(x, y_arrays):
     plt.ylabel('Non-dominated solution count', fontsize=16)
     plt.title('The relationship between non-dominated solution count and cardinality constraints', fontsize=16)
     plt.legend(fontsize=14)
-
+    plt.grid(True)
     plt.tick_params(axis='y', labelsize=14)
     plt.tick_params(axis='x', labelsize=14)
 

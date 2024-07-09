@@ -61,6 +61,7 @@ def plot_multiple_lines(x, y_arrays):
 
     plt.tick_params(axis='y', labelsize=14)
     plt.tick_params(axis='x', labelsize=14)
+    plt.grid(True)
     # Show the plot
     plt.show()
 
