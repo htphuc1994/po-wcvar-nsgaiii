@@ -1091,3 +1091,39 @@ for i in range(2):
     nsga3.INITIAL_CASH = constants.INITIAL_CASH
     execute()
 print("DONE - experiment 18th")
+
+#experiment 19th
+for i in range(4):
+    print(f"Starting loop i={i}...")
+    constants.DURATION = 3
+    constants.WAVELET_LEVEL = 1
+    constants.INITIAL_CASH = 100000
+    constants.MAX_STOCKS = LEN_STOCK_DATA
+    nsga3.DURATION = constants.DURATION
+    nsga3.INITIAL_CASH = constants.INITIAL_CASH
+    execute()
+print("DONE - experiment 19th")
+
+#experiment 20th
+for i in range(4):
+    print(f"Starting loop i={i}...")
+    constants.DURATION = 3
+    constants.WAVELET_LEVEL = 1
+    constants.INITIAL_CASH = 1000000
+    constants.MAX_STOCKS = LEN_STOCK_DATA
+    nsga3.DURATION = constants.DURATION
+    nsga3.INITIAL_CASH = constants.INITIAL_CASH
+    execute()
+print("DONE - experiment 20th")
+
+#experiment 21st
+for i in range(4):
+    print(f"Starting loop i={i}...")
+    constants.DURATION = 3
+    constants.WAVELET_LEVEL = 1
+    constants.INITIAL_CASH = 10000000
+    constants.MAX_STOCKS = LEN_STOCK_DATA
+    nsga3.DURATION = constants.DURATION
+    nsga3.INITIAL_CASH = constants.INITIAL_CASH
+    execute()
+print("DONE - experiment 21st")
