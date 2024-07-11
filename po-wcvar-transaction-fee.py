@@ -124,7 +124,7 @@ def print_detail_v2(log, cash, stock_holdings, stock_data):
 
 
 def print_detail(log, cash, stock_holdings, stock_data):
-    print(f"Begin print with Final Cash: {cash:.8f} => return: {(cash-constants.INITIAL_CASH)/constants.INITIAL_CASH:.8f}")
+    print(f"Begin print with Final Cash: {cash:.13f} => return: {(cash-constants.INITIAL_CASH)/constants.INITIAL_CASH:.13f}")
     for entry in log:
         print(f"Month {entry['Month']}:")
         if entry["Buy"]:
@@ -141,7 +141,7 @@ def print_detail(log, cash, stock_holdings, stock_data):
     print("\n")
 
     # Log final cash and holdings to ensure we do not hold any stocks
-    print(f"Final Cash: {cash:.8f} => return: {(cash-constants.INITIAL_CASH)/constants.INITIAL_CASH:.8f}")
+    print(f"Final Cash: {cash:.13f} => return: {(cash-constants.INITIAL_CASH)/constants.INITIAL_CASH:.13f}")
     # for j, stock in enumerate(stock_data):
     #     print(f"Final Holdings: Stock {stock['symbol']}, Amount: {stock_holdings[j]}")
 
@@ -772,7 +772,7 @@ def my_solve():
     #         break
     # hop_solution_index = F.index(hop_solution.F)
 
-    print("Objectives =", ["%.8f" % v for v in hop_solution.F])
+    print("Objectives =", ["%.13f" % v for v in hop_solution.F])
     # solution_details = np.array(hop_solution.X, dtype=int)
     # solution_details = problem.manipulated_solutions[hop_solution_index]
     # print("Solution details =", [v for v in solution_details])
