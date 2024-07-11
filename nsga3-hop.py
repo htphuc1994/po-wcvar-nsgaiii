@@ -8,6 +8,7 @@ import warnings
 import numpy as np
 import math
 from numpy.linalg import LinAlgError
+import constants
 
 from pymoo.algorithms.base.genetic import GeneticAlgorithm
 from pymoo.core.survival import Survival
@@ -25,13 +26,13 @@ from pymoo.util.nds.non_dominated_sorting import NonDominatedSorting
 # =========================================================================================================
 # NOTE: please replace the default NSGA-III of library by this class
 # =========================================================================================================
-INITIAL_CASH = 1000000  # 1 BLN VND
-DURATION = 12
-
-
-
-BANK_INTEREST_RATE = 0.0045
-BANK_INTEREST_RATE_AFTER_N_INVESTMENT_PERIOD = math.pow(1+BANK_INTEREST_RATE, DURATION)-1
+# INITIAL_CASH = 1000000  # 1 BLN VND
+# DURATION = 12
+#
+#
+#
+# BANK_INTEREST_RATE = 0.0045
+# BANK_INTEREST_RATE_AFTER_N_INVESTMENT_PERIOD = math.pow(1+constants.BANK_INTEREST_RATE, constants.DURATION)-1
 
 def comp_by_cv_then_random(pop, P, **kwargs):
     S = np.full(P.shape[0], np.nan)
@@ -284,7 +285,7 @@ def hop(pop, indices):
     F_values = np.array([pop[i].F for i in indices])
 
     # Split F values into those meeting the profit condition and those that don't
-    profit_threshold = -INITIAL_CASH * (1 + BANK_INTEREST_RATE_AFTER_N_INVESTMENT_PERIOD)
+    profit_threshold = -constants.INITIAL_CASH * (1 + constants.BANK_INTEREST_RATE_AFTER_N_INVESTMENT_PERIOD)
     F_with_profit_OK = F_values[F_values[:, 0] <= profit_threshold]
     # if len(F_with_profit_OK) > 0:
     #     print(f"ACK len(F_with_profit_OK)={len(F_with_profit_OK)}")

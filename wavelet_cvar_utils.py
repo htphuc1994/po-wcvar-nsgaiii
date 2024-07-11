@@ -1,13 +1,13 @@
 import numpy as np
 import pywt
 from scipy.stats import norm
-from constants import WAVELET_LEVEL
+import constants
 
 
-def wavelet_decomposition(returns, wavelet='db4', levels=WAVELET_LEVEL):
+def wavelet_decomposition(returns, wavelet='db4', levels=constants.WAVELET_LEVEL):
     """ Decompose asset returns using Discrete Wavelet Transform. """
     coeffs = pywt.wavedec(returns, wavelet, level=levels)
-    return coeffs[WAVELET_LEVEL:]  # Returning detail coefficients, ignoring approximation
+    return coeffs[constants.WAVELET_LEVEL:]  # Returning detail coefficients, ignoring approximation
 
 
 def compute_wavelet_variance(coeffs):
