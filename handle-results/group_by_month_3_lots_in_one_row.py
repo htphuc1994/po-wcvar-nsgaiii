@@ -11,15 +11,16 @@ import numpy as np
 
 # categories = ['A', 'B', 'C', 'D', 'E']
 categories = ['Bank deposit', 'VND100 million', 'VND1 billion', 'VND10 billion']
-quarter_returns = [0.01812, 0.1335135256481, 0.0639493458844, 0.0640782257376]  # Generate random values between 0 and 1 for the columns
+quarter_returns = [0.01812, 0.1335135256481, 0.0895296482672, 0.0667413163178]  # Generate random values between 0 and 1 for the columns
 # half year
-half_year_returns = [0.0273055, 0.1581248608910, 0.2479144845742, 0.1208689703379]
+half_year_returns = [0.0273055, 0.2351092913214, 0.2854574844757, 0.2550369885965]
 # 1 year
-year_returns = [0.0553567, 0.2367174414905, 0.2154755791775, 0.2768005374401]
-# values1 = [5, 7, 3, 8, 6]
-# values2 = [6, 2, 7, 5, 8]
-# values3 = [4, 9, 1, 3, 7]
+year_returns = [0.0553567, 0.2367174414905, 0.2795093648044, 0.2768005374401]
+#######
 
+quarter_returns = [x * 100 for x in quarter_returns]
+half_year_returns = [x * 100 for x in half_year_returns]
+year_returns = [x * 100 for x in year_returns]
 # Define hatch patterns for each bar
 hatch_patterns = ['x', '//', '\\\\', '||', '--']
 hatch_patterns1 = ['/', '\\', '|', '-', '+']
@@ -36,8 +37,10 @@ for bar, hatch in zip(bars1, hatch_patterns):
 axs[0].set_title('3-month investment', fontsize=16)
 axs[0].set_xticklabels(categories, fontsize=16)
 axs[0].set_xticks([])
-axs[0].set_ylim(0, 1)
+axs[0].set_ylim(0, 100)
+axs[0].set_ylabel('Return (%)', fontsize=16)
 axs[0].legend(fontsize=16)
+axs[0].grid(True)
 
 bars2 = axs[1].bar(categories, half_year_returns, color=colors, label=categories)
 for bar, hatch in zip(bars2, hatch_patterns):
@@ -45,8 +48,10 @@ for bar, hatch in zip(bars2, hatch_patterns):
 axs[1].set_title('6-month investment', fontsize=16)
 axs[1].set_xticklabels(categories, fontsize=16)
 axs[1].set_xticks([])
-axs[1].set_ylim(0, 1)
+axs[1].set_ylabel('Return (%)', fontsize=16)
+axs[1].set_ylim(0, 100)
 axs[1].legend(fontsize=16)
+axs[1].grid(True)
 
 bars3 = axs[2].bar(categories, year_returns, color=colors, label=categories)
 for bar, hatch in zip(bars3, hatch_patterns):
@@ -54,8 +59,10 @@ for bar, hatch in zip(bars3, hatch_patterns):
 axs[2].set_title('12-month investment', fontsize=16)
 axs[2].set_xticklabels(categories, fontsize=16)
 axs[2].set_xticks([])
-axs[2].set_ylim(0, 1)
+axs[2].set_ylim(0, 100)
+axs[2].set_ylabel('Return (%)', fontsize=16)
 axs[2].legend(fontsize=16)
+axs[2].grid(True)
 
 for ax in axs:
     ax.tick_params(axis='y', labelsize=16)
