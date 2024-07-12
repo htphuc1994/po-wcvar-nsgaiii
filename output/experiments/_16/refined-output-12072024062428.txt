@@ -1,0 +1,733 @@
+Objectives = ['-0.2380716437490', '-0.0569209630284', '0.0000000000000', '0.0000000000000', '0.0000000000000', '-0.1798748989388', '-0.2038464501677', '-0.2045836800832', '-0.2196882746403', '-0.1971299774125', '-0.2030853793979', '-0.2989595104510']
+The time of execution of above program is : 269035.87102890015 ms
+ACK FOUND > 1; len(fronts)=3
+==========================================================================================
+n_gen  |  n_eval  | n_nds  |     cv_min    |     cv_avg    |      eps      |   indicator  
+==========================================================================================
+     1 |      179 |      6 |  0.000000E+00 |  2.904208E+02 |             - |             -
+ACK FOUND > 1; len(fronts)=2
+     2 |      358 |      8 |  0.000000E+00 |  0.000000E+00 |  0.3008109008 |         ideal
+ACK FOUND > 1; len(fronts)=2
+     3 |      537 |      1 |  0.000000E+00 |  0.000000E+00 |  0.0308802889 |         ideal
+ACK FOUND > 1; len(fronts)=2
+     4 |      716 |      2 |  0.000000E+00 |  0.000000E+00 |  1.0000000000 |         ideal
+ACK FOUND > 1; len(fronts)=1
+     5 |      895 |      2 |  0.000000E+00 |  0.000000E+00 |  1.3360585807 |         ideal
+ACK FOUND > 1; len(fronts)=1
+     6 |     1074 |      2 |  0.000000E+00 |  0.000000E+00 |  1.525812E+01 |         ideal
+ACK FOUND > 1; len(fronts)=1
+     7 |     1253 |      4 |  0.000000E+00 |  0.000000E+00 |  0.7975583063 |         ideal
+ACK FOUND > 1; len(fronts)=1
+     8 |     1432 |      5 |  0.000000E+00 |  0.000000E+00 |  0.5987289189 |         ideal
+ACK FOUND > 1; len(fronts)=1
+     9 |     1611 |      8 |  0.000000E+00 |  0.000000E+00 |  0.4320123841 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    10 |     1790 |      9 |  0.000000E+00 |  0.000000E+00 |  0.1709340769 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    11 |     1969 |      9 |  0.000000E+00 |  0.000000E+00 |  0.8479479662 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    12 |     2148 |      6 |  0.000000E+00 |  0.000000E+00 |  0.2246281818 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    13 |     2327 |      9 |  0.000000E+00 |  0.000000E+00 |  0.4152596000 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    14 |     2506 |      9 |  0.000000E+00 |  0.000000E+00 |  0.4058297118 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    15 |     2685 |     10 |  0.000000E+00 |  0.000000E+00 |  0.5736506068 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    16 |     2864 |     10 |  0.000000E+00 |  0.000000E+00 |  0.3359214551 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    17 |     3043 |     10 |  0.000000E+00 |  0.000000E+00 |  0.1951660603 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    18 |     3222 |     13 |  0.000000E+00 |  0.000000E+00 |  0.5015985009 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    19 |     3401 |     19 |  0.000000E+00 |  0.000000E+00 |  0.4181436824 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    20 |     3580 |     19 |  0.000000E+00 |  0.000000E+00 |  0.2478646258 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    21 |     3759 |     15 |  0.000000E+00 |  0.000000E+00 |  0.1652096509 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    22 |     3938 |      9 |  0.000000E+00 |  0.000000E+00 |  0.6285645109 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    23 |     4117 |     10 |  0.000000E+00 |  0.000000E+00 |  0.2637666345 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    24 |     4296 |     12 |  0.000000E+00 |  0.000000E+00 |  0.2087146687 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    25 |     4475 |      8 |  0.000000E+00 |  0.000000E+00 |  0.3664422465 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    26 |     4654 |     10 |  0.000000E+00 |  0.000000E+00 |  0.2965208385 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    27 |     4833 |      7 |  0.000000E+00 |  0.000000E+00 |  0.2517537822 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    28 |     5012 |      5 |  0.000000E+00 |  0.000000E+00 |  0.2277187068 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    29 |     5191 |     12 |  0.000000E+00 |  0.000000E+00 |  0.3027309698 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    30 |     5370 |     14 |  0.000000E+00 |  0.000000E+00 |  0.4279759693 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    31 |     5549 |     14 |  0.000000E+00 |  0.000000E+00 |  0.7224682833 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    32 |     5728 |     12 |  0.000000E+00 |  0.000000E+00 |  0.3940076486 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    33 |     5907 |     16 |  0.000000E+00 |  0.000000E+00 |  0.3034041032 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    34 |     6086 |     13 |  0.000000E+00 |  0.000000E+00 |  0.0249807580 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    35 |     6265 |     16 |  0.000000E+00 |  0.000000E+00 |  0.1646609067 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    36 |     6444 |     23 |  0.000000E+00 |  0.000000E+00 |  0.2122517501 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    37 |     6623 |     18 |  0.000000E+00 |  0.000000E+00 |  0.2694410939 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    38 |     6802 |      8 |  0.000000E+00 |  0.000000E+00 |  0.2688036516 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    39 |     6981 |      9 |  0.000000E+00 |  0.000000E+00 |  0.0242316658 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    40 |     7160 |     10 |  0.000000E+00 |  0.000000E+00 |  0.5428877575 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    41 |     7339 |     14 |  0.000000E+00 |  0.000000E+00 |  0.2974549586 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    42 |     7518 |     13 |  0.000000E+00 |  0.000000E+00 |  0.0610776149 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    43 |     7697 |     10 |  0.000000E+00 |  0.000000E+00 |  0.2459836984 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    44 |     7876 |      9 |  0.000000E+00 |  0.000000E+00 |  0.1898271430 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    45 |     8055 |     10 |  0.000000E+00 |  0.000000E+00 |  0.0039967485 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    46 |     8234 |     12 |  0.000000E+00 |  0.000000E+00 |  0.2578836323 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    47 |     8413 |     11 |  0.000000E+00 |  0.000000E+00 |  0.1393654278 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    48 |     8592 |     12 |  0.000000E+00 |  0.000000E+00 |  0.2549554077 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    49 |     8771 |     13 |  0.000000E+00 |  0.000000E+00 |  0.2203231667 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    50 |     8950 |     16 |  0.000000E+00 |  0.000000E+00 |  0.0993237879 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    51 |     9129 |     14 |  0.000000E+00 |  0.000000E+00 |  0.1939340293 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    52 |     9308 |     18 |  0.000000E+00 |  0.000000E+00 |  0.3621844855 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    53 |     9487 |     18 |  0.000000E+00 |  0.000000E+00 |  0.1908900624 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    54 |     9666 |     16 |  0.000000E+00 |  0.000000E+00 |  0.0932143092 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    55 |     9845 |     27 |  0.000000E+00 |  0.000000E+00 |  0.3164114951 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    56 |    10024 |     17 |  0.000000E+00 |  0.000000E+00 |  0.0849333278 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    57 |    10203 |     18 |  0.000000E+00 |  0.000000E+00 |  0.1480895807 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    58 |    10382 |     20 |  0.000000E+00 |  0.000000E+00 |  0.0658001821 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    59 |    10561 |     27 |  0.000000E+00 |  0.000000E+00 |  0.1640415842 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    60 |    10740 |     24 |  0.000000E+00 |  0.000000E+00 |  0.0674047261 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    61 |    10919 |     27 |  0.000000E+00 |  0.000000E+00 |  0.0837352136 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    62 |    11098 |     24 |  0.000000E+00 |  0.000000E+00 |  0.0379599705 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    63 |    11277 |     22 |  0.000000E+00 |  0.000000E+00 |  0.0394725271 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    64 |    11456 |     22 |  0.000000E+00 |  0.000000E+00 |  0.0549095212 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    65 |    11635 |     17 |  0.000000E+00 |  0.000000E+00 |  0.3537154218 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    66 |    11814 |     18 |  0.000000E+00 |  0.000000E+00 |  2.0086614032 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    67 |    11993 |     20 |  0.000000E+00 |  0.000000E+00 |  0.0985903390 |             f
+ACK FOUND > 1; len(fronts)=1
+    68 |    12172 |     18 |  0.000000E+00 |  0.000000E+00 |  0.0710659700 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    69 |    12351 |     20 |  0.000000E+00 |  0.000000E+00 |  0.0982286774 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    70 |    12530 |     18 |  0.000000E+00 |  0.000000E+00 |  0.1089285885 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    71 |    12709 |     19 |  0.000000E+00 |  0.000000E+00 |  0.1105982214 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    72 |    12888 |     17 |  0.000000E+00 |  0.000000E+00 |  0.1243512482 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    73 |    13067 |     11 |  0.000000E+00 |  0.000000E+00 |  0.1605802598 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    74 |    13246 |     12 |  0.000000E+00 |  0.000000E+00 |  0.0387872744 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    75 |    13425 |     12 |  0.000000E+00 |  0.000000E+00 |  0.000000E+00 |             f
+ACK FOUND > 1; len(fronts)=1
+    76 |    13604 |     13 |  0.000000E+00 |  0.000000E+00 |  0.2047489003 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    77 |    13783 |     13 |  0.000000E+00 |  0.000000E+00 |  0.2574644667 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    78 |    13962 |     12 |  0.000000E+00 |  0.000000E+00 |  0.0318273573 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    79 |    14141 |     14 |  0.000000E+00 |  0.000000E+00 |  0.0703704144 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    80 |    14320 |     12 |  0.000000E+00 |  0.000000E+00 |  0.0533635087 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    81 |    14499 |     17 |  0.000000E+00 |  0.000000E+00 |  0.0411239792 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    82 |    14678 |     19 |  0.000000E+00 |  0.000000E+00 |  0.1388590382 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    83 |    14857 |     19 |  0.000000E+00 |  0.000000E+00 |  0.1219282049 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    84 |    15036 |     18 |  0.000000E+00 |  0.000000E+00 |  0.0325015107 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    85 |    15215 |     18 |  0.000000E+00 |  0.000000E+00 |  0.0686829018 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    86 |    15394 |     18 |  0.000000E+00 |  0.000000E+00 |  0.0070742754 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    87 |    15573 |     16 |  0.000000E+00 |  0.000000E+00 |  0.0071246773 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    88 |    15752 |     18 |  0.000000E+00 |  0.000000E+00 |  0.4337072738 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    89 |    15931 |     18 |  0.000000E+00 |  0.000000E+00 |  0.1351179228 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    90 |    16110 |     19 |  0.000000E+00 |  0.000000E+00 |  0.1983686709 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    91 |    16289 |     20 |  0.000000E+00 |  0.000000E+00 |  0.0283712340 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    92 |    16468 |     17 |  0.000000E+00 |  0.000000E+00 |  0.0766501457 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    93 |    16647 |     18 |  0.000000E+00 |  0.000000E+00 |  0.0493513082 |             f
+ACK FOUND > 1; len(fronts)=1
+    94 |    16826 |     18 |  0.000000E+00 |  0.000000E+00 |  0.1646946986 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    95 |    17005 |      9 |  0.000000E+00 |  0.000000E+00 |  0.8544069353 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    96 |    17184 |      7 |  0.000000E+00 |  0.000000E+00 |  0.0636389249 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    97 |    17363 |      7 |  0.000000E+00 |  0.000000E+00 |  0.0942421767 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    98 |    17542 |      1 |  0.000000E+00 |  0.000000E+00 |  0.0364024063 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    99 |    17721 |      4 |  0.000000E+00 |  0.000000E+00 |  0.9210826903 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   100 |    17900 |      4 |  0.000000E+00 |  0.000000E+00 |  0.7769310067 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   101 |    18079 |      4 |  0.000000E+00 |  0.000000E+00 |  0.8170698933 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   102 |    18258 |      7 |  0.000000E+00 |  0.000000E+00 |  0.3818897652 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   103 |    18437 |      9 |  0.000000E+00 |  0.000000E+00 |  0.4407559308 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   104 |    18616 |      4 |  0.000000E+00 |  0.000000E+00 |  0.3358837769 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   105 |    18795 |      2 |  0.000000E+00 |  0.000000E+00 |  3.076966E+01 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   106 |    18974 |      3 |  0.000000E+00 |  0.000000E+00 |  1.0000000000 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   107 |    19153 |      3 |  0.000000E+00 |  0.000000E+00 |  0.8477978969 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   108 |    19332 |      4 |  0.000000E+00 |  0.000000E+00 |  0.0195307976 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   109 |    19511 |      6 |  0.000000E+00 |  0.000000E+00 |  0.5326232756 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   110 |    19690 |      6 |  0.000000E+00 |  0.000000E+00 |  0.3580574684 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   111 |    19869 |      5 |  0.000000E+00 |  0.000000E+00 |  0.7448319989 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   112 |    20048 |      7 |  0.000000E+00 |  0.000000E+00 |  0.5497701895 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   113 |    20227 |      9 |  0.000000E+00 |  0.000000E+00 |  0.4791914175 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   114 |    20406 |     10 |  0.000000E+00 |  0.000000E+00 |  0.0068692875 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   115 |    20585 |      8 |  0.000000E+00 |  0.000000E+00 |  0.4359498606 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   116 |    20764 |     11 |  0.000000E+00 |  0.000000E+00 |  0.2055038894 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   117 |    20943 |     12 |  0.000000E+00 |  0.000000E+00 |  0.0571274141 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   118 |    21122 |     13 |  0.000000E+00 |  0.000000E+00 |  0.2845778776 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   119 |    21301 |     14 |  0.000000E+00 |  0.000000E+00 |  0.2873533540 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   120 |    21480 |     15 |  0.000000E+00 |  0.000000E+00 |  0.2389341870 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   121 |    21659 |     15 |  0.000000E+00 |  0.000000E+00 |  0.000000E+00 |             f
+ACK FOUND > 1; len(fronts)=1
+   122 |    21838 |     10 |  0.000000E+00 |  0.000000E+00 |  0.0427061465 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   123 |    22017 |     13 |  0.000000E+00 |  0.000000E+00 |  0.1528190330 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   124 |    22196 |      9 |  0.000000E+00 |  0.000000E+00 |  0.0131865590 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   125 |    22375 |     15 |  0.000000E+00 |  0.000000E+00 |  0.1158149066 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   126 |    22554 |     17 |  0.000000E+00 |  0.000000E+00 |  0.2238082830 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   127 |    22733 |     17 |  0.000000E+00 |  0.000000E+00 |  0.2012966342 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   128 |    22912 |     15 |  0.000000E+00 |  0.000000E+00 |  0.2052392384 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   129 |    23091 |      9 |  0.000000E+00 |  0.000000E+00 |  0.2714667378 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   130 |    23270 |     10 |  0.000000E+00 |  0.000000E+00 |  0.0978778363 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   131 |    23449 |      9 |  0.000000E+00 |  0.000000E+00 |  0.0768672887 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   132 |    23628 |     14 |  0.000000E+00 |  0.000000E+00 |  0.4086557954 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   133 |    23807 |     12 |  0.000000E+00 |  0.000000E+00 |  0.1446652231 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   134 |    23986 |     11 |  0.000000E+00 |  0.000000E+00 |  0.4491710826 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   135 |    24165 |     10 |  0.000000E+00 |  0.000000E+00 |  0.3674829978 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   136 |    24344 |     12 |  0.000000E+00 |  0.000000E+00 |  0.1267503932 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   137 |    24523 |     13 |  0.000000E+00 |  0.000000E+00 |  0.0518734010 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   138 |    24702 |     12 |  0.000000E+00 |  0.000000E+00 |  0.1413154609 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   139 |    24881 |     11 |  0.000000E+00 |  0.000000E+00 |  0.1563107147 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   140 |    25060 |     14 |  0.000000E+00 |  0.000000E+00 |  0.0881764282 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   141 |    25239 |     15 |  0.000000E+00 |  0.000000E+00 |  0.0541936976 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   142 |    25418 |     12 |  0.000000E+00 |  0.000000E+00 |  0.0170115277 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   143 |    25597 |     13 |  0.000000E+00 |  0.000000E+00 |  0.4785427479 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   144 |    25776 |     15 |  0.000000E+00 |  0.000000E+00 |  0.0668081970 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   145 |    25955 |     18 |  0.000000E+00 |  0.000000E+00 |  0.1402765810 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   146 |    26134 |     15 |  0.000000E+00 |  0.000000E+00 |  0.1701049994 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   147 |    26313 |     18 |  0.000000E+00 |  0.000000E+00 |  0.1344805331 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   148 |    26492 |     18 |  0.000000E+00 |  0.000000E+00 |  0.0216002707 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   149 |    26671 |     20 |  0.000000E+00 |  0.000000E+00 |  0.0374329950 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   150 |    26850 |     22 |  0.000000E+00 |  0.000000E+00 |  0.7066954423 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   151 |    27029 |     19 |  0.000000E+00 |  0.000000E+00 |  0.0411120592 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   152 |    27208 |     20 |  0.000000E+00 |  0.000000E+00 |  0.0733703533 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   153 |    27387 |     20 |  0.000000E+00 |  0.000000E+00 |  0.0921034841 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   154 |    27566 |     20 |  0.000000E+00 |  0.000000E+00 |  0.0998841881 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   155 |    27745 |     16 |  0.000000E+00 |  0.000000E+00 |  0.1496846795 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   156 |    27924 |     16 |  0.000000E+00 |  0.000000E+00 |  0.1760343203 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   157 |    28103 |      8 |  0.000000E+00 |  0.000000E+00 |  0.3017552095 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   158 |    28282 |      7 |  0.000000E+00 |  0.000000E+00 |  1.4066295592 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   159 |    28461 |      9 |  0.000000E+00 |  0.000000E+00 |  0.3345322749 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   160 |    28640 |      9 |  0.000000E+00 |  0.000000E+00 |  0.1823192657 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   161 |    28819 |      7 |  0.000000E+00 |  0.000000E+00 |  0.1795474400 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   162 |    28998 |      9 |  0.000000E+00 |  0.000000E+00 |  0.1010058347 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   163 |    29177 |     10 |  0.000000E+00 |  0.000000E+00 |  0.0189221429 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   164 |    29356 |     14 |  0.000000E+00 |  0.000000E+00 |  0.1690324406 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   165 |    29535 |     11 |  0.000000E+00 |  0.000000E+00 |  0.2034164134 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   166 |    29714 |     10 |  0.000000E+00 |  0.000000E+00 |  0.3127591475 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   167 |    29893 |     10 |  0.000000E+00 |  0.000000E+00 |  0.1884378488 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   168 |    30072 |     10 |  0.000000E+00 |  0.000000E+00 |  0.2321915193 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   169 |    30251 |     16 |  0.000000E+00 |  0.000000E+00 |  0.0587633630 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   170 |    30430 |     12 |  0.000000E+00 |  0.000000E+00 |  0.0959770764 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   171 |    30609 |      8 |  0.000000E+00 |  0.000000E+00 |  0.2469428819 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   172 |    30788 |     10 |  0.000000E+00 |  0.000000E+00 |  0.3854483386 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   173 |    30967 |     12 |  0.000000E+00 |  0.000000E+00 |  0.2237042904 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   174 |    31146 |      7 |  0.000000E+00 |  0.000000E+00 |  0.2881689124 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   175 |    31325 |      5 |  0.000000E+00 |  0.000000E+00 |  0.6272025004 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   176 |    31504 |      6 |  0.000000E+00 |  0.000000E+00 |  0.3363413138 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   177 |    31683 |      5 |  0.000000E+00 |  0.000000E+00 |  0.2433747940 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   178 |    31862 |      7 |  0.000000E+00 |  0.000000E+00 |  0.3854483386 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   179 |    32041 |      9 |  0.000000E+00 |  0.000000E+00 |  0.3723258111 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   180 |    32220 |     10 |  0.000000E+00 |  0.000000E+00 |  0.0186053903 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   181 |    32399 |     13 |  0.000000E+00 |  0.000000E+00 |  0.1007266998 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   182 |    32578 |      9 |  0.000000E+00 |  0.000000E+00 |  0.2508932827 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   183 |    32757 |     10 |  0.000000E+00 |  0.000000E+00 |  0.2673408032 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   184 |    32936 |     12 |  0.000000E+00 |  0.000000E+00 |  0.1328326403 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   185 |    33115 |     12 |  0.000000E+00 |  0.000000E+00 |  0.0297700571 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   186 |    33294 |      8 |  0.000000E+00 |  0.000000E+00 |  0.4868723061 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   187 |    33473 |     10 |  0.000000E+00 |  0.000000E+00 |  0.1981101918 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   188 |    33652 |     10 |  0.000000E+00 |  0.000000E+00 |  0.1559881594 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   189 |    33831 |     12 |  0.000000E+00 |  0.000000E+00 |  0.3460259510 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   190 |    34010 |     10 |  0.000000E+00 |  0.000000E+00 |  0.1820620445 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   191 |    34189 |      7 |  0.000000E+00 |  0.000000E+00 |  0.8162386311 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   192 |    34368 |     10 |  0.000000E+00 |  0.000000E+00 |  0.4494115570 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   193 |    34547 |      9 |  0.000000E+00 |  0.000000E+00 |  0.6889106066 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   194 |    34726 |     12 |  0.000000E+00 |  0.000000E+00 |  0.2819497828 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   195 |    34905 |     13 |  0.000000E+00 |  0.000000E+00 |  0.0623187688 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   196 |    35084 |     15 |  0.000000E+00 |  0.000000E+00 |  0.3814534093 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   197 |    35263 |     13 |  0.000000E+00 |  0.000000E+00 |  0.1004921535 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   198 |    35442 |     12 |  0.000000E+00 |  0.000000E+00 |  0.1659006594 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   199 |    35621 |     12 |  0.000000E+00 |  0.000000E+00 |  0.000000E+00 |             f
+ACK FOUND > 1; len(fronts)=1
+   200 |    35800 |     14 |  0.000000E+00 |  0.000000E+00 |  0.0936202085 |         ideal
+Begin print with Final Cash: 1238071.6437490000390 => return: 0.2380716437490
+Month 1:
+  Buy: Stock ABT, Amount: 676
+  Buy: Stock ACB, Amount: 299
+  Buy: Stock ACL, Amount: 10772
+  Buy: Stock AGF, Amount: 5043
+  Buy: Stock ALT, Amount: 523
+  Buy: Stock ANV, Amount: 315
+  Buy: Stock ASP, Amount: 21507
+  Buy: Stock B82, Amount: 13348
+  Buy: Stock BBC, Amount: 1600
+  Buy: Stock BBS, Amount: 2762
+  Buy: Stock BCC, Amount: 542
+  Buy: Stock BMC, Amount: 3514
+  Buy: Stock BMI, Amount: 577
+  Buy: Stock BMP, Amount: 29
+  Buy: Stock CII, Amount: 2185
+  Buy: Stock CMC, Amount: 1
+  Buy: Stock DQC, Amount: 4699
+  Buy: Stock DXV, Amount: 19
+  Buy: Stock GIL, Amount: 3687
+  Buy: Stock GTA, Amount: 8331
+  Buy: Stock HRC, Amount: 184
+  Buy: Stock L43, Amount: 5
+  Buy: Stock L62, Amount: 5963
+  Bank Deposit: 152144.70
+Month 2:
+  Buy: Stock BPC, Amount: 4
+  Buy: Stock CAP, Amount: 620
+  Buy: Stock DTT, Amount: 3
+  Buy: Stock DXP, Amount: 35
+  Buy: Stock EBS, Amount: 1
+  Buy: Stock HTV, Amount: 21
+  Buy: Stock ITA, Amount: 51
+  Buy: Stock LGC, Amount: 652
+  Sell: Stock ACB, Amount: 280.0
+  Sell: Stock ACL, Amount: 172.0
+  Sell: Stock AGF, Amount: 171.0
+  Sell: Stock ALT, Amount: 523.0
+  Sell: Stock ANV, Amount: 315.0
+  Sell: Stock ASP, Amount: 1018.0
+  Sell: Stock BBC, Amount: 1600.0
+  Sell: Stock BBS, Amount: 704.0
+  Sell: Stock BCC, Amount: 542.0
+  Sell: Stock BMI, Amount: 106.0
+  Sell: Stock BMP, Amount: 29.0
+  Sell: Stock CII, Amount: 2185.0
+  Sell: Stock DQC, Amount: 4699.0
+  Sell: Stock DXV, Amount: 19.0
+  Sell: Stock GIL, Amount: 217.0
+  Sell: Stock GTA, Amount: 8331.0
+  Sell: Stock HRC, Amount: 184.0
+  Sell: Stock L43, Amount: 5.0
+  Sell: Stock L62, Amount: 2402.0
+  Sell: Stock LGC, Amount: 70.0
+  Bank Deposit: 67309.06
+Month 3:
+  Buy: Stock ABT, Amount: 226
+  Buy: Stock ACB, Amount: 3
+  Buy: Stock ACL, Amount: 2877
+  Buy: Stock AGF, Amount: 6403
+  Buy: Stock ALT, Amount: 207
+  Buy: Stock ANV, Amount: 1
+  Buy: Stock ASP, Amount: 10
+  Buy: Stock B82, Amount: 2
+  Buy: Stock HAX, Amount: 1
+  Sell: Stock AGF, Amount: 79.0
+  Sell: Stock ALT, Amount: 51.0
+  Sell: Stock BBS, Amount: 2058.0
+  Sell: Stock BMI, Amount: 471.0
+  Sell: Stock BPC, Amount: 4.0
+  Sell: Stock CMC, Amount: 1.0
+  Sell: Stock GIL, Amount: 983.0
+  Sell: Stock ITA, Amount: 51.0
+  Sell: Stock L62, Amount: 43.0
+  Dividends: 8772.85
+  Bank Deposit: 433303.55
+Month 4:
+  Buy: Stock AGF, Amount: 195
+  Buy: Stock ALT, Amount: 145
+  Buy: Stock ANV, Amount: 1
+  Buy: Stock ASP, Amount: 132
+  Buy: Stock B82, Amount: 32239
+  Buy: Stock BMC, Amount: 23787
+  Buy: Stock BMI, Amount: 644
+  Buy: Stock BMP, Amount: 2
+  Buy: Stock BPC, Amount: 1
+  Buy: Stock DAE, Amount: 4
+  Buy: Stock DCS, Amount: 1
+  Buy: Stock HBC, Amount: 56
+  Sell: Stock ALT, Amount: 134.0
+  Sell: Stock ASP, Amount: 4.0
+  Sell: Stock B82, Amount: 881.0
+  Sell: Stock BMC, Amount: 26544.0
+  Sell: Stock CAP, Amount: 620.0
+  Sell: Stock DTT, Amount: 3.0
+  Sell: Stock DXP, Amount: 35.0
+  Sell: Stock GIL, Amount: 2298.0
+  Bank Deposit: 134426.82
+Month 5:
+  Buy: Stock ABT, Amount: 1302
+  Buy: Stock ACB, Amount: 8
+  Buy: Stock ACL, Amount: 178
+  Buy: Stock AGF, Amount: 48298
+  Buy: Stock ALT, Amount: 176
+  Buy: Stock ANV, Amount: 10
+  Buy: Stock ASP, Amount: 2
+  Buy: Stock COM, Amount: 1
+  Buy: Stock DBC, Amount: 861
+  Buy: Stock HSG, Amount: 6
+  Buy: Stock KSH, Amount: 142153
+  Buy: Stock LTC, Amount: 535
+  Sell: Stock ABT, Amount: 1769.0
+  Sell: Stock ACL, Amount: 44.0
+  Sell: Stock AGF, Amount: 17.0
+  Sell: Stock ASP, Amount: 17642.0
+  Sell: Stock B82, Amount: 2659.0
+  Sell: Stock BMI, Amount: 644.0
+  Sell: Stock EBS, Amount: 1.0
+  Sell: Stock GIL, Amount: 189.0
+  Sell: Stock HAX, Amount: 1.0
+  Sell: Stock HTV, Amount: 21.0
+  Sell: Stock KSH, Amount: 8922.0
+  Sell: Stock LGC, Amount: 87.0
+  Sell: Stock LTC, Amount: 4.0
+  Dividends: 691.90
+  Bank Deposit: 318184.00
+Month 6:
+  Buy: Stock ABT, Amount: 6791
+  Buy: Stock ACB, Amount: 37
+  Buy: Stock ACL, Amount: 24
+  Buy: Stock AGF, Amount: 1031
+  Buy: Stock BCC, Amount: 31
+  Buy: Stock CAN, Amount: 54
+  Buy: Stock DCS, Amount: 1
+  Buy: Stock GTA, Amount: 4
+  Buy: Stock HAP, Amount: 1
+  Buy: Stock HSG, Amount: 307
+  Buy: Stock HTP, Amount: 1
+  Sell: Stock ABT, Amount: 19.0
+  Sell: Stock ACL, Amount: 3881.0
+  Sell: Stock AGF, Amount: 914.0
+  Sell: Stock ASP, Amount: 17.0
+  Sell: Stock B82, Amount: 203.0
+  Sell: Stock BCC, Amount: 13.0
+  Sell: Stock BMC, Amount: 269.0
+  Sell: Stock DBC, Amount: 235.0
+  Sell: Stock HBC, Amount: 56.0
+  Sell: Stock KSH, Amount: 132.0
+  Sell: Stock L62, Amount: 46.0
+  Sell: Stock LGC, Amount: 5.0
+  Sell: Stock LTC, Amount: 5.0
+  Dividends: 30.00
+  Bank Deposit: 293426.63
+Month 7:
+  Buy: Stock ABT, Amount: 7852
+  Buy: Stock B82, Amount: 1
+  Buy: Stock BBC, Amount: 1
+  Buy: Stock BBS, Amount: 4
+  Buy: Stock BCC, Amount: 35
+  Buy: Stock CTB, Amount: 11
+  Buy: Stock DQC, Amount: 901
+  Buy: Stock HDC, Amount: 12
+  Buy: Stock HT1, Amount: 27
+  Buy: Stock L62, Amount: 2
+  Buy: Stock LSS, Amount: 117
+  Sell: Stock ACL, Amount: 4264.0
+  Sell: Stock AGF, Amount: 36.0
+  Sell: Stock ALT, Amount: 277.0
+  Sell: Stock ANV, Amount: 12.0
+  Sell: Stock ASP, Amount: 2970.0
+  Sell: Stock B82, Amount: 3246.0
+  Sell: Stock BMC, Amount: 488.0
+  Sell: Stock BMP, Amount: 2.0
+  Sell: Stock BPC, Amount: 1.0
+  Sell: Stock CAN, Amount: 7.0
+  Sell: Stock DAE, Amount: 4.0
+  Sell: Stock DBC, Amount: 626.0
+  Sell: Stock DCS, Amount: 2.0
+  Sell: Stock DQC, Amount: 59.0
+  Sell: Stock GTA, Amount: 4.0
+  Sell: Stock HSG, Amount: 313.0
+  Sell: Stock KSH, Amount: 265.0
+  Sell: Stock LGC, Amount: 6.0
+  Sell: Stock LTC, Amount: 187.0
+  Dividends: 7207.50
+  Bank Deposit: 63845.28
+Month 8:
+  Buy: Stock ABT, Amount: 5130
+  Buy: Stock AGF, Amount: 2
+  Buy: Stock B82, Amount: 3
+  Buy: Stock HSI, Amount: 2
+  Sell: Stock ABT, Amount: 20189.0
+  Sell: Stock ACL, Amount: 5065.0
+  Sell: Stock AGF, Amount: 68.0
+  Sell: Stock ALT, Amount: 66.0
+  Sell: Stock DQC, Amount: 842.0
+  Sell: Stock HDC, Amount: 12.0
+  Sell: Stock KSH, Amount: 82.0
+  Sell: Stock L62, Amount: 11.0
+  Sell: Stock LSS, Amount: 117.0
+  Sell: Stock LTC, Amount: 339.0
+  Dividends: 1211.40
+  Bank Deposit: 1.43
+Month 9:
+  Buy: Stock ABT, Amount: 6673
+  Buy: Stock ACB, Amount: 19
+  Buy: Stock ACL, Amount: 198
+  Buy: Stock AGF, Amount: 2460
+  Buy: Stock ALT, Amount: 1
+  Buy: Stock B82, Amount: 1
+  Buy: Stock CAN, Amount: 7
+  Buy: Stock CLC, Amount: 302
+  Buy: Stock DQC, Amount: 10
+  Buy: Stock DTT, Amount: 1300
+  Buy: Stock DXV, Amount: 42
+  Buy: Stock GIL, Amount: 28
+  Buy: Stock GTA, Amount: 16
+  Buy: Stock HAP, Amount: 23
+  Buy: Stock ICF, Amount: 9464
+  Buy: Stock LGC, Amount: 2
+  Buy: Stock LTC, Amount: 163
+  Sell: Stock AGF, Amount: 16.0
+  Sell: Stock B82, Amount: 9.0
+  Sell: Stock CLC, Amount: 135.0
+  Sell: Stock CTB, Amount: 11.0
+  Sell: Stock HSI, Amount: 2.0
+  Sell: Stock HT1, Amount: 27.0
+  Sell: Stock KSH, Amount: 28504.0
+  Sell: Stock LGC, Amount: 73.0
+  Bank Deposit: 543450.90
+Month 10:
+  Buy: Stock ABT, Amount: 7159
+  Buy: Stock ACB, Amount: 178
+  Buy: Stock ACL, Amount: 52
+  Buy: Stock AGF, Amount: 1
+  Buy: Stock ANV, Amount: 99
+  Buy: Stock B82, Amount: 1
+  Buy: Stock BCC, Amount: 19
+  Buy: Stock DMC, Amount: 3
+  Buy: Stock DPR, Amount: 44
+  Buy: Stock DQC, Amount: 50
+  Buy: Stock HSG, Amount: 216
+  Buy: Stock L10, Amount: 39
+  Buy: Stock LBM, Amount: 1
+  Buy: Stock LCG, Amount: 5
+  Sell: Stock ABT, Amount: 6358.0
+  Sell: Stock ACL, Amount: 291.0
+  Sell: Stock AGF, Amount: 2360.0
+  Sell: Stock B82, Amount: 125.0
+  Sell: Stock BBC, Amount: 1.0
+  Sell: Stock CAN, Amount: 11.0
+  Sell: Stock DXV, Amount: 42.0
+  Sell: Stock GIL, Amount: 28.0
+  Sell: Stock GTA, Amount: 2.0
+  Sell: Stock HAP, Amount: 24.0
+  Sell: Stock ICF, Amount: 6198.0
+  Sell: Stock KSH, Amount: 734.0
+  Sell: Stock L10, Amount: 1.0
+  Sell: Stock L62, Amount: 793.0
+  Sell: Stock LGC, Amount: 105.0
+  Bank Deposit: 310712.55
+Month 11:
+  Buy: Stock ABT, Amount: 853
+  Buy: Stock ACB, Amount: 5812
+  Buy: Stock ACL, Amount: 397
+  Buy: Stock AGF, Amount: 858
+  Buy: Stock ALT, Amount: 221
+  Buy: Stock ANV, Amount: 155
+  Buy: Stock B82, Amount: 3
+  Buy: Stock BPC, Amount: 398
+  Buy: Stock DCS, Amount: 21
+  Buy: Stock DPC, Amount: 1
+  Buy: Stock DST, Amount: 2
+  Buy: Stock DTC, Amount: 80818
+  Sell: Stock ABT, Amount: 863.0
+  Sell: Stock AGF, Amount: 674.0
+  Sell: Stock ALT, Amount: 160.0
+  Sell: Stock ANV, Amount: 144.0
+  Sell: Stock B82, Amount: 24.0
+  Sell: Stock BBS, Amount: 4.0
+  Sell: Stock CLC, Amount: 167.0
+  Sell: Stock COM, Amount: 1.0
+  Sell: Stock DPR, Amount: 44.0
+  Sell: Stock DQC, Amount: 60.0
+  Sell: Stock DTC, Amount: 290.0
+  Sell: Stock GTA, Amount: 1.0
+  Sell: Stock HSG, Amount: 216.0
+  Sell: Stock ICF, Amount: 169.0
+  Sell: Stock KSH, Amount: 8.0
+  Sell: Stock L10, Amount: 38.0
+  Sell: Stock LBM, Amount: 1.0
+  Sell: Stock LGC, Amount: 235.0
+  Sell: Stock LTC, Amount: 163.0
+  Sell: Stock AGF, Amount: 38094.0
+  Bank Deposit: 2.98
+Month 12:
+  Sell: Stock ABT, Amount: 7464.0
+  Sell: Stock ACL, Amount: 781.0
+  Sell: Stock AGF, Amount: 11522.0
+  Sell: Stock ALT, Amount: 62.0
+  Sell: Stock ANV, Amount: 110.0
+  Sell: Stock B82, Amount: 7698.0
+  Sell: Stock BCC, Amount: 72.0
+  Sell: Stock BPC, Amount: 398.0
+  Sell: Stock CAN, Amount: 43.0
+  Sell: Stock DCS, Amount: 21.0
+  Sell: Stock DMC, Amount: 3.0
+  Sell: Stock DPC, Amount: 1.0
+  Sell: Stock DST, Amount: 2.0
+  Sell: Stock DTC, Amount: 15053.0
+  Sell: Stock DTT, Amount: 1300.0
+  Sell: Stock GTA, Amount: 13.0
+  Sell: Stock HTP, Amount: 1.0
+  Sell: Stock ICF, Amount: 3097.0
+  Sell: Stock KSH, Amount: 43450.0
+  Sell: Stock L62, Amount: 2670.0
+  Sell: Stock LCG, Amount: 5.0
+  Sell: Stock ACB, Amount: 6076.0
+  Sell: Stock AGF, Amount: 10339.524408821477
+  Sell: Stock B82, Amount: 30753.0
+  Sell: Stock DTC, Amount: 65475.0
+  Sell: Stock KSH, Amount: 60056.0
+  Sell: Stock LGC, Amount: 73.0
+  Bank Deposit: 71094.04
+
+
+Final Cash: 1238071.6437490000390 => return: 0.2380716437490

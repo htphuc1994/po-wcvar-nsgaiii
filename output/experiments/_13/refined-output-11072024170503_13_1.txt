@@ -1,47 +1,5 @@
-import re
-
-def extract_arrays(text):
-    # Regular expressions to find the required data
-    ack_pattern = re.compile(r'ACK FOUND > 1; len\(fronts\)=(\d+)')
-    n_nds_pattern = re.compile(r'^\s*\d+\s*\|\s*\d+\s*\|\s*(\d+)\s*\|', re.MULTILINE)
-    # eps_pattern = re.compile(r'^\s*\d+\s*\|\s*\d+\s*\|\s*\d+\s*\|\s+[0-9.E+-]+\s+\|\s+[0-9.E+-]+\s+\|\s+([0-9.]+|-)\s+\|', re.MULTILINE)
-    # eps_pattern = re.compile(r'^\s*\d+\s*\|\s*\d+\s*\|\s*\d+\s*\|\s+[0-9.E+-]+\s+\|\s+[0-9.E+-]+\s+\|\s+([0-9.E+-]+|-)\s+\|', re.MULTILINE)
-    # indicator_pattern = re.compile(r'^\s*\d+\s*\|\s*\d+\s*\|\s*\d+\s*\|\s+[0-9.E+-]+\s+\|\s+[0-9.E+-]+\s+\|\s+[0-9.]+|-\s+\|\s+([a-zA-Z-]+)\s*\n', re.MULTILINE)
-    # indicator_pattern = re.compile(r'^\s*\d+\s*\|\s*\d+\s*\|\s*\d+\s*\|\s+[0-9.E+-]+\s+\|\s+[0-9.E+-]+\s+\|\s+[0-9.E+-]+|-\s+\|\s+([a-zA-Z-]+)\s*$', re.MULTILINE)
-    # indicator_pattern = re.compile(r'^\s*\d+\s*\|\s*\d+\s*\|\s*\d+\s*\|\s+[0-9.E+-]+\s+\|\s+[0-9.E+-]+\s+\|\s+([0-9.E+-]+|-)\s+\|\s+([a-zA-Z-]+)\s*$', re.MULTILINE)
-
-    line_pattern = re.compile(r'^\s*\d+\s*\|\s*\d+\s*\|\s*\d+\s*\|\s+([0-9.E+-]+)\s+\|\s+([0-9.E+-]+)\s+\|\s+([0-9.E+-]+|-)\s+\|\s+([a-zA-Z-]+)\s*$', re.MULTILINE)
-
-    # Find all matches for ACK and n_nds
-    ack_matches = ack_pattern.findall(text)
-    n_nds_matches = n_nds_pattern.findall(text)
-    # eps_matches = eps_pattern.findall(text)
-    # indicator_matches = indicator_pattern.findall(text)
-    # indicator_matches = indicator_pattern.finditer(text)
-    line_matches = line_pattern.finditer(text)
-
-    # Convert matches to integers
-    ack_array = list(map(int, ack_matches))
-    n_nds_array = list(map(int, n_nds_matches))
-    # eps_array = [float('NaN') if v == '-' else float(v) for v in eps_matches]
-    # indicator_array = list(map(str, indicator_matches))
-    cv_min_array = []
-    cv_avg_array = []
-    eps_array = []
-    indicator_array = []
-    # for match in indicator_matches:
-    #     indicator_array.append(match.group(2).strip())
-    # indicator_array = [match.group(1) for match in indicator_pattern.finditer(text) if match.group(1)]
-    for match in line_matches:
-        cv_min_array.append(float(match.group(1)))
-        cv_avg_array.append(float(match.group(2)))
-        eps_array.append(float(match.group(3)) if match.group(3) != '-' else float('nan'))
-        indicator_array.append(match.group(4).strip())
-
-    return ack_array, n_nds_array, eps_array, indicator_array
-
-# Given text data
-text_data = """
+Objectives = ['-0.2693077451180', '-0.1659529284200', '-0.1254670980393', '-0.1538921879517', '-0.1598979045081', '-0.2087403672313', '-0.2236038309798', '-0.2251050994162', '-0.2192899802956', '-0.2243583778912', '-0.2242203408825', '-0.1942640919064']
+The time of execution of above program is : 707121.1400032043 ms
 ACK FOUND > 1; len(fronts)=4
 ==========================================================================================
 n_gen  |  n_eval  | n_nds  |     cv_min    |     cv_avg    |      eps      |   indicator  
@@ -445,12 +403,209 @@ ACK FOUND > 1; len(fronts)=1
    199 |    35621 |     15 |  0.000000E+00 |  0.000000E+00 |  0.2133658885 |         ideal
 ACK FOUND > 1; len(fronts)=1
    200 |    35800 |     15 |  0.000000E+00 |  0.000000E+00 |  0.1831706669 |         ideal
-"""
+Begin print with Final Cash: 126930.7745117953891 => return: 0.2693077451180
+Month 1:
+  Buy: Stock ABT, Amount: 123
+  Buy: Stock ACL, Amount: 3300
+  Buy: Stock AGF, Amount: 3691
+  Buy: Stock ALT, Amount: 3
+  Buy: Stock ANV, Amount: 464
+  Buy: Stock ASP, Amount: 1
+  Buy: Stock B82, Amount: 604
+  Buy: Stock BBC, Amount: 272
+  Buy: Stock CII, Amount: 4
+  Buy: Stock CMC, Amount: 1139
+  Buy: Stock DCS, Amount: 24
+  Buy: Stock DRC, Amount: 11
+  Buy: Stock KSH, Amount: 9523
+  Buy: Stock LTC, Amount: 20
+  Bank Deposit: 118.35
+Month 2:
+  Buy: Stock BVS, Amount: 1
+  Buy: Stock CAP, Amount: 1
+  Buy: Stock EBS, Amount: 2
+  Sell: Stock ACL, Amount: 888.0
+  Sell: Stock AGF, Amount: 335.0
+  Sell: Stock ALT, Amount: 3.0
+  Sell: Stock ANV, Amount: 438.0
+  Sell: Stock BBC, Amount: 272.0
+  Sell: Stock CMC, Amount: 9.0
+  Sell: Stock KSH, Amount: 103.0
+  Bank Deposit: 2.41
+Month 3:
+  Buy: Stock ABT, Amount: 26
+  Buy: Stock ACB, Amount: 2
+  Buy: Stock AGF, Amount: 765
+  Buy: Stock B82, Amount: 3
+  Buy: Stock BVS, Amount: 32
+  Buy: Stock CTN, Amount: 13
+  Buy: Stock DST, Amount: 2
+  Buy: Stock FMC, Amount: 26
+  Buy: Stock HUT, Amount: 31
+  Buy: Stock KSH, Amount: 94
+  Buy: Stock L18, Amount: 447
+  Buy: Stock LSS, Amount: 411
+  Sell: Stock ASP, Amount: 1.0
+  Sell: Stock BVS, Amount: 17.0
+  Sell: Stock CAP, Amount: 1.0
+  Sell: Stock CMC, Amount: 1130.0
+  Sell: Stock CTN, Amount: 1.0
+  Sell: Stock KSH, Amount: 106.0
+  Sell: Stock LTC, Amount: 7.0
+  Dividends: 1936.10
+  Bank Deposit: 26970.06
+Month 4:
+  Buy: Stock AGF, Amount: 376
+  Buy: Stock ALT, Amount: 107
+  Buy: Stock ASP, Amount: 65
+  Buy: Stock B82, Amount: 4021
+  Buy: Stock BMC, Amount: 5
+  Buy: Stock BMI, Amount: 3
+  Buy: Stock CCM, Amount: 1
+  Buy: Stock DC4, Amount: 1
+  Buy: Stock HSI, Amount: 130
+  Sell: Stock ASP, Amount: 5.0
+  Sell: Stock B82, Amount: 36.0
+  Sell: Stock BVS, Amount: 16.0
+  Sell: Stock DRC, Amount: 11.0
+  Sell: Stock EBS, Amount: 2.0
+  Sell: Stock FMC, Amount: 26.0
+  Sell: Stock KSH, Amount: 4.0
+  Sell: Stock LSS, Amount: 367.0
+  Bank Deposit: 31270.85
+Month 5:
+  Buy: Stock ABT, Amount: 102
+  Buy: Stock AGF, Amount: 2
+  Buy: Stock BMI, Amount: 150
+  Buy: Stock DIC, Amount: 21623
+  Sell: Stock ABT, Amount: 11.0
+  Sell: Stock ACL, Amount: 471.0
+  Sell: Stock AGF, Amount: 96.0
+  Sell: Stock BMI, Amount: 99.0
+  Sell: Stock CTN, Amount: 12.0
+  Sell: Stock DC4, Amount: 1.0
+  Sell: Stock DCS, Amount: 24.0
+  Sell: Stock HSI, Amount: 130.0
+  Sell: Stock L18, Amount: 447.0
+  Sell: Stock LSS, Amount: 38.0
+  Sell: Stock LTC, Amount: 2.0
+  Dividends: 4.50
+  Bank Deposit: 0.27
+Month 6:
+  Buy: Stock ABT, Amount: 830
+  Buy: Stock ACB, Amount: 1
+  Buy: Stock AGF, Amount: 2
+  Buy: Stock B82, Amount: 2
+  Sell: Stock ABT, Amount: 69.0
+  Sell: Stock ACL, Amount: 52.0
+  Sell: Stock AGF, Amount: 28.0
+  Sell: Stock ASP, Amount: 9.0
+  Sell: Stock B82, Amount: 380.0
+  Sell: Stock CCM, Amount: 1.0
+  Sell: Stock CII, Amount: 4.0
+  Sell: Stock DIC, Amount: 44.0
+  Sell: Stock HUT, Amount: 31.0
+  Sell: Stock KSH, Amount: 669.0
+  Sell: Stock LSS, Amount: 6.0
+  Dividends: 29.00
+  Bank Deposit: 0.59
+Month 7:
+  Buy: Stock ABT, Amount: 141
+  Buy: Stock B82, Amount: 3
+  Sell: Stock ACL, Amount: 498.0
+  Sell: Stock ALT, Amount: 106.0
+  Sell: Stock ASP, Amount: 51.0
+  Sell: Stock B82, Amount: 254.0
+  Sell: Stock BMC, Amount: 5.0
+  Sell: Stock DIC, Amount: 16.0
+  Sell: Stock DST, Amount: 2.0
+  Sell: Stock KSH, Amount: 1207.0
+  Dividends: 1001.00
+  Bank Deposit: 0.26
+Month 8:
+  Buy: Stock ABT, Amount: 304
+  Sell: Stock ABT, Amount: 1446.0
+  Sell: Stock AGF, Amount: 10.0
+  Sell: Stock DIC, Amount: 183.0
+  Sell: Stock KSH, Amount: 1.0
+  Sell: Stock LTC, Amount: 11.0
+  Bank Deposit: 0.19
+Month 9:
+  Buy: Stock ABT, Amount: 286
+  Buy: Stock ACB, Amount: 11
+  Buy: Stock ACL, Amount: 5
+  Buy: Stock AGF, Amount: 3471
+  Buy: Stock ALT, Amount: 3
+  Buy: Stock B82, Amount: 239
+  Buy: Stock BTS, Amount: 5
+  Buy: Stock BVS, Amount: 10
+  Buy: Stock CAN, Amount: 4
+  Buy: Stock EBS, Amount: 3
+  Buy: Stock HAS, Amount: 18
+  Buy: Stock HAX, Amount: 364
+  Buy: Stock HBC, Amount: 1
+  Buy: Stock KKC, Amount: 445
+  Buy: Stock L10, Amount: 14
+  Sell: Stock ACL, Amount: 52.0
+  Sell: Stock AGF, Amount: 197.0
+  Sell: Stock B82, Amount: 8.0
+  Sell: Stock BVS, Amount: 6.0
+  Sell: Stock CAN, Amount: 3.0
+  Sell: Stock DIC, Amount: 24.0
+  Sell: Stock HAX, Amount: 61.0
+  Sell: Stock KSH, Amount: 4083.0
+  Dividends: 1.00
+  Bank Deposit: 23391.43
+Month 10:
+  Buy: Stock ABT, Amount: 846
+  Buy: Stock DTC, Amount: 1
+  Sell: Stock ABT, Amount: 357.0
+  Sell: Stock ACL, Amount: 326.0
+  Sell: Stock AGF, Amount: 47.0
+  Sell: Stock ALT, Amount: 4.0
+  Sell: Stock B82, Amount: 1024.0
+  Sell: Stock BTS, Amount: 5.0
+  Sell: Stock DIC, Amount: 2.0
+  Sell: Stock EBS, Amount: 3.0
+  Sell: Stock HAS, Amount: 18.0
+  Sell: Stock HAX, Amount: 15.0
+  Sell: Stock HBC, Amount: 1.0
+  Sell: Stock L10, Amount: 4.0
+  Dividends: 30.00
+  Bank Deposit: 1.31
+Month 11:
+  Buy: Stock ABT, Amount: 439
+  Buy: Stock ACB, Amount: 29
+  Buy: Stock ACL, Amount: 73
+  Buy: Stock AGF, Amount: 166
+  Sell: Stock ABT, Amount: 198.0
+  Sell: Stock ACL, Amount: 1029.0
+  Sell: Stock AGF, Amount: 72.0
+  Sell: Stock B82, Amount: 150.0
+  Sell: Stock BMI, Amount: 11.0
+  Sell: Stock DIC, Amount: 145.0
+  Sell: Stock DTC, Amount: 1.0
+  Sell: Stock HAX, Amount: 13.0
+  Sell: Stock KKC, Amount: 445.0
+  Sell: Stock KSH, Amount: 152.0
+  Sell: Stock L10, Amount: 10.0
+  Bank Deposit: 0.08
+Month 12:
+  Sell: Stock ABT, Amount: 1016.0
+  Sell: Stock ACB, Amount: 43.0
+  Sell: Stock ACL, Amount: 62.0
+  Sell: Stock AGF, Amount: 7688.0
+  Sell: Stock ANV, Amount: 26.0
+  Sell: Stock B82, Amount: 751.0
+  Sell: Stock BMI, Amount: 43.0
+  Sell: Stock BVS, Amount: 4.0
+  Sell: Stock CAN, Amount: 1.0
+  Sell: Stock DIC, Amount: 1624.0
+  Sell: Stock HAX, Amount: 275.0
+  Sell: Stock KSH, Amount: 3292.0
+  Sell: Stock B82, Amount: 2269.0
+  Sell: Stock DIC, Amount: 19585.0
+  Bank Deposit: 24709.66
 
-# Extract arrays
-ack_array, n_nds_array, eps_array, indicator_array = extract_arrays(text_data)
 
-print("front_num_Array =", ack_array)
-print("n_nds_Array =", n_nds_array)
-print("eps_Array =", eps_array)
-print("indicator_Array =", indicator_array)
+Final Cash: 126930.7745117953891 => return: 0.2693077451180
