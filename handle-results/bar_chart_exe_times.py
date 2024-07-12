@@ -1,17 +1,15 @@
 import matplotlib.pyplot as plt
-
-
-# experiment_16_wcvar = [-0.05195, -0.02230, 0.00000, -0.06598, -0.15285, -0.17421, -0.18198, -0.19472, -0.23474, -0.22050, -0.15634]
-# experiment_17_wcvar = [-0.06927, -0.05053, 0.00000, -0.09575, -0.13952, -0.14686, -0.15465, 0.00000, -0.16851, 0.00000, 0.00000]
-# experiment_18_wcvar = [-0.07628, -0.05351, -0.06639, -0.09602, -0.22105, -0.25584, -0.28068, -0.29155, -0.25227, -0.17030, -0.20818]
+import numpy as np
 
 
 def plot_columns():
     # Define the data for four columns
-    categories = ['100 stocks, K = 100', '249 stocks, K = 249', '249 stocks, K = 249 / 2 = 124', '249 stocks, K = 249 / 4 = 62']
+    categories = ['100 stocks, K = 100', '249 stocks, K = 249', '249 stocks, K = 124 (= 249 / 2)', '249 stocks, K = 62 (= 249 / 4)']
 
-    experiment_4_1_2_3 = [8.55, 15.08, 16.18, 16.71]  # execution time in minutes
+    experiment_4_1_2_3 = [505142.18521118164, 1110717.220067978, 2912739.1827106476, 7091574.80597496]  # execution time in minutes
 
+
+    experiment_4_1_2_3 = [x/1000/60 for x in experiment_4_1_2_3]
     # Plot the bar chart
     plt.figure(figsize=(10, 6))
     # plt.bar(columns, values, color=['b', 'g', 'r', 'c'])
@@ -22,17 +20,18 @@ def plot_columns():
     for bar, hatch in zip(bars, hatch_patterns):
         bar.set_hatch(hatch)
     # Set y-axis range from 0 to 1
-    plt.ylim(0, 22)
+    max_exe_time = np.max(experiment_4_1_2_3)
+    plt.ylim(0, max_exe_time)
     plt.xticks([])
 
     # Add labels and title
-    plt.ylabel('Execution time in minutes', fontsize=14)
-    plt.legend(fontsize=14)
+    plt.ylabel('Execution time in minutes', fontsize=16)
+    plt.legend(fontsize=16)
 
-    plt.tick_params(axis='y', labelsize=14)
-    plt.tick_params(axis='x', labelsize=14)
+    plt.tick_params(axis='y', labelsize=16)
+    plt.tick_params(axis='x', labelsize=16)
     # Show the plot
-    # plt.grid(True)
+    plt.grid(True)
     plt.show()
 
 # Call the function to plot the columns
