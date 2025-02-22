@@ -828,43 +828,43 @@ stock_returns = np.column_stack((
     VSC, VSG, VSH, VTB, VTC, VTO, VTS, VTV, YBC))
 
 #experiment 1st
-for i in range(2):
-    print(f"Starting loop i={i}...")
-    constants.DURATION = 12
-    constants.WAVELET_LEVEL = 3
-    constants.INITIAL_CASH = 10000000
-    constants.MAX_STOCKS = LEN_STOCK_DATA
-    nsga3.DURATION = constants.DURATION
-    nsga3.INITIAL_CASH = constants.INITIAL_CASH
-    # updateLocalVariables()
-    execute()
-print("DONE - experiment 1st")
-
-#experiment 2nd
-for i in range(2):
-    print(f"Starting loop i={i}...")
-    constants.DURATION = 12
-    constants.WAVELET_LEVEL = 3
-    constants.INITIAL_CASH = 10000000
-    constants.MAX_STOCKS = int(LEN_STOCK_DATA/2)
-    nsga3.DURATION = constants.DURATION
-    nsga3.INITIAL_CASH = constants.INITIAL_CASH
-    # updateLocalVariables()
-    execute()
-print("DONE - experiment 2nd")
-
-#experiment 3rd
-for i in range(2):
-    print(f"Starting loop i={i}...")
-    constants.DURATION = 12
-    constants.WAVELET_LEVEL = 3
-    constants.INITIAL_CASH = 10000000
-    constants.MAX_STOCKS = int(LEN_STOCK_DATA/4)
-    nsga3.DURATION = constants.DURATION
-    nsga3.INITIAL_CASH = constants.INITIAL_CASH
-    # updateLocalVariables()
-    execute()
-print("DONE - experiment 3rd")
+# for i in range(2):
+#     print(f"Starting loop i={i}...")
+#     constants.DURATION = 12
+#     constants.WAVELET_LEVEL = 3
+#     constants.INITIAL_CASH = 10000000
+#     constants.MAX_STOCKS = LEN_STOCK_DATA
+#     nsga3.DURATION = constants.DURATION
+#     nsga3.INITIAL_CASH = constants.INITIAL_CASH
+#     # updateLocalVariables()
+#     execute()
+# print("DONE - experiment 1st")
+#
+# #experiment 2nd
+# for i in range(2):
+#     print(f"Starting loop i={i}...")
+#     constants.DURATION = 12
+#     constants.WAVELET_LEVEL = 3
+#     constants.INITIAL_CASH = 10000000
+#     constants.MAX_STOCKS = int(LEN_STOCK_DATA/2)
+#     nsga3.DURATION = constants.DURATION
+#     nsga3.INITIAL_CASH = constants.INITIAL_CASH
+#     # updateLocalVariables()
+#     execute()
+# print("DONE - experiment 2nd")
+#
+# #experiment 3rd
+# for i in range(2):
+#     print(f"Starting loop i={i}...")
+#     constants.DURATION = 12
+#     constants.WAVELET_LEVEL = 3
+#     constants.INITIAL_CASH = 10000000
+#     constants.MAX_STOCKS = int(LEN_STOCK_DATA/4)
+#     nsga3.DURATION = constants.DURATION
+#     nsga3.INITIAL_CASH = constants.INITIAL_CASH
+#     # updateLocalVariables()
+#     execute()
+# print("DONE - experiment 3rd")
 
 stock_data = STOCK_DATA_2023_INPUT_100_STOCKS
 LEN_STOCK_DATA = len(stock_data)
@@ -876,43 +876,43 @@ stock_returns = np.column_stack((
     HTP, HTV, HUT, ICF, IMP, ITA, KBC, KDC, KHP, KKC, KMR, KSH, L10, L18, L43, L61, L62, LAF, LBE,
     LBM, LCG, LGC, LSS, LTC))
 #experiment 4th
-for i in range(2):
-    print(f"Starting loop i={i}...")
-    constants.DURATION = 12
-    constants.WAVELET_LEVEL = 3
-    constants.INITIAL_CASH = 10000000
-    constants.MAX_STOCKS = LEN_STOCK_DATA
-    nsga3.DURATION = constants.DURATION
-    nsga3.INITIAL_CASH = constants.INITIAL_CASH
-    # updateLocalVariables()
-    execute()
-print("DONE - experiment 4th")
-
-#experiment 5th
-for i in range(2):
-    print(f"Starting loop i={i}...")
-    constants.DURATION = 12
-    constants.WAVELET_LEVEL = 3
-    constants.INITIAL_CASH = 10000000
-    constants.MAX_STOCKS = int(LEN_STOCK_DATA/2)
-    nsga3.DURATION = constants.DURATION
-    nsga3.INITIAL_CASH = constants.INITIAL_CASH
-    # updateLocalVariables()
-    execute()
-print("DONE - experiment 5th")
-
-#experiment 6th
-for i in range(2):
-    print(f"Starting loop i={i}...")
-    constants.DURATION = 12
-    constants.WAVELET_LEVEL = 3
-    constants.INITIAL_CASH = 10000000
-    constants.MAX_STOCKS = int(LEN_STOCK_DATA/4)
-    nsga3.DURATION = constants.DURATION
-    nsga3.INITIAL_CASH = constants.INITIAL_CASH
-    # updateLocalVariables()
-    execute()
-print("DONE - experiment 6th")
+# for i in range(2):
+#     print(f"Starting loop i={i}...")
+#     constants.DURATION = 12
+#     constants.WAVELET_LEVEL = 3
+#     constants.INITIAL_CASH = 10000000
+#     constants.MAX_STOCKS = LEN_STOCK_DATA
+#     nsga3.DURATION = constants.DURATION
+#     nsga3.INITIAL_CASH = constants.INITIAL_CASH
+#     # updateLocalVariables()
+#     execute()
+# print("DONE - experiment 4th")
+#
+# #experiment 5th
+# for i in range(2):
+#     print(f"Starting loop i={i}...")
+#     constants.DURATION = 12
+#     constants.WAVELET_LEVEL = 3
+#     constants.INITIAL_CASH = 10000000
+#     constants.MAX_STOCKS = int(LEN_STOCK_DATA/2)
+#     nsga3.DURATION = constants.DURATION
+#     nsga3.INITIAL_CASH = constants.INITIAL_CASH
+#     # updateLocalVariables()
+#     execute()
+# print("DONE - experiment 5th")
+#
+# #experiment 6th
+# for i in range(2):
+#     print(f"Starting loop i={i}...")
+#     constants.DURATION = 12
+#     constants.WAVELET_LEVEL = 3
+#     constants.INITIAL_CASH = 10000000
+#     constants.MAX_STOCKS = int(LEN_STOCK_DATA/4)
+#     nsga3.DURATION = constants.DURATION
+#     nsga3.INITIAL_CASH = constants.INITIAL_CASH
+#     # updateLocalVariables()
+#     execute()
+# print("DONE - experiment 6th")
 
 # #experiment 7th
 # for i in range(2):
@@ -953,86 +953,86 @@ print("DONE - experiment 6th")
 #     execute()
 # print("DONE - experiment 9th")
 
-#experiment 10th
-for i in range(2):
-    print(f"Starting loop i={i}...")
-    constants.DURATION = 6
-    constants.WAVELET_LEVEL = 2
-    constants.INITIAL_CASH = 100000
-    constants.MAX_STOCKS = LEN_STOCK_DATA
-    nsga3.DURATION = constants.DURATION
-    nsga3.INITIAL_CASH = constants.INITIAL_CASH
-    # updateLocalVariables()
-    execute()
-print("DONE - experiment 10th")
-
-#experiment 11th
-for i in range(2):
-    print(f"Starting loop i={i}...")
-    constants.DURATION = 6
-    constants.WAVELET_LEVEL = 2
-    constants.INITIAL_CASH = 1000000
-    constants.MAX_STOCKS = LEN_STOCK_DATA
-    nsga3.DURATION = constants.DURATION
-    nsga3.INITIAL_CASH = constants.INITIAL_CASH
-    # updateLocalVariables()
-    execute()
-print("DONE - experiment 11th")
-
-#experiment 12th
-for i in range(2):
-    print(f"Starting loop i={i}...")
-    constants.DURATION = 6
-    constants.WAVELET_LEVEL = 2
-    constants.INITIAL_CASH = 10000000
-    constants.MAX_STOCKS = LEN_STOCK_DATA
-    nsga3.DURATION = constants.DURATION
-    nsga3.INITIAL_CASH = constants.INITIAL_CASH
-    # updateLocalVariables()
-    execute()
-print("DONE - experiment 12th")
-
-#experiment 13th
-for i in range(2):
-    print(f"Starting loop i={i}...")
-    constants.DURATION = 12
-    constants.WAVELET_LEVEL = 3
-    constants.INITIAL_CASH = 100000
-    constants.MAX_STOCKS = LEN_STOCK_DATA
-    nsga3.DURATION = constants.DURATION
-    nsga3.INITIAL_CASH = constants.INITIAL_CASH
-    # updateLocalVariables()
-    execute()
-print("DONE - experiment 13th")
-
-#experiment 14th
-for i in range(2):
-    print(f"Starting loop i={i}...")
-    constants.DURATION = 12
-    constants.WAVELET_LEVEL = 3
-    constants.INITIAL_CASH = 1000000
-    constants.MAX_STOCKS = LEN_STOCK_DATA
-    nsga3.DURATION = constants.DURATION
-    nsga3.INITIAL_CASH = constants.INITIAL_CASH
-    # updateLocalVariables()
-    execute()
-print("DONE - experiment 14th")
-
-#experiment 15th
-for i in range(2):
-    print(f"Starting loop i={i}...")
-    constants.DURATION = 12
-    constants.WAVELET_LEVEL = 3
-    constants.INITIAL_CASH = 10000000
-    constants.MAX_STOCKS = LEN_STOCK_DATA
-    nsga3.DURATION = constants.DURATION
-    nsga3.INITIAL_CASH = constants.INITIAL_CASH
-    # updateLocalVariables()
-    execute()
-print("DONE - experiment 15th")
+# #experiment 10th
+# for i in range(2):
+#     print(f"Starting loop i={i}...")
+#     constants.DURATION = 6
+#     constants.WAVELET_LEVEL = 2
+#     constants.INITIAL_CASH = 100000
+#     constants.MAX_STOCKS = LEN_STOCK_DATA
+#     nsga3.DURATION = constants.DURATION
+#     nsga3.INITIAL_CASH = constants.INITIAL_CASH
+#     # updateLocalVariables()
+#     execute()
+# print("DONE - experiment 10th")
+#
+# #experiment 11th
+# for i in range(2):
+#     print(f"Starting loop i={i}...")
+#     constants.DURATION = 6
+#     constants.WAVELET_LEVEL = 2
+#     constants.INITIAL_CASH = 1000000
+#     constants.MAX_STOCKS = LEN_STOCK_DATA
+#     nsga3.DURATION = constants.DURATION
+#     nsga3.INITIAL_CASH = constants.INITIAL_CASH
+#     # updateLocalVariables()
+#     execute()
+# print("DONE - experiment 11th")
+#
+# #experiment 12th
+# for i in range(2):
+#     print(f"Starting loop i={i}...")
+#     constants.DURATION = 6
+#     constants.WAVELET_LEVEL = 2
+#     constants.INITIAL_CASH = 10000000
+#     constants.MAX_STOCKS = LEN_STOCK_DATA
+#     nsga3.DURATION = constants.DURATION
+#     nsga3.INITIAL_CASH = constants.INITIAL_CASH
+#     # updateLocalVariables()
+#     execute()
+# print("DONE - experiment 12th")
+#
+# #experiment 13th
+# for i in range(2):
+#     print(f"Starting loop i={i}...")
+#     constants.DURATION = 12
+#     constants.WAVELET_LEVEL = 3
+#     constants.INITIAL_CASH = 100000
+#     constants.MAX_STOCKS = LEN_STOCK_DATA
+#     nsga3.DURATION = constants.DURATION
+#     nsga3.INITIAL_CASH = constants.INITIAL_CASH
+#     # updateLocalVariables()
+#     execute()
+# print("DONE - experiment 13th")
+#
+# #experiment 14th
+# for i in range(2):
+#     print(f"Starting loop i={i}...")
+#     constants.DURATION = 12
+#     constants.WAVELET_LEVEL = 3
+#     constants.INITIAL_CASH = 1000000
+#     constants.MAX_STOCKS = LEN_STOCK_DATA
+#     nsga3.DURATION = constants.DURATION
+#     nsga3.INITIAL_CASH = constants.INITIAL_CASH
+#     # updateLocalVariables()
+#     execute()
+# print("DONE - experiment 14th")
+#
+# #experiment 15th
+# for i in range(2):
+#     print(f"Starting loop i={i}...")
+#     constants.DURATION = 12
+#     constants.WAVELET_LEVEL = 3
+#     constants.INITIAL_CASH = 10000000
+#     constants.MAX_STOCKS = LEN_STOCK_DATA
+#     nsga3.DURATION = constants.DURATION
+#     nsga3.INITIAL_CASH = constants.INITIAL_CASH
+#     # updateLocalVariables()
+#     execute()
+# print("DONE - experiment 15th")
 
 #experiment 16th
-for i in range(2):
+for i in range(12):
     print(f"Starting loop i={i}...")
     constants.DURATION = 12
     constants.WAVELET_LEVEL = 3
@@ -1045,69 +1045,69 @@ for i in range(2):
     execute()
 print("DONE - experiment 16th")
 
-#experiment 17th
-for i in range(2):
-    print(f"Starting loop i={i}...")
-    constants.DURATION = 12
-    constants.WAVELET_LEVEL = 3
-    constants.INITIAL_CASH = 1000000
-    constants.MAX_STOCKS = LEN_STOCK_DATA
-    constants.TAIL_PROBABILITY_EPSILON = 0.1
-    nsga3.DURATION = constants.DURATION
-    nsga3.INITIAL_CASH = constants.INITIAL_CASH
-    # updateLocalVariables()
-    execute()
-print("DONE - experiment 17th")
-
-#experiment 18th
-for i in range(2):
-    print(f"Starting loop i={i}...")
-    constants.DURATION = 12
-    constants.WAVELET_LEVEL = 3
-    constants.INITIAL_CASH = 1000000
-    constants.MAX_STOCKS = LEN_STOCK_DATA
-    constants.TAIL_PROBABILITY_EPSILON = 0.05
-    nsga3.DURATION = constants.DURATION
-    nsga3.INITIAL_CASH = constants.INITIAL_CASH
-    # updateLocalVariables()
-    execute()
-print("DONE - experiment 18th")
-
-#experiment 19th
-for i in range(2):
-    print(f"Starting loop i={i}...")
-    constants.DURATION = 3
-    constants.WAVELET_LEVEL = 1
-    constants.INITIAL_CASH = 100000
-    constants.MAX_STOCKS = LEN_STOCK_DATA
-    nsga3.DURATION = constants.DURATION
-    nsga3.INITIAL_CASH = constants.INITIAL_CASH
-    # updateLocalVariables()
-    execute()
-print("DONE - experiment 19th")
-
-#experiment 20th
-for i in range(2):
-    print(f"Starting loop i={i}...")
-    constants.DURATION = 3
-    constants.WAVELET_LEVEL = 1
-    constants.INITIAL_CASH = 1000000
-    constants.MAX_STOCKS = LEN_STOCK_DATA
-    nsga3.DURATION = constants.DURATION
-    nsga3.INITIAL_CASH = constants.INITIAL_CASH
-    # updateLocalVariables()
-    execute()
-print("DONE - experiment 20th")
-
-#experiment 21st
-for i in range(2):
-    print(f"Starting loop i={i}...")
-    constants.DURATION = 3
-    constants.WAVELET_LEVEL = 1
-    constants.INITIAL_CASH = 10000000
-    constants.MAX_STOCKS = LEN_STOCK_DATA
-    nsga3.DURATION = constants.DURATION
-    nsga3.INITIAL_CASH = constants.INITIAL_CASH
-    # updateLocalVariables()
-    execute()
-print("DONE - experiment 21st")
+# #experiment 17th
+# for i in range(2):
+#     print(f"Starting loop i={i}...")
+#     constants.DURATION = 12
+#     constants.WAVELET_LEVEL = 3
+#     constants.INITIAL_CASH = 1000000
+#     constants.MAX_STOCKS = LEN_STOCK_DATA
+#     constants.TAIL_PROBABILITY_EPSILON = 0.1
+#     nsga3.DURATION = constants.DURATION
+#     nsga3.INITIAL_CASH = constants.INITIAL_CASH
+#     # updateLocalVariables()
+#     execute()
+# print("DONE - experiment 17th")
+#
+# #experiment 18th
+# for i in range(2):
+#     print(f"Starting loop i={i}...")
+#     constants.DURATION = 12
+#     constants.WAVELET_LEVEL = 3
+#     constants.INITIAL_CASH = 1000000
+#     constants.MAX_STOCKS = LEN_STOCK_DATA
+#     constants.TAIL_PROBABILITY_EPSILON = 0.05
+#     nsga3.DURATION = constants.DURATION
+#     nsga3.INITIAL_CASH = constants.INITIAL_CASH
+#     # updateLocalVariables()
+#     execute()
+# print("DONE - experiment 18th")
+#
+# #experiment 19th
+# for i in range(2):
+#     print(f"Starting loop i={i}...")
+#     constants.DURATION = 3
+#     constants.WAVELET_LEVEL = 1
+#     constants.INITIAL_CASH = 100000
+#     constants.MAX_STOCKS = LEN_STOCK_DATA
+#     nsga3.DURATION = constants.DURATION
+#     nsga3.INITIAL_CASH = constants.INITIAL_CASH
+#     # updateLocalVariables()
+#     execute()
+# print("DONE - experiment 19th")
+#
+# #experiment 20th
+# for i in range(2):
+#     print(f"Starting loop i={i}...")
+#     constants.DURATION = 3
+#     constants.WAVELET_LEVEL = 1
+#     constants.INITIAL_CASH = 1000000
+#     constants.MAX_STOCKS = LEN_STOCK_DATA
+#     nsga3.DURATION = constants.DURATION
+#     nsga3.INITIAL_CASH = constants.INITIAL_CASH
+#     # updateLocalVariables()
+#     execute()
+# print("DONE - experiment 20th")
+#
+# #experiment 21st
+# for i in range(2):
+#     print(f"Starting loop i={i}...")
+#     constants.DURATION = 3
+#     constants.WAVELET_LEVEL = 1
+#     constants.INITIAL_CASH = 10000000
+#     constants.MAX_STOCKS = LEN_STOCK_DATA
+#     nsga3.DURATION = constants.DURATION
+#     nsga3.INITIAL_CASH = constants.INITIAL_CASH
+#     # updateLocalVariables()
+#     execute()
+# print("DONE - experiment 21st")
