@@ -55,7 +55,11 @@ data_min = df.min().min()  # Global minimum value in the dataset
 data_max = df.max().max()  # Global maximum value in the dataset
 y_custom_ticks = [data_min, data_max]
 y_new_ticks = sorted(set(default_ticks).union(y_custom_ticks))  # Combine and sort
+# y_new_ticks = [tick for tick in y_new_ticks if tick != -0.30000000000000004]  # Remove -0.3 due to overlapped ticks
+
 plt.yticks(y_new_ticks, fontsize=20)  # Apply custom y-ticks
+# Adjust Y-ticks: Format numbers & reduce density
+# plt.yticks(np.round(np.linspace(df.min().min(), df.max().max(), num=6), 4), fontsize=20)
 
 plt.xticks(fontsize=20)  # Set font size for x-axis labels
 plt.grid(axis='y', linestyle='--', alpha=0.7)
