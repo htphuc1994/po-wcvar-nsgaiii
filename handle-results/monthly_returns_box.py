@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
-title = 'Comparison of 12-month investment returns between original NSGA-III and NSGA-III-HOP'
+# title = 'Comparison of 12-month investment returns between original NSGA-III and NSGA-III-HOP'
 data = {
     'NSGA-III': [0.2830699771319, 0.2945876112580, 0.2862585032739, 0.2953234537884, 0.2947644833541,
                  0.2931577721914, 0.2928360713971, 0.2977805674352, 0.2991261025856, 0.2796477667165,
@@ -19,7 +19,7 @@ data = {
 df = pd.DataFrame(data)
 
 # Plot the box chart
-plt.figure(figsize=(12, 6))  # Adjust figure size for better spacing
+plt.figure(figsize=(9, 6))  # Adjust figure size for better spacing
 box = plt.boxplot([df[col] for col in df.columns], labels=df.columns, patch_artist=True)
 
 # Define custom colors
@@ -28,7 +28,7 @@ for patch, color in zip(box['boxes'], colors):
     patch.set_facecolor(color)
 
 # Customizing the plot
-plt.title(title, fontsize=14, fontweight='bold')
+# plt.title(title, fontsize=14, fontweight='bold')
 plt.xlabel('Investment Strategies', fontsize=14, fontweight='bold')
 plt.ylabel('Returns', fontsize=14, fontweight='bold')
 
