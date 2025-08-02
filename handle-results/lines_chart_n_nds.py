@@ -87,17 +87,17 @@ def plot_multiple_lines(x, y_arrays):
         # Add a single marker at different positions to avoid overlap
         marker_position = len(x) // (num_lines + 1) * (i + 1)
         max_index = np.argmax(y)
-        plt.plot(x[max_index], y[max_index], marker=marker_styles[i % num_markers], markersize=16, label=line_name, color=color)
+        plt.plot(x[max_index], y[max_index], marker=marker_styles[i % num_markers], markersize=24, label=line_name, color=color)
 
 
     # Add labels and title
-    plt.xlabel('Generation', fontsize=16)
-    plt.ylabel('Non-dominated solution count', fontsize=16)
-    plt.title('The relationship between non-dominated solution count and cardinality constraints', fontsize=16)
-    plt.legend(fontsize=16)
+    plt.xlabel('Generation', fontsize=24)
+    plt.ylabel('Non-dominated solution count', fontsize=24)
+    # plt.title('The relationship between non-dominated solution count and cardinality constraints', fontsize=16)
+    plt.legend(fontsize=24)
     plt.grid(True)
-    plt.tick_params(axis='y', labelsize=16)
-    plt.tick_params(axis='x', labelsize=16)
+    plt.tick_params(axis='y', labelsize=24)
+    plt.tick_params(axis='x', labelsize=24)
 
     # Show the plot
     plt.show()
