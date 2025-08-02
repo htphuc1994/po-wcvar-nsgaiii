@@ -19,8 +19,17 @@ data = {
 df = pd.DataFrame(data)
 
 # Plot the box chart
-plt.figure(figsize=(9, 6))  # Adjust figure size for better spacing
-box = plt.boxplot([df[col] for col in df.columns], labels=df.columns, patch_artist=True)
+plt.figure(figsize=(10, 10))  # Adjust figure size for better spacing
+# box = plt.boxplot([df[col] for col in df.columns], labels=df.columns, patch_artist=True)
+positions = np.linspace(1, len(df.columns), len(df.columns)) * 0.1  # Compress spacing
+box = plt.boxplot(
+    [df[col] for col in df.columns],
+    tick_labels=df.columns,  # modern matplotlib uses `tick_labels`
+    patch_artist=True,
+    widths=0.05,              # Narrower boxes
+    positions=positions
+)
+plt.xlim(positions[0] - 0.05, positions[-1] + 0.05)
 
 # Define custom colors
 colors = ['#1f77b4', 'lightgreen']
@@ -29,15 +38,16 @@ for patch, color in zip(box['boxes'], colors):
 
 # Customizing the plot
 # plt.title(title, fontsize=14, fontweight='bold')
-plt.xlabel('Investment Strategies', fontsize=14, fontweight='bold')
-plt.ylabel('Returns', fontsize=14, fontweight='bold')
+plt.xlabel('Investment Strategies', fontsize=24)
+plt.ylabel('Returns', fontsize=24)
 
 # Adjust Y-ticks: Format numbers & reduce density
-plt.yticks(np.round(np.linspace(df.min().min(), df.max().max(), num=6), 4), fontsize=12)
+plt.yticks(np.round(np.linspace(df.min().min(), df.max().max(), num=6), 4), fontsize=24)
 
 # Rotate Y-Ticks for better readability
-plt.xticks(fontsize=12)
+plt.xticks(fontsize=24)
 plt.grid(axis='y', linestyle='--', alpha=0.7)
 
+plt.subplots_adjust(left=0.2)
 # Show the plot
 plt.show()
