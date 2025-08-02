@@ -16,26 +16,23 @@ year_returns = [x * 100 for x in year_returns]
 hatch_patterns = ['x', '//', '\\\\', '||']
 colors = ['b', 'g', 'r', 'c']
 
-# Create subplots
-fig, axs = plt.subplots(1, 3, figsize=(18, 6))
-
-# Plot for each investment horizon
+# Titles and return sets
 titles = ['3-month Investment', '6-month Investment', '12-month Investment']
 returns = [quarter_returns, half_year_returns, year_returns]
 
+# Plot each chart separately
 for i in range(3):
-    bars = axs[i].bar(range(len(categories)), returns[i], color=colors)
+    plt.figure(figsize=(6, 6))
+    bars = plt.bar(range(len(categories)), returns[i], color=colors)
+
     for bar, hatch in zip(bars, hatch_patterns):
         bar.set_hatch(hatch)
 
-    axs[i].set_title(titles[i], fontsize=24)
-    axs[i].set_ylabel('Return (%)', fontsize=24)
-    axs[i].set_ylim(0, 30)
-    axs[i].set_xticks(range(len(categories)))
-    axs[i].set_xticklabels(categories, fontsize=20, rotation=15, ha='right')
-    axs[i].tick_params(axis='y', labelsize=20)
-    axs[i].grid(True)
-
-# Final layout
-plt.tight_layout()
-plt.show()
+    # plt.title(titles[i], fontsize=24)
+    plt.ylabel('Return (%)', fontsize=24)
+    plt.ylim(0, 30)
+    plt.xticks(range(len(categories)), categories, fontsize=20, rotation=15, ha='right')
+    plt.tick_params(axis='y', labelsize=20)
+    plt.grid(True)
+    plt.tight_layout()
+    plt.show()
