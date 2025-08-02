@@ -38,8 +38,8 @@ for patch, color in zip(box['boxes'], colors):
 
 # Customizing the plot
 # plt.title(title, fontsize=14, fontweight='bold')
-plt.xlabel('Investment Strategies', fontsize=24)
-plt.ylabel('Returns', fontsize=24)
+plt.xlabel('Investment Strategy', fontsize=24)
+plt.ylabel('Return', fontsize=24)
 
 # Adjust Y-ticks: Format numbers & reduce density
 plt.yticks(np.round(np.linspace(df.min().min(), df.max().max(), num=6), 4), fontsize=24)

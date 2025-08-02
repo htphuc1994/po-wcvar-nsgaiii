@@ -29,6 +29,7 @@ for i in range(3):
         bar.set_hatch(hatch)
 
     # plt.title(titles[i], fontsize=24)
+    plt.xlabel('Strategy', fontsize=24)
     plt.ylabel('Return (%)', fontsize=24)
     plt.ylim(0, 30)
     plt.xticks(range(len(categories)), categories, fontsize=20, rotation=15, ha='right')

@@ -33,6 +33,7 @@ def plot_columns():
     y_new_ticks = [tick for tick in y_new_ticks if tick != 120]  # Remove -0.3 due to overlapped ticks
 
     plt.yticks(y_new_ticks, fontsize=24)  # Apply custom y-ticks
+    plt.xlabel('Portfolio', fontsize=24)
 
     # Add labels and title
     plt.ylabel('Execution Time in Minutes', fontsize=24)
@@ -42,7 +43,7 @@ def plot_columns():
     # Show the plot
     plt.grid(True)
 
-    plt.subplots_adjust(left=0.2, bottom=0.12)
+    plt.subplots_adjust(left=0.2, bottom=0.15)
     plt.show()
 
 # Call the function to plot the columns
