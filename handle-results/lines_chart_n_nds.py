@@ -70,17 +70,17 @@ def plot_multiple_lines(x, y_arrays):
     for i, y in enumerate(y_arrays):
         line_name = f'Line {i+1}'
         if i == 0:
-            line_name = 'Cardinality = 249'
+            line_name = 'K = 249'
         elif i == 1:
-            line_name = 'Cardinality = 124 (= 249 / 2)'
+            line_name = 'K = 124 (= 249 / 2)'
         elif i == 2:
-            line_name = 'Cardinality = 62 (= 249 / 4)'
+            line_name = 'K = 62 (= 249 / 4)'
         elif i == 3:
-            line_name = 'Cardinality = 100'
+            line_name = 'K = 100'
         elif i == 4:
-            line_name = 'Cardinality = 50 (= 100 / 2)'
+            line_name = 'K = 50 (= 100 / 2)'
         elif i == 5:
-            line_name = 'Cardinality = 25 (=100 / 4)'
+            line_name = 'K = 25 (=100 / 4)'
         color = line_colors[i % len(line_colors)]  # Cycle through the line colors
         # Plot the line
         plt.plot(x, y, linestyle='-', label='', color=color)
