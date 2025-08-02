@@ -6,7 +6,7 @@ experiment_17_wcvar = [-0.0917358669545, -0.0778480600597, -0.1006420485193, -0.
 experiment_18_wcvar = [-0.1518859513838, -0.1353593829326, -0.1283448605513, -0.1271934989048, -0.2801609564646, -0.2649228400655, -0.2660545284715, -0.2551655982476, -0.2331117418145, -0.1934132175836, -0.1862648517133]
 
 def plot_multiple_lines(x, y_arrays):
-    plt.figure(figsize=(15, 6))
+    plt.figure(figsize=(15, 7))
 
     # Updated line styles list to include 6 styles
     # line_styles = ['-', '--', '-.', ':', 'dashed', 'dashed']
@@ -37,27 +37,27 @@ def plot_multiple_lines(x, y_arrays):
     for i, y in enumerate(y_arrays):
         line_name = f'Line {i+1}'
         if i == 0:
-            line_name = 'Tail probability ε = 0.2'
+            line_name = 'ε = 0.2'
         elif i == 1:
-            line_name = 'Tail probability ε = 0.1'
+            line_name = 'ε = 0.1'
         elif i == 2:
-            line_name = 'Tail probability ε = 0.05'
+            line_name = 'ε = 0.05'
         color = line_colors[i % len(line_colors)]  # Cycle through the line colors
         # Plot the line
         plt.plot(x, y, linestyle='-', label='', color=color)
         # Add a single marker at different positions to avoid overlap
         marker_position = len(x) // (num_lines + 1) * (i + 1)
-        plt.plot(x[marker_position], y[marker_position], marker=marker_styles[i % num_markers], markersize=16, label=line_name, color=color)
+        plt.plot(x[marker_position], y[marker_position], marker=marker_styles[i % num_markers], markersize=24, label=line_name, color=color)
 
 
     # Add labels and title
-    plt.xlabel('Month', fontsize=16)
-    plt.ylabel('WCVaR', fontsize=16)
-    plt.title('The relationship between WCVaR and tail probability', fontsize=16)
-    plt.legend(fontsize=16)
+    plt.xlabel('Month', fontsize=24)
+    plt.ylabel('WCVaR', fontsize=24)
+    # plt.title('The relationship between WCVaR and tail probability', fontsize=24)
+    plt.legend(fontsize=24)
 
-    plt.tick_params(axis='y', labelsize=16)
-    plt.tick_params(axis='x', labelsize=16)
+    plt.tick_params(axis='y', labelsize=24)
+    plt.tick_params(axis='x', labelsize=24)
     plt.grid(True)
     # Show the plot
     plt.show()
