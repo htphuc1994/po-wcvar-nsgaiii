@@ -74,7 +74,7 @@ plt.tick_params(axis='both', labelsize=24)
 # Custom legend
 custom_lines = [
     Line2D([0], [0], color='gray', linestyle='-', label='Raw Epsilon Indicator'),
-    Line2D([0], [0], color='blue', linestyle='-', linewidth=2, label='Moving Average'),
+    Line2D([0], [0], color='purple', linestyle='-', linewidth=2, label='Moving Average'),
     Line2D([0], [0], color='red', linestyle='--', label='Convergence Threshold'),
     Line2D([0], [0], color='b', marker='o', linestyle='None', label='Ideal Point', markersize=14),
     Line2D([0], [0], color='g', marker='p', linestyle='None', label='F Point', markersize=14),
