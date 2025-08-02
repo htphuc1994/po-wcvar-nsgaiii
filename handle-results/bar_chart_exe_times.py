@@ -4,7 +4,7 @@ import numpy as np
 
 def plot_columns():
     # Define the data for four columns
-    categories = ['100 Stocks, K = 100', '249 Stocks, K = 249', '249 Stocks, K = 124 (= 249 / 2)', '249 Stocks, K = 62 (= 249 / 4)']
+    categories = ['100 Stocks, K = 100', '249 Stocks, K = 249', '249 Stocks, K = 124', '249 Stocks, K = 62']
 
     experiment_4_1_2_3 = [505142.18521118164, 1110717.220067978, 2912739.1827106476, 7091574.80597496]  # execution time in minutes
 
