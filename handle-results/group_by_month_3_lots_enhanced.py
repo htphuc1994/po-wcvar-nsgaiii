@@ -14,7 +14,9 @@ year_returns = [x * 100 for x in year_returns]
 
 # Hatch patterns and colors
 hatch_patterns = ['x', '//', '\\\\', '||']
-colors = ['b', 'g', 'r', 'c']
+# colors = ["#FFB000", "#FF3030", "#FF33CC", "#C000FF", "#00E5FF", "#00FFBF"]
+colors = ["#FFB000", "#FF3030", "#FF33CC", "#C000FF"]
+# colors = ['b', 'g', 'r', 'c']
 
 # Titles and return sets
 titles = ['3-month Investment', '6-month Investment', '12-month Investment']
