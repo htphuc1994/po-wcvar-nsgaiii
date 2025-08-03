@@ -1,9 +1,25 @@
 import numpy as np
 import pywt
 import matplotlib.pyplot as plt
-
+from matplotlib.ticker import FormatStrFormatter
+import pandas as pd
 # Example signal
 signal = [797751.4500000001,787053.1500000001,903240.5,946765.9500000002,920310.15,1078528.98,869623.37,858941.75,783657.47,658947.27,602219.23,597256.9500000001,632992.85,580884.37,622636.95,624163.85,628907.0599999999,631681.92,615200.55,676216.7,662153.0,727132.6,802466.65,809275.4,608708.2599999999,570517.22,557101.4,527498.4,591047.7,600873.72,626709.4600000001,616104.4000000001,524629.6,523350.30000000005,516911.77,602887.95,814083.04,810256.9299999999,792411.7000000001,842586.4,798050.51,797577.7999999999,831930.6399999999,809508.73,755078.14,744529.2100000001,673092.05,628063.6,682370.98,662344.49,660886.38,659266.5,655433.6699999999,647084.3200000001,634223.6,625157.12,706975.94,746856.85,849542.21,779719.6499999999,687204.3300000001,779851.55,818771.19,789414.06,764288.9199999999,752590.8200000001,740734.69,769501.62,741067.7000000001,745929.95,695969.67,714864.24,637347.9,655682.1,652088.9,635457.3,651498.2999999999,616604.5,662073.7000000001,666183.5000000001,622714.2000000001,638596.45,645501.43,643026.57,682791.4,649502.7000000001,697772.4,683867.8,682603.5,704452.2000000001,678771.0,686351.2,671394.2000000001,649302.6,628486.2,652429.9,580775.2,648521.1,676601.1000000001,688816.5,655632.9,708019.5,695436.7,695265.2,757061.4,710180.8,700491.5,695106.8,620774.6000000001,508750.6,529854.3999999999,531435.6,599118.3999999999,633716.3,640729.8,637406.4,534687.7999999999,574468.9,578955.1000000001,570875.5,579333.4,570399.1,602221.0,649060.6,685880.8999999999,636917.0,624959.6000000001,575884.6,583408.7,561276.9,580177.6000000001,601457.2000000001,837503.8,829538.8,767532.0,730938.3,685517.1000000001,649611.5,629734.1,608224.0,690392.5,691902.3,561743.5,564087.2,1256958.5,1165279.7999999998,1238946.2000000002,1276702.2999999998,1388356.0,1197320.1,1205564.8,1127093.6,1025698.2,970294.8,897366.7999999999,932920.4000000001,705573.3999999999,668904.2,670372.8,787792.8,946350.5,1195714.9,956986.3999999999,1134452.7999999998,1286062.7999999998,1573947.2999999998,1381969.2999999998,1217324.7000000002,548594.85]
+
+
+# Convert to numpy array and compute daily % changes
+prices = np.array(signal)
+daily_pct_change = np.diff(prices) / prices[:-1] * 100  # percent change
+
+# Put in DataFrame
+daily_pct_df = pd.DataFrame({
+    "Day": np.arange(1, len(signal)),
+    "Daily % Change": daily_pct_change
+})
+
+
+signal = daily_pct_df["Daily % Change"].values
+
 
 # Perform a multi-level DWT
 cA4, cD4, cD3, cD2, cD1 = pywt.wavedec(signal, 'db1', level=4)
@@ -14,55 +30,61 @@ cA1, cD1 = pywt.wavedec(signal, 'db1', level=1)
 
 # Plot the original signal and approximations
 plt.figure(figsize=(12, 8))
+
 plt.subplot(5, 1, 1)
-plt.plot(signal, label='Original Signal')
-plt.legend(fontsize=18)
+plt.plot(cA4, label='Approximation cA4', color='#FF3030')
+plt.legend(loc='upper center', fontsize=18)  # <- legend inside and centered at top
 plt.grid(True)
 # plt.xlabel('Day', fontsize=18)
-# plt.ylabel('Return', fontsize=18)
+plt.ylabel('Return (%)', fontsize=18)
+plt.gca().yaxis.set_major_formatter(FormatStrFormatter('%.1f'))
 plt.tick_params(axis='y', labelsize=18)
 plt.tick_params(axis='x', labelsize=18)
 
 plt.subplot(5, 1, 2)
-plt.plot(cA4, label='Approximation cA4')
-plt.legend(fontsize=18)
+plt.plot(cA3, label='Approximation cA3', color='#FF3030')
+plt.legend(loc='upper center', fontsize=18)  # <- legend inside and centered at top
 plt.grid(True)
 # plt.xlabel('Day', fontsize=18)
-# plt.ylabel('Return', fontsize=18)
+plt.ylabel('Return (%)', fontsize=18)
+plt.gca().yaxis.set_major_formatter(FormatStrFormatter('%.1f'))
 plt.tick_params(axis='y', labelsize=18)
 plt.tick_params(axis='x', labelsize=18)
 
 plt.subplot(5, 1, 3)
-plt.plot(cA3, label='Approximation cA3')
-plt.legend(fontsize=18)
+plt.plot(cA2, label='Approximation cA2', color='#FF3030')
+plt.legend(loc='upper center', fontsize=18)  # <- legend inside and centered at top
 plt.grid(True)
 # plt.xlabel('Day', fontsize=18)
-# plt.ylabel('Return', fontsize=18)
+plt.ylabel('Return (%)', fontsize=18)
+plt.gca().yaxis.set_major_formatter(FormatStrFormatter('%.1f'))
 plt.tick_params(axis='y', labelsize=18)
 plt.tick_params(axis='x', labelsize=18)
 
 plt.subplot(5, 1, 4)
-plt.plot(cA2, label='Approximation cA2')
-plt.legend(fontsize=18)
+plt.plot(cA1, label='Approximation cA1', color='#FF3030')
+plt.legend(loc='upper center', fontsize=18)  # <- legend inside and centered at top
 plt.grid(True)
-# plt.xlabel('Day', fontsize=18)
-# plt.ylabel('Return', fontsize=18)
 plt.tick_params(axis='y', labelsize=18)
 plt.tick_params(axis='x', labelsize=18)
+plt.ylabel('Return (%)', fontsize=18)
+plt.gca().yaxis.set_major_formatter(FormatStrFormatter('%.1f'))
+plt.tick_params(axis='y', labelsize=18)
+plt.tick_params(axis='x', labelsize=18)
+
 
 plt.subplot(5, 1, 5)
-plt.plot(cA1, label='Approximation cA1')
-plt.legend(fontsize=18)
+plt.plot(signal, label='Original Signal', color='#FF3030')
+plt.legend(loc='upper center', fontsize=18)  # <- legend inside and centered at top
 plt.grid(True)
-plt.tick_params(axis='y', labelsize=18)
-plt.tick_params(axis='x', labelsize=18)
-plt.xlabel('Day', fontsize=18)
-# plt.ylabel('Return', fontsize=18)
+# plt.xlabel('Day', fontsize=18)
+plt.ylabel('Return (%)', fontsize=18)
+plt.xlabel('Day Number', fontsize=18)
+plt.gca().yaxis.set_major_formatter(FormatStrFormatter('%.1f'))
 plt.tight_layout()
 
-plt.legend(fontsize=18)
+plt.legend(loc='upper center', fontsize=18)  # <- legend inside and centered at top
 plt.grid(True)
 plt.tick_params(axis='y', labelsize=18)
 plt.tick_params(axis='x', labelsize=18)
-plt.ylabel('Return', fontsize=18)
 plt.show()
