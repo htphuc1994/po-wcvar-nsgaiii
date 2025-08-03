@@ -15,7 +15,8 @@ def plot_columns():
     # plt.bar(columns, values, color=['b', 'g', 'r', 'c'])
 
     hatch_patterns = ['x', '//', '\\\\', '||', '--']
-    colors = ['b', 'g', 'r', 'c', 'm']
+    colors = ["#FFB000", "#FF3030", "#FF33CC", "#C000FF", "#00E5FF", "#00FFBF"]
+    # colors = ['b', 'g', 'r', 'c', 'm']
     bars = plt.bar(categories, experiment_4_1_2_3, color=colors, label=categories)
     for bar, hatch in zip(bars, hatch_patterns):
         bar.set_hatch(hatch)

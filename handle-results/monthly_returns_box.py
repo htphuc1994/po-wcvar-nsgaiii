@@ -26,13 +26,13 @@ box = plt.boxplot(
     [df[col] for col in df.columns],
     tick_labels=df.columns,  # modern matplotlib uses `tick_labels`
     patch_artist=True,
-    widths=0.05,              # Narrower boxes
+    widths=0.03,              # Narrower boxes
     positions=positions
 )
 plt.xlim(positions[0] - 0.05, positions[-1] + 0.05)
 
 # Define custom colors
-colors = ['#1f77b4', 'lightgreen']
+colors = ["#FFB000", "#FF3030"]
 for patch, color in zip(box['boxes'], colors):
     patch.set_facecolor(color)
 
