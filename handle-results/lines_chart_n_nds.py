@@ -50,7 +50,8 @@ def plot_multiple_lines(x, y_arrays):
     #     plt.plot(x, y, linestyle=style, label=f'Line {i+1}')
 
     marker_styles = ['o', 's', 'D', 'p', 'h', '^', 'v', '<', '>', '*']
-    line_colors = ['r', 'm', 'b', 'c', 'y', 'g', 'k', 'orange', 'purple', 'brown']
+    # line_colors = ['r', 'm', 'b', 'c', 'y', 'g', 'k', 'orange', 'purple', 'brown']
+    line_colors = ["#FFB000", "#FF3030", "#FF33CC", "#C000FF", "#00E5FF", "#00FFBF"]
     # line_colors = ['r', 'r', 'r', 'orange', 'orange', 'orange', 'orange']
     num_markers = len(marker_styles)
     num_lines = len(y_arrays)
