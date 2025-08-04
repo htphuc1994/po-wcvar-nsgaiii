@@ -12,7 +12,8 @@ from pymoo.algorithms.moo import nsga3
 from pymoo.core.repair import Repair
 from pymoo.core.sampling import Sampling
 from pymoo.core.problem import Problem
-from pymoo.algorithms.moo.nsga3 import NSGA3, hop
+from pymoo.algorithms.moo.nsga3 import NSGA3
+from nsga3_hop import hop
 from pymoo.util.ref_dirs import get_reference_directions
 from pymoo.optimize import minimize
 from scipy.stats import norm
@@ -415,7 +416,7 @@ class CustomRepair(Repair):
                     if buy_decisions[j] > 0:
                         buy_amount = int(np.floor(min(buy_decisions[j], stock_capacity)))
 
-                        buy_amount_restricted_by_current_cash = np.floor(cash/stock_price/(1 + TRANS_FEE))
+                        buy_amount_restricted_by_current_cash = np.floor(cash / stock_price / (1 + constants.TRANS_FEE))
                         buy_amount = int(np.floor(min(buy_amount, buy_amount_restricted_by_current_cash)))
                         buy_decisions[j] = buy_amount
                         transaction_fee = constants.TRANS_FEE * stock_price * buy_amount
@@ -1037,6 +1038,7 @@ for i in range(12):
     constants.DURATION = 12
     constants.WAVELET_LEVEL = 3
     constants.INITIAL_CASH = 1000000
+    constants.INVESTMENT_INTEREST_EXPECTED = 0.3
     constants.MAX_STOCKS = LEN_STOCK_DATA
     constants.TAIL_PROBABILITY_EPSILON = 0.2
     nsga3.DURATION = constants.DURATION
