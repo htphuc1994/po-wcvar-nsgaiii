@@ -11,6 +11,7 @@ import pywt
 from pymoo.algorithms.moo import nsga3
 from pymoo.algorithms.moo.moead import MOEAD
 from pymoo.algorithms.moo.rnsga3 import RNSGA3
+from pymoo.algorithms.moo.unsga3 import UNSGA3
 from pymoo.core.repair import Repair
 from pymoo.core.sampling import Sampling
 from pymoo.core.problem import Problem
@@ -740,13 +741,19 @@ def my_solve():
     problem = PortfolioOptimizationProblem(stock_data, constants.BANK_INTEREST_RATE, constants.INITIAL_CASH, constants.DURATION, constants.MAX_STOCKS)
 
     ref_dirs = get_reference_directions("energy", problem.n_obj, constants.REFERENCES_POINTS_NUM, seed=1)
-    # algorithm = NSGA3(pop_size=population_size, ref_dirs=ref_dirs, repair=CustomRepair())
-    algorithm = RNSGA3(
-        ref_points=ref_dirs,
-        pop_per_ref_point=1,
-        sampling=CustomSampling(),
-        repair=CustomRepair()
+    #  algorithm = NSGA3(pop_size=constants.POPULATION_SIZE, ref_dirs=ref_dirs, sampling=CustomSampling())
+    # TODO
+    # algorithm = RNSGA3(
+    #     ref_points=ref_dirs,
+    #     pop_per_ref_point=1,
+    #     sampling=CustomSampling(),
+    #     repair=CustomRepair()
+    # )
+    algorithm = UNSGA3(
+        ref_dirs=ref_dirs,
+        pop_size=constants.POPULATION_SIZE
     )
+
 
     res = minimize(problem,
                    algorithm,
