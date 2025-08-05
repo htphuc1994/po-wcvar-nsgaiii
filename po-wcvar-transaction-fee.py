@@ -9,6 +9,7 @@ import numpy as np
 import datetime
 import pywt
 from pymoo.algorithms.moo import nsga3
+from pymoo.algorithms.moo.ctaea import CTAEA
 from pymoo.algorithms.moo.moead import MOEAD
 from pymoo.algorithms.moo.rnsga3 import RNSGA3
 from pymoo.algorithms.moo.unsga3 import UNSGA3
@@ -749,11 +750,15 @@ def my_solve():
     #     sampling=CustomSampling(),
     #     repair=CustomRepair()
     # )
-    algorithm = UNSGA3(
-        ref_dirs=ref_dirs,
-        pop_size=constants.POPULATION_SIZE
+    # algorithm = UNSGA3(
+    #     ref_dirs=ref_dirs,
+    #     pop_size=constants.POPULATION_SIZE
+    # )
+    algorithm = CTAEA(
+        ref_dirs=ref_dirs,                    # This determines population size internally
+        sampling=CustomSampling(),
+        repair=CustomRepair()
     )
-
 
     res = minimize(problem,
                    algorithm,
