@@ -13,6 +13,7 @@ from pymoo.algorithms.moo.age import AGEMOEA
 from pymoo.algorithms.moo.ctaea import CTAEA
 from pymoo.algorithms.moo.moead import MOEAD
 from pymoo.algorithms.moo.rnsga3 import RNSGA3
+from pymoo.algorithms.moo.sms import SMSEMOA
 from pymoo.algorithms.moo.unsga3 import UNSGA3
 from pymoo.core.repair import Repair
 from pymoo.core.sampling import Sampling
@@ -760,7 +761,12 @@ def my_solve():
     #     sampling=CustomSampling(),
     #     repair=CustomRepair()
     # )
-    algorithm = AGEMOEA(
+    # algorithm = AGEMOEA(
+    #     pop_size=constants.POPULATION_SIZE,
+    #     sampling=CustomSampling(),
+    #     repair=CustomRepair()
+    # )
+    algorithm = SMSEMOA(
         pop_size=constants.POPULATION_SIZE,
         sampling=CustomSampling(),
         repair=CustomRepair()
