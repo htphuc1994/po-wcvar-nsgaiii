@@ -1033,12 +1033,12 @@ stock_returns = np.column_stack((
 # print("DONE - experiment 15th")
 
 #experiment 16th
-for i in range(8):
+for i in range(5):
     print(f"Starting loop i={i}...")
     constants.DURATION = 12
     constants.WAVELET_LEVEL = 3
     constants.INITIAL_CASH = 1000000
-    constants.INVESTMENT_INTEREST_EXPECTED = 0.3
+    constants.INVESTMENT_INTEREST_EXPECTED = 0.25
     constants.MAX_STOCKS = LEN_STOCK_DATA
     constants.TAIL_PROBABILITY_EPSILON = 0.2
     nsga3.DURATION = constants.DURATION
