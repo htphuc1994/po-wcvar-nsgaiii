@@ -1,0 +1,518 @@
+Objectives = ['-0.2399561300388', '0.0008062333333', '0.1201453333333', '0.0865750666667', '0.1101742833333', '0.1256392166667']
+The time of execution of above program is : 159635.33806800842 ms
+ACK FOUND > 1; len(fronts)=6
+==========================================================================================
+n_gen  |  n_eval  | n_nds  |     cv_min    |     cv_avg    |      eps      |   indicator  
+==========================================================================================
+     1 |      179 |     17 |  0.000000E+00 |  0.000000E+00 |             - |             -
+ACK FOUND > 1; len(fronts)=3
+     2 |      358 |      9 |  0.000000E+00 |  0.000000E+00 |  0.2553153871 |         ideal
+ACK FOUND > 1; len(fronts)=2
+     3 |      537 |     17 |  0.000000E+00 |  0.000000E+00 |  0.2133960894 |         ideal
+ACK FOUND > 1; len(fronts)=2
+     4 |      716 |     22 |  0.000000E+00 |  0.000000E+00 |  0.1389068142 |         ideal
+ACK FOUND > 1; len(fronts)=2
+     5 |      895 |     23 |  0.000000E+00 |  0.000000E+00 |  0.2425605143 |         ideal
+ACK FOUND > 1; len(fronts)=2
+     6 |     1074 |     19 |  0.000000E+00 |  0.000000E+00 |  0.1593553572 |         ideal
+ACK FOUND > 1; len(fronts)=2
+     7 |     1253 |     22 |  0.000000E+00 |  0.000000E+00 |  0.0812217673 |         ideal
+ACK FOUND > 1; len(fronts)=2
+     8 |     1432 |     21 |  0.000000E+00 |  0.000000E+00 |  0.2692902550 |         ideal
+ACK FOUND > 1; len(fronts)=2
+     9 |     1611 |     23 |  0.000000E+00 |  0.000000E+00 |  0.2202939410 |         ideal
+ACK FOUND > 1; len(fronts)=2
+    10 |     1790 |     33 |  0.000000E+00 |  0.000000E+00 |  0.0415428366 |         ideal
+ACK FOUND > 1; len(fronts)=2
+    11 |     1969 |     23 |  0.000000E+00 |  0.000000E+00 |  0.3648770848 |         ideal
+ACK FOUND > 1; len(fronts)=2
+    12 |     2148 |     28 |  0.000000E+00 |  0.000000E+00 |  0.0088200262 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    13 |     2327 |     38 |  0.000000E+00 |  0.000000E+00 |  0.0087429134 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    14 |     2506 |     32 |  0.000000E+00 |  0.000000E+00 |  0.0252815067 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    15 |     2685 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0218874191 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    16 |     2864 |     36 |  0.000000E+00 |  0.000000E+00 |  0.0039301881 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    17 |     3043 |     35 |  0.000000E+00 |  0.000000E+00 |  0.0032433458 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    18 |     3222 |     40 |  0.000000E+00 |  0.000000E+00 |  0.0041364301 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    19 |     3401 |     44 |  0.000000E+00 |  0.000000E+00 |  0.0695074426 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    20 |     3580 |     46 |  0.000000E+00 |  0.000000E+00 |  0.0226746875 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    21 |     3759 |     49 |  0.000000E+00 |  0.000000E+00 |  0.0027084870 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    22 |     3938 |     40 |  0.000000E+00 |  0.000000E+00 |  0.0236304776 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    23 |     4117 |     45 |  0.000000E+00 |  0.000000E+00 |  0.0027566337 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    24 |     4296 |     48 |  0.000000E+00 |  0.000000E+00 |  0.0490268066 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    25 |     4475 |     48 |  0.000000E+00 |  0.000000E+00 |  0.0415350749 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    26 |     4654 |     55 |  0.000000E+00 |  0.000000E+00 |  0.0122838277 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    27 |     4833 |     64 |  0.000000E+00 |  0.000000E+00 |  0.0080399846 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    28 |     5012 |     72 |  0.000000E+00 |  0.000000E+00 |  0.0328067719 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    29 |     5191 |     73 |  0.000000E+00 |  0.000000E+00 |  0.0057123645 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    30 |     5370 |     77 |  0.000000E+00 |  0.000000E+00 |  0.0509893643 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    31 |     5549 |     82 |  0.000000E+00 |  0.000000E+00 |  0.0193161468 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    32 |     5728 |     84 |  0.000000E+00 |  0.000000E+00 |  0.0809346177 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    33 |     5907 |     89 |  0.000000E+00 |  0.000000E+00 |  0.0657624949 |             f
+ACK FOUND > 1; len(fronts)=1
+    34 |     6086 |     91 |  0.000000E+00 |  0.000000E+00 |  0.0037978281 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    35 |     6265 |     94 |  0.000000E+00 |  0.000000E+00 |  0.0060436668 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    36 |     6444 |     94 |  0.000000E+00 |  0.000000E+00 |  0.0328152473 |             f
+ACK FOUND > 1; len(fronts)=1
+    37 |     6623 |     99 |  0.000000E+00 |  0.000000E+00 |  0.0412256708 |             f
+ACK FOUND > 1; len(fronts)=1
+    38 |     6802 |    101 |  0.000000E+00 |  0.000000E+00 |  0.0384793096 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    39 |     6981 |     99 |  0.000000E+00 |  0.000000E+00 |  0.0379179659 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    40 |     7160 |    103 |  0.000000E+00 |  0.000000E+00 |  0.0067012799 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    41 |     7339 |    108 |  0.000000E+00 |  0.000000E+00 |  0.0364796558 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    42 |     7518 |    110 |  0.000000E+00 |  0.000000E+00 |  0.0396651150 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    43 |     7697 |     99 |  0.000000E+00 |  0.000000E+00 |  0.1076340296 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    44 |     7876 |    110 |  0.000000E+00 |  0.000000E+00 |  0.0629414245 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    45 |     8055 |    108 |  0.000000E+00 |  0.000000E+00 |  0.0459526287 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    46 |     8234 |    111 |  0.000000E+00 |  0.000000E+00 |  0.0325679748 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    47 |     8413 |    107 |  0.000000E+00 |  0.000000E+00 |  0.0671691463 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    48 |     8592 |    109 |  0.000000E+00 |  0.000000E+00 |  0.0068150627 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    49 |     8771 |    112 |  0.000000E+00 |  0.000000E+00 |  0.0072971813 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    50 |     8950 |    105 |  0.000000E+00 |  0.000000E+00 |  0.0069795221 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    51 |     9129 |    111 |  0.000000E+00 |  0.000000E+00 |  0.0074399983 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    52 |     9308 |     82 |  0.000000E+00 |  0.000000E+00 |  0.0088275616 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    53 |     9487 |     89 |  0.000000E+00 |  0.000000E+00 |  0.3595313339 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    54 |     9666 |     95 |  0.000000E+00 |  0.000000E+00 |  0.0358987553 |             f
+ACK FOUND > 1; len(fronts)=1
+    55 |     9845 |     94 |  0.000000E+00 |  0.000000E+00 |  0.7404313119 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    56 |    10024 |     83 |  0.000000E+00 |  0.000000E+00 |  0.4289605724 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    57 |    10203 |     90 |  0.000000E+00 |  0.000000E+00 |  0.0112684309 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    58 |    10382 |     93 |  0.000000E+00 |  0.000000E+00 |  0.3016818893 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    59 |    10561 |     81 |  0.000000E+00 |  0.000000E+00 |  0.0037824751 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    60 |    10740 |     84 |  0.000000E+00 |  0.000000E+00 |  0.0226473252 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    61 |    10919 |     87 |  0.000000E+00 |  0.000000E+00 |  0.0794065617 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    62 |    11098 |     88 |  0.000000E+00 |  0.000000E+00 |  0.0240123426 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    63 |    11277 |     91 |  0.000000E+00 |  0.000000E+00 |  0.0208013414 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    64 |    11456 |     95 |  0.000000E+00 |  0.000000E+00 |  0.0217371100 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    65 |    11635 |     99 |  0.000000E+00 |  0.000000E+00 |  0.0084994552 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    66 |    11814 |     88 |  0.000000E+00 |  0.000000E+00 |  0.2280527866 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    67 |    11993 |     92 |  0.000000E+00 |  0.000000E+00 |  0.2745023297 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    68 |    12172 |     99 |  0.000000E+00 |  0.000000E+00 |  0.0026517085 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    69 |    12351 |    103 |  0.000000E+00 |  0.000000E+00 |  0.0311698927 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    70 |    12530 |    106 |  0.000000E+00 |  0.000000E+00 |  0.2304906164 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    71 |    12709 |    106 |  0.000000E+00 |  0.000000E+00 |  0.0248481817 |             f
+ACK FOUND > 1; len(fronts)=1
+    72 |    12888 |    106 |  0.000000E+00 |  0.000000E+00 |  0.0321727127 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    73 |    13067 |    108 |  0.000000E+00 |  0.000000E+00 |  0.0063632474 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    74 |    13246 |     85 |  0.000000E+00 |  0.000000E+00 |  0.7413254439 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    75 |    13425 |     89 |  0.000000E+00 |  0.000000E+00 |  0.0321090412 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    76 |    13604 |     97 |  0.000000E+00 |  0.000000E+00 |  0.0400638611 |             f
+ACK FOUND > 1; len(fronts)=1
+    77 |    13783 |     98 |  0.000000E+00 |  0.000000E+00 |  0.0056949094 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    78 |    13962 |    102 |  0.000000E+00 |  0.000000E+00 |  0.0187670403 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    79 |    14141 |    108 |  0.000000E+00 |  0.000000E+00 |  0.0376863860 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    80 |    14320 |    108 |  0.000000E+00 |  0.000000E+00 |  0.1926666700 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    81 |    14499 |    108 |  0.000000E+00 |  0.000000E+00 |  0.1027463139 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    82 |    14678 |     92 |  0.000000E+00 |  0.000000E+00 |  0.0039299584 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    83 |    14857 |     85 |  0.000000E+00 |  0.000000E+00 |  0.0039145743 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    84 |    15036 |     95 |  0.000000E+00 |  0.000000E+00 |  0.0037876205 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    85 |    15215 |     98 |  0.000000E+00 |  0.000000E+00 |  0.0030824328 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    86 |    15394 |     98 |  0.000000E+00 |  0.000000E+00 |  0.0040580974 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    87 |    15573 |    108 |  0.000000E+00 |  0.000000E+00 |  0.0040416958 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    88 |    15752 |    105 |  0.000000E+00 |  0.000000E+00 |  0.0065793131 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    89 |    15931 |    107 |  0.000000E+00 |  0.000000E+00 |  0.0036378374 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    90 |    16110 |    116 |  0.000000E+00 |  0.000000E+00 |  0.0087325337 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    91 |    16289 |    114 |  0.000000E+00 |  0.000000E+00 |  0.0202568229 |             f
+ACK FOUND > 1; len(fronts)=1
+    92 |    16468 |    113 |  0.000000E+00 |  0.000000E+00 |  0.0064220753 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    93 |    16647 |    111 |  0.000000E+00 |  0.000000E+00 |  0.1585226042 |         nadir
+ACK FOUND > 1; len(fronts)=1
+    94 |    16826 |    115 |  0.000000E+00 |  0.000000E+00 |  0.0055384559 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    95 |    17005 |    120 |  0.000000E+00 |  0.000000E+00 |  0.0059816643 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    96 |    17184 |     82 |  0.000000E+00 |  0.000000E+00 |  0.0069500461 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    97 |    17363 |     91 |  0.000000E+00 |  0.000000E+00 |  0.0119423603 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    98 |    17542 |     99 |  0.000000E+00 |  0.000000E+00 |  0.0106199624 |         ideal
+ACK FOUND > 1; len(fronts)=1
+    99 |    17721 |    106 |  0.000000E+00 |  0.000000E+00 |  0.0214058723 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   100 |    17900 |     89 |  0.000000E+00 |  0.000000E+00 |  0.0062902828 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   101 |    18079 |    107 |  0.000000E+00 |  0.000000E+00 |  0.2934198750 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   102 |    18258 |    113 |  0.000000E+00 |  0.000000E+00 |  0.0095491217 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   103 |    18437 |    112 |  0.000000E+00 |  0.000000E+00 |  0.0060095672 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   104 |    18616 |    116 |  0.000000E+00 |  0.000000E+00 |  0.3166298774 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   105 |    18795 |    115 |  0.000000E+00 |  0.000000E+00 |  0.0952207114 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   106 |    18974 |    113 |  0.000000E+00 |  0.000000E+00 |  0.0094185605 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   107 |    19153 |    117 |  0.000000E+00 |  0.000000E+00 |  0.0035598503 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   108 |    19332 |    116 |  0.000000E+00 |  0.000000E+00 |  0.0428445792 |             f
+ACK FOUND > 1; len(fronts)=1
+   109 |    19511 |    120 |  0.000000E+00 |  0.000000E+00 |  0.0044095970 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   110 |    19690 |    123 |  0.000000E+00 |  0.000000E+00 |  0.0080222074 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   111 |    19869 |    116 |  0.000000E+00 |  0.000000E+00 |  0.0080870837 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   112 |    20048 |    115 |  0.000000E+00 |  0.000000E+00 |  0.0088371546 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   113 |    20227 |    119 |  0.000000E+00 |  0.000000E+00 |  0.0080870837 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   114 |    20406 |     88 |  0.000000E+00 |  0.000000E+00 |  0.0026953059 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   115 |    20585 |    116 |  0.000000E+00 |  0.000000E+00 |  0.0080222074 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   116 |    20764 |    122 |  0.000000E+00 |  0.000000E+00 |  0.0091478289 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   117 |    20943 |    121 |  0.000000E+00 |  0.000000E+00 |  0.0493212558 |             f
+ACK FOUND > 1; len(fronts)=1
+   118 |    21122 |    123 |  0.000000E+00 |  0.000000E+00 |  0.0114368982 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   119 |    21301 |    123 |  0.000000E+00 |  0.000000E+00 |  0.0336464157 |             f
+ACK FOUND > 1; len(fronts)=1
+   120 |    21480 |    128 |  0.000000E+00 |  0.000000E+00 |  0.0100120915 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   121 |    21659 |    127 |  0.000000E+00 |  0.000000E+00 |  0.0080750692 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   122 |    21838 |    129 |  0.000000E+00 |  0.000000E+00 |  0.0081408068 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   123 |    22017 |    128 |  0.000000E+00 |  0.000000E+00 |  0.0081028841 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   124 |    22196 |    130 |  0.000000E+00 |  0.000000E+00 |  0.0307615962 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   125 |    22375 |    129 |  0.000000E+00 |  0.000000E+00 |  0.0128252084 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   126 |    22554 |     96 |  0.000000E+00 |  0.000000E+00 |  0.0176597750 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   127 |    22733 |    102 |  0.000000E+00 |  0.000000E+00 |  0.0109014055 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   128 |    22912 |    104 |  0.000000E+00 |  0.000000E+00 |  0.0326833855 |             f
+ACK FOUND > 1; len(fronts)=1
+   129 |    23091 |    109 |  0.000000E+00 |  0.000000E+00 |  0.0491507856 |             f
+ACK FOUND > 1; len(fronts)=1
+   130 |    23270 |    102 |  0.000000E+00 |  0.000000E+00 |  0.0027039370 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   131 |    23449 |    102 |  0.000000E+00 |  0.000000E+00 |  0.3898703251 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   132 |    23628 |    104 |  0.000000E+00 |  0.000000E+00 |  0.0291907595 |             f
+ACK FOUND > 1; len(fronts)=1
+   133 |    23807 |    104 |  0.000000E+00 |  0.000000E+00 |  0.4013393352 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   134 |    23986 |    103 |  0.000000E+00 |  0.000000E+00 |  0.1365142354 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   135 |    24165 |    109 |  0.000000E+00 |  0.000000E+00 |  0.0740484649 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   136 |    24344 |    109 |  0.000000E+00 |  0.000000E+00 |  0.0029838240 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   137 |    24523 |    107 |  0.000000E+00 |  0.000000E+00 |  0.2799746944 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   138 |    24702 |    111 |  0.000000E+00 |  0.000000E+00 |  0.0029859499 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   139 |    24881 |    112 |  0.000000E+00 |  0.000000E+00 |  0.0289465814 |             f
+ACK FOUND > 1; len(fronts)=1
+   140 |    25060 |    115 |  0.000000E+00 |  0.000000E+00 |  0.0211038402 |             f
+ACK FOUND > 1; len(fronts)=1
+   141 |    25239 |    118 |  0.000000E+00 |  0.000000E+00 |  0.0228530507 |             f
+ACK FOUND > 1; len(fronts)=1
+   142 |    25418 |    120 |  0.000000E+00 |  0.000000E+00 |  0.0145001407 |             f
+ACK FOUND > 1; len(fronts)=1
+   143 |    25597 |    105 |  0.000000E+00 |  0.000000E+00 |  0.0224759317 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   144 |    25776 |    110 |  0.000000E+00 |  0.000000E+00 |  0.0362238489 |             f
+ACK FOUND > 1; len(fronts)=1
+   145 |    25955 |    112 |  0.000000E+00 |  0.000000E+00 |  0.0077425735 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   146 |    26134 |    119 |  0.000000E+00 |  0.000000E+00 |  0.0033402389 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   147 |    26313 |    121 |  0.000000E+00 |  0.000000E+00 |  0.0029524494 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   148 |    26492 |    124 |  0.000000E+00 |  0.000000E+00 |  0.0244460683 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   149 |    26671 |    125 |  0.000000E+00 |  0.000000E+00 |  0.0120725143 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   150 |    26850 |    119 |  0.000000E+00 |  0.000000E+00 |  0.0055864009 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   151 |    27029 |    126 |  0.000000E+00 |  0.000000E+00 |  0.0042050937 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   152 |    27208 |    128 |  0.000000E+00 |  0.000000E+00 |  0.0033375529 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   153 |    27387 |    128 |  0.000000E+00 |  0.000000E+00 |  0.0360228475 |             f
+ACK FOUND > 1; len(fronts)=1
+   154 |    27566 |    131 |  0.000000E+00 |  0.000000E+00 |  0.0389829798 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   155 |    27745 |    103 |  0.000000E+00 |  0.000000E+00 |  0.1058443262 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   156 |    27924 |    107 |  0.000000E+00 |  0.000000E+00 |  0.0048027519 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   157 |    28103 |    113 |  0.000000E+00 |  0.000000E+00 |  0.0399844686 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   158 |    28282 |    114 |  0.000000E+00 |  0.000000E+00 |  0.0416498143 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   159 |    28461 |    119 |  0.000000E+00 |  0.000000E+00 |  0.2229740393 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   160 |    28640 |    118 |  0.000000E+00 |  0.000000E+00 |  0.0716089728 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   161 |    28819 |    116 |  0.000000E+00 |  0.000000E+00 |  0.0109459338 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   162 |    28998 |    116 |  0.000000E+00 |  0.000000E+00 |  0.0233311092 |             f
+ACK FOUND > 1; len(fronts)=1
+   163 |    29177 |    117 |  0.000000E+00 |  0.000000E+00 |  0.0179341602 |             f
+ACK FOUND > 1; len(fronts)=1
+   164 |    29356 |    117 |  0.000000E+00 |  0.000000E+00 |  0.0170009516 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   165 |    29535 |    120 |  0.000000E+00 |  0.000000E+00 |  0.0659362634 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   166 |    29714 |    125 |  0.000000E+00 |  0.000000E+00 |  0.0705907539 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   167 |    29893 |    126 |  0.000000E+00 |  0.000000E+00 |  0.0349705845 |             f
+ACK FOUND > 1; len(fronts)=1
+   168 |    30072 |    129 |  0.000000E+00 |  0.000000E+00 |  0.0087880191 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   169 |    30251 |    128 |  0.000000E+00 |  0.000000E+00 |  0.0341008899 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   170 |    30430 |    128 |  0.000000E+00 |  0.000000E+00 |  0.0186952800 |             f
+ACK FOUND > 1; len(fronts)=1
+   171 |    30609 |    134 |  0.000000E+00 |  0.000000E+00 |  0.0305593446 |             f
+ACK FOUND > 1; len(fronts)=1
+   172 |    30788 |    127 |  0.000000E+00 |  0.000000E+00 |  0.1264324912 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   173 |    30967 |    126 |  0.000000E+00 |  0.000000E+00 |  0.0279591941 |             f
+ACK FOUND > 1; len(fronts)=1
+   174 |    31146 |    129 |  0.000000E+00 |  0.000000E+00 |  0.0222429835 |             f
+ACK FOUND > 1; len(fronts)=1
+   175 |    31325 |    132 |  0.000000E+00 |  0.000000E+00 |  0.0128038052 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   176 |    31504 |    131 |  0.000000E+00 |  0.000000E+00 |  0.0219581650 |             f
+ACK FOUND > 1; len(fronts)=1
+   177 |    31683 |    136 |  0.000000E+00 |  0.000000E+00 |  0.1647024938 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   178 |    31862 |    134 |  0.000000E+00 |  0.000000E+00 |  0.0197711055 |             f
+ACK FOUND > 1; len(fronts)=1
+   179 |    32041 |    135 |  0.000000E+00 |  0.000000E+00 |  0.0079445281 |             f
+ACK FOUND > 1; len(fronts)=1
+   180 |    32220 |    135 |  0.000000E+00 |  0.000000E+00 |  0.0159086294 |             f
+ACK FOUND > 1; len(fronts)=1
+   181 |    32399 |    135 |  0.000000E+00 |  0.000000E+00 |  0.0179141491 |             f
+ACK FOUND > 1; len(fronts)=1
+   182 |    32578 |    136 |  0.000000E+00 |  0.000000E+00 |  0.0091298217 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   183 |    32757 |    136 |  0.000000E+00 |  0.000000E+00 |  0.0110345989 |             f
+ACK FOUND > 1; len(fronts)=1
+   184 |    32936 |    138 |  0.000000E+00 |  0.000000E+00 |  0.0093678588 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   185 |    33115 |    139 |  0.000000E+00 |  0.000000E+00 |  0.0176770291 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   186 |    33294 |    141 |  0.000000E+00 |  0.000000E+00 |  0.0126358665 |             f
+ACK FOUND > 1; len(fronts)=1
+   187 |    33473 |    140 |  0.000000E+00 |  0.000000E+00 |  0.0077570995 |             f
+ACK FOUND > 1; len(fronts)=1
+   188 |    33652 |    139 |  0.000000E+00 |  0.000000E+00 |  0.0202528735 |             f
+ACK FOUND > 1; len(fronts)=1
+   189 |    33831 |    141 |  0.000000E+00 |  0.000000E+00 |  0.0111862140 |             f
+ACK FOUND > 1; len(fronts)=1
+   190 |    34010 |    139 |  0.000000E+00 |  0.000000E+00 |  0.0134677085 |             f
+ACK FOUND > 1; len(fronts)=1
+   191 |    34189 |    139 |  0.000000E+00 |  0.000000E+00 |  0.0053368361 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   192 |    34368 |    140 |  0.000000E+00 |  0.000000E+00 |  0.0069827641 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   193 |    34547 |    141 |  0.000000E+00 |  0.000000E+00 |  0.0053278053 |         ideal
+ACK FOUND > 1; len(fronts)=1
+   194 |    34726 |    140 |  0.000000E+00 |  0.000000E+00 |  0.0067231317 |             f
+ACK FOUND > 1; len(fronts)=1
+   195 |    34905 |    142 |  0.000000E+00 |  0.000000E+00 |  0.0118142317 |             f
+ACK FOUND > 1; len(fronts)=1
+   196 |    35084 |    140 |  0.000000E+00 |  0.000000E+00 |  0.0704986596 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   197 |    35263 |    139 |  0.000000E+00 |  0.000000E+00 |  0.0100650304 |             f
+ACK FOUND > 1; len(fronts)=1
+   198 |    35442 |    139 |  0.000000E+00 |  0.000000E+00 |  0.0042057501 |             f
+ACK FOUND > 1; len(fronts)=1
+   199 |    35621 |    142 |  0.000000E+00 |  0.000000E+00 |  0.0565759710 |         nadir
+ACK FOUND > 1; len(fronts)=1
+   200 |    35800 |    140 |  0.000000E+00 |  0.000000E+00 |  0.0258244520 |         nadir
+Begin print with Final Cash: 123995.6130038809206 => return: 0.2399561300388
+Month 1:
+  Buy: Stock ACB, Amount: 4
+  Buy: Stock ACL, Amount: 5
+  Buy: Stock AGF, Amount: 3
+  Buy: Stock ALT, Amount: 11
+  Buy: Stock ASP, Amount: 1
+  Buy: Stock B82, Amount: 12
+  Buy: Stock BBC, Amount: 3
+  Bank Deposit: 99458.99
+Month 2:
+  Buy: Stock BTS, Amount: 7
+  Buy: Stock CAP, Amount: 5
+  Buy: Stock DRC, Amount: 2
+  Buy: Stock HDC, Amount: 953
+  Buy: Stock HHC, Amount: 2
+  Buy: Stock KBC, Amount: 1
+  Buy: Stock KSH, Amount: 1
+  Buy: Stock L18, Amount: 657
+  Sell: Stock ALT, Amount: 11.0
+  Sell: Stock ASP, Amount: 1.0
+  Sell: Stock B82, Amount: 3.0
+  Sell: Stock BBC, Amount: 3.0
+  Sell: Stock HDC, Amount: 464.0
+  Bank Deposit: 53786.88
+Month 3:
+  Buy: Stock ABT, Amount: 15
+  Buy: Stock ACB, Amount: 2
+  Buy: Stock ACL, Amount: 1
+  Buy: Stock AGF, Amount: 2
+  Buy: Stock ALT, Amount: 2
+  Buy: Stock ASP, Amount: 4
+  Buy: Stock BST, Amount: 109
+  Buy: Stock BVS, Amount: 12
+  Buy: Stock CAP, Amount: 87
+  Buy: Stock DHA, Amount: 2
+  Buy: Stock DHG, Amount: 1
+  Buy: Stock DPM, Amount: 1
+  Buy: Stock DQC, Amount: 11
+  Buy: Stock DTT, Amount: 1
+  Buy: Stock ITA, Amount: 18
+  Sell: Stock BTS, Amount: 7.0
+  Sell: Stock HDC, Amount: 489.0
+  Sell: Stock KSH, Amount: 1.0
+  Dividends: 463.40
+  Bank Deposit: 58570.01
+Month 4:
+  Buy: Stock AGF, Amount: 2
+  Buy: Stock DHG, Amount: 437
+  Buy: Stock L18, Amount: 3
+  Buy: Stock LGC, Amount: 1
+  Sell: Stock ASP, Amount: 4.0
+  Sell: Stock BST, Amount: 109.0
+  Sell: Stock CAP, Amount: 92.0
+  Sell: Stock DHG, Amount: 211.0
+  Sell: Stock DPM, Amount: 1.0
+  Bank Deposit: 28530.97
+Month 5:
+  Buy: Stock ABT, Amount: 77
+  Buy: Stock ACB, Amount: 1
+  Buy: Stock ANV, Amount: 4
+  Buy: Stock BBS, Amount: 5
+  Buy: Stock BCC, Amount: 11
+  Buy: Stock BMP, Amount: 35
+  Buy: Stock CAN, Amount: 262
+  Buy: Stock CJC, Amount: 6
+  Buy: Stock CLC, Amount: 7
+  Buy: Stock DAE, Amount: 236
+  Buy: Stock DHA, Amount: 1
+  Buy: Stock DST, Amount: 61
+  Buy: Stock FMC, Amount: 17
+  Buy: Stock HCT, Amount: 301
+  Buy: Stock HT1, Amount: 84
+  Buy: Stock LCG, Amount: 9
+  Sell: Stock DAE, Amount: 3.0
+  Sell: Stock DQC, Amount: 11.0
+  Sell: Stock LGC, Amount: 1.0
+  Dividends: 794.50
+  Bank Deposit: 37460.49
+Month 6:
+  Sell: Stock ACL, Amount: 6.0
+  Sell: Stock AGF, Amount: 7.0
+  Sell: Stock ALT, Amount: 2.0
+  Sell: Stock ANV, Amount: 4.0
+  Sell: Stock B82, Amount: 9.0
+  Sell: Stock BBS, Amount: 5.0
+  Sell: Stock BCC, Amount: 11.0
+  Sell: Stock BMP, Amount: 35.0
+  Sell: Stock BVS, Amount: 12.0
+  Sell: Stock CJC, Amount: 6.0
+  Sell: Stock DAE, Amount: 233.0
+  Sell: Stock DHG, Amount: 178.0
+  Sell: Stock DTT, Amount: 1.0
+  Sell: Stock FMC, Amount: 17.0
+  Sell: Stock HCT, Amount: 301.0
+  Sell: Stock HHC, Amount: 2.0
+  Sell: Stock HT1, Amount: 84.0
+  Sell: Stock ITA, Amount: 18.0
+  Sell: Stock KBC, Amount: 1.0
+  Sell: Stock L18, Amount: 660.0
+  Sell: Stock LCG, Amount: 9.0
+  Sell: Stock ABT, Amount: 92.0
+  Sell: Stock ACB, Amount: 7.0
+  Sell: Stock CAN, Amount: 262.0
+  Sell: Stock CLC, Amount: 7.0
+  Sell: Stock DHA, Amount: 3.0
+  Sell: Stock DHG, Amount: 49.0
+  Sell: Stock DRC, Amount: 2.0
+  Sell: Stock DST, Amount: 61.0
+  Bank Deposit: 38753.86
+
+
+Final Cash: 123995.6130038809206 => return: 0.2399561300388
