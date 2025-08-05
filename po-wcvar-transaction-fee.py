@@ -1033,19 +1033,19 @@ stock_returns = np.column_stack((
 # print("DONE - experiment 15th")
 
 #experiment 16th
-for i in range(5):
-    print(f"Starting loop i={i}...")
-    constants.DURATION = 12
-    constants.WAVELET_LEVEL = 3
-    constants.INITIAL_CASH = 1000000
-    constants.INVESTMENT_INTEREST_EXPECTED = 0.9
-    constants.MAX_STOCKS = LEN_STOCK_DATA
-    constants.TAIL_PROBABILITY_EPSILON = 0.2
-    nsga3.DURATION = constants.DURATION
-    nsga3.INITIAL_CASH = constants.INITIAL_CASH
-    # updateLocalVariables()
-    execute()
-print("DONE - experiment 16th")
+# for i in range(5):
+#     print(f"Starting loop i={i}...")
+#     constants.DURATION = 12
+#     constants.WAVELET_LEVEL = 3
+#     constants.INITIAL_CASH = 1000000
+#     constants.INVESTMENT_INTEREST_EXPECTED = 0.5
+#     constants.MAX_STOCKS = LEN_STOCK_DATA
+#     constants.TAIL_PROBABILITY_EPSILON = 0.2
+#     nsga3.DURATION = constants.DURATION
+#     nsga3.INITIAL_CASH = constants.INITIAL_CASH
+#     # updateLocalVariables()
+#     execute()
+# print("DONE - experiment 16th")
 
 # #experiment 17th
 # for i in range(2):
@@ -1113,3 +1113,49 @@ print("DONE - experiment 16th")
 #     # updateLocalVariables()
 #     execute()
 # print("DONE - experiment 21st")
+
+
+# experiment 22nd
+for i in range(2):
+    print(f"Starting loop i={i}...")
+    constants.DURATION = 12
+    constants.WAVELET_LEVEL = 3
+    constants.INITIAL_CASH = 1000000
+    constants.INVESTMENT_INTEREST_EXPECTED = 0.5
+    constants.MAX_STOCKS = LEN_STOCK_DATA
+    constants.TAIL_PROBABILITY_EPSILON = 0.2
+    nsga3.DURATION = constants.DURATION
+    nsga3.INITIAL_CASH = constants.INITIAL_CASH
+    # updateLocalVariables()
+    execute()
+print("DONE - experiment 22nd")
+
+# #experiment 23rd
+for i in range(2):
+    print(f"Starting loop i={i}...")
+    constants.DURATION = 12
+    constants.WAVELET_LEVEL = 3
+    constants.INITIAL_CASH = 1000000
+    constants.INVESTMENT_INTEREST_EXPECTED = 0.5
+    constants.MAX_STOCKS = LEN_STOCK_DATA
+    constants.TAIL_PROBABILITY_EPSILON = 0.1
+    nsga3.DURATION = constants.DURATION
+    nsga3.INITIAL_CASH = constants.INITIAL_CASH
+    # updateLocalVariables()
+    execute()
+print("DONE - experiment 23rd")
+
+# #experiment 24th
+for i in range(2):
+    print(f"Starting loop i={i}...")
+    constants.DURATION = 12
+    constants.WAVELET_LEVEL = 3
+    constants.INITIAL_CASH = 1000000
+    constants.INVESTMENT_INTEREST_EXPECTED = 0.5
+    constants.MAX_STOCKS = LEN_STOCK_DATA
+    constants.TAIL_PROBABILITY_EPSILON = 0.05
+    nsga3.DURATION = constants.DURATION
+    nsga3.INITIAL_CASH = constants.INITIAL_CASH
+    # updateLocalVariables()
+    execute()
+print("DONE - experiment 24th")
