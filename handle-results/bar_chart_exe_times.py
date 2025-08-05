@@ -6,7 +6,7 @@ def plot_columns():
     # Define the data for four columns
     categories = ['100 Stocks, K = 100', '249 Stocks, K = 249', '249 Stocks, K = 124', '249 Stocks, K = 62']
 
-    experiment_4_1_2_3 = [505142.18521118164, 1110717.220067978, 2912739.1827106476, 7091574.80597496]  # execution time in minutes
+    experiment_4_1_2_3 = [314214.48493003845, 557722.4588394165, 555989.6347522736, 556290.1990413666]  # execution time in minutes
 
 
     experiment_4_1_2_3 = [x/1000/60 for x in experiment_4_1_2_3]

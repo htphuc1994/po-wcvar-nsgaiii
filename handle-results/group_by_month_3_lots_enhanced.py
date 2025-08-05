@@ -3,9 +3,9 @@ import numpy as np
 
 # Data
 categories = ['Bank Deposit', 'VND100 Million', 'VND1 Billion', 'VND10 Billion']
-quarter_returns = [0.01812, 0.1335135256481, 0.0895296482672, 0.0667413163178]
-half_year_returns = [0.0273055, 0.2351092913214, 0.2854574844757, 0.2550369885965]
-year_returns = [0.0553567, 0.2367174414905, 0.2795093648044, 0.2768005374401]
+quarter_returns = [0.01812, 0.2172621761803, 0.1212324546927, 0.1082098667781]
+half_year_returns = [0.0273055, 0.2399561300388, 0.2224426299007, 0.1184999557781]
+year_returns = [0.0553567, 0.1490806605098, 0.2606602962920, 0.1683081132788]
 
 # Convert to percentages
 quarter_returns = [x * 100 for x in quarter_returns]
