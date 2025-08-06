@@ -745,7 +745,7 @@ def my_solve():
 
     ref_dirs = get_reference_directions("energy", problem.n_obj, constants.REFERENCES_POINTS_NUM, seed=1)
     # how to switch betwwen NSGA3 and NSGA3-HOP? read readme, basically we will change the NSGA3 lib directly
-    # algorithm = NSGA3(pop_size=constants.POPULATION_SIZE, ref_dirs=ref_dirs, sampling=CustomSampling())
+    algorithm = NSGA3(pop_size=constants.POPULATION_SIZE, ref_dirs=ref_dirs, sampling=CustomSampling())
     # TODO when run NSGA3, UNSGA3, RNSGA3, SMSEMOA, CTAEA, we must the code around "use below is for other algorithms"--remove HOP on final front
     # algorithm = RNSGA3(
     #     ref_points=ref_dirs,
@@ -762,11 +762,11 @@ def my_solve():
     #     sampling=CustomSampling(),
     #     repair=CustomRepair()
     # )
-    algorithm = SMSEMOA(
-        pop_size=constants.POPULATION_SIZE,
-        sampling=CustomSampling(),
-        repair=CustomRepair()
-    )
+    # algorithm = SMSEMOA(
+    #     pop_size=constants.POPULATION_SIZE,
+    #     sampling=CustomSampling(),
+    #     repair=CustomRepair()
+    # )
 
     # AGE-MOEA does not support constraints based on pymoo doc, so we skip it here. https://pymoo.org/algorithms/list.html#nb-algorithms-list
     # algorithm = AGEMOEA(
@@ -796,16 +796,16 @@ def my_solve():
     if len_front_0 <= 0:
         print("No HOP solution found.")
         return
-    # hop_solution = front_0[hop(front_0, np.arange(len_front_0))[0]] # NSGA-3-HOP use this line TODO
-    # print("Objectives =", ["%.13f" % v for v in hop_solution.F]) # NSGA-3-HOP use this line TODO
+    hop_solution = front_0[hop(front_0, np.arange(len_front_0))[0]] # NSGA-3-HOP use this line TODO
+    print("Objectives =", ["%.13f" % v for v in hop_solution.F]) # NSGA-3-HOP use this line TODO
 
     # below is for other algorithms ------
-    front_0 = sorted(
-        [individual for individual in res.pop[fronts[0]] if -individual.F[0] > constants.BANK_INTEREST_RATE_AFTER_N_INVESTMENT_PERIOD],
-        key=lambda individual: individual.F[0]
-    )
-    highest_return_solution = front_0[0] if len(front_0) > 0 else None
-    print("Objectives =", ["%.13f" % v for v in highest_return_solution.F])
+    # front_0 = sorted(
+    #     [individual for individual in res.pop[fronts[0]] if -individual.F[0] > constants.BANK_INTEREST_RATE_AFTER_N_INVESTMENT_PERIOD],
+    #     key=lambda individual: individual.F[0]
+    # )
+    # highest_return_solution = front_0[0] if len(front_0) > 0 else None
+    # print("Objectives =", ["%.13f" % v for v in highest_return_solution.F])
     # ------ end for other algorithms
 
 
