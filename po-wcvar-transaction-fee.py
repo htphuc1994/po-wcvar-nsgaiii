@@ -744,6 +744,7 @@ def my_solve():
     problem = PortfolioOptimizationProblem(stock_data, constants.BANK_INTEREST_RATE, constants.INITIAL_CASH, constants.DURATION, constants.MAX_STOCKS)
 
     ref_dirs = get_reference_directions("energy", problem.n_obj, constants.REFERENCES_POINTS_NUM, seed=1)
+    # how to switch betwwen NSGA3 and NSGA3-HOP? read readme, basically we will change the NSGA3 lib directly
     algorithm = NSGA3(pop_size=constants.POPULATION_SIZE, ref_dirs=ref_dirs, sampling=CustomSampling())
     # TODO
     # algorithm = RNSGA3(
@@ -794,12 +795,17 @@ def my_solve():
     if len_front_0 <= 0:
         print("No HOP solution found.")
         return
-    hop_solution = front_0[hop(front_0, np.arange(len_front_0))[0]] # NSGA-3-HOP use this line TODO
-    print("Objectives =", ["%.13f" % v for v in hop_solution.F])
+    # hop_solution = front_0[hop(front_0, np.arange(len_front_0))[0]] # NSGA-3-HOP use this line TODO
+    # print("Objectives =", ["%.13f" % v for v in hop_solution.F]) # NSGA-3-HOP use this line TODO
 
-    # below is for other algorithms
-
-
+    # below is for other algorithms ------
+    front_0 = sorted(
+        [individual for individual in res.pop[fronts[0]] if -individual.F[0] > constants.BANK_INTEREST_RATE_AFTER_N_INVESTMENT_PERIOD],
+        key=lambda individual: individual.F[0]
+    )
+    highest_return_solution = front_0[0] if len(front_0) > 0 else None
+    print("Objectives =", ["%.13f" % v for v in highest_return_solution.F])
+    # ------ end for other algorithms
 
 
 # Open a file in write mode
