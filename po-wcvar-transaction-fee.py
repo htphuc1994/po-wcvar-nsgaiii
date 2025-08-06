@@ -745,14 +745,14 @@ def my_solve():
 
     ref_dirs = get_reference_directions("energy", problem.n_obj, constants.REFERENCES_POINTS_NUM, seed=1)
     # how to switch betwwen NSGA3 and NSGA3-HOP? read readme, basically we will change the NSGA3 lib directly
-    algorithm = NSGA3(pop_size=constants.POPULATION_SIZE, ref_dirs=ref_dirs, sampling=CustomSampling())
+    # algorithm = NSGA3(pop_size=constants.POPULATION_SIZE, ref_dirs=ref_dirs, sampling=CustomSampling())
     # TODO
-    # algorithm = RNSGA3(
-    #     ref_points=ref_dirs,
-    #     pop_per_ref_point=1,
-    #     sampling=CustomSampling(),
-    #     repair=CustomRepair()
-    # )
+    algorithm = RNSGA3(
+        ref_points=ref_dirs,
+        pop_per_ref_point=1,
+        sampling=CustomSampling(),
+        repair=CustomRepair()
+    )
     # algorithm = UNSGA3(
     #     ref_dirs=ref_dirs,
     #     pop_size=constants.POPULATION_SIZE
