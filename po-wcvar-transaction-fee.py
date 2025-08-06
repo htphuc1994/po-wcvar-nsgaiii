@@ -757,16 +757,16 @@ def my_solve():
     #     ref_dirs=ref_dirs,
     #     pop_size=constants.POPULATION_SIZE
     # )
-    algorithm = CTAEA(
-        ref_dirs=ref_dirs,                    # This determines population size internally
-        sampling=CustomSampling(),
-        repair=CustomRepair()
-    )
-    # algorithm = SMSEMOA(
-    #     pop_size=constants.POPULATION_SIZE,
+    # algorithm = CTAEA(
+    #     ref_dirs=ref_dirs,                    # This determines population size internally
     #     sampling=CustomSampling(),
     #     repair=CustomRepair()
     # )
+    algorithm = SMSEMOA(
+        pop_size=constants.POPULATION_SIZE,
+        sampling=CustomSampling(),
+        repair=CustomRepair()
+    )
 
     # AGE-MOEA does not support constraints based on pymoo doc, so we skip it here. https://pymoo.org/algorithms/list.html#nb-algorithms-list
     # algorithm = AGEMOEA(
