@@ -747,23 +747,18 @@ def my_solve():
     # how to switch betwwen NSGA3 and NSGA3-HOP? read readme, basically we will change the NSGA3 lib directly
     # algorithm = NSGA3(pop_size=constants.POPULATION_SIZE, ref_dirs=ref_dirs, sampling=CustomSampling())
     # TODO
-    algorithm = RNSGA3(
-        ref_points=ref_dirs,
-        pop_per_ref_point=1,
-        sampling=CustomSampling(),
-        repair=CustomRepair()
-    )
-    # algorithm = UNSGA3(
-    #     ref_dirs=ref_dirs,
-    #     pop_size=constants.POPULATION_SIZE
-    # )
-    # algorithm = CTAEA(
-    #     ref_dirs=ref_dirs,                    # This determines population size internally
+    # algorithm = RNSGA3(
+    #     ref_points=ref_dirs,
+    #     pop_per_ref_point=1,
     #     sampling=CustomSampling(),
     #     repair=CustomRepair()
     # )
-    # algorithm = AGEMOEA(
-    #     pop_size=constants.POPULATION_SIZE,
+    algorithm = UNSGA3(
+        ref_dirs=ref_dirs,
+        pop_size=constants.POPULATION_SIZE
+    )
+    # algorithm = CTAEA(
+    #     ref_dirs=ref_dirs,                    # This determines population size internally
     #     sampling=CustomSampling(),
     #     repair=CustomRepair()
     # )
@@ -773,6 +768,12 @@ def my_solve():
     #     repair=CustomRepair()
     # )
 
+    # AGE-MOEA does not support constraints based on pymoo doc, so we skip it here. https://pymoo.org/algorithms/list.html#nb-algorithms-list
+    # algorithm = AGEMOEA(
+    #     pop_size=constants.POPULATION_SIZE,
+    #     sampling=CustomSampling(),
+    #     repair=CustomRepair()
+    # )
     res = minimize(problem,
                    algorithm,
                    termination=('n_gen', constants.TERMINATION_GEN_NUM),
