@@ -3,10 +3,20 @@ import pywt
 import constants
 
 
-def wavelet_decomposition(returns, wavelet='db1'):
+def wavelet_decomposition(returns):
     """ Decompose asset returns using Discrete Wavelet Transform. """
-    coeffs = pywt.wavedec(returns, wavelet, level=3)
-    return coeffs[4 - constants.WAVELET_LEVEL]  # Returning detail coefficients, ignoring approximation
+    cA4, cD4, cD3, cD2, cD1 = pywt.wavedec(returns, 'db1', level=4)
+    cA3, cD3, cD2, cD1 = pywt.wavedec(returns, 'db1', level=3)
+    cA2, cD2, cD1 = pywt.wavedec(returns, 'db1', level=2)
+    cA1, cD1 = pywt.wavedec(returns, 'db1', level=1)
+    if constants.WAVELET_LEVEL == 4:
+        return cA4
+    elif constants.WAVELET_LEVEL == 3:
+        return cA3
+    elif constants.WAVELET_LEVEL == 2:
+        return cA2
+    elif constants.WAVELET_LEVEL == 1:
+        return cA1
 
 def historical_var_from_wavelet(coeffs, tail_probability):
     """
