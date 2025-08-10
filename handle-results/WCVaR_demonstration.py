@@ -22,17 +22,17 @@ signal = daily_pct_df["Daily % Change"].values
 
 
 # Perform a multi-level DWT
-cA4, cD4, cD3, cD2, cD1 = pywt.wavedec(signal, 'db1', level=4)
+# cA4, cD4, cD3, cD2, cD1 = pywt.wavedec(signal, 'db1', level=4)
 cA3, cD3, cD2, cD1 = pywt.wavedec(signal, 'db1', level=3)
-cA2, cD2, cD1 = pywt.wavedec(signal, 'db1', level=2)
-cA1, cD1 = pywt.wavedec(signal, 'db1', level=1)
+# cA2, cD2, cD1 = pywt.wavedec(signal, 'db1', level=2)
+# cA1, cD1 = pywt.wavedec(signal, 'db1', level=1)
 
 
 # Plot the original signal and approximations
 plt.figure(figsize=(12, 8))
 
 plt.subplot(5, 1, 1)
-plt.plot(cA4, label='Approximation cA4', color='#FF3030')
+plt.plot(cA3, label='cA3', color='#FF3030')
 plt.legend(loc='upper center', fontsize=18)  # <- legend inside and centered at top
 plt.grid(True)
 # plt.xlabel('Day', fontsize=18)
@@ -42,8 +42,8 @@ plt.tick_params(axis='y', labelsize=18)
 plt.tick_params(axis='x', labelsize=18)
 
 plt.subplot(5, 1, 2)
-plt.plot(cA3, label='Approximation cA3', color='#FF3030')
-plt.legend(loc='upper center', fontsize=18)  # <- legend inside and centered at top
+plt.plot(cD3, label='cD3', color='#FF3030')
+plt.legend(loc='best', fontsize=18)  # <- legend inside and centered at top
 plt.grid(True)
 # plt.xlabel('Day', fontsize=18)
 plt.ylabel('Return (%)', fontsize=18)
@@ -52,8 +52,8 @@ plt.tick_params(axis='y', labelsize=18)
 plt.tick_params(axis='x', labelsize=18)
 
 plt.subplot(5, 1, 3)
-plt.plot(cA2, label='Approximation cA2', color='#FF3030')
-plt.legend(loc='upper center', fontsize=18)  # <- legend inside and centered at top
+plt.plot(cD2, label='cD2', color='#FF3030')
+plt.legend(loc='best', fontsize=18)  # <- legend inside and centered at top
 plt.grid(True)
 # plt.xlabel('Day', fontsize=18)
 plt.ylabel('Return (%)', fontsize=18)
@@ -62,8 +62,8 @@ plt.tick_params(axis='y', labelsize=18)
 plt.tick_params(axis='x', labelsize=18)
 
 plt.subplot(5, 1, 4)
-plt.plot(cA1, label='Approximation cA1', color='#FF3030')
-plt.legend(loc='upper center', fontsize=18)  # <- legend inside and centered at top
+plt.plot(cD1, label='cD1', color='#FF3030')
+plt.legend(loc='lower center', fontsize=18)  # <- legend inside and centered at top
 plt.grid(True)
 plt.tick_params(axis='y', labelsize=18)
 plt.tick_params(axis='x', labelsize=18)

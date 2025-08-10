@@ -53,9 +53,11 @@ def plot_multiple_lines(x, y_arrays):
 
     # Add labels and title
     plt.xlabel('Month', fontsize=24)
-    plt.ylabel('WCVaR', fontsize=24)
+    plt.ylabel('WCVaR (Logarithmic Scale)', fontsize=24)
     # plt.title('The relationship between WCVaR and tail probability', fontsize=24)
     plt.legend(fontsize=24)
+
+    plt.yscale('log')
 
     plt.tick_params(axis='y', labelsize=24)
     plt.tick_params(axis='x', labelsize=24)

@@ -2,18 +2,15 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # Data
-categories = ['Bank Deposit', 'VND100 Million', 'VND1 Billion', 'VND10 Billion']
-# quarter_returns = [0.01812, 0.2172621761803, 0.1212324546927, 0.1082098667781]
-# half_year_returns = [0.0273055, 0.2399561300388, 0.2224426299007, 0.1184999557781]
-# year_returns = [0.0553567, 0.1490806605098, 0.2606602962920, 0.1683081132788]
-quarter_returns = [0.01812, 0.1299755845029, 0.1212324546927, 0.1082098667781]
-half_year_returns = [0.0273055, 0.2375978239234, 0.2224426299007, 0.1184999557781]
-year_returns = [0.0553567, 0.1768924271947, 0.2606602962920, 0.1683081132788]
+categories = ['quarterly', 'semi-annual', 'annual']
+bank_deposit = [0.01812, 0.0273055, 0.0553567]
+vnd_1_billion = [0.1212324546927, 0.2224426299007, 0.2606602962920]
+vnd_10_billion = [0.1082098667781, 0.1184999557781, 0.1683081132788]
 
 # Convert to percentages
-quarter_returns = [x * 100 for x in quarter_returns]
-half_year_returns = [x * 100 for x in half_year_returns]
-year_returns = [x * 100 for x in year_returns]
+bank_deposit = [x * 100 for x in bank_deposit]
+vnd_1_billion = [x * 100 for x in vnd_1_billion]
+vnd_10_billion = [x * 100 for x in vnd_10_billion]
 
 # Hatch patterns and colors
 hatch_patterns = ['x', '//', '\\\\', '||']
@@ -23,7 +20,7 @@ colors = ["#FFB000", "#FF3030", "#FF33CC", "#C000FF"]
 
 # Titles and return sets
 titles = ['3-month Investment', '6-month Investment', '12-month Investment']
-returns = [quarter_returns, half_year_returns, year_returns]
+returns = [bank_deposit, vnd_1_billion, vnd_10_billion]
 
 # Plot each chart separately
 for i in range(3):

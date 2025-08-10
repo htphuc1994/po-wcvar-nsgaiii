@@ -87,7 +87,7 @@ def plot_multiple_lines(x, y_arrays):
 
     # Add labels and title
     plt.xlabel('Generation', fontsize=24)
-    plt.ylabel('Non-dominated Solution Count', fontsize=24)
+    plt.ylabel('Non-dominated Solution Count \n (Logarithmic Scale)', fontsize=24)
     # plt.title('The relationship between non-dominated solution count and cardinality constraints', fontsize=16)
     bold_font = FontProperties(size=24)
     plt.legend(
@@ -104,6 +104,7 @@ def plot_multiple_lines(x, y_arrays):
 
     plt.subplots_adjust(left=0.1)
 
+    plt.yscale('log')
     # Show the plot
     plt.show()
 
