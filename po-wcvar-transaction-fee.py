@@ -34,7 +34,7 @@ from stock_data_input_249 import STOCK_DATA_2023_INPUT_249_STOCKS
 from stock_data_input_100 import STOCK_DATA_2023_INPUT_100_STOCKS
 from wavelet_cvar_utils import cal_po_wCVaR
 
-
+seed = 0
 
 stock_data = STOCK_DATA_2023_INPUT_100_STOCKS
 LEN_STOCK_DATA = len(stock_data)
@@ -126,6 +126,7 @@ def print_detail_v2(log, cash, stock_holdings, stock_data):
                 "BankDeposit": bank_deposit
             }, ignore_index=True)
     # Log final cash and holdings to ensure we do not hold any stocks
+    print(f"Seed: {seed}")
     print(f"Final Cash: {cash:.2f} => return: {(cash-constants.INITIAL_CASH)/constants.INITIAL_CASH:.2f}")
     # import tools.display_dataframe_to_user(name="Investment Log", dataframe=df)
 
@@ -743,7 +744,7 @@ class PortfolioOptimizationProblem(Problem):
 def my_solve():
     problem = PortfolioOptimizationProblem(stock_data, constants.BANK_INTEREST_RATE, constants.INITIAL_CASH, constants.DURATION, constants.MAX_STOCKS)
 
-    ref_dirs = get_reference_directions("energy", problem.n_obj, constants.REFERENCES_POINTS_NUM, seed=1)
+    ref_dirs = get_reference_directions("energy", problem.n_obj, constants.REFERENCES_POINTS_NUM, seed=seed)
     # how to switch betwwen NSGA3 and NSGA3-HOP? read readme, basically we will change the NSGA3 lib directly
     algorithm = NSGA3(pop_size=constants.POPULATION_SIZE, ref_dirs=ref_dirs, sampling=CustomSampling())
     # TODO when run NSGA3, UNSGA3, RNSGA3, SMSEMOA, CTAEA, we must the code around "use below is for other algorithms"--remove HOP on final front
@@ -777,7 +778,7 @@ def my_solve():
     res = minimize(problem,
                    algorithm,
                    termination=('n_gen', constants.TERMINATION_GEN_NUM),
-                   seed=10,
+                   seed=seed,
                    save_history=True,
                    verbose=True)
 
@@ -796,6 +797,8 @@ def my_solve():
     if len_front_0 <= 0:
         print("No HOP solution found.")
         return
+
+    print(f"Seed: {seed}")
     hop_solution = front_0[hop(front_0, np.arange(len_front_0))[0]] # NSGA-3-HOP use this line TODO
     print("Objectives =", ["%.13f" % v for v in hop_solution.F]) # NSGA-3-HOP use this line TODO
 
@@ -1063,8 +1066,9 @@ stock_returns = np.column_stack((
 # print("DONE - experiment 15th")
 
 #experiment 16th
-for i in range(2):
+for i in range(10):
     print(f"Starting loop i={i}...")
+    seed = i
     constants.DURATION = 12
     constants.WAVELET_LEVEL = 3
     constants.INITIAL_CASH = 1000000
