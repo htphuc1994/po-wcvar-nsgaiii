@@ -57,7 +57,7 @@ def make_box(ax, df, color, title=None):
     if title: ax.set_title(title, fontsize=14)
 
 # --- build both axes with a SHARED Y-AXIS ---
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 7), sharey=True)
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 7), sharey=True)
 
 # make_box(ax1, df1, "#FFB000", "NSGA-III")
 # make_box(ax2, df2, "#FF3030", "NSGA-III-HOP")
