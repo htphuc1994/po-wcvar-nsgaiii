@@ -63,7 +63,7 @@ def wilcoxon_paired_details(x, y, zero_method='wilcox', correction=False, mode='
     hl_median_diff = float(np.median(diffs))                 # Hodges–Lehmann (paired)
     hl_pseudomedian = hodges_lehmann_pseudomedian_paired(x, y)
     T = n*(n+1)/2.0 if n > 0 else float('nan')
-    r_rb = 1 - 2*min(W_plus, W_minus)/T if n > 0 else float('nan')
+    r_rb = (W_plus - W_minus)/T if n > 0 else float('nan')
     return {
         'n_nonzero_pairs': n,
         'W_plus': W_plus,
