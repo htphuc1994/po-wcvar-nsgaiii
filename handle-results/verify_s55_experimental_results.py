@@ -156,12 +156,12 @@ def main():
         print_table(sX, "Early-stage per-seed summary: NSGA-III-HOP")
         print_table(sY, "Early-stage per-seed summary: NSGA-III")
 
-        mw = mann_whitney_details(early_stage_nsga3hop, early_stage_nsga3, method='auto')
+        mw = mann_whitney_details(early_stage_nsga3hop, early_stage_nsga3, method='exact')
         print_table(mw, "Mann–Whitney U (HOP vs NSGA-III)")
 
         wz = wilcoxon_paired_details(np.asarray(early_stage_nsga3hop),
                                      np.asarray(early_stage_nsga3),
-                                     mode='auto')
+                                     mode='exact')
         print_table(wz, "Paired Wilcoxon signed-rank (HOP minus NSGA-III)")
     else:
         print("\n[info] Skipping early-stage tests — need 10 values each in 'early_stage_nsga3hop' and 'early_stage_nsga3'.")
