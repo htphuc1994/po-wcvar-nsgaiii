@@ -92,13 +92,15 @@ def deposit_return(monthly_rate, months):
 # Placeholders — paste numbers
 # ---------------------------
 # Early-stage per-seed means (Table 8): 10 values each
-# Example: early_stage_nsga3hop = [0.07127, 0.05410, ...]  # length 10
 early_stage_nsga3hop = [
-    # TODO: paste 10 values here (HOP)
-]
+    0.048038, 0.028980, 0.137180, 0.069191, 0.076451,
+    0.019823, 0.105793, 0.048114, 0.021255, 0.059411
+]  # NSGA-III-HOP  (10 values)
+
 early_stage_nsga3 = [
-    # TODO: paste 10 values here (vanilla NSGA-III)
-]
+    0.137768, 0.057176, 0.140612, 0.114812, 0.072992,
+    0.096459, 0.132892, 0.089479, 0.074744, 0.084473
+]  # NSGA-III  (10 values)
 
 # Monthly WCVaR table (Table 10): 11 months per algorithm
 # If your table lists values as percentages (e.g., 0.95 for 0.95%), set as_percent=True.
@@ -106,21 +108,19 @@ as_percent = True  # change to False if numbers are in decimal units (e.g., 0.00
 months = [f"M{i}" for i in range(1, 12)]
 
 monthly_wcvar = {
-    # 'HOP': [ ... 11 values ... ],
-    # 'NSGA-III': [ ... 11 values ... ],
-    # 'SMS-EMOA': [ ... 11 values ... ],
-    # 'U-NSGA-III': [ ... 11 values ... ],
-    # 'C-TAEA': [ ... 11 values ... ],
+    'NSGA-III-HOP': [0.95, 1.29, 2.12, 3.68, 43.18, 7.36, 3.48, 8.29, 59.99, 4.02, 18.33],
+    'NSGA-III':     [8.12, 3.13, 10.21, 71.70, 21.63, 20.66, 11.39, 2.27, 1.51, 2.51, 2.61],
+    'SMS-EMOA':     [3.72, 1.06, 0.73, 12.20, 14.14, 15.03, 2.64, 3.21, 13.34, 21.81, 76.44],
+    'U-NSGA-III':   [28.09, 10.66, 5.04, 22.55, 26.54, 26.98, 13.61, 64.66, 17.25, 12.51, 11.08],
+    'C-TAEA':       [18.00, 3.77, 10.21, 20.56, 50.38, 50.31, 47.82, 50.05, 51.15, 54.24, 39.58],
 }
 
-# Optional: epsilon sweep (Table 11) — horizon-averaged WCVaR and runtime
-# Example structure:
-# eps_sweep = [
-#     {'epsilon': 0.20, 'wcvar_avg': 0.098, 'runtime_min': 2.14},
-#     {'epsilon': 0.10, 'wcvar_avg': 0.108, 'runtime_min': 2.36},
-#     {'epsilon': 0.05, 'wcvar_avg': 0.181, 'runtime_min': 3.15},
-# ]
-eps_sweep = []
+# Table 11: epsilon sweep (horizon-average WCVaR and runtime)
+eps_sweep = [
+    {'epsilon': 0.20, 'wcvar_avg': 0.098, 'runtime_min': 4.50},
+    {'epsilon': 0.10, 'wcvar_avg': 0.108, 'runtime_min': 7.98},
+    {'epsilon': 0.05, 'wcvar_avg': 0.181, 'runtime_min': 8.33},
+]
 
 # ---------------------------
 # Reporting helpers
