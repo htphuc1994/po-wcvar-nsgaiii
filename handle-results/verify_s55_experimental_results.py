@@ -1,17 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-verify_s55_experimental_results.py — Helpers to re-check calculations in §5.5 (Experimental results)
+verify_s55_experimental_results.py — Re-check calculations in §5.5 (Experimental results)
 
-How to use
-----------
-1) Paste the values from your paper into the placeholders below:
-   - early_stage_nsga3hop and early_stage_nsga3  (10 values each; Table 8)
-   - monthly_wcvar (per algorithm, 11 months each; Table 10). If values are in %, set as_percent=True.
-   - eps_sweep (optional): WCVaR by epsilon, averaged across horizons (Table 11)
-2) Run:  python verify_s55_experimental_results.py
-3) Compare the printed outputs to the paper.
-
+Run:  python verify_s55_experimental_results.py
 Requires: numpy, scipy, pandas
 """
 import math
@@ -32,13 +24,10 @@ def mann_whitney_details(x, y, alternative='two-sided', method='auto'):
     res_two = stats.mannwhitneyu(x, y, alternative='two-sided', method=method)
     res_less = stats.mannwhitneyu(x, y, alternative='less', method=method)
     res_greater = stats.mannwhitneyu(x, y, alternative='greater', method=method)
-    # U for x vs y returned by SciPy is U_x
     Ux = float(res_two.statistic)
     Umin = min(Ux, nx*ny - Ux)
-    # Common-language effect size P(X<Y) (ties count as 0.5 if present)
-    cl = Ux / (nx * ny)
-    # Rank-biserial correlation (signed toward "x < y" direction)
-    r_rb = 1 - (2 * Umin) / (nx * ny)
+    cl = Ux / (nx * ny)                          # common-language P[X<Y]
+    r_rb = 1 - (2 * Umin) / (nx * ny)            # rank-biserial
     return {
         'nx': nx, 'ny': ny,
         'U_x': Ux, 'U_min': Umin,
@@ -52,24 +41,19 @@ def mann_whitney_details(x, y, alternative='two-sided', method='auto'):
 def wilcoxon_paired_details(x, y, zero_method='wilcox', correction=False, mode='auto'):
     x = np.asarray(x, dtype=float); y = np.asarray(y, dtype=float)
     diffs = x - y
-    # Remove zero diffs for ranking
     mask = diffs != 0
     diffs_nz = diffs[mask]
     n = len(diffs_nz)
-    # Ranks of absolute diffs
     ranks = stats.rankdata(np.abs(diffs_nz), method='average')
     W_plus = float(ranks[diffs_nz > 0].sum())
     W_minus = float(ranks[diffs_nz < 0].sum())
-    # SciPy Wilcoxon (statistic is W_plus)
     res_two = stats.wilcoxon(x, y, zero_method=zero_method, correction=correction,
                              alternative='two-sided', mode=mode)
     res_less = stats.wilcoxon(x, y, zero_method=zero_method, correction=correction,
                               alternative='less', mode=mode)
     res_greater = stats.wilcoxon(x, y, zero_method=zero_method, correction=correction,
                                  alternative='greater', mode=mode)
-    # Hodges–Lehmann for paired: median of paired differences
-    hl = float(np.median(diffs))
-    # Rank-biserial for paired = 1 - 2*min(W+, W-)/T, where T = n(n+1)/2
+    hl = float(np.median(diffs))                 # Hodges–Lehmann (paired)
     T = n*(n+1)/2.0 if n > 0 else float('nan')
     r_rb = 1 - 2*min(W_plus, W_minus)/T if n > 0 else float('nan')
     return {
@@ -89,24 +73,22 @@ def deposit_return(monthly_rate, months):
     return (1.0 + float(monthly_rate))**int(months) - 1.0
 
 # ---------------------------
-# Placeholders — paste numbers
+# Data (filled from §5.5)
 # ---------------------------
-# Early-stage per-seed means (Table 8): 10 values each
+# Table 8: per-seed early-stage mean WCVaR (months 1–6)
 early_stage_nsga3hop = [
     0.048038, 0.028980, 0.137180, 0.069191, 0.076451,
     0.019823, 0.105793, 0.048114, 0.021255, 0.059411
-]  # NSGA-III-HOP  (10 values)
+]  # NSGA-III-HOP (10)
 
 early_stage_nsga3 = [
     0.137768, 0.057176, 0.140612, 0.114812, 0.072992,
     0.096459, 0.132892, 0.089479, 0.074744, 0.084473
-]  # NSGA-III  (10 values)
+]  # NSGA-III (10)
 
-# Monthly WCVaR table (Table 10): 11 months per algorithm
-# If your table lists values as percentages (e.g., 0.95 for 0.95%), set as_percent=True.
-as_percent = True  # change to False if numbers are in decimal units (e.g., 0.0095)
+# Table 10: Monthly WCVaR (%) for months M1–M11 (as percentages)
+as_percent = True
 months = [f"M{i}" for i in range(1, 12)]
-
 monthly_wcvar = {
     'NSGA-III-HOP': [0.95, 1.29, 2.12, 3.68, 43.18, 7.36, 3.48, 8.29, 59.99, 4.02, 18.33],
     'NSGA-III':     [8.12, 3.13, 10.21, 71.70, 21.63, 20.66, 11.39, 2.27, 1.51, 2.51, 2.61],
@@ -123,7 +105,7 @@ eps_sweep = [
 ]
 
 # ---------------------------
-# Reporting helpers
+# Reporting helpers (patched)
 # ---------------------------
 def summarize_series(name, arr):
     arr = np.asarray(arr, dtype=float)
@@ -142,9 +124,23 @@ def summarize_series(name, arr):
     return out
 
 def print_table(d, title=None):
+    """Robust print: handles dicts of scalars, dicts of lists, DataFrames, Series."""
     if title:
         print(f"\n=== {title} ===")
-    df = pd.DataFrame(d).T
+    if isinstance(d, pd.DataFrame):
+        df = d
+    elif isinstance(d, pd.Series):
+        df = d.to_frame(name='')
+    elif isinstance(d, dict):
+        # If it's a dict of scalars, show keys as rows
+        # If it's a dict of lists/arrays, user should pass it directly to DataFrame elsewhere
+        try:
+            df = pd.Series(d).to_frame(name='')
+        except Exception:
+            df = pd.DataFrame([d]).T
+    else:
+        # Last resort
+        df = pd.DataFrame(d)
     with pd.option_context('display.float_format', '{:0.8f}'.format):
         print(df)
 
@@ -168,24 +164,20 @@ def main():
                                      mode='auto')
         print_table(wz, "Paired Wilcoxon signed-rank (HOP minus NSGA-III)")
     else:
-        print("\n[info] Skipping early-stage tests — paste 10 values into 'early_stage_nsga3hop' and 'early_stage_nsga3'.")
+        print("\n[info] Skipping early-stage tests — need 10 values each in 'early_stage_nsga3hop' and 'early_stage_nsga3'.")
 
     # 2) Monthly WCVaR (Table 10): means and per-month winners
     if monthly_wcvar:
         df = pd.DataFrame(monthly_wcvar, index=months)
-        if as_percent:
-            # If your inputs are percentages (e.g., 0.95 = 0.95%), we keep the unit unchanged.
-            pass
-        col_means = df.mean(axis=0)
         print("\n=== Monthly WCVaR Table (as provided) ===")
         with pd.option_context('display.float_format', '{:0.6f}'.format):
             print(df)
 
         print("\nColumn means (same units as input):")
+        col_means = df.mean(axis=0)
         for algo, m in col_means.items():
             print(f"  {algo}: {m:0.6f}")
 
-        # Per-month minima (winner)
         winners = df.idxmin(axis=1)
         print("\nPer-month leaders (lower WCVaR is better):")
         for month, algo in winners.items():
@@ -205,13 +197,8 @@ def main():
         print("\n=== Tail-probability sweep (as provided) ===")
         with pd.option_context('display.float_format', '{:0.6f}'.format):
             print(df_eps)
-        # Simple monotonicity checks
-        if df_eps['wcvar_avg'].is_monotonic_decreasing:
-            print("WCVaR average decreases as epsilon increases (less conservative tail).")
-        elif df_eps['wcvar_avg'].is_monotonic_increasing:
+        if df_eps['wcvar_avg'].is_monotonic_increasing:
             print("WCVaR average increases as epsilon decreases (more conservative tail).")
-        else:
-            print("WCVaR average is not monotonic in epsilon.")
         if df_eps['runtime_min'].is_monotonic_increasing:
             print("Runtime increases as epsilon tightens (expected).")
     else:
