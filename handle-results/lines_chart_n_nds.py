@@ -33,7 +33,7 @@ experiment_6_eps = [None, 0.6590569256, 0.2148645665, 0.3137574132, 0.2178343222
 experiment_6_indicators = ['-', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'nadir', 'f', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'nadir', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'nadir', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'nadir', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'nadir', 'nadir', 'nadir', 'ideal', 'ideal', 'nadir', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'nadir', 'nadir', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'nadir', 'ideal', 'ideal', 'nadir', 'nadir', 'nadir', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'nadir', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'nadir', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'nadir', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal', 'ideal']
 
 def plot_multiple_lines(x, y_arrays):
-    plt.figure(figsize=(20, 8))
+    plt.figure(figsize=(12, 12))
 
     # Updated line styles list to include 6 styles
     # line_styles = ['-', '--', '-.', ':', 'dashed', 'dashed']
@@ -87,24 +87,26 @@ def plot_multiple_lines(x, y_arrays):
 
     # Add labels and title
     plt.xlabel('Generation', fontsize=24)
-    plt.ylabel('Non-dominated Solution Count \n (Logarithmic Scale)', fontsize=24)
+    plt.ylabel('Non-dominated Solution Count', fontsize=24)
+    # plt.ylabel('Non-dominated Solution Count \n (Logarithmic Scale)', fontsize=24)
     # plt.title('The relationship between non-dominated solution count and cardinality constraints', fontsize=16)
     bold_font = FontProperties(size=24)
     plt.legend(
         prop=bold_font,
-        loc='center left',
-        bbox_to_anchor=(1.02, 0.5),
-        borderaxespad=0,
+        # loc='center left',
+        loc='upper left',
+        # bbox_to_anchor=(1.02, 0.5),
+        # borderaxespad=0,
         frameon=False
     )
-    plt.tight_layout(rect=[0, 0, 1, 1])
+    # plt.tight_layout(rect=[0, 0, 1, 1])
     plt.grid(True)
     plt.tick_params(axis='y', labelsize=24)
     plt.tick_params(axis='x', labelsize=24)
 
     plt.subplots_adjust(left=0.1)
 
-    plt.yscale('log')
+    # plt.yscale('log')
     # Show the plot
     plt.show()
 
