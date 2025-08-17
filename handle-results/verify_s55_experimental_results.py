@@ -38,6 +38,13 @@ def mann_whitney_details(x, y, alternative='two-sided', method='auto'):
         'rank_biserial_r_rb': r_rb,
     }
 
+def hodges_lehmann_pseudomedian_paired(x, y):
+    """HL pseudomedian for paired data: median of Walsh averages of diffs."""
+    d = np.asarray(x, dtype=float) - np.asarray(y, dtype=float)
+    n = d.size
+    walsh = [(d[i] + d[j]) / 2.0 for i in range(n) for j in range(i, n)]
+    return float(np.median(walsh))
+
 def wilcoxon_paired_details(x, y, zero_method='wilcox', correction=False, mode='auto'):
     x = np.asarray(x, dtype=float); y = np.asarray(y, dtype=float)
     diffs = x - y
@@ -53,7 +60,8 @@ def wilcoxon_paired_details(x, y, zero_method='wilcox', correction=False, mode='
                               alternative='less', mode=mode)
     res_greater = stats.wilcoxon(x, y, zero_method=zero_method, correction=correction,
                                  alternative='greater', mode=mode)
-    hl = float(np.median(diffs))                 # Hodges–Lehmann (paired)
+    hl_median_diff = float(np.median(diffs))                 # Hodges–Lehmann (paired)
+    hl_pseudomedian = hodges_lehmann_pseudomedian_paired(x, y)
     T = n*(n+1)/2.0 if n > 0 else float('nan')
     r_rb = 1 - 2*min(W_plus, W_minus)/T if n > 0 else float('nan')
     return {
@@ -64,7 +72,8 @@ def wilcoxon_paired_details(x, y, zero_method='wilcox', correction=False, mode='
         'p_two_sided': float(res_two.pvalue),
         'p_one_sided_x_less_y': float(res_less.pvalue),
         'p_one_sided_x_greater_y': float(res_greater.pvalue),
-        'HL_median_diff_x_minus_y': hl,
+        'HL_pseudomedian_Walsh': hl_pseudomedian,       # <-- matches paper (≈ -0.03691)
+        'median_of_differences': hl_median_diff,        # <-- your current -0.0347805
         'rank_biserial_r_rb': r_rb,
     }
 
