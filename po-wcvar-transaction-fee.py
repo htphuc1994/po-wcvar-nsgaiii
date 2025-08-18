@@ -755,15 +755,15 @@ def my_solve():
     #     sampling=CustomSampling(),
     #     repair=CustomRepair()
     # )
-    # algorithm = UNSGA3(
-    #     ref_dirs=ref_dirs,
-    #     pop_size=constants.POPULATION_SIZE
-    # )
-    algorithm = CTAEA(
-        ref_dirs=ref_dirs,                    # This determines population size internally
-        sampling=CustomSampling(),
-        repair=CustomRepair()
+    algorithm = UNSGA3(
+        ref_dirs=ref_dirs,
+        pop_size=constants.POPULATION_SIZE
     )
+    # algorithm = CTAEA(
+    #     ref_dirs=ref_dirs,                    # This determines population size internally
+    #     sampling=CustomSampling(),
+    #     repair=CustomRepair()
+    # )
     # algorithm = SMSEMOA(
     #     pop_size=constants.POPULATION_SIZE,
     #     sampling=CustomSampling(),
@@ -1085,7 +1085,6 @@ stock_returns = np.column_stack((
 for i in range(10):
     print(f"Starting loop i={i}...")
     seed = i + seed_padding
-    seed=106
     constants.DURATION = 12
     constants.WAVELET_LEVEL = 3
     constants.INITIAL_CASH = 1000000
