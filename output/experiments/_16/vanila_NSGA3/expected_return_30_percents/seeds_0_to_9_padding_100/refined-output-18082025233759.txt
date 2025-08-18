@@ -1,0 +1,491 @@
+Objectives = ['-0.2993165276679', '0.0797644577886', '0.0140353837130', '0.0127543650265', '0.0150936107303', '0.0776634738361', '0.1047649194874', '0.1618364199647', '0.0171920342492', '0.0328452895912', '0.2074061491164', '0.2121048326652']
+The time of execution of above program is : 167612.6730442047 ms
+==========================================================================================
+n_gen  |  n_eval  | n_nds  |     cv_min    |     cv_avg    |      eps      |   indicator  
+==========================================================================================
+     1 |      179 |     17 |  0.000000E+00 |  0.000000E+00 |             - |             -
+     2 |      358 |     17 |  0.000000E+00 |  0.000000E+00 |  0.4914123150 |         ideal
+     3 |      537 |     10 |  0.000000E+00 |  0.000000E+00 |  0.6988084743 |         ideal
+     4 |      716 |     10 |  0.000000E+00 |  0.000000E+00 |  0.2306509549 |         ideal
+     5 |      895 |     13 |  0.000000E+00 |  0.000000E+00 |  0.2523270326 |         ideal
+     6 |     1074 |     14 |  0.000000E+00 |  0.000000E+00 |  0.2693207369 |         ideal
+     7 |     1253 |     11 |  0.000000E+00 |  0.000000E+00 |  0.3907246770 |         ideal
+     8 |     1432 |     13 |  0.000000E+00 |  0.000000E+00 |  0.1835057920 |         ideal
+     9 |     1611 |     11 |  0.000000E+00 |  0.000000E+00 |  0.0746129297 |         ideal
+    10 |     1790 |     12 |  0.000000E+00 |  0.000000E+00 |  0.0767390209 |         ideal
+    11 |     1969 |     13 |  0.000000E+00 |  0.000000E+00 |  0.2203621304 |         ideal
+    12 |     2148 |     10 |  0.000000E+00 |  0.000000E+00 |  0.2279607762 |         ideal
+    13 |     2327 |     10 |  0.000000E+00 |  0.000000E+00 |  0.2321484608 |         ideal
+    14 |     2506 |      7 |  0.000000E+00 |  0.000000E+00 |  0.9472460028 |         ideal
+    15 |     2685 |      7 |  0.000000E+00 |  0.000000E+00 |  0.5091686801 |         ideal
+    16 |     2864 |      2 |  0.000000E+00 |  0.000000E+00 |  9.9503563215 |         ideal
+    17 |     3043 |      1 |  0.000000E+00 |  0.000000E+00 |  0.0621102232 |         ideal
+    18 |     3222 |      3 |  0.000000E+00 |  0.000000E+00 |  1.0000000000 |         ideal
+    19 |     3401 |      4 |  0.000000E+00 |  0.000000E+00 |  0.7570155701 |         ideal
+    20 |     3580 |      6 |  0.000000E+00 |  0.000000E+00 |  0.7746143172 |         ideal
+    21 |     3759 |      8 |  0.000000E+00 |  0.000000E+00 |  0.2769773609 |         ideal
+    22 |     3938 |     10 |  0.000000E+00 |  0.000000E+00 |  0.1613682146 |         ideal
+    23 |     4117 |     10 |  0.000000E+00 |  0.000000E+00 |  0.4277692929 |         ideal
+    24 |     4296 |     16 |  0.000000E+00 |  0.000000E+00 |  0.3171738908 |         ideal
+    25 |     4475 |     14 |  0.000000E+00 |  0.000000E+00 |  0.1459668757 |         ideal
+    26 |     4654 |      9 |  0.000000E+00 |  0.000000E+00 |  0.2431905465 |         ideal
+    27 |     4833 |     13 |  0.000000E+00 |  0.000000E+00 |  0.1793411966 |         ideal
+    28 |     5012 |     12 |  0.000000E+00 |  0.000000E+00 |  0.3033018782 |         ideal
+    29 |     5191 |     17 |  0.000000E+00 |  0.000000E+00 |  0.2887072263 |         ideal
+    30 |     5370 |     18 |  0.000000E+00 |  0.000000E+00 |  0.1660478308 |         ideal
+    31 |     5549 |     18 |  0.000000E+00 |  0.000000E+00 |  0.0315789793 |         ideal
+    32 |     5728 |     19 |  0.000000E+00 |  0.000000E+00 |  0.0367006239 |         ideal
+    33 |     5907 |     23 |  0.000000E+00 |  0.000000E+00 |  0.0396815270 |         ideal
+    34 |     6086 |     24 |  0.000000E+00 |  0.000000E+00 |  0.0660801473 |         ideal
+    35 |     6265 |     27 |  0.000000E+00 |  0.000000E+00 |  0.1885188574 |         ideal
+    36 |     6444 |     30 |  0.000000E+00 |  0.000000E+00 |  0.0745916975 |         ideal
+    37 |     6623 |     33 |  0.000000E+00 |  0.000000E+00 |  0.1221481496 |         ideal
+    38 |     6802 |     28 |  0.000000E+00 |  0.000000E+00 |  0.1228115121 |         ideal
+    39 |     6981 |     25 |  0.000000E+00 |  0.000000E+00 |  0.0328939198 |         ideal
+    40 |     7160 |     31 |  0.000000E+00 |  0.000000E+00 |  0.2099725569 |         ideal
+    41 |     7339 |     33 |  0.000000E+00 |  0.000000E+00 |  0.0670687992 |         ideal
+    42 |     7518 |     31 |  0.000000E+00 |  0.000000E+00 |  0.0877364101 |         ideal
+    43 |     7697 |     29 |  0.000000E+00 |  0.000000E+00 |  0.1855603534 |         nadir
+    44 |     7876 |     27 |  0.000000E+00 |  0.000000E+00 |  0.0961744073 |         ideal
+    45 |     8055 |     26 |  0.000000E+00 |  0.000000E+00 |  0.0910951432 |         ideal
+    46 |     8234 |     26 |  0.000000E+00 |  0.000000E+00 |  0.0614768189 |         ideal
+    47 |     8413 |     41 |  0.000000E+00 |  0.000000E+00 |  0.0593477844 |         ideal
+    48 |     8592 |     38 |  0.000000E+00 |  0.000000E+00 |  0.0590267568 |         ideal
+    49 |     8771 |     38 |  0.000000E+00 |  0.000000E+00 |  0.0305659610 |         ideal
+    50 |     8950 |     40 |  0.000000E+00 |  0.000000E+00 |  0.0699087593 |         ideal
+    51 |     9129 |     39 |  0.000000E+00 |  0.000000E+00 |  0.0545736751 |         ideal
+    52 |     9308 |     42 |  0.000000E+00 |  0.000000E+00 |  0.0281878372 |         ideal
+    53 |     9487 |     45 |  0.000000E+00 |  0.000000E+00 |  0.2709149803 |         nadir
+    54 |     9666 |     47 |  0.000000E+00 |  0.000000E+00 |  0.0506332350 |         ideal
+    55 |     9845 |     42 |  0.000000E+00 |  0.000000E+00 |  0.0533336923 |         ideal
+    56 |    10024 |     40 |  0.000000E+00 |  0.000000E+00 |  0.0633993219 |         ideal
+    57 |    10203 |     38 |  0.000000E+00 |  0.000000E+00 |  0.0138721436 |         ideal
+    58 |    10382 |     42 |  0.000000E+00 |  0.000000E+00 |  0.0245396380 |         ideal
+    59 |    10561 |     40 |  0.000000E+00 |  0.000000E+00 |  0.0303932392 |         ideal
+    60 |    10740 |     38 |  0.000000E+00 |  0.000000E+00 |  0.0330166761 |         ideal
+    61 |    10919 |     44 |  0.000000E+00 |  0.000000E+00 |  0.0417365734 |         ideal
+    62 |    11098 |     41 |  0.000000E+00 |  0.000000E+00 |  0.0123423585 |         ideal
+    63 |    11277 |     34 |  0.000000E+00 |  0.000000E+00 |  0.0452389620 |         ideal
+    64 |    11456 |     34 |  0.000000E+00 |  0.000000E+00 |  0.0459019935 |         ideal
+    65 |    11635 |     49 |  0.000000E+00 |  0.000000E+00 |  0.0415133100 |         ideal
+    66 |    11814 |     53 |  0.000000E+00 |  0.000000E+00 |  0.0044839259 |         ideal
+    67 |    11993 |     51 |  0.000000E+00 |  0.000000E+00 |  0.0101556123 |         ideal
+    68 |    12172 |     57 |  0.000000E+00 |  0.000000E+00 |  0.0961138799 |         ideal
+    69 |    12351 |     60 |  0.000000E+00 |  0.000000E+00 |  0.1063340589 |         ideal
+    70 |    12530 |     49 |  0.000000E+00 |  0.000000E+00 |  0.0510359392 |         ideal
+    71 |    12709 |     52 |  0.000000E+00 |  0.000000E+00 |  0.0653409411 |         ideal
+    72 |    12888 |     54 |  0.000000E+00 |  0.000000E+00 |  0.0235050945 |         ideal
+    73 |    13067 |     56 |  0.000000E+00 |  0.000000E+00 |  0.0904387087 |         ideal
+    74 |    13246 |     53 |  0.000000E+00 |  0.000000E+00 |  0.0994311318 |         ideal
+    75 |    13425 |     62 |  0.000000E+00 |  0.000000E+00 |  0.0179640597 |         ideal
+    76 |    13604 |     66 |  0.000000E+00 |  0.000000E+00 |  0.0391863530 |         ideal
+    77 |    13783 |     66 |  0.000000E+00 |  0.000000E+00 |  0.0377626287 |         ideal
+    78 |    13962 |     64 |  0.000000E+00 |  0.000000E+00 |  0.0257889451 |         ideal
+    79 |    14141 |     72 |  0.000000E+00 |  0.000000E+00 |  0.0254862980 |         ideal
+    80 |    14320 |     62 |  0.000000E+00 |  0.000000E+00 |  0.0127606506 |         ideal
+    81 |    14499 |     65 |  0.000000E+00 |  0.000000E+00 |  0.0127721933 |         ideal
+    82 |    14678 |     61 |  0.000000E+00 |  0.000000E+00 |  0.0091001017 |         ideal
+    83 |    14857 |     56 |  0.000000E+00 |  0.000000E+00 |  0.0116171340 |         ideal
+    84 |    15036 |     67 |  0.000000E+00 |  0.000000E+00 |  0.0118285840 |         ideal
+    85 |    15215 |     67 |  0.000000E+00 |  0.000000E+00 |  0.0280483387 |         ideal
+    86 |    15394 |     66 |  0.000000E+00 |  0.000000E+00 |  0.0141361429 |         ideal
+    87 |    15573 |     67 |  0.000000E+00 |  0.000000E+00 |  0.0098145066 |         ideal
+    88 |    15752 |     75 |  0.000000E+00 |  0.000000E+00 |  0.0097191183 |         ideal
+    89 |    15931 |     70 |  0.000000E+00 |  0.000000E+00 |  0.0747144208 |         ideal
+    90 |    16110 |     63 |  0.000000E+00 |  0.000000E+00 |  0.7038071857 |         nadir
+    91 |    16289 |     58 |  0.000000E+00 |  0.000000E+00 |  0.0354048829 |         ideal
+    92 |    16468 |     66 |  0.000000E+00 |  0.000000E+00 |  0.0406859981 |         ideal
+    93 |    16647 |     64 |  0.000000E+00 |  0.000000E+00 |  0.0186911038 |         ideal
+    94 |    16826 |     69 |  0.000000E+00 |  0.000000E+00 |  0.0253934025 |         ideal
+    95 |    17005 |     70 |  0.000000E+00 |  0.000000E+00 |  0.0127876772 |         ideal
+    96 |    17184 |     78 |  0.000000E+00 |  0.000000E+00 |  0.0229788545 |         ideal
+    97 |    17363 |     69 |  0.000000E+00 |  0.000000E+00 |  0.0235193011 |         ideal
+    98 |    17542 |     70 |  0.000000E+00 |  0.000000E+00 |  0.0240011301 |         ideal
+    99 |    17721 |     82 |  0.000000E+00 |  0.000000E+00 |  0.0357693484 |         ideal
+   100 |    17900 |     47 |  0.000000E+00 |  0.000000E+00 |  0.0522322662 |         ideal
+   101 |    18079 |     50 |  0.000000E+00 |  0.000000E+00 |  0.0565599187 |         ideal
+   102 |    18258 |     47 |  0.000000E+00 |  0.000000E+00 |  0.0306812323 |         ideal
+   103 |    18437 |     62 |  0.000000E+00 |  0.000000E+00 |  0.0518070706 |         ideal
+   104 |    18616 |     66 |  0.000000E+00 |  0.000000E+00 |  0.0396030838 |         ideal
+   105 |    18795 |     67 |  0.000000E+00 |  0.000000E+00 |  0.0053470149 |         ideal
+   106 |    18974 |     77 |  0.000000E+00 |  0.000000E+00 |  0.0162237314 |         ideal
+   107 |    19153 |     71 |  0.000000E+00 |  0.000000E+00 |  0.0740673968 |         ideal
+   108 |    19332 |     72 |  0.000000E+00 |  0.000000E+00 |  0.0300596883 |         ideal
+   109 |    19511 |     71 |  0.000000E+00 |  0.000000E+00 |  0.0630813648 |         ideal
+   110 |    19690 |     74 |  0.000000E+00 |  0.000000E+00 |  0.0142597448 |         ideal
+   111 |    19869 |     75 |  0.000000E+00 |  0.000000E+00 |  0.0211162386 |         ideal
+   112 |    20048 |     69 |  0.000000E+00 |  0.000000E+00 |  0.0215717529 |         ideal
+   113 |    20227 |     67 |  0.000000E+00 |  0.000000E+00 |  0.0209901503 |         ideal
+   114 |    20406 |     68 |  0.000000E+00 |  0.000000E+00 |  0.0331338605 |         ideal
+   115 |    20585 |     70 |  0.000000E+00 |  0.000000E+00 |  0.0228086301 |         ideal
+   116 |    20764 |     69 |  0.000000E+00 |  0.000000E+00 |  0.0205966523 |         ideal
+   117 |    20943 |     85 |  0.000000E+00 |  0.000000E+00 |  0.0161430478 |         ideal
+   118 |    21122 |     79 |  0.000000E+00 |  0.000000E+00 |  0.0290933095 |         ideal
+   119 |    21301 |     81 |  0.000000E+00 |  0.000000E+00 |  0.0252805140 |         ideal
+   120 |    21480 |     68 |  0.000000E+00 |  0.000000E+00 |  0.0274088520 |         ideal
+   121 |    21659 |     66 |  0.000000E+00 |  0.000000E+00 |  0.0199565912 |         ideal
+   122 |    21838 |     69 |  0.000000E+00 |  0.000000E+00 |  0.0398969794 |         ideal
+   123 |    22017 |     78 |  0.000000E+00 |  0.000000E+00 |  0.0094435237 |         ideal
+   124 |    22196 |     75 |  0.000000E+00 |  0.000000E+00 |  0.0255545339 |         ideal
+   125 |    22375 |     71 |  0.000000E+00 |  0.000000E+00 |  0.0395272988 |         ideal
+   126 |    22554 |     72 |  0.000000E+00 |  0.000000E+00 |  0.0179437981 |         ideal
+   127 |    22733 |     77 |  0.000000E+00 |  0.000000E+00 |  0.0198136912 |         ideal
+   128 |    22912 |     70 |  0.000000E+00 |  0.000000E+00 |  0.0214490498 |         ideal
+   129 |    23091 |     68 |  0.000000E+00 |  0.000000E+00 |  0.0063433620 |         ideal
+   130 |    23270 |     74 |  0.000000E+00 |  0.000000E+00 |  0.0345056707 |         ideal
+   131 |    23449 |     84 |  0.000000E+00 |  0.000000E+00 |  0.0190572870 |         ideal
+   132 |    23628 |     78 |  0.000000E+00 |  0.000000E+00 |  0.0071348224 |         ideal
+   133 |    23807 |     85 |  0.000000E+00 |  0.000000E+00 |  0.0284327675 |         ideal
+   134 |    23986 |     84 |  0.000000E+00 |  0.000000E+00 |  0.0676446680 |         ideal
+   135 |    24165 |     85 |  0.000000E+00 |  0.000000E+00 |  0.0876197408 |         ideal
+   136 |    24344 |     75 |  0.000000E+00 |  0.000000E+00 |  0.0261350939 |         ideal
+   137 |    24523 |     79 |  0.000000E+00 |  0.000000E+00 |  0.0092138820 |         ideal
+   138 |    24702 |     84 |  0.000000E+00 |  0.000000E+00 |  0.0358751654 |         ideal
+   139 |    24881 |     86 |  0.000000E+00 |  0.000000E+00 |  0.0032979887 |         ideal
+   140 |    25060 |     84 |  0.000000E+00 |  0.000000E+00 |  0.0335305622 |         ideal
+   141 |    25239 |     86 |  0.000000E+00 |  0.000000E+00 |  0.0146445579 |         ideal
+   142 |    25418 |     91 |  0.000000E+00 |  0.000000E+00 |  0.0083112138 |         ideal
+   143 |    25597 |     90 |  0.000000E+00 |  0.000000E+00 |  0.0109116716 |         ideal
+   144 |    25776 |     84 |  0.000000E+00 |  0.000000E+00 |  0.0090083178 |         ideal
+   145 |    25955 |     84 |  0.000000E+00 |  0.000000E+00 |  0.0169444270 |         ideal
+   146 |    26134 |     93 |  0.000000E+00 |  0.000000E+00 |  0.0133601403 |         ideal
+   147 |    26313 |     77 |  0.000000E+00 |  0.000000E+00 |  0.0420592313 |         ideal
+   148 |    26492 |     82 |  0.000000E+00 |  0.000000E+00 |  0.0363419240 |         ideal
+   149 |    26671 |     83 |  0.000000E+00 |  0.000000E+00 |  0.0226492149 |         ideal
+   150 |    26850 |     94 |  0.000000E+00 |  0.000000E+00 |  0.0167124619 |         ideal
+   151 |    27029 |     98 |  0.000000E+00 |  0.000000E+00 |  0.0231569104 |         nadir
+   152 |    27208 |     95 |  0.000000E+00 |  0.000000E+00 |  0.0830861001 |         nadir
+   153 |    27387 |     89 |  0.000000E+00 |  0.000000E+00 |  0.0247341243 |         ideal
+   154 |    27566 |     91 |  0.000000E+00 |  0.000000E+00 |  0.0315503471 |         ideal
+   155 |    27745 |     92 |  0.000000E+00 |  0.000000E+00 |  0.0242631339 |         ideal
+   156 |    27924 |     95 |  0.000000E+00 |  0.000000E+00 |  0.0069329031 |         ideal
+   157 |    28103 |     91 |  0.000000E+00 |  0.000000E+00 |  0.3896621709 |         nadir
+   158 |    28282 |     99 |  0.000000E+00 |  0.000000E+00 |  0.0094901319 |         ideal
+   159 |    28461 |     96 |  0.000000E+00 |  0.000000E+00 |  0.0038749736 |         ideal
+   160 |    28640 |     90 |  0.000000E+00 |  0.000000E+00 |  0.0167424771 |         ideal
+   161 |    28819 |     84 |  0.000000E+00 |  0.000000E+00 |  0.0083974394 |         ideal
+   162 |    28998 |     86 |  0.000000E+00 |  0.000000E+00 |  0.0108341295 |         ideal
+   163 |    29177 |     83 |  0.000000E+00 |  0.000000E+00 |  0.0158063499 |         ideal
+   164 |    29356 |     89 |  0.000000E+00 |  0.000000E+00 |  0.0157327849 |         ideal
+   165 |    29535 |     91 |  0.000000E+00 |  0.000000E+00 |  0.0098628722 |         ideal
+   166 |    29714 |     95 |  0.000000E+00 |  0.000000E+00 |  0.0065858744 |         ideal
+   167 |    29893 |     93 |  0.000000E+00 |  0.000000E+00 |  0.3644315713 |         nadir
+   168 |    30072 |     95 |  0.000000E+00 |  0.000000E+00 |  0.0084685535 |         ideal
+   169 |    30251 |     87 |  0.000000E+00 |  0.000000E+00 |  0.0037258309 |         ideal
+   170 |    30430 |     94 |  0.000000E+00 |  0.000000E+00 |  0.0061709087 |         ideal
+   171 |    30609 |     92 |  0.000000E+00 |  0.000000E+00 |  0.0776607325 |         ideal
+   172 |    30788 |     98 |  0.000000E+00 |  0.000000E+00 |  0.0778897601 |         ideal
+   173 |    30967 |     85 |  0.000000E+00 |  0.000000E+00 |  0.0081626423 |         ideal
+   174 |    31146 |     93 |  0.000000E+00 |  0.000000E+00 |  0.0713489980 |         nadir
+   175 |    31325 |    103 |  0.000000E+00 |  0.000000E+00 |  0.6742124395 |         nadir
+   176 |    31504 |    108 |  0.000000E+00 |  0.000000E+00 |  0.0096869867 |         ideal
+   177 |    31683 |    106 |  0.000000E+00 |  0.000000E+00 |  0.0030629762 |         ideal
+   178 |    31862 |    101 |  0.000000E+00 |  0.000000E+00 |  0.2327200662 |         nadir
+   179 |    32041 |    109 |  0.000000E+00 |  0.000000E+00 |  0.0076902224 |         ideal
+   180 |    32220 |    109 |  0.000000E+00 |  0.000000E+00 |  0.0046220845 |         ideal
+   181 |    32399 |     99 |  0.000000E+00 |  0.000000E+00 |  0.0135635027 |         ideal
+   182 |    32578 |    102 |  0.000000E+00 |  0.000000E+00 |  0.0052081740 |         ideal
+   183 |    32757 |    105 |  0.000000E+00 |  0.000000E+00 |  0.0035453600 |         ideal
+   184 |    32936 |    114 |  0.000000E+00 |  0.000000E+00 |  0.0049811833 |         ideal
+   185 |    33115 |     44 |  0.000000E+00 |  0.000000E+00 |  0.0133164468 |         ideal
+   186 |    33294 |     39 |  0.000000E+00 |  0.000000E+00 |  0.0132956221 |         ideal
+   187 |    33473 |     91 |  0.000000E+00 |  0.000000E+00 |  0.0147278760 |         ideal
+   188 |    33652 |     96 |  0.000000E+00 |  0.000000E+00 |  0.0118831620 |         ideal
+   189 |    33831 |     93 |  0.000000E+00 |  0.000000E+00 |  0.1125545681 |         nadir
+   190 |    34010 |     90 |  0.000000E+00 |  0.000000E+00 |  0.0079257349 |         ideal
+   191 |    34189 |     72 |  0.000000E+00 |  0.000000E+00 |  0.0541564769 |         ideal
+   192 |    34368 |     74 |  0.000000E+00 |  0.000000E+00 |  0.0489271129 |         ideal
+   193 |    34547 |     90 |  0.000000E+00 |  0.000000E+00 |  0.0135220172 |         ideal
+   194 |    34726 |     73 |  0.000000E+00 |  0.000000E+00 |  0.0174799572 |         ideal
+   195 |    34905 |     41 |  0.000000E+00 |  0.000000E+00 |  0.0206701672 |         ideal
+   196 |    35084 |     44 |  0.000000E+00 |  0.000000E+00 |  0.3761798504 |         nadir
+   197 |    35263 |     45 |  0.000000E+00 |  0.000000E+00 |  0.0323113043 |         ideal
+   198 |    35442 |     50 |  0.000000E+00 |  0.000000E+00 |  0.0051132249 |         ideal
+   199 |    35621 |     53 |  0.000000E+00 |  0.000000E+00 |  0.0074778708 |         ideal
+   200 |    35800 |     54 |  0.000000E+00 |  0.000000E+00 |  0.0028392469 |         ideal
+Begin print with Final Cash: 1299316.5276679289527 => return: 0.2993165276679
+Month 1:
+  Buy: Stock ABT, Amount: 1127
+  Buy: Stock ACB, Amount: 1007
+  Buy: Stock ACL, Amount: 1882
+  Buy: Stock AGF, Amount: 729
+  Buy: Stock ALT, Amount: 1501
+  Buy: Stock ANV, Amount: 709
+  Buy: Stock ASP, Amount: 1759
+  Buy: Stock B82, Amount: 704
+  Buy: Stock BBC, Amount: 1599
+  Buy: Stock BBS, Amount: 2556
+  Buy: Stock BCC, Amount: 579
+  Buy: Stock BMC, Amount: 681
+  Buy: Stock BMI, Amount: 3
+  Buy: Stock BMP, Amount: 32
+  Buy: Stock BPC, Amount: 1
+  Buy: Stock CJC, Amount: 1
+  Buy: Stock CTN, Amount: 1
+  Buy: Stock DCS, Amount: 1
+  Buy: Stock DIC, Amount: 18
+  Buy: Stock L18, Amount: 57
+  Bank Deposit: 713010.76
+Month 2:
+  Buy: Stock ALT, Amount: 1
+  Buy: Stock CID, Amount: 1
+  Buy: Stock CII, Amount: 3
+  Buy: Stock DTT, Amount: 34
+  Buy: Stock HPG, Amount: 1
+  Buy: Stock HTV, Amount: 4
+  Buy: Stock KBC, Amount: 139
+  Sell: Stock ABT, Amount: 1127.0
+  Sell: Stock ACB, Amount: 1007.0
+  Sell: Stock ACL, Amount: 1882.0
+  Sell: Stock AGF, Amount: 729.0
+  Sell: Stock ALT, Amount: 1438.0
+  Sell: Stock ANV, Amount: 709.0
+  Sell: Stock BBC, Amount: 1599.0
+  Sell: Stock BBS, Amount: 983.0
+  Sell: Stock BCC, Amount: 579.0
+  Sell: Stock BMC, Amount: 681.0
+  Sell: Stock BMI, Amount: 3.0
+  Sell: Stock BMP, Amount: 17.0
+  Sell: Stock CTN, Amount: 1.0
+  Bank Deposit: 712244.71
+Month 3:
+  Buy: Stock ABT, Amount: 192
+  Buy: Stock ACB, Amount: 45
+  Buy: Stock ACL, Amount: 134
+  Buy: Stock AGF, Amount: 47
+  Buy: Stock ALT, Amount: 157
+  Buy: Stock ANV, Amount: 144
+  Buy: Stock B82, Amount: 1
+  Buy: Stock DHA, Amount: 16
+  Buy: Stock HAS, Amount: 16
+  Buy: Stock HCC, Amount: 1
+  Buy: Stock HDC, Amount: 70
+  Sell: Stock BBS, Amount: 1573.0
+  Sell: Stock BMP, Amount: 15.0
+  Sell: Stock BPC, Amount: 1.0
+  Sell: Stock CII, Amount: 3.0
+  Sell: Stock HPG, Amount: 1.0
+  Dividends: 39.90
+  Bank Deposit: 977659.43
+Month 4:
+  Buy: Stock AGF, Amount: 437
+  Buy: Stock ALT, Amount: 72
+  Buy: Stock ASP, Amount: 9
+  Buy: Stock B82, Amount: 944
+  Buy: Stock BMC, Amount: 435
+  Buy: Stock BMI, Amount: 31
+  Buy: Stock BMP, Amount: 3
+  Buy: Stock BPC, Amount: 1
+  Sell: Stock AGF, Amount: 22.0
+  Sell: Stock ALT, Amount: 124.0
+  Sell: Stock ASP, Amount: 192.0
+  Sell: Stock B82, Amount: 1329.0
+  Sell: Stock CJC, Amount: 1.0
+  Sell: Stock DHA, Amount: 16.0
+  Sell: Stock HAS, Amount: 16.0
+  Sell: Stock HDC, Amount: 70.0
+  Sell: Stock KBC, Amount: 139.0
+  Bank Deposit: 991220.75
+Month 5:
+  Buy: Stock ABT, Amount: 546
+  Buy: Stock ACB, Amount: 37
+  Buy: Stock ACL, Amount: 41
+  Buy: Stock AGF, Amount: 288
+  Buy: Stock ALT, Amount: 20
+  Buy: Stock ANV, Amount: 20
+  Buy: Stock ASP, Amount: 3792
+  Buy: Stock B82, Amount: 2
+  Buy: Stock BMC, Amount: 46
+  Buy: Stock CAN, Amount: 785
+  Buy: Stock DCS, Amount: 33
+  Buy: Stock DHG, Amount: 1456
+  Buy: Stock DIC, Amount: 3
+  Buy: Stock HJS, Amount: 63
+  Buy: Stock ICF, Amount: 1790
+  Buy: Stock IMP, Amount: 1
+  Buy: Stock KMR, Amount: 306
+  Sell: Stock ASP, Amount: 246.0
+  Sell: Stock CID, Amount: 1.0
+  Sell: Stock DTT, Amount: 3.0
+  Sell: Stock HCC, Amount: 1.0
+  Sell: Stock HJS, Amount: 53.0
+  Sell: Stock ICF, Amount: 233.0
+  Sell: Stock L18, Amount: 57.0
+  Dividends: 407.40
+  Bank Deposit: 756350.43
+Month 6:
+  Buy: Stock ABT, Amount: 7663
+  Buy: Stock ACB, Amount: 42
+  Buy: Stock ACL, Amount: 7
+  Buy: Stock AGF, Amount: 2
+  Buy: Stock B82, Amount: 2
+  Buy: Stock BCC, Amount: 6
+  Buy: Stock CAN, Amount: 127
+  Buy: Stock HAX, Amount: 8
+  Buy: Stock HBC, Amount: 4
+  Buy: Stock HMC, Amount: 4
+  Buy: Stock IMP, Amount: 4573
+  Buy: Stock L61, Amount: 1
+  Buy: Stock LBE, Amount: 1
+  Sell: Stock ABT, Amount: 8401.0
+  Sell: Stock ACL, Amount: 4.0
+  Sell: Stock AGF, Amount: 175.0
+  Sell: Stock ASP, Amount: 1.0
+  Sell: Stock DCS, Amount: 34.0
+  Sell: Stock DHG, Amount: 1456.0
+  Sell: Stock DTT, Amount: 31.0
+  Sell: Stock HTV, Amount: 4.0
+  Sell: Stock ICF, Amount: 1557.0
+  Sell: Stock KMR, Amount: 306.0
+  Dividends: 1275.00
+  Bank Deposit: 232877.89
+Month 7:
+  Buy: Stock ABT, Amount: 11111
+  Buy: Stock ACB, Amount: 1
+  Buy: Stock B82, Amount: 1
+  Buy: Stock CMC, Amount: 1
+  Buy: Stock DXV, Amount: 1
+  Buy: Stock HJS, Amount: 7
+  Buy: Stock HSI, Amount: 20
+  Sell: Stock ALT, Amount: 189.0
+  Sell: Stock ANV, Amount: 164.0
+  Sell: Stock ASP, Amount: 1657.0
+  Sell: Stock BCC, Amount: 6.0
+  Sell: Stock BMP, Amount: 3.0
+  Sell: Stock DIC, Amount: 21.0
+  Sell: Stock HAX, Amount: 8.0
+  Sell: Stock HBC, Amount: 4.0
+  Sell: Stock IMP, Amount: 4574.0
+  Sell: Stock L61, Amount: 1.0
+  Sell: Stock LBE, Amount: 1.0
+  Dividends: 6.00
+  Bank Deposit: 319361.70
+Month 8:
+  Buy: Stock ABT, Amount: 12954
+  Buy: Stock ACB, Amount: 59
+  Buy: Stock AGF, Amount: 3
+  Buy: Stock BST, Amount: 13
+  Buy: Stock GIL, Amount: 1
+  Buy: Stock HEV, Amount: 180
+  Buy: Stock L62, Amount: 2
+  Sell: Stock ABT, Amount: 24065.0
+  Sell: Stock ASP, Amount: 159.0
+  Sell: Stock BMC, Amount: 481.0
+  Sell: Stock BPC, Amount: 1.0
+  Sell: Stock CAN, Amount: 912.0
+  Sell: Stock CMC, Amount: 1.0
+  Sell: Stock DXV, Amount: 1.0
+  Sell: Stock HEV, Amount: 1.0
+  Sell: Stock HJS, Amount: 8.0
+  Sell: Stock HMC, Amount: 4.0
+  Sell: Stock HSI, Amount: 20.0
+  Sell: Stock HEV, Amount: 158.0
+  Bank Deposit: 184485.20
+Month 9:
+  Buy: Stock ABT, Amount: 350
+  Buy: Stock ACB, Amount: 63
+  Buy: Stock ACL, Amount: 30
+  Buy: Stock AGF, Amount: 10
+  Buy: Stock BTS, Amount: 2
+  Buy: Stock COM, Amount: 1
+  Buy: Stock DXP, Amount: 987
+  Buy: Stock FMC, Amount: 4
+  Buy: Stock KMR, Amount: 24
+  Buy: Stock LBE, Amount: 71
+  Sell: Stock GIL, Amount: 1.0
+  Sell: Stock HEV, Amount: 7.0
+  Sell: Stock L62, Amount: 2.0
+  Sell: Stock HEV, Amount: 4.468739141042949
+  Bank Deposit: 1116957.33
+Month 10:
+  Buy: Stock ABT, Amount: 1940
+  Buy: Stock ACB, Amount: 634
+  Buy: Stock ACL, Amount: 7
+  Buy: Stock AGF, Amount: 3
+  Buy: Stock ALT, Amount: 2
+  Buy: Stock B82, Amount: 2
+  Buy: Stock CTB, Amount: 29
+  Buy: Stock DC4, Amount: 3
+  Buy: Stock DIC, Amount: 1
+  Buy: Stock DPR, Amount: 1
+  Buy: Stock DTT, Amount: 4400
+  Buy: Stock DXV, Amount: 1
+  Buy: Stock HAG, Amount: 34222
+  Buy: Stock HMC, Amount: 4
+  Buy: Stock LGC, Amount: 21
+  Sell: Stock BMI, Amount: 25.0
+  Sell: Stock BTS, Amount: 2.0
+  Sell: Stock COM, Amount: 1.0
+  Sell: Stock DXP, Amount: 987.0
+  Sell: Stock FMC, Amount: 4.0
+  Sell: Stock HAG, Amount: 16031.0
+  Sell: Stock HJS, Amount: 9.0
+  Sell: Stock KMR, Amount: 24.0
+  Sell: Stock LBE, Amount: 12.0
+  Sell: Stock HEV, Amount: 0.9998934042902452
+  Bank Deposit: 649462.13
+Month 11:
+  Buy: Stock ABT, Amount: 1000
+  Buy: Stock ACB, Amount: 706
+  Buy: Stock ACL, Amount: 297
+  Buy: Stock AGF, Amount: 137
+  Buy: Stock ALT, Amount: 490
+  Buy: Stock ANV, Amount: 1430
+  Buy: Stock ASP, Amount: 2
+  Buy: Stock B82, Amount: 27
+  Buy: Stock BBC, Amount: 7
+  Buy: Stock BMI, Amount: 1
+  Buy: Stock CTN, Amount: 1
+  Buy: Stock DBC, Amount: 9
+  Buy: Stock DPC, Amount: 1
+  Buy: Stock DQC, Amount: 179
+  Buy: Stock DRC, Amount: 2
+  Buy: Stock DTT, Amount: 42
+  Buy: Stock HCT, Amount: 4
+  Buy: Stock HHC, Amount: 4
+  Buy: Stock HMC, Amount: 1
+  Sell: Stock ACL, Amount: 178.0
+  Sell: Stock AGF, Amount: 246.0
+  Sell: Stock ASP, Amount: 1111.0
+  Sell: Stock B82, Amount: 2.0
+  Sell: Stock CTB, Amount: 1.0
+  Sell: Stock DC4, Amount: 3.0
+  Sell: Stock DIC, Amount: 1.0
+  Sell: Stock DPR, Amount: 1.0
+  Sell: Stock DTT, Amount: 871.0
+  Sell: Stock DXV, Amount: 1.0
+  Sell: Stock HAG, Amount: 2408.0
+  Sell: Stock LGC, Amount: 21.0
+  Sell: Stock HEV, Amount: 1.0
+  Bank Deposit: 695313.59
+Month 12:
+  Sell: Stock ABT, Amount: 3290.0
+  Sell: Stock ACL, Amount: 334.0
+  Sell: Stock AGF, Amount: 484.0
+  Sell: Stock ANV, Amount: 1430.0
+  Sell: Stock ASP, Amount: 1806.0
+  Sell: Stock B82, Amount: 133.0
+  Sell: Stock BBC, Amount: 7.0
+  Sell: Stock BMI, Amount: 7.0
+  Sell: Stock BST, Amount: 13.0
+  Sell: Stock CTB, Amount: 28.0
+  Sell: Stock CTN, Amount: 1.0
+  Sell: Stock DBC, Amount: 9.0
+  Sell: Stock DPC, Amount: 1.0
+  Sell: Stock DQC, Amount: 179.0
+  Sell: Stock DTT, Amount: 3571.0
+  Sell: Stock HAG, Amount: 15783.0
+  Sell: Stock HCT, Amount: 4.0
+  Sell: Stock HEV, Amount: 7.0
+  Sell: Stock HHC, Amount: 4.0
+  Sell: Stock HMC, Amount: 5.0
+  Sell: Stock LBE, Amount: 59.0
+  Sell: Stock ACB, Amount: 1587.0
+  Sell: Stock ALT, Amount: 492.0
+  Sell: Stock ASP, Amount: 390.0
+  Sell: Stock B82, Amount: 219.0
+  Sell: Stock DRC, Amount: 2.0
+  Bank Deposit: 753947.07
+
+
+Final Cash: 1299316.5276679289527 => return: 0.2993165276679
