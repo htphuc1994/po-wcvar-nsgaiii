@@ -1098,7 +1098,7 @@ stock_returns = np.column_stack((
 # print("DONE - experiment 16th")
 
 # experiment 17th
-for i in range(5,10):
+for i in range(0,10):
     print(f"Starting loop i={i}...")
     seed = i + seed_padding
     constants.DURATION = 12
